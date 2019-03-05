@@ -58,5 +58,32 @@ public class Main {
 		for(int i=0; i<arrayOne.length; i++) {
 			System.out.println(++arrayOne[i]);
 		}
+		
+		// & - and
+		// && - short circuit and
+		// | - or
+		// || - short circuit or
+		
+		
+		// short circuit - only checks the first condition
+		// meaning they don't evaluate the right hand
+		// side (if the left hand side satisfies the
+		// condition TomaTM)
+		
+		// the & and | -> when used as logical operators,
+		// evaluate both sides always
+		
+		// false && -> it is not necessary to know what
+		// the right hand side is, the result must
+		// be false
+		
+//		while(boolOne && boolTwo) {
+//			// will only go into the block if the initial
+//			// condition is true
+//			// if the condition is false, it will go
+//			// past the loop
+//			// if the condition is still true,
+//			// it will execute again
+//		}
 	}
 }
