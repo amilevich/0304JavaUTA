@@ -30,6 +30,6 @@ public class Palindromes {
 	private static boolean isPalindrome(String s) {
 		//check half the word
 		return IntStream.range(0, s.length()/2)
-						.allMatch(i -> s.charAt(i) == s.charAt(s.length()-i-1));
+				.allMatch(i -> s.charAt(i) == s.charAt(s.length()-i-1));
 	}
 }
