@@ -13,8 +13,7 @@ public class Factorial {
 	    if(n < 0 || n > 12) throw new IllegalArgumentException("not happening");
 		if (n == 0)	return 1;	//special case: 0! = 1
 		int ans = 1; 			//var to track answer
-		while(n != 0)			//decrementing after captures 1! case
-			ans *= n--;			//ans = ans * n and decrements n
+		while(n != 0)	ans *= n--;	//decrementing + captures "1!" case		
 		return ans;
 	}
 	
