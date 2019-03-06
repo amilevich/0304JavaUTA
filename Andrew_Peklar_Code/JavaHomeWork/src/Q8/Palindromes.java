@@ -13,14 +13,14 @@ public class Palindromes {
 	
 	//Strings to sort
 	private static String[] wordBank  = {	"karan",	"madam",	"tom",		"civic",
-											"radar",	"sexes",	"jimmy",	"kayak", 
-											"john",		"refer",	"billy",	"did"	};
+						"radar",	"sexes",	"jimmy",	"kayak", 
+						"john",		"refer",	"billy",	"did"	  };
 	
 	public static void main(String[] args) {
 		//for each item in wordBank, add to either list 
 		//depending on if it is a palindrome or not
 		Arrays.stream(wordBank)
-			  .forEach((x) -> ((isPalindrome(x)) ? Palindromes : nonPalindromes).add(x));
+		      .forEach((x) -> ((isPalindrome(x)) ? Palindromes : nonPalindromes).add(x));
 		
 		//print both lists to check
 		System.out.println(Palindromes);
