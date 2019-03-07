@@ -1,1 +1,0 @@
-Jay Parikh's code
