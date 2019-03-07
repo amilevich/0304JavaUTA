@@ -8,17 +8,21 @@ import java.io.IOException;
 public class ReadFile {
 
 	public static void main(String[] args) {
+		//file name
 		String filename = "./Data.txt";
 		
 		try {
+			//creating the reader objects
             FileReader reader = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(reader);
  
             String line;
-            
+            //read the whole file
             while ((line = bufferedReader.readLine()) != null) {
-                //System.out.println(line);
+            	//split the words separated by ":" into an array 
             	String[] str = line.split(":");
+            	
+            	//loop to print out in the format that we want
             	for(int j = 0; j < 4; j++) {
             		if(j == 0) {
             			System.out.println("Name: " + str[0] + " " + str[1]);
@@ -32,7 +36,6 @@ public class ReadFile {
         }catch (FileNotFoundException e) {
 			e.printStackTrace();
         } catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
