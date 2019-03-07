@@ -13,7 +13,7 @@ public class Scopes {
 	 * Object/Instance - the object's fields/state variables in this scope exist for
 	 * the lifetime of the object and exist within the object itself.
 	 * 
-	 * Method - parameters and any variables defined at the method level. Variables
+	 * Method/local - parameters and any variables defined at the method level. Variables
 	 * in this scope exist for the lifetime of the method call.
 	 * 
 	 * Loop/Block scope - any variable defined within curly braces
