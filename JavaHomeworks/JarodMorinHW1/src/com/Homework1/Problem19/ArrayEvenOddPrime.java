@@ -30,39 +30,38 @@ public class ArrayEvenOddPrime {
 
 	public static void main(String[] args) {
 		ArrayList<Integer> evenOddPrimeList = new ArrayList<Integer>();
-		
-		for(int i = 1; i <= 10; i++)	// 10 elements to add to the ArrayList
+
+		for (int i = 1; i <= 10; i++) // 10 elements to add to the ArrayList
 		{
-			evenOddPrimeList.add(i);		// Placing numbers 1 through 10 into ArrayList by adding them to the end
+			evenOddPrimeList.add(i); // Placing numbers 1 through 10 into ArrayList by adding them to the end
 		}
 
-		System.out.println("Displaying list: " + evenOddPrimeList);	// Displaying original list
-		
+		System.out.println("Displaying list: " + evenOddPrimeList); // Displaying original list
+
 		int result = 0; // initializing the sum (result) to 0
-		for(int x : evenOddPrimeList) {			
-			if(isEven(x))					// add any values that are even to the sum
+		for (int x : evenOddPrimeList) {
+			if (isEven(x)) // add any values that are even to the sum
 				result += x;
 		}
-		
-		System.out.println("Sum of evens is: " + result);	// display sum of evens
-		
-		result = 0;	// reset result to 0
-		
-		for(int x : evenOddPrimeList) {
-			if(!isEven(x))				// add any values that are NOT even to the sum
+
+		System.out.println("Sum of evens is: " + result); // display sum of evens
+
+		result = 0; // reset result to 0
+
+		for (int x : evenOddPrimeList) {
+			if (!isEven(x)) // add any values that are NOT even to the sum
 				result += x;
 		}
-		System.out.println("Sum of odds is: " + result);	// display sum of odds
-		
-		
-		for(int i = 0; i < evenOddPrimeList.size(); i++) {
-			if(isPrime(evenOddPrimeList.get(i)))	// Check for primeness, remove from list if prime
-				evenOddPrimeList.remove(i--);		// Removal shifts elements in an ArrayList, so the counter i must
-													// be decremented whenever a removal occurs to prevent 
-													// any unintended skipping
+		System.out.println("Sum of odds is: " + result); // display sum of odds
+
+		for (int i = 0; i < evenOddPrimeList.size(); i++) {
+			if (isPrime(evenOddPrimeList.get(i))) // Check for primeness, remove from list if prime
+				evenOddPrimeList.remove(i--); // Removal shifts elements in an ArrayList, so the counter i must
+												// be decremented whenever a removal occurs to prevent
+												// any unintended skipping
 		}
-		
-		System.out.println("Displaying list without primes: " + evenOddPrimeList);	// display list without primes
+
+		System.out.println("Displaying list without primes: " + evenOddPrimeList); // display list without primes
 	}
 
 }

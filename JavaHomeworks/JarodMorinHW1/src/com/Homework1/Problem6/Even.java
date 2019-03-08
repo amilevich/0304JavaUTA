@@ -26,7 +26,7 @@ public class Even {
 			if(isEven(i))
 				System.out.println("even");	
 			else
-				System.out.println("false");
+				System.out.println("odd");
 		}
 	}
 
