@@ -1,9 +1,10 @@
 package Question1;
 
 public class Main {
-	//These are just here for question 11
+	//Ignore, These are just here for question 11
 	public static float x = 18.0f;
 	public static float y = 22.0f;
+	
 	
 	public static void main(String[] args) {
 		
