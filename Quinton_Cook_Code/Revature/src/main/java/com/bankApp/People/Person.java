@@ -73,6 +73,8 @@ public class Person implements Serializable {
 
 			ois.close();
 
+		} catch (FileNotFoundException e) {
+			System.out.println("File:" + counterFile + " not found will create one now");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -93,7 +95,8 @@ public class Person implements Serializable {
 				loginInfo.put(acct.getUsername(), acct);
 
 				ois.close();
-
+			} catch (FileNotFoundException e) {
+				System.out.println("No previous accounts found. Please create one");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -111,6 +114,9 @@ public class Person implements Serializable {
 
 		Iterator<Entry<String, Person>> it = loginInfo.entrySet().iterator();
 
+		// counter must be reset everytime this is called otherwise it will keep
+		// counting up forever
+		counter = 0;
 		/*
 		 * this method will iterate through the loginInfo hashmap, create a new file for
 		 * each account under the name Account[n].sv this will overwrite any previous
