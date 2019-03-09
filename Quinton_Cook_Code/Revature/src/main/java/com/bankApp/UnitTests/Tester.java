@@ -1,16 +1,15 @@
 package com.bankApp.UnitTests;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Test;
 
 import com.bankApp.Account.Account;
 import com.bankApp.People.BankAdmin;
 import com.bankApp.People.Employee;
+import com.bankApp.People.Person;
 
 public class Tester {
 
@@ -24,7 +23,7 @@ public class Tester {
 
 	@After
 	public void after() {
-		System.out.println("\nTest complete\n");
+		System.out.println("Test complete\n");
 	}
 
 	// ***********************************Begin
@@ -70,7 +69,10 @@ public class Tester {
 	public void successfulTransfer() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
 		Account rowen = new Account("Rowen", "Atkinson", "Rowan", "1234", 10, "Rowen");
-		assertEquals("this should be true", true, quinton.transfer(rowen, 3));
+		
+		Account.applyForAccount(rowen);
+		
+		assertEquals("this should be true", true, quinton.transfer(rowen.getUsername(), 3));
 		System.out.println("Successful transfer test successful");
 	}
 
@@ -78,7 +80,10 @@ public class Tester {
 	public void unsuccessfulTransferNegativeMoney() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
 		Account rowen = new Account("Rowen", "Atkinson", "Rowan", "1234", 10, "Rowen");
-		assertEquals("this should be false", false, quinton.transfer(rowen, -3));
+		
+		Account.applyForAccount(rowen);
+		
+		assertEquals("this should be false", false, quinton.transfer(rowen.getUsername(), -3));
 		System.out.println("Unsuccessful transfer of negative money test successful");
 	}
 
@@ -86,21 +91,40 @@ public class Tester {
 	public void unsuccessfulTransferOverdraw() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
 		Account rowen = new Account("Rowen", "Atkinson", "Rowan", "1234", 10, "Rowen");
-		assertEquals("this should be false", false, quinton.transfer(rowen, 11));
+		
+		Account.applyForAccount(rowen);
+		
+		assertEquals("this should be false", false, quinton.transfer(rowen.getUsername(), 11));
 		System.out.println("Unsuccessful transfer overdraw test successful");
 	}
 
 	@Test
 	public void unsuccessfulLoginUsername() {
-		assertEquals("this should be false", false, Account.login("Q", "1"));
+		boolean testSuccess = true;
+
+		if (Person.login("Q", "1") != null) {
+			testSuccess = false;
+		}
+
+		assertEquals("this should be true", true, testSuccess);
 		System.out.println("Invalid username test successful");
 	}
 
 	@Test
 	public void unsuccessfulLoginPassword() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
+
+		// adds account to loginInfo hashmap this checks the password validation portion
+		// of the method
 		Account.applyForAccount(quinton);
-		assertEquals("this should be false", false, Account.login("Quinton", "1"));
+
+		boolean testSuccess = true;
+
+		if (Account.login("Quinton", "1") != null) {
+			testSuccess = false;
+		}
+
+		assertEquals("this should be true", true, testSuccess);
 		System.out.println("Invalid password test successful");
 	}
 
@@ -108,13 +132,14 @@ public class Tester {
 	public void successfulLogin() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
 		Account.applyForAccount(quinton);
-		assertEquals("this should be true", true, Account.login("Quinton", "1234"));
+		
+		assertEquals("this should be true", true, quinton.equals(Account.login("Quinton", "1234")));
 		System.out.println("Successful login test success");
 	}
 
 	@Test
 	public void successfulApplyForSingleAccount() {
-		Account test = new Account("Q", "Q", "Q", "Q", 1, "Q");
+		Account test = new Account("Q", "Q", "QAC", "Q", 1, "Q");
 		assertEquals("this should be true", true, Account.applyForAccount(test));
 		System.out.println("Account Application test successful");
 	}
@@ -127,10 +152,9 @@ public class Tester {
 	@Test
 	public void testViewAccountInfo() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
-		String[] quintonsInfo = { "Quinton", "Cook", "Quinton", "1234", Double.toString(quinton.getCurrentBalance()),
-				"Quinton" };
-		
-		assertEquals("this should match:" , quintonsInfo[0], Employee.recallInformation(quinton)[0]);
+		String quintonsInfo = quinton.toString();
+
+		assertEquals("this should match be true", true, quintonsInfo.equals(Employee.recallInformation(quinton)));
 		System.out.println("View Account Information test successful");
 
 	}
@@ -171,8 +195,10 @@ public class Tester {
 	public void transferAdmin() {
 		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
 		Account rowen = new Account("Rowen", "Atkinson", "Rowan", "1234", 10, "Rowen");
+		
+		Account.applyForAccount(rowen);
 
-		assertEquals("this should be true", true, BankAdmin.transfer(quinton, rowen, 4));
+		assertEquals("this should be true", true, BankAdmin.transfer(quinton, rowen.getUsername(), 4));
 		System.out.println("Admin transfer test successful");
 	}
 
@@ -184,6 +210,26 @@ public class Tester {
 
 		assertEquals("this should be true", true, BankAdmin.cancelAccount(tmp));
 		System.out.println("Cancel Account test successful");
+	}
+	
+	@Test
+	public void saveAccountInfoTest() {
+		Account tmp = new Account("Q", "Q", "unique", "Q", 0, "NONE");
+		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
+		
+		Account.applyForAccount(tmp);
+		Account.applyForAccount(quinton);
+		
+		Account.close();
+		System.out.println("Save accounts test success");
+	}
+	
+	@Test
+	public void loadAccountInfoTest() {
+		Account.load();
+		Account quinton = new Account("Quinton", "Cook", "Quinton", "1234", 10, "Quinton");
+		assertEquals("This should be true:", true, quinton.equals(Account.login("Quinton", "1234")));
+		System.out.println("Load Accounts test success");
 	}
 
 }
