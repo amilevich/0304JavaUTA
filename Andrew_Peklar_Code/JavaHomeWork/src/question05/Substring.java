@@ -17,8 +17,8 @@ public class Substring {
 	//however, it uses stringBuilder;
 	public static String subString(String strg, int n) {
 		return Arrays.stream(strg.split(""))
-        			 .skip(n)
-        			 .map(Object::toString)
-        			 .reduce("", String::concat); 
+        		     .skip(n)
+        		     .map(Object::toString)
+        		     .reduce("", String::concat); 
 	}
 }
