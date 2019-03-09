@@ -7,8 +7,8 @@ public class ConsoleInput {
 	// Example: [hello, World] --> helloworld --> 10 characters
 	public static void main(String[] args) {
 		System.out.println(Arrays.stream(args)
-								 .reduce("", String::concat)
-								 .length());
+					 .reduce("", String::concat)
+					 .length());
 	}
 }
 
@@ -16,5 +16,5 @@ public class ConsoleInput {
 
 //White space inclusive version:
 //System.out.println(Arrays.stream(args)
-//						   .reduce("", String::concat)
+//			   .reduce("", String::concat)
 //                         .length() + args.length-1);
