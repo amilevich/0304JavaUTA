@@ -20,8 +20,8 @@ public class Main {
 		// Testing numerical string --> int
 		// subtracted 10 in print statement below to offset the "+ 10" 
 		System.out.printf("t1[0] = %d ------> %d - 10 = %d ------> %d + 9 = %d\n", Lowdy.stringToInt(t1[0]),
-						  							  Lowdy.stringToInt(t1[0]), Lowdy.stringToInt(t1[0])-10, 
-						  					Lowdy.stringToInt(t1[0])-10, (Lowdy.stringToInt(t1[0])-10 + 9));
+				  Lowdy.stringToInt(t1[0]), Lowdy.stringToInt(t1[0])-10, Lowdy.stringToInt(t1[0])-10, 
+				  (Lowdy.stringToInt(t1[0])-10 + 9));
 		
 		// Testing alphabetical string --> sum of String ASCII values + 10
 		System.out.println("String \"" + t1[1] + "\" ------> \"" + Lowdy.stringToInt(t1[1]) +"\"");
