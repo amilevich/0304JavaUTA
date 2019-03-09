@@ -9,7 +9,7 @@ public class ArrayListTricks {
 
 	public static void main(String[] args) {
 		
-		fillList();			// fill list with integers 1-10
+		fillList();		// fill list with integers 1-10
 		displayList();		// display the list
 		sumEvensList();		// sum of even numbers
 		sumOddsList();		// sum of odd  numbers
@@ -29,17 +29,17 @@ public class ArrayListTricks {
 	
 	private static void sumEvensList() {
 		int evenSum = aListy.stream()
-							.filter((x) -> (x&1) == 0)
-							.mapToInt(Integer::new)
-							.sum();
+				    .filter((x) -> (x&1) == 0)
+				    .mapToInt(Integer::new)
+				    .sum();
 		System.out.println("Sum of even numbers: \t" + evenSum);
 	}
 	
 	private static void sumOddsList() {
 		int oddsSum = aListy.stream()
-							.filter((x) -> (x&1) == 1)
-							.mapToInt(Integer::new)
-							.sum();
+				    .filter((x) -> (x&1) == 1)
+				    .mapToInt(Integer::new)
+				    .sum();
 		System.out.println("Sum of odd numbers : \t" + oddsSum);
 	}
 	
