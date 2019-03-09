@@ -7,14 +7,14 @@ public class ForEach {
 	public static void main(String[] args) {
 		int index = -1;
 		Random rand = new Random();
-		while(++index != 100) arr[index] = rand.nextInt(101);
+		while(++index != 100)	arr[index] = rand.nextInt(101);
 		printEvens();
 	}
 	
 	static void printEvens() {
 		Arrays.stream(arr)
-			  .filter(i -> i%2 == 0)
-			  .forEach(System.out::println);
+		      .filter(i -> i%2 == 0)
+		      .forEach(System.out::println);
 	}
 
 }
