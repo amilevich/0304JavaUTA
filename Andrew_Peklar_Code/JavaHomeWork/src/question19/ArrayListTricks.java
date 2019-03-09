@@ -14,7 +14,7 @@ public class ArrayListTricks {
 		sumEvensList();		// sum of even numbers
 		sumOddsList();		// sum of odd  numbers
 		removePrimes();		// remove primes from list		
-		displayList();		//display result of removing primes
+		displayList();		// display result of removing primes
 	}
 
 	private static void fillList() {
