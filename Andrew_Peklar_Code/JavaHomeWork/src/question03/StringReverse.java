@@ -8,7 +8,7 @@ public class StringReverse {
 	}
 	public static String reverseString(String strg) {
 		return	strg.chars()
-					.mapToObj(c -> (char)c)
-					.reduce("", (s,c) -> c+s, (s1,s2) -> s2+s1);
+			    .mapToObj(c -> (char)c)
+			    .reduce("", (s,c) -> c+s, (s1,s2) -> s2+s1);
 	}
 }
