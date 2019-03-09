@@ -15,17 +15,6 @@ public class SortingComName implements Comparator <Student> {
 		}
 		
 		}
-	
-	public int compareDepartment(Student o1, Student o2) {
-		if (o1.getDepartment().compareTo(o2.getDepartment())>0) {
-			return 1;
-		} else if (o1.getDepartment().compareTo(o2.getDepartment())<0) {
-			return -1;
-		} else { 
-			return 0;
-		}
-		
-		}
 	}
 
 

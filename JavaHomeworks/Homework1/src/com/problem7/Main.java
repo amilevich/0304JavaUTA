@@ -14,11 +14,18 @@ public class Main {
 		students.add(new Student("Frank", "Science",21));
 		students.add(new Student("Anne", "Math",19));
 		
-		printList(students);
-		Collections.sort(students, new SortingComName()); // sorts by name
-		printList(students);
-		Collections.sort(students, new SortingComName());
+		//printList(students);
+		//Collections.sort(students, new SortingComName()); // sorts by name alphabetically
+		//printList(students);
 		
+//		printList(students);
+//		Collections.sort(students, new SortingComDepartment()); // sorts by department alphabetically
+//		printList(students);
+		
+		printList(students);
+		Collections.sort(students, new SortingComAge()); // sorts by age lowest to highest
+		printList(students);
+
 	
 	}
 	
