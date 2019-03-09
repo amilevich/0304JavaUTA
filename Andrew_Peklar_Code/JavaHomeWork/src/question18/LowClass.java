@@ -12,8 +12,8 @@ public class LowClass extends HighClass {
 		// If there are any lower case letters, output is false.
 		// An input of all non-alphabetical chars will result in "true" by default
 		return !str.chars()
-					.mapToObj(c -> (int) c)
-					.anyMatch(c -> c > 96 & c < 123);
+			   .mapToObj(c -> (int) c)
+			   .anyMatch(c -> c > 96 & c < 123);
 	}
 
 	@Override
