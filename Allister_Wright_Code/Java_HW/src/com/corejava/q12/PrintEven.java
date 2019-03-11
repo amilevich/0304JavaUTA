@@ -11,6 +11,7 @@ public class PrintEven
 		for (int i = 0; i < data.length; i ++)
 			data[i] = i+1;
 
+		// Print Even Values from array
 		for (int i : data)
 		{
 			if (i % 2 == 0)

@@ -20,6 +20,7 @@ public class SwitchDemo
 		switch (idx)
 		{
 		case 1:
+			// Call Math.sqrt(); print the result
 			System.out.println(Math.sqrt(16));
 			break;
 		case 2:
@@ -27,6 +28,7 @@ public class SwitchDemo
 			String isoDateTime = Instant.now().toString();
 			// Discard everything after the marker for the current time
 			String today = isoDateTime.split("T")[0];
+			// Display the date
 			System.out.println(today);
 			break;
 		case 3:

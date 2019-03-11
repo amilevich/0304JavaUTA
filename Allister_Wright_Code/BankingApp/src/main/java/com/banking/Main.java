@@ -26,29 +26,29 @@ public class Main
 
 		ArrayList<User> users = (ArrayList<User>) readObject(userDataFilename);
 		ArrayList<Account> accounts = (ArrayList<Account>) readObject(accountDataFilename);
-
-		try
-		{
-			if (users.equals(null))
-				;
-		}
-		catch (NullPointerException e)
-		{
+//
+//		try
+//		{
+//			if (users.equals(null))
+//				;
+//		}
+//		catch (NullPointerException e)
+//		{
 			users = new ArrayList<>();
 			// Test accounts
 			// Remove for finished build
-//			users.add(new Admin("admin", "password"));
-//			users.add(new Employee("employee", "password"));
-		}
-		try
-		{
-			if (accounts.equals(null))
-				;
-		}
-		catch (NullPointerException e)
-		{
+			users.add(new Admin("admin", "password"));
+			users.add(new Employee("employee", "password"));
+//		}
+//		try
+//		{
+//			if (accounts.equals(null))
+//				;
+//		}
+//		catch (NullPointerException e)
+//		{
 			accounts = new ArrayList<>();
-		}
+//		}
 
 		
 		String loginInput = "";

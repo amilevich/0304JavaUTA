@@ -14,6 +14,7 @@ public class DisplayTriangle
 			// Iterate over tokens in each line
 			for (int pos = 0; pos < level; pos ++)
 			{
+				// print the current token
 				System.out.print(toPrint + " ");
 				// Flip token to be printed between 0 and 1
 				toPrint = Math.abs(--toPrint);

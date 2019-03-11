@@ -8,6 +8,7 @@ public class Main
 
 		Calculator calculator = new Calculator();
 		
+		// Test Cases 
 		System.out.println(calculator.multiply(6, 5));
 		System.out.println(calculator.divide(14, 3));
 	}
