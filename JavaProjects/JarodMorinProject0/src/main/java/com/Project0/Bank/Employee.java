@@ -15,15 +15,23 @@ public class Employee extends User {
 	}
 
 	@Override
-	void openUserPortal(Bank banky, Scanner scanner) {
+	void openUserPortal(Bank banky, Scanner scanner) { // this method displays a menu to employees that log in that
+														// lists the options available to them and prompts them to
+														// select one. When an option is chosen, the associated task is
+														// initiated. These options contain all those available to users
+														// in addition to two other options limited to employees. These
+														// new options allow the employee to view unrespolved bank
+														// account applications and approve/deny them, as well as access
+														// the information of all users
 		boolean dontExitYet = true;
 		while (true) {
+			viewJointApplications(banky, scanner);
 			int input = 0;
 			try {
 				System.out.println("\n\n\n\n\n\n\n\n\n\nHello " + name + "!\n");
 				System.out.println("Would you like to: ");
 				System.out.print("1. View your accounts\n2. Apply for a new account\n3. Perform a transaction"
-						+ "\n4. View joint account requests\n5. View account applications\n6. View customer info\n7. Logout\nPlease enter the number of your selection: ");
+						+ "\n4. Request joint account\n5. View account applications\n6. View customer info\n7. Logout\nPlease enter the number of your selection: ");
 				String strIn = null;
 				strIn = scanner.nextLine();
 				try {
@@ -56,7 +64,7 @@ public class Employee extends User {
 				viewAccountApplications(banky, scanner);
 				break;
 			case 6:
-				viewCustomerInfo(banky,scanner);
+				viewCustomerInfo(banky, scanner);
 				break;
 			case 7:
 				System.out.println("\nLogging out.\n\nGoodbye!");
@@ -72,7 +80,11 @@ public class Employee extends User {
 		}
 	}
 
-	void viewAccountApplications(Bank banky, Scanner scan) {
+	void viewAccountApplications(Bank banky, Scanner scan) { // Determines if any unresolved bank account applications
+																// are in the queue, and prompts the employee to approve
+																// or deny each request. Upon denial, the request is
+																// deleted, and upon approval, the associated account is
+																// added to accountMap
 		if (banky.applicationQueue.isEmpty()) {
 			System.out.println("\nThere are no applications pending approval.");
 			System.out.println("Returning to home menu.");
@@ -102,9 +114,12 @@ public class Employee extends User {
 			}
 	}
 
-	void viewCustomerInfo(Bank banky, Scanner scan) {
+	void viewCustomerInfo(Bank banky, Scanner scan) { // Displays a list of users to the employee and prompts them to
+														// input whichever user they would like to know more about. The
+														// username, name, and all bank accounts associated with that
+														// username, if any exist, are displayed.
 		System.out.println("List of users: ");
-		for(String customer : banky.userMap.keySet()) {
+		for (String customer : banky.userMap.keySet()) {
 			System.out.println(banky.userMap.get(customer).getUsername());
 		}
 		String customer = null;
@@ -116,7 +131,8 @@ public class Employee extends User {
 			else
 				break;
 		}
-		System.out.println("Username: " + customer + "\nName: " + banky.userMap.get(customer).getName() + "\nAccounts: ");
+		System.out
+				.println("Username: " + customer + "\nName: " + banky.userMap.get(customer).getName() + "\nAccounts: ");
 		boolean foundAccount = false;
 		for (int x : banky.accountMap.keySet()) {
 			if (banky.accountMap.get(x).getAccountUsers().contains(customer)) {
@@ -128,7 +144,36 @@ public class Employee extends User {
 			System.out.println("\nNo active accounts found.");
 			return;
 		}
-		
+
 	}
-	
+
+	@Override
+	void createAccount(Bank banky, Scanner scan) { // Allows an employee to create a new bank account. Does not need approval.
+		double balance = -1;
+		System.out.print("\nPlease enter your account balance: ");
+		while (true) {
+			try {
+
+				String strIn = null;
+				strIn = scan.nextLine();
+				try {
+					balance = Double.parseDouble(strIn);
+				} catch (NumberFormatException e) {
+					System.out.println("\nInvalid input. Please enter a number.");
+					continue;
+				}
+			} catch (NoSuchElementException e) {
+				System.out.println("\nInput not found. Please try again.");
+				continue;
+			}
+			if (balance >= 0)
+				break;
+			else
+				System.out.println("\nInvalid input. Please enter a non-negative balance.");
+		}
+		int accID = banky.generateUniqueAccountNumber();
+		banky.addToAccountMap(new Account(accID, balance, username));
+		System.out.println("Account created.");
+	}
+
 }

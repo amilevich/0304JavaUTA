@@ -10,12 +10,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		Bank banky = new Bank();
-//		banky.createAdmin("Admin","password","Big Boss");
-		banky.createEmployee("Employee","password","Generic Employee");
+		banky.createAdmin("Admin","password","Big Boss");
+		banky.createEmployee("Employee", "password", "Generic Employee");
 		homeMenu(banky);
 		FileOutputStream fileOut = null;
 		ObjectOutputStream objOut = null;
-		
+
 		try {
 			fileOut = new FileOutputStream("banky.txt");
 			objOut = new ObjectOutputStream(fileOut);
@@ -25,11 +25,14 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
-	static void homeMenu(Bank banky) {
+	static void homeMenu(Bank banky) { // this method displays the options available to the user at the 'home' menu of
+										// the program. The user can log in to an existing user account, create a new
+										// user account, or exit the program. Exiting the program serializes the
+										// current state of the Bank object, which stores all user and bank account
+										// data, before terminating the program
 		Scanner scanner = new Scanner(System.in);
 		boolean dontExitYet = true;
 		while (true) {
@@ -37,7 +40,8 @@ public class Main {
 			try {
 				System.out.println("\n\n\n\n\n\n\n\n\n\nWelcome to Banky the Bank!\n");
 				System.out.println("Would you like to: ");
-				System.out.print("1. Log in\n2. Create a new user\n3. Close Program\nPlease enter the number of your selection: ");
+				System.out.print(
+						"1. Log in\n2. Create a new user\n3. Close Program\nPlease enter the number of your selection: ");
 				String strIn = null;
 				strIn = scanner.nextLine();
 				try {
@@ -68,7 +72,7 @@ public class Main {
 				System.out.println("\nInvalid selection. Plese input a number from the menu.");
 				break;
 			}
-			if(dontExitYet)
+			if (dontExitYet)
 				pauseScreen(scanner);
 			else
 				break;
@@ -78,8 +82,8 @@ public class Main {
 	}
 
 	static void pauseScreen(Scanner pauser) { // Used to allow user to read screen before advancing.
-								// I use a lot of console outputs to display options/instructions
-								// that will flood the window unless I space them out between pauses.
+		// I use a lot of console outputs to display options/instructions
+		// that will flood the window unless I use pauses to space them out.
 		System.out.println("Enter any key to continue...");
 		pauser.nextLine();
 	}

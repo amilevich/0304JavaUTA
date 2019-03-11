@@ -12,8 +12,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 8090335941928816046L;
 	protected String username, password, name;
 
-	
-	
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", name=" + name + "]";
@@ -51,7 +49,8 @@ public class User implements Serializable {
 	}
 
 	void openUserPortal(Bank banky, Scanner scanner) {
-		boolean dontExitYet = true;
+		boolean dontExitYet = true; // Opens a portal that displays options to the user that is logged in, prompts
+									// the user to select one, and then initiates the selected task
 		while (true) {
 			int input = 0;
 			viewJointApplications(banky, scanner);
@@ -59,7 +58,7 @@ public class User implements Serializable {
 				System.out.println("\n\n\n\n\n\n\n\n\n\nHello " + name + "!\n");
 				System.out.println("Would you like to: ");
 				System.out.print("1. View your accounts\n2. Apply for a new account\n3. Perform a transaction"
-						+ "\n4. Request joint Account\n5. Logout\nPlease enter the number of your selection: ");
+						+ "\n4. Request joint account\n5. Logout\nPlease enter the number of your selection: ");
 				String strIn = null;
 				strIn = scanner.nextLine();
 				try {
@@ -102,7 +101,12 @@ public class User implements Serializable {
 		}
 	}
 
-	void openTransactionMenu(Bank banky, Scanner scanner) {
+	void openTransactionMenu(Bank banky, Scanner scanner) { // A secondary menu that appears when the transaction option
+															// is selected
+															// Displays the three transaction options withdraw, deposit
+															// and transfer as well as an option to return to the
+															// previous screen. The user is prompted to choose from
+															// these options, and the selected task is initiated here
 		while (true) {
 			int input = 0;
 			boolean wantsToLeave = false;
@@ -152,7 +156,8 @@ public class User implements Serializable {
 		}
 	}
 
-	void viewAccounts(Bank banky) {
+	void viewAccounts(Bank banky) { // This method displays all accounts associated with the current user, or that
+									// no associated active accounts were found.
 		boolean foundAccount = false;
 		for (int x : banky.accountMap.keySet()) {
 			if (banky.accountMap.get(x).getAccountUsers().contains(username)) {
@@ -168,7 +173,12 @@ public class User implements Serializable {
 			System.out.println("\nNo active accounts found.");
 	}
 
-	void withdraw(Bank banky, Scanner scan) {
+	void withdraw(Bank banky, Scanner scan) { // This option allows the user to withdraw from an account. Ensures that
+												// the user has an active account and that the chosen account number is
+												// accessible by the current user. The withdraw amount is also tested to
+												// ensure it is non-negative and does not exceed the account balance.
+												// Finally, the account balance is updated based on the withdrawn
+												// amount.
 		boolean foundAccount = false;
 		int accnum = 0;
 		for (int x : banky.accountMap.keySet()) {
@@ -248,7 +258,11 @@ public class User implements Serializable {
 		}
 	}
 
-	void deposit(Bank banky, Scanner scan) {
+	void deposit(Bank banky, Scanner scan) {// This option allows the user to deposit to an account. Ensures that
+											// the user has an active account and that the chosen account number is
+											// accessible by the current user. The deposit amount is also tested to
+											// ensure it is non-negative. Finally the account balance is updated to
+											// reflect the deposit.
 		boolean foundAccount = false;
 		int accnum = 0;
 		for (int x : banky.accountMap.keySet()) {
@@ -324,7 +338,14 @@ public class User implements Serializable {
 		}
 	}
 
-	void transfer(Bank banky, Scanner scan) {
+	void transfer(Bank banky, Scanner scan) { // This option allows the user to transfer from one account to another
+												// Ensures that the user has an active account and that the chosen
+												// account number to transfer from is accessible by the current user.
+												// The transfer amount is also tested to ensure it is non-negative and
+												// does not exceed the sending account's balance. Finally, both
+												// accounts' balances are updated based on the transferred amount
+												// Note that the current user does not need permission to access the
+												// receiving account in order to transfer to it
 		boolean foundAccount = false;
 		int accnum = 0;
 		int accnum2 = 0;
@@ -434,7 +455,10 @@ public class User implements Serializable {
 		}
 	}
 
-	void createAccount(Bank banky, Scanner scan) {
+	void createAccount(Bank banky, Scanner scan) { // Allows a user to request a new bank account. It does not enter the
+													// map of active accounts until it is approved. Instead, the account
+													// is placed into an applications queue for an employee to approve
+													// or deny
 		double balance = -1;
 		System.out.print("\nPlease enter your account balance: ");
 		while (true) {
@@ -462,7 +486,10 @@ public class User implements Serializable {
 		System.out.println("Account application submitted, waiting for approval.");
 	}
 
-	void requestJointAccount(Bank banky, Scanner scan) {
+	void requestJointAccount(Bank banky, Scanner scan) { // allows a user to request joint membership in another
+															// account. Upon entering an account number, the application
+															// list of the chosen account will be updated to indicate
+															// that a user has requested joint membership
 		System.out.print("Please enter the account number you would like to become a joint accountholder of: ");
 		int accnum = 0;
 		while (true) {
@@ -490,15 +517,21 @@ public class User implements Serializable {
 		}
 	}
 
-	void viewJointApplications(Bank banky, Scanner scan) {
+	void viewJointApplications(Bank banky, Scanner scan) { // This method is called whenever a user logs in. If any
+															// accounts associated with the current user have unresolved
+															// applications for joint membership, the user is
+															// immediately prompted to approve or deny the request upon
+															// logging in. Denying the request simply removes it from
+															// the queue, while approving the request also adds the
+															// requesting user to the associated account's list of
+															// approved users
 
 		for (int x : banky.accountMap.keySet())
 			if (banky.accountMap.get(x).accountUsers.contains(username))
 				while (!banky.accountMap.get(x).appliedUsers.isEmpty()) {
-					System.out.println(
-							"\nUser " + banky.accountMap.get(x).appliedUsers.getFirst()
-									+ " would like to become a new joint accountholder to the account with"
-									+ " account number " + banky.accountMap.get(x).getAccountNumber()); 
+					System.out.println("\nUser " + banky.accountMap.get(x).appliedUsers.getFirst()
+							+ " would like to become a new joint accountholder to the account with" + " account number "
+							+ banky.accountMap.get(x).getAccountNumber());
 					System.out.println("Type 'y' to approve, or type 'n' to deny.");
 					String input;
 					while (true) {
