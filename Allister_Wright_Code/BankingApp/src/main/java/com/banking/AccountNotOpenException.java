@@ -2,6 +2,8 @@ package com.banking;
 
 public class AccountNotOpenException extends Exception
 {
+	private static final long serialVersionUID = -3517484141474584431L;
+
 	public AccountNotOpenException()
 	{	}
 	

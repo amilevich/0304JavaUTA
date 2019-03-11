@@ -2,6 +2,8 @@ package com.banking;
 
 public class InvalidUserAccessException extends Exception
 {
+	private static final long serialVersionUID = 5145764550928019203L;
+
 	public InvalidUserAccessException()
 	{	}
 	

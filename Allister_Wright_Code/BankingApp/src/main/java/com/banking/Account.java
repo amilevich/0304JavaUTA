@@ -1,17 +1,22 @@
 package com.banking;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Account
+public class Account implements Serializable
 {
+	private static final long serialVersionUID = 739061165271502623L;
+
 	public enum AccountType
 	{
-		CHECKING, SAVINGS, MONEY_MARKET_DEPOSIT, CERTIFICATE_DEPOSIT
+		CHECKING, SAVINGS, MONEY_MARKET_DEPOSIT, CERTIFICATE_DEPOSIT, 
+		NUM_ACCOUNT_TYPE
 	}
 	
 	public enum AccountState
 	{
-		PENDING_APPROVAL, OPEN, FROZEN, TERMINATED
+		PENDING_APPROVAL, OPEN, FROZEN, TERMINATED, 
+		NUM_ACCOUNT_STATE
 	}
 	
 	private long accountNumber;
@@ -30,6 +35,7 @@ public class Account
 	{
 		this.accountNumber = accountNumber;
 		this.type = type;
+		owners = new ArrayList<>();
 		addOwner(customer);
 		
 		this.state = AccountState.PENDING_APPROVAL;
@@ -61,10 +67,13 @@ public class Account
 		throw new InvalidUserAccessException();
 	}
 	
-	public boolean hasWriteAccess(User user)	throws InvalidUserAccessException
+	public boolean hasWriteAccess(User user)	
+			throws InvalidUserAccessException, AccountNotOpenException
 	{
 		if (user instanceof Admin)
 			return true;
+		if (state != AccountState.OPEN)
+			throw new AccountNotOpenException();
 		for (Customer owner : owners)
 		{
 			if (user.equals(owner))
@@ -78,7 +87,7 @@ public class Account
 		return balance;
 	}
 	
-	public void setBalance(double balance) 
+	private void setBalance(double balance) 
 			throws AccountNotOpenException, InvalidBalanceException
 	{
 		if (state == AccountState.OPEN)
@@ -109,6 +118,93 @@ public class Account
 	
 	// Public Account Type mutator not needed
 	
+	public void requestDeposit(double amount)
+		throws AccountNotOpenException, NegativeMoneyException, InvalidBalanceException
+	{
+		if (amount < 0)
+			throw new NegativeMoneyException();
+		try
+		{
+			setBalance(balance + amount);
+		}
+		catch (AccountNotOpenException e)
+		{
+			throw e;
+		}
+		// Just in case there's an overflow on the deposit
+		catch (InvalidBalanceException e)
+		{
+			throw e;
+		}
+	}
+	
+	public void requestWithdrawl(double amount)
+			throws AccountNotOpenException, NegativeMoneyException, InvalidBalanceException
+	{
+		if (amount < 0)
+			throw new NegativeMoneyException();
+		try
+		{
+			setBalance(balance - amount);
+		}
+		catch (AccountNotOpenException e)
+		{
+			throw e;
+		}
+		// Maxmium withdrawl amount
+		catch (InvalidBalanceException e)
+		{
+			throw e;
+		}
+	}
+	
+	public void requestTransfer(double amount, Account target)
+			throws AccountNotOpenException, NegativeMoneyException, InvalidBalanceException
+	{
+		if (amount < 0)
+			throw new NegativeMoneyException();
+		try
+		{
+			this.requestWithdrawl(amount);
+		}
+		catch (AccountNotOpenException e)
+		{
+			throw e;
+		}
+		// Maximum transfer/withdrawl amount
+		catch (InvalidBalanceException e)
+		{
+			throw e;
+		}
+		
+		try
+		{
+			target.requestDeposit(amount);
+		}
+		// refund this account in case of failure
+		catch (AccountNotOpenException e)
+		{
+			this.requestDeposit(amount);
+			throw e;
+		}
+		// Just in case there's an overflow on the deposit
+		catch (InvalidBalanceException e)
+		{
+			this.requestDeposit(amount);
+			throw e;
+		}
+	}
+	
+	public void approveAccount()
+	{
+		state = AccountState.OPEN;
+	}
+	
+	public void closeAccount()
+	{
+		state = AccountState.TERMINATED;
+	}
+	
 	public Object[] getAccountInfo()
 	{
 		Object[] accountInfo = new Object[5];
@@ -129,6 +225,7 @@ public class Account
 			sb.append("\t" + owner.getUsername());
 		sb.append("\n\tAccount is: " + state);
 		sb.append("\n\tCurrent Balance: " + balance);
+		sb.append("\n");
 		
 		return sb.toString();
 	}
