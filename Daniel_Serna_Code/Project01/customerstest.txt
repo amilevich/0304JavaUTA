@@ -1,0 +1,5 @@
+999887777:Jake:Farm:JFarm:pass:20:none:ongoing
+444332222:Sondre:Lerche:SLerche:pass:0:none:open
+444552222:John:Smith:JSmith:pass:0:none:open
+666558888:The:Mick:TMick:pass:0:none:open
+444992222:Hydrate:Water:HWater:pass:0:none:open

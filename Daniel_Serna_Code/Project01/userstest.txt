@@ -1,0 +1,7 @@
+admin:admin:0
+employee:employee:1
+JFarm:pass:2
+SLercher:pass:2
+JSmith:pass:2
+TMick:pass:-1
+HWater:pass:2
