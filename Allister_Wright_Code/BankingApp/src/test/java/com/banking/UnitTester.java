@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.banking.Account.AccountState;
+
 public class UnitTester
 {
 
@@ -583,14 +585,163 @@ public class UnitTester
 			Account account = new Account(0, Account.AccountType.CHECKING, c);
 			e.approveApplication(account);
 			account.closeAccount();
+			
+			assertTrue("Account should be closed", account.getState() == Account.AccountState.TERMINATED);
+			System.out.println("Account Closed Success");
+		}
+		
+		// **** Employee Actions ****
+		
+		@Test
+		public void viewAccountSuccess() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Employee e = new Employee(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			
+			Account.AccountState testState = (AccountState) account.getAccountInfo()[3];
+			assertTrue("Test State should be visible to employee", testState == Account.AccountState.PENDING_APPROVAL);
+			System.out.println("View Account Success");
+		}
+		
+		@Test
+		public void viewBalanceSuccess() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Employee e = new Employee(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			
+			double testBalance = account.getBalance();
+			assertTrue("Test Balance should be visible to employee", testBalance == 0);
+			System.out.println("View Balance Success");
+		}
+		
+		@Test
+		public void viewCustomerSuccess() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Employee e = new Employee(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			
+			ArrayList<Customer> ownerList = (ArrayList<Customer>) account.getAccountInfo()[2];
+			assertTrue("Owner List should be visible to employee", ownerList.size() == 1);
+			System.out.println("View Customer Success");
+		}
+		
+		@Test
+		public void approveAccountSuccess() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Employee e = new Employee(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			e.approveApplication(account);
+			
+			assertTrue("Account Should be open", account.getState() == Account.AccountState.OPEN);
+			System.out.println("Approve Account Success");
+		}
+		
+		@Test
+		public void denyAccountSuccess() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Employee e = new Employee(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			e.denyApplication(account);
+			
+			assertTrue("Account Should be Terminated", account.getState() == Account.AccountState.TERMINATED);
+			System.out.println("Deny Account Success");
+		}
+		
+		
+		// **** Admin Actions ****
+		
+		@Test
+		public void adminWithdraw() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Admin a = new Admin(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			a.approveApplication(account);
 			try
 			{
 				account.requestDeposit(100);
 			}
 			catch (AccountNotOpenException e1)
 			{
-				assertTrue("Account should be closed", 0 == account.getBalance());
-				System.out.println("Account Closed Success");
+				fail("Account should be open");
+				e1.printStackTrace();
+			}
+			catch (InvalidBalanceException e1)
+			{
+				fail("Test balance should be valid");
+			}
+			catch (NegativeMoneyException e1)
+			{
+				fail("Test Deposit should be positve");
+				e1.printStackTrace();
+			}
+	
+			try
+			{
+				account.requestWithdrawl(50);
+				assertTrue("Remaining balance should be 50", 50 == account.getBalance());
+			}
+			catch (AccountNotOpenException e1)
+			{
+				fail("Account should be open");
+				e1.printStackTrace();
+			}
+			catch (InvalidBalanceException e1)
+			{
+				fail("Test withdrawl should avoid overdraft");
+				e1.printStackTrace();
+			}
+			catch (NegativeMoneyException e1)
+			{
+				fail("Test withdrawl should be positive");
+				e1.printStackTrace();
+			}
+			System.out.println("Admin Withdraw success");
+		}
+		
+		@Test
+		public void adminDeposit() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Admin a = new Admin(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			a.approveApplication(account);
+			try
+			{
+				account.requestDeposit(100);
+			}
+			catch (AccountNotOpenException e1)
+			{
+				fail("Account should be open");
+				e1.printStackTrace();
+			}
+			catch (InvalidBalanceException e1)
+			{
+				fail("Test balance should be valid");
+			}
+			catch (NegativeMoneyException e1)
+			{
+				fail("Test Deposit should be positve");
+				e1.printStackTrace();
+			}
+			System.out.println("Admin Deposit success");
+		}
+		
+		@Test
+		public void adminTransfer() {
+			Customer c1 = new Customer("Name", "uname", "pass");
+			Customer c2 = new Customer("Name", "user", "pass");
+			Employee e = new Employee(null, null);
+			Account account1 = new Account(0, Account.AccountType.CHECKING, c1);
+			Account account2 = new Account(1, Account.AccountType.CHECKING, c2);
+			e.approveApplication(account1);
+			e.approveApplication(account2);
+			try
+			{
+				account1.requestDeposit(100);
+			}
+			catch (AccountNotOpenException e1)
+			{
+				fail("Account 1 should be open");
+				e1.printStackTrace();
 			}
 			catch (InvalidBalanceException e1)
 			{
@@ -602,58 +753,63 @@ public class UnitTester
 				fail("Test Deposit should be positve");
 				e1.printStackTrace();
 			}
+			
+			try
+			{
+				account1.requestTransfer(50, account2);
+			}
+			catch (AccountNotOpenException e1)
+			{
+				fail("Account 2 Should be open");
+				e1.printStackTrace();
+			}
+			catch (NegativeMoneyException e1)
+			{
+				fail("Transfer amount should be positive");
+				e1.printStackTrace();
+			}
+			catch (InvalidBalanceException e1)
+			{
+				fail("Transfer amount should be valid for both accounts");
+				e1.printStackTrace();
+			}
+			assertTrue("Account 2 should have received transfer", 
+					50 == account1.getBalance() &&
+					50 == account2.getBalance());
+			System.out.println("Admin Transfer Success");
 		}
 		
-		// **** Employee Actions ****
+		@Test
+		public void adminClose() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Admin a = new Admin(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			a.approveApplication(account);
+			account.closeAccount();
+			
+			assertTrue("Account should be closed", account.getState() == Account.AccountState.TERMINATED);
+			System.out.println("Account Closed Success");
+		}
 		
 		@Test
-		public void viewAccountSuccess() {}
-		/*
-		@Test
-		public void viewBalanceSuccess() {}
+		public void adminApprove() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Admin a = new Admin(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			a.approveApplication(account);
+			
+			assertTrue("Account Should be open", account.getState() == Account.AccountState.OPEN);
+			System.out.println("Approve Account Success");
+		}
 		
 		@Test
-		public void viewCustomerSuccess() {}
-		
-		@Test
-		public void approveAccountSuccess() {}
-		
-		@Test
-		public void denyAccountSuccess() {}
-		
-		
-		// **** Admin Actions ****
-		
-		@Test
-		public void adminWithdraw() {}
-		
-		@Test
-		public void adminDeposit() {}
-		
-		@Test
-		public void adminTransfer() {}
-		
-		@Test
-		public void adminClose() {}
-		
-		@Test
-		public void adminApprove() {}
-		
-		@Test
-		public void adminDeny() {}
-		
-		// **** Data Persistence ****
-		
-		@Test
-		public void saveUsers() {}
-		
-		@Test
-		public void saveAccounts() {}
-		
-		@Test
-		public void loadUsers() {}
-		
-		@Test
-		public void loadAccounts() {}
-		*/
+		public void adminDeny() {
+			Customer c = new Customer("Name", "uname", "pass");
+			Admin a = new Admin(null, null);
+			Account account = new Account(0, Account.AccountType.CHECKING, c);
+			a.denyApplication(account);
+			
+			assertTrue("Account Should be Terminated", account.getState() == Account.AccountState.TERMINATED);
+			System.out.println("Deny Account Success");
+		}
 }

@@ -37,8 +37,8 @@ public class Main
 			users = new ArrayList<>();
 			// Test accounts
 			// Remove for finished build
-			users.add(new Admin("admin", "password"));
-			users.add(new Employee("employee", "password"));
+//			users.add(new Admin("admin", "password"));
+//			users.add(new Employee("employee", "password"));
 		}
 		try
 		{
