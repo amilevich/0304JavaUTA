@@ -1,6 +1,5 @@
 ## Revature Programming Exercises and Projects
 
----
 
 ### Projects
 
