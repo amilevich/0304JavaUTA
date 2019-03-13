@@ -1,0 +1,330 @@
+/*Question 1*/ 
+SELECT * FROM EMPLOYEE;
+
+/*Question 2*/
+SELECT * FROM EMPLOYEE WHERE EMPLOYEE.LASTNAME = 'King';
+
+/*Question 3*/
+SELECT * FROM EMPLOYEE WHERE EMPLOYEE.FIRSTNAME = 'Andrew' AND EMPLOYEE.REPORTSTO IS NULL;
+
+/*Question 4*/
+SELECT * FROM ALBUM ORDER BY TITLE DESC;
+
+/*Question 5*/
+SELECT * FROM CUSTOMER ORDER BY CITY DESC;
+
+/*Question 6*/
+INSERT INTO GENRE VALUES (26, 'Punk');
+INSERT INTO GENRE(GENREID, NAME) VALUES (27, 'Junk');
+
+/*Question 7*/
+INSERT INTO EMPLOYEE VALUES (9,'Cook', 'Quinton', 'Programmer', 7, '29-JUL-97','08-JUL-05', 'SEATTLE', 'SEATTLE','WA', 'Murca', '9999', '4444444444', '4444444444','email@gmail.com');
+INSERT INTO EMPLOYEE VALUES (10, 'CHOOB', 'CHOOBY', 'THE CHOOB', 8, '08-JUL-05', '08-JUL-05', 'THE CHOOB', 'CHOOBY','CH', 'CHOOB LAND','99999','99999','999999','CHOOB@CHOOBY.CHOOB');
+
+/*Question 8*/
+UPDATE CUSTOMER SET FIRSTNAME = 'Robert', LASTNAME = 'Walter' where FIRSTNAME = 'Aaron' and LASTNAME = 'Mitchell';
+
+/*Question 9*/
+UPDATE ARTIST SET NAME = 'CCR' WHERE NAME='Creedence Clearwater Revival';
+
+/*Question 10*/
+SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
+
+/*Question 11*/
+SELECT * FROM INVOICE WHERE TOTAL BETWEEN 15 AND 50;
+
+/*Question 12*/
+SELECT * FROM EMPLOYEE WHERE HIREDATE BETWEEN '01-JUN-03' AND '01-MAR-04';
+
+SELECT * FROM CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
+SELECT * FROM INVOICE WHERE CUSTOMERID = 32;
+SELECT * FROM INVOICELINE;
+
+/*Question 13*/
+DELETE FROM INVOICELINE WHERE INVOICEID = 50 OR INVOICEID = 61 OR INVOICEID = 116 OR invoiceid = 245 OR INVOICEID = 268 OR INVOICEID = 290 OR INVOICEID = 342;
+/*DELETE FROM INVOICELINE WHERE INVOICELINEINVOICEID = 32;*/
+DELETE FROM INVOICE WHERE CUSTOMERID = 32;
+DELETE FROM CUSTOMER WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
+
+/*Question 14*/
+CREATE OR REPLACE FUNCTION get_times
+   RETURN VARCHAR 
+   IS the_time varchar(20);
+   BEGIN 
+        SELECT TO_CHAR (SYSDATE, 'HH24:MI:SS')
+        INTO the_time
+        FROM DUAL;
+      
+      RETURN(the_time); 
+    END;   
+/
+     
+ /*Question 15*/
+ CREATE OR REPLACE FUNCTION get_length(the_type IN NUMBER)
+ RETURN NUMBER
+ IS len NUMBER;
+ BEGIN
+    SELECT LENGTH(NAME)
+    INTO len
+    FROM MEDIATYPE
+    WHERE MEDIATYPEID = the_type;
+    
+    RETURN len;
+END;
+/
+  
+/*Question 16*/
+CREATE OR REPLACE FUNCTION average_total
+RETURN NUMBER
+IS amt NUMBER;
+BEGIN
+    SELECT AVG(TOTAL)
+    INTO amt
+    FROM INVOICE;
+    
+    RETURN amt;
+END;
+/
+
+/*Question 17*/
+CREATE OR REPLACE FUNCTION max_price
+RETURN NUMBER
+IS amt NUMBER;
+BEGIN
+    SELECT MAX(UNITPRICE)
+    INTO amt
+    FROM TRACK;
+    
+    RETURN amt;
+END;
+/
+
+/*Question 18*/
+CREATE OR REPLACE FUNCTION avg_unit_price
+RETURN NUMBER
+IS amt NUMBER;
+BEGIN
+    SELECT AVG(UNITPRICE)
+    INTO amt
+    FROM INVOICELINE;
+END;
+/
+
+/*Question 19*/
+CREATE OR REPLACE FUNCTION employees_after68
+RETURN SYS_REFCURSOR
+IS p_cursor SYS_REFCURSOR;
+BEGIN
+    OPEN p_cursor FOR
+    SELECT *
+    FROM EMPLOYEE
+    WHERE BIRTHDATE > '31-DEC-68'; 
+    
+    RETURN p_cursor;
+    
+END;
+/
+
+create or replace procedure list_emps is
+   e sys_refcursor;
+   r employee%rowtype;
+  begin
+   e := employees_after68;
+   loop
+       fetch e into r;
+       exit when e%notfound;
+       dbms_output.put_line(r.firstname||','||r.hiredate);
+   end loop;
+   close e;
+  end;
+/
+
+/*Question 20*/
+create or replace procedure return_a_cursor
+( p_cursor out sys_refcursor) 
+is
+begin
+  open p_cursor for 
+                select * 
+                from employee;
+end return_a_cursor;
+/
+
+DECLARE
+  c sys_refcursor;
+  rec employee%rowtype;
+BEGIN
+
+  RETURN_A_CURSOR(P_CURSOR => c);
+
+  loop
+    fetch c into rec;
+    exit when c%notfound;
+    dbms_output.put_line('Name: ' ||
+                         rec.FIRSTNAME ||
+                         ' ' ||
+                         rec.LASTNAME);
+  end loop;
+  close c; 
+END;
+/
+
+/*Question 21*/
+CREATE OR REPLACE PROCEDURE update_employee
+( 
+  id IN NUMBER,
+  address_in IN  VARCHAR,
+  city_in IN VARCHAR,
+  state_in IN VARCHAR,
+  country_in IN VARCHAR
+) 
+IS
+BEGIN
+  UPDATE EMPLOYEE
+  
+  SET
+  
+  ADDRESS = address_in,
+  CITY = city_in,
+  STATE = state_in,
+  COUNTRY = country_in
+  
+  WHERE EMPLOYEEID = id;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE get_reportsTO
+(
+    id IN NUMBER,
+    rpt OUT NUMBER
+)
+IS
+BEGIN
+    SELECT REPORTSTO
+    INTO rpt
+    FROM EMPLOYEE
+    WHERE EMPLOYEEID = id;
+END;
+/
+
+/*Question 22*/
+CREATE OR REPLACE PROCEDURE get_namecompany
+(
+    id IN NUMBER,
+    name_out OUT VARCHAR,
+    company_out OUT VARCHAR
+)
+IS
+BEGIN
+    SELECT FIRSTNAME, COMPANY
+    INTO name_out, company_out
+    FROM CUSTOMER
+    WHERE CUSTOMERID = id;
+END;
+/
+
+/*Question 23*/
+CREATE OR REPLACE PROCEDURE remove_invoice
+(
+    invoice_id IN NUMBER
+)
+IS
+BEGIN
+    DELETE FROM INVOICELINE WHERE INVOICEID = invoice_id;
+    DELETE FROM INVOICE WHERE INVOICEID = invoice_id;    
+END;
+/
+
+
+CREATE TABLE Persons (
+    ID_UNIQUE NUMBER,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    Age NUMBER,
+    CONSTRAINT PK_ID PRIMARY KEY (ID_UNIQUE)
+);
+
+CREATE SEQUENCE id_counter_one
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20;
+
+CREATE OR REPLACE TRIGGER CHINOOK.INSERT_UNIQUE_ID
+BEFORE INSERT ON CHINOOK.PERSONS
+FOR EACH ROW
+BEGIN
+     SELECT id_counter_one.nextval INTO :new.ID_UNIQUE FROM DUAL;
+END;
+/
+
+
+/*Question 24 
+I made a different table to test this on
+the original was being really glitchy*/
+CREATE OR REPLACE PROCEDURE add_record_test
+(
+    id_in IN PERSONS.ID_UNIQUE%TYPE,
+    name_in IN PERSONS.FIRSTNAME%TYPE,
+    last_in IN PERSONS.LASTNAME%TYPE,
+    age_in IN PERSONS.AGE%TYPE
+)
+IS
+BEGIN
+    INSERT INTO PERSONS VALUES(id_in, name_in, last_in, age_in);
+END;
+/
+
+/*Question 25*/
+CREATE TRIGGER after_insert_employee
+AFTER INSERT ON EMPLOYEE
+BEGIN
+    dbms_output.put_line('HELLO WORLD');
+END;
+/
+
+/*Question 26*/
+CREATE TRIGGER after_update_album
+AFTER UPDATE ON ALBUM
+BEGIN
+    dbms_output.put_line('HELLO WORLD');
+END;
+/
+
+/*QUESTION 27*/
+CREATE TRIGGER after_delete_customer
+AFTER DELETE ON CUSTOMER
+BEGIN
+    dbms_output.put_line('HELLO WORLD');
+END;
+/
+
+/*QUESTION 28*/
+SELECT INVOICE.INVOICEID, CUSTOMER.FIRSTNAME FROM CUSTOMER INNER JOIN INVOICE ON INVOICE.CUSTOMERID = CUSTOMER.CUSTOMERID ORDER BY CUSTOMER.CUSTOMERID ASC;
+
+/*QUESTION 29*/
+SELECT CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, CUSTOMER.CUSTOMERID, INVOICE.INVOICEID, INVOICE.TOTAL 
+FROM CUSTOMER 
+LEFT OUTER JOIN INVOICE
+ON INVOICE.CUSTOMERID = CUSTOMER.CUSTOMERID;
+
+/*QUESTION 30*/
+SELECT ALBUM.TITLE, ARTIST.NAME FROM ARTIST RIGHT OUTER JOIN ALBUM ON ALBUM.ARTISTID = ARTIST.ARTISTID;
+
+/*QUESTION 31*/
+SELECT * FROM ALBUM CROSS JOIN ARTIST;
+
+/*QUESTION 32*/
+SELECT A.FIRSTNAME, B.FIRSTNAME FROM EMPLOYEE A , EMPLOYEE B WHERE A.REPORTSTO = B.EMPLOYEEID;
+
+CREATE OR REPLACE PROCEDURE new_person
+(
+    FIRSTNAME_IN IN VARCHAR,
+    LASTNAME_IN IN VARCHAR,
+    AGE_IN IN NUMBER
+)
+IS
+BEGIN
+    INSERT INTO PERSONS VALUES (NULL, FIRSTNAME_IN, LASTNAME_IN, AGE_IN);
+END;
+/
