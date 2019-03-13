@@ -235,43 +235,20 @@ BEGIN
 END;
 /
 
-
-CREATE TABLE Persons (
-    ID_UNIQUE NUMBER,
-    LastName varchar(255) NOT NULL,
-    FirstName varchar(255) NOT NULL,
-    Age NUMBER,
-    CONSTRAINT PK_ID PRIMARY KEY (ID_UNIQUE)
-);
-
-CREATE SEQUENCE id_counter_one
-  MINVALUE 1
-  START WITH 1
-  INCREMENT BY 1
-  CACHE 20;
-
-CREATE OR REPLACE TRIGGER CHINOOK.INSERT_UNIQUE_ID
-BEFORE INSERT ON CHINOOK.PERSONS
-FOR EACH ROW
-BEGIN
-     SELECT id_counter_one.nextval INTO :new.ID_UNIQUE FROM DUAL;
-END;
-/
-
-
-/*Question 24 
-I made a different table to test this on
-the original was being really glitchy*/
-CREATE OR REPLACE PROCEDURE add_record_test
+/*Question 24*/
+CREATE OR REPLACE PROCEDURE add_stuff
 (
-    id_in IN PERSONS.ID_UNIQUE%TYPE,
-    name_in IN PERSONS.FIRSTNAME%TYPE,
-    last_in IN PERSONS.LASTNAME%TYPE,
-    age_in IN PERSONS.AGE%TYPE
+    name_in IN CUSTOMER.FIRSTNAME%TYPE,
+    last_in IN CUSTOMER.LASTNAME%TYPE,
+    email_IN IN CUSTOMER.EMAIL%TYPE
 )
-IS
+AS
 BEGIN
-    INSERT INTO PERSONS VALUES(id_in, name_in, last_in, age_in);
+    DECLARE VARIL NUMBER;
+    BEGIN
+        SELECT COUNT(CUSTOMER.CUSTOMERID)+1 INTO VARIL FROM CUSTOMER;
+        INSERT INTO CUSTOMER VALUES (VARIL,name_in,last_in,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,email_in,NULL);
+    END;
 END;
 /
 
