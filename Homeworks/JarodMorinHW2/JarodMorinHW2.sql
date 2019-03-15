@@ -7,14 +7,14 @@ SELECT * FROM Employee;
 SELECT * FROM Employee WHERE lastname = 'King';
 -- Q2.1 T3
 SELECT * FROM Employee WHERE firstname = 'Andrew' AND REPORTSTO is NULL;
-
+/
 -- Q2.2 T1
 SELECT * FROM Album
 ORDER BY title DESC;
 -- Q2.2 T2
 SELECT FirstName FROM Customer
 ORDER BY city;
-
+/
 -- Q2.3 T1
 INSERT INTO Genre (GenreId, Name) VALUES (26, 'Dubstep');
 INSERT INTO Genre (GenreId, Name) VALUES (27, 'Trance');
@@ -24,7 +24,7 @@ INSERT INTO Employee (EmployeeId, LastName, FirstName) VALUES (10, 'Stu','Gary')
 -- Q2.3 T3
 INSERT INTO Customer (CustomerId, LastName, FirstName, Email) VALUES (60, 'Sue','Mary','Mary.Sue@email.com');
 INSERT INTO Customer (CustomerId, LastName, FirstName, Email) VALUES (61, 'Stu','Gary','Gary.Stu@email.com');
-
+/
 -- Q2.4 T1
 UPDATE Customer
 SET FirstName = 'Robert', LastName = 'Walter' 
@@ -33,18 +33,18 @@ WHERE FirstName = 'Aaron' AND LastName = 'Mitchell';
 UPDATE Artist
 SET Name = 'CCR'
 WHERE Name = 'Creedence Clearwater Revival';
-
+/
 -- Q2.5
 SELECT * FROM invoice
 WHERE billingAddress LIKE 'T%'; 
-
+/
 -- Q2.6 T1
 SELECT * FROM invoice
 WHERE   total BETWEEN 15 AND 50;
 -- Q2.6 T2
 SELECT * FROM Employee
 WHERE HireDate BETWEEN TO_DATE('2003-6-1 00:00:00','yyyy-mm-dd hh24:mi:ss') AND TO_DATE('2004-3-1 00:00:00','yyyy-mm-dd hh24:mi:ss');
-
+/
 -- Q2.7
 DELETE FROM InvoiceLine -- Delete all invoicelines that correspond to any invoiceid that corresponds to any robert walter's customer id
 WHERE InvoiceID IN
@@ -64,12 +64,11 @@ DELETE  -- Delete all Robert Walters from customer now that all children have be
 FROM Customer
 WHERE LastName = 'Walter' AND FirstName = 'Robert';
 rollback;
-
+/
 ---------------------------------------START OF SECTION 3---------------------------------------
 ---------------------------------------START OF SECTION 3---------------------------------------
 ---------------------------------------START OF SECTION 3---------------------------------------
 -- Q3.1 T1
-/
 CREATE OR REPLACE FUNCTION get_time
 RETURN VARCHAR2
 IS time_result VARCHAR2(50);
@@ -80,7 +79,7 @@ BEGIN
 END;
 /
 SELECT get_time FROM DUAL;
-
+/
 -- Q3.1 T2
 CREATE OR REPLACE FUNCTION get_media_type_length(media_id IN NUMBER)
 RETURN NUMBER
@@ -115,6 +114,7 @@ DECLARE
 BEGIN
     invoice_avg := get_invoice_total_avg();
 END;
+/
 -- Q3.2 T2
 CREATE OR REPLACE FUNCTION get_priciest_track
 RETURN NUMBER
@@ -131,7 +131,7 @@ DECLARE
 BEGIN
     track_numba := get_priciest_track();
 END;
-
+/
 -- Q3.3
 CREATE OR REPLACE FUNCTION get_average_price
 RETURN NUMBER
@@ -148,7 +148,7 @@ DECLARE
 BEGIN
     avg_price := get_average_price();
 END;
-
+/
 -- Q3.4
 CREATE OR REPLACE FUNCTION emp_born_after
 RETURN SYS_REFCURSOR
@@ -159,9 +159,9 @@ BEGIN
    WHERE BirthDate > '31-DEC-68';
    RETURN cursor_result;
 END;
-
+/
 SELECT emp_born_after FROM DUAL;
-
+/
 ---------------------------------------START OF SECTION 4---------------------------------------
 ---------------------------------------START OF SECTION 4---------------------------------------
 ---------------------------------------START OF SECTION 4---------------------------------------
@@ -193,7 +193,6 @@ BEGIN
   first_and_last(); -- Displaying employee names after update_personal_info shows BOB JOE instead of Andrew Adams.
 END;
 rollback;
-
 /
 
 -- Q4.2 T2
@@ -225,7 +224,7 @@ BEGIN
   get_name_and_comp(5);
 END;
 /
-SELECT * FROM Customer;
+SELECT * FROM Customer WHERE CustomerId = 5;
 
 ---------------------------------------START OF SECTION 5---------------------------------------
 ---------------------------------------START OF SECTION 5---------------------------------------
@@ -246,6 +245,7 @@ END;
 BEGIN
     invoice_delete(5);
 END;
+/
 rollback;
 /
 
@@ -262,6 +262,7 @@ BEGIN
 END;
 /
 SELECT * FROM Customer WHERE CustomerId = 81;       -- It worked!
+/
 ---------------------------------------START OF SECTION 6---------------------------------------
 ---------------------------------------START OF SECTION 6---------------------------------------
 ---------------------------------------START OF SECTION 6---------------------------------------
@@ -354,5 +355,5 @@ CROSS JOIN Artist
 ORDER BY Artist.Name;
 
 -- Q7.5
-SELECT * FROM Employee a, Employee b
+SELECT b.FirstName,b.LastName,b.ReportsTo,a.FirstName,a.LastName FROM Employee a, Employee b
 WHERE a.EmployeeId = b.ReportsTo;
