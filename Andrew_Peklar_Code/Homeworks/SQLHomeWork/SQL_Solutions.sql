@@ -19,12 +19,12 @@ WHERE       FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
 --------------------------------------------------------------------------------------------------------
 --2.2 ORDER BY
 --------------------------------------------------------------------------------------------------------
--- Task ñ Select all albums in Album table and sort result set in descending order by title.
+-- Task ‚Äì Select all albums in Album table and sort result set in descending order by title.
 SELECT      *
 FROM        ALBUM
 ORDER BY    TITLE   DESC;
 
--- Task ñ Select first name from Customer and sort result set in ascending order by city
+-- Task ‚Äì Select first name from Customer and sort result set in ascending order by city
 SELECT      FIRSTNAME
 FROM        CUSTOMER
 ORDER BY    CITY    ASC;
@@ -32,23 +32,23 @@ ORDER BY    CITY    ASC;
 --------------------------------------------------------------------------------------------------------
 -- 2.3 INSERT INTO
 --------------------------------------------------------------------------------------------------------
--- Task ñ Insert two new records into Genre table
+-- Task ‚Äì Insert two new records into Genre table
 INSERT INTO GENRE (GENREID, NAME) VALUES(26, 'Folk Metal');
 INSERT INTO GENRE (GENREID, NAME) VALUES(27, 'Adult Contemporary');
 
--- Task ñ Insert two new records into Employee table
-
--- Task ñ Insert two new records into Customer table
+-- Task ‚Äì Insert two new records into Employee table
+INSERT INTO EMPLOYEE VALUES (9,'Peklar', 'Andrew', 'Head Chef', 7, '07-DEC-93','08-JUL-05', 'PLACERVILLE', 'PLACERVILLE','CA', '–†–æ—Å—Å–∏—è', '9999', '4444444444', '4444444444','email@gmail.com');
+INSERT INTO EMPLOYEE VALUES (10, 'NAME', 'NAMER', 'A NAME', 3, '03-JUL-03', '08-JUL-05', 'NAMED', 'NAMEY','MC', 'NAME FACE','99999','99999','999999','NAME@NAMEY.MCNAMEFACE');
 
 --------------------------------------------------------------------------------------------------------
 -- 2.4 UPDATE
 --------------------------------------------------------------------------------------------------------
--- Task ñ Update Aaron Mitchell in Customer table to Robert Walter
+-- Task ‚Äì Update Aaron Mitchell in Customer table to Robert Walter
 UPDATE      CUSTOMER
 SET         FIRSTNAME = 'Robert' ,   LASTNAME = 'Walter'
 WHERE       FIRSTNAME = 'Aaron'  AND LASTNAME = 'Mitchell';
 
--- Task ñ Update name of artist in the Artist table ìCreedence Clearwater Revivalî to ìCCRî
+-- Task ‚Äì Update name of artist in the Artist table ‚ÄúCreedence Clearwater Revival‚Äù to ‚ÄúCCR‚Äù
 UPDATE      ARTIST
 SET         NAME = 'CCR'
 WHERE       NAME = 'Creedence Clearwater Revival';
@@ -56,7 +56,7 @@ WHERE       NAME = 'Creedence Clearwater Revival';
 --------------------------------------------------------------------------------------------------------
 -- 2.5 LIKE
 --------------------------------------------------------------------------------------------------------
--- Task ñ Select all invoices with a billing address like ìT%î
+-- Task ‚Äì Select all invoices with a billing address like ‚ÄúT%‚Äù
 SELECT      *
 FROM        INVOICE
 WHERE       BILLINGADDRESS LIKE 'T%';
@@ -64,12 +64,12 @@ WHERE       BILLINGADDRESS LIKE 'T%';
 --------------------------------------------------------------------------------------------------------
 -- 2.6 BETWEEN
 --------------------------------------------------------------------------------------------------------
--- Task ñ Select all invoices that have a total between 15 and 50
+-- Task ‚Äì Select all invoices that have a total between 15 and 50
 SELECT      *
 FROM        INVOICE
 WHERE       TOTAL       BETWEEN '15' AND '50'; 
 
--- Task ñ Select all employees hired between 1 st of June 2003 and 1 st of March 2004
+-- Task ‚Äì Select all employees hired between 1 st of June 2003 and 1 st of March 2004
 SELECT      *
 FROM        EMPLOYEE
 WHERE       HIREDATE    BETWEEN '01-JUN-03' AND '01-MAR-04';   
@@ -77,7 +77,7 @@ WHERE       HIREDATE    BETWEEN '01-JUN-03' AND '01-MAR-04';
 --------------------------------------------------------------------------------------------------------
 -- 2.7 DELETE
 --------------------------------------------------------------------------------------------------------
--- Task ñ Delete a record in Customer table where the name is Robert Walter (There may be constraints 
+-- Task ‚Äì Delete a record in Customer table where the name is Robert Walter (There may be constraints 
 --        that rely on this, find out how to resolve them).
 --DELETE FROM invoiceline 
 --WHERE       invoiceid IN (
@@ -107,7 +107,7 @@ WHERE       HIREDATE    BETWEEN '01-JUN-03' AND '01-MAR-04';
 -- 3.1 SYSTEM DEFINED FUNCTIONS
 --------------------------------------------------------------------------------------------------------
 
---  Task ñ Create a function that returns the current time.
+--  Task ‚Äì Create a function that returns the current time.
 CREATE OR REPLACE FUNCTION GET_TIME 
 RETURN VARCHAR IS my_time VARCHAR(50);
     BEGIN
@@ -120,7 +120,7 @@ SELECT GET_TIME FROM DUAL;
 /
 
 
---  Task ñ create a function that returns the length of a mediatype from the mediatype table
+--  Task ‚Äì create a function that returns the length of a mediatype from the mediatype table
 CREATE OR REPLACE FUNCTION MEDIA_LENGTH (inpp IN NUMBER) 
     RETURN NUMBER 
     IS media_length VARCHAR2(160);
@@ -378,7 +378,7 @@ ORDER BY    decode(sign(ascii(substr(lpad(NAME, 2), 2))-64), 1, lpad(NAME, 3, ch
 --------------------------------------------------------------------------------------------------------
 -- 7.5 SELF
 --------------------------------------------------------------------------------------------------------
--- Task ñ Perform a self-join on the employee table, joining on the reportsto column.
+-- Task ‚Äì Perform a self-join on the employee table, joining on the reportsto column.
 /
 SELECT
     ( m.firstname || '  '|| m.lastname ) manager,
