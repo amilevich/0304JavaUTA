@@ -283,7 +283,7 @@ null,--hireday
 
 --Create an after update trigger on the album table that fires after a row is inserted in the table
 CREATE OR REPLACE TRIGGER ALBUM_AFTER_INSERT_TRIGGER 
-AFTER UPDATE ON ALBUM 
+AFTER UPDATE OR INSERT ON ALBUM 
 BEGIN
   DBMS_OUTPUT.PUT_LINE('Album Updated');
 END;
