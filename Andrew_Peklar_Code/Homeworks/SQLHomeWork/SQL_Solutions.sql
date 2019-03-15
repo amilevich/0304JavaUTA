@@ -79,30 +79,9 @@ WHERE       HIREDATE    BETWEEN '01-JUN-03' AND '01-MAR-04';
 --------------------------------------------------------------------------------------------------------
 -- Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints 
 --        that rely on this, find out how to resolve them).
---DELETE FROM invoiceline 
---WHERE       invoiceid IN (
---                            SELECT  invoiceid
---                            FROM    
---
---SELECT TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS') FROM DUAL;
---
---
---DELETE FROM   invoice
---WHERE       (SELECT     customerid
---             FROM       invoice JOIN customer
---             ON         invoice.customerid  = customer.customerid
---                WHERE      (SELECT  customer.customerid 
---                            FROM CUSTOMER
---                            WHERE lastname = 'Walter' AND firstname = 'Robert'));
---                                            
---DELETE FROM invoice WHERE customerID = 322;
---
---DELETE FROM CUSTOMER WHERE CUSTOMERID = '32';
---
---SELECT * FROM CUSTOMER WHERE FIRSTNAME = 'Robert';
-                                        
-                                        
-                                        
+DELETE FROM CUSTOMER 
+WHERE       FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
+-- Note:  Change the contraint to ON DELETE CASCADE in CHInook.          
 --------------------------------------------------------------------------------------------------------
 -- 3.1 SYSTEM DEFINED FUNCTIONS
 --------------------------------------------------------------------------------------------------------
@@ -132,6 +111,7 @@ CREATE OR REPLACE FUNCTION MEDIA_LENGTH (inpp IN NUMBER)
         return length(media_length);
     END;
 /
+--test
 SELECT MEDIA_LENGTH(3) from dual;
 /
 
@@ -148,6 +128,7 @@ BEGIN
     RETURN  TMP;
 END;
 /
+--test
 SELECT AVG_INVOICE FROM DUAL;
 /
 
@@ -161,6 +142,7 @@ BEGIN
     RETURN  TMP;
 END;
 /
+--test
 SELECT HIGHEST_PRICE FROM DUAL;
 /
 SELECT  *   FROM  TRACK;
@@ -180,6 +162,7 @@ BEGIN
     RETURN  TMP;
 END;
 /
+--test
 SELECT AVG_INVOICE_PRICE FROM dual;
 /
 --------------------------------------------------------------------------------------------------------
@@ -196,6 +179,7 @@ BEGIN
     RETURN TMP;
 END;
 /
+--test
 SELECT AFTER_1968 FROM DUAL;
 /
 
@@ -211,6 +195,7 @@ BEGIN
     DBMS_SQL.RETURN_RESULT(var1);
 END;
 /
+--test
 EXEC EMPLOYEE_NAMES;
 /
 
@@ -232,6 +217,7 @@ BEGIN
     COMMIT;
 END;
 /
+--test
 EXEC UPDATE_EMPLOYEE (2, 'Johanny', 'Appleseed');
 SELECT * FROM EMPLOYEE;
 ROLLBACK;
@@ -252,6 +238,7 @@ BEGIN
     DBMS_SQL.RETURN_RESULT(manager);
 END;
 /
+--test
 EXEC GET_MANAGER('Robert', 'King');
 /
 
@@ -268,6 +255,7 @@ BEGIN
   DBMS_SQL.RETURN_RESULT(manager);
 END;
 /
+--test
 EXEC CUSTOMER_INFO(5);
 /
 
@@ -285,13 +273,8 @@ BEGIN
    WHERE            INVOICEID = INVOICE_ID;
 END;
 /
+--test
 EXEC DELETE_INVOICE(5);
-/
-CREATE OR REPLACE PROCEDURE inserts
-IS
-BEGIN
-    INSERT INTO CUSTOMER VALUES(67, 'Please', 'Work', null, null, null, null, null, null, null, null, 'test1@email', null);
-END;
 /
 
 -- Task:    Create a transaction nested within a stored procedure that inserts a new record in the Customer table
@@ -301,8 +284,8 @@ BEGIN
                                                             'xXtotallyrealemailXx@angelfire.com', null);
 END;
 /
+--test
 EXEC NEW_TRANS(69, 'TWO', 'CHAINZZZ');
-select * from customer;
 /
 
 --------------------------------------------------------------------------------------------------------
@@ -317,12 +300,13 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Employee succesfully hired!');
 END;
 /
-ALTER TRIGGER INSERT_TRIG ENABLE;
-/
-SELECT * FROM EMPLOYEE;
-/
-insert into employee VAlUES(24, 'INPUT', 'TEXT', null, null, null, null, null, null, null, null, null, null, null, null);
-/
+--test
+--ALTER TRIGGER INSERT_TRIG ENABLE;
+--/
+--SELECT * FROM EMPLOYEE;
+--/
+--insert into employee VAlUES(24, 'INPUT', 'TEXT', null, null, null, null, null, null, null, null, null, null, null, null);
+--/
 
 -- Task:    Create an after update trigger on the album table that fires after a row is inserted in the table
 CREATE OR REPLACE TRIGGER UPDATE_TRIG
@@ -351,7 +335,7 @@ SELECT  *
 FROM    CUSTOMER INNER JOIN INVOICE
 ON      CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
 --------------------------------------------------------------------------------------------------------
--- 7.2 SELF
+-- 7.2 OUTER
 --------------------------------------------------------------------------------------------------------
 -- Task:    Create an outer join that joins the customer and invoice table, specifying the CustomerId,
 --          firstname, lastname, invoiceId, and total.
@@ -359,13 +343,15 @@ SELECT  CUSTOMER.CUSTOMERID, FIRSTNAME, LASTNAME, INVOICE, TOTAL
 FROM    CUSTOMER FULL OUTER JOIN INVOICE
 ON      CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
 --------------------------------------------------------------------------------------------------------
--- 7.3 SELF
+-- 7.3 RIGHT
 --------------------------------------------------------------------------------------------------------
 -- Task:    Create a right join that joins album and artist specifying artist name and title.
-
+SELECT    NAME, TITLE 
+FROM      ALBUM RIGHT JOIN ARTIST
+ON        ALBUM.ARTISTID = ARTIST.ARTISTID;
 
 --------------------------------------------------------------------------------------------------------
--- 7.4 SELF
+-- 7.4 CROSS
 --------------------------------------------------------------------------------------------------------
 -- Task:    Create a cross join that joins album and artist and sorts by artist name in ascending order.
 SELECT      ARTIST.ARTISTID, ALBUM.ALBUMID,ARTIST.NAME, TITLE
@@ -389,14 +375,3 @@ FROM
 ORDER BY
     manager;
 /
-
-
-
-
-
-
-
-
-
-
-
