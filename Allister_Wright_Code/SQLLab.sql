@@ -263,9 +263,63 @@ CREATE OR REPLACE TRIGGER after_insert_employee
 AFTER INSERT ON EMPLOYEE
 FOR EACH ROW
 BEGIN
-    INSERT INTO EMPLOYEE (employeeid, lastname, firstname)
-    VALUES (:new.employeeid, :new.lastname, 
-    :new.firstname);
+    DBMS_OUTPUT.PUT_LINE('New Employee Inserted');
 END;
 /
+
+-- 6.1.2
+CREATE OR REPLACE TRIGGER after_update_album
+AFTER UPDATE ON ALBUM
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Album Updated');
+END;
+/
+
+-- 6.1.3
+CREATE OR REPLACE TRIGGER after_delete_customer
+AFTER DELETE ON CUSTOMER
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Customer Deleted');
+END;
+/
+
+-- 7.1.1
+SELECT 
+    CUSTOMER.firstname, 
+    CUSTOMER.lastname, 
+    INVOICE.invoiceid
+FROM CUSTOMER
+INNER JOIN INVOICE
+ON INVOICE.customerid = CUSTOMER.customerid;
+
+-- 7.2.1
+SELECT
+    CUSTOMER.firstname, 
+    CUSTOMER.lastname, 
+    INVOICE.customerid, 
+    INVOICE.invoiceid, 
+    INVOICE.total
+FROM CUSTOMER
+FULL OUTER JOIN INVOICE
+ON INVOICE.customerid = CUSTOMER.customerid;
+
+-- 7.3.1
+SELECT
+    ARTIST.artistid,
+    ARTIST.name, 
+    ALBUM.title
+FROM ALBUM
+RIGHT OUTER JOIN ARTIST
+ON ARTIST.artistid = ALBUM.artistid;
+
+-- 7.4.1
+SELECT * FROM ALBUM
+CROSS JOIN ARTIST
+ORDER BY ARTIST.artistid; -- IN ASCEDNING ORDER
+
+-- 7.5.1
+SELECT * FROM EMPLOYEE A, EMPLOYEE B
+WHERE A.reportsto = B.employeeid;
 
