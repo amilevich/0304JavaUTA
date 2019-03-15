@@ -85,14 +85,13 @@ BEGIN
     RETURN this_time;
 END;
 /
-SELECT get_time FROM dual;
+--SELECT get_time FROM dual;
 
 -- 3.1.2
-CREATE OR REPLACE 
-FUNCTION get_media_type_length 
-(id_num IN NUMBER)
+CREATE OR REPLACE FUNCTION get_media_type_length 
+    (id_num IN NUMBER)
 RETURN VARCHAR2
-IS media_type_length NUMBER(6);
+    IS media_type_length NUMBER(6);
 BEGIN
     SELECT LENGTH(name) 
     INTO media_type_length 
@@ -101,6 +100,66 @@ BEGIN
     RETURN media_type_length;
 END;
 /
-SELECT get_media_type_length(1) FROM dual;
+--SELECT get_media_type_length(1) FROM dual;
 
 -- 3.2.1
+CREATE OR REPLACE FUNCTION get_average_invoice_total
+RETURN NUMBER
+    IS invoice_average NUMBER;
+BEGIN
+    SELECT ROUND(AVG(total), 2)
+    INTO invoice_average
+    FROM INVOICE;
+    RETURN invoice_average;
+END;
+/
+--SELECT get_average_invoice_total FROM dual;
+
+-- 3.2.2
+CREATE OR REPLACE FUNCTION get_highest_price_track
+RETURN NUMBER
+    IS track_price_max NUMBER;
+BEGIN
+    SELECT MAX(unitprice)
+    INTO track_price_max
+    FROM TRACK;
+    RETURN track_price_max;
+END;
+/
+--SELECT get_highest_price_track FROM dual;
+
+-- 3.3.1
+CREATE OR REPLACE FUNCTION get_average_invoice_price
+RETURN NUMBER
+    IS invoice_price_average NUMBER;
+BEGIN
+    SELECT ROUND(AVG(unitprice), 2)
+    INTO invoice_price_average
+    FROM INVOICELINE;
+    RETURN invoice_price_average;
+END;
+/
+--SELECT get_average_invoice_price FROM dual;
+
+-- 3.4.1
+CREATE OR REPLACE FUNCTION get_employees_bornafter_1968
+RETURN SYS_REFCURSOR
+    IS emp_list SYS_REFCURSOR;
+BEGIN
+    OPEN emp_list FOR
+    SELECT *
+    FROM EMPLOYEE 
+    WHERE birthdate > '31-DEC-68';
+    RETURN emp_list;
+END;
+/
+SELECT get_employees_bornafter_1968 FROM dual;
+
+-- 4.1.1
+
+
+
+
+
+
+
