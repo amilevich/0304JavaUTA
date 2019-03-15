@@ -218,7 +218,7 @@ BEGIN
 END;
 /
 --test
-EXEC UPDATE_EMPLOYEE (2, 'Johanny', 'Appleseed');
+EXEC UPDATE_EMPLOYEE (2, 'Johnny', 'Appleseed');
 SELECT * FROM EMPLOYEE;
 ROLLBACK;
 /
