@@ -156,10 +156,116 @@ END;
 SELECT get_employees_bornafter_1968 FROM dual;
 
 -- 4.1.1
+CREATE OR REPLACE PROCEDURE get_employee_names
+( employee_names OUT SYS_REFCURSOR )
+IS
+BEGIN
+    OPEN employee_names FOR
+    SELECT firstname, lastname
+    FROM EMPLOYEE;
+END get_employee_names;
+/
+-- TESTING
+--VARIABLE rc REFCURSOR;
+--EXEC get_employee_names(:rc);
+--PRINT rc;
 
+-- 4.2.1
+CREATE OR REPLACE PROCEDURE update_employee
+( emp_id IN NUMBER, new_lastname IN VARCHAR2 )
+IS
+BEGIN
+    UPDATE EMPLOYEE 
+    SET lastname = new_lastname
+    WHERE employeeid = emp_id;
+END;
+/
+--EXEC update_employee(3, 'Wilson');
+--SELECT * FROM EMPLOYEE;
 
+-- 4.2.2
+CREATE OR REPLACE PROCEDURE get_employee_manager
+( emp_id IN NUMBER )
+AS
+    manager SYS_REFCURSOR;
+BEGIN
+    OPEN manager FOR
+    SELECT * 
+    FROM EMPLOYEE
+    WHERE employeeid = (
+        SELECT reportsto
+        FROM EMPLOYEE
+        WHERE employeeid = emp_id);
+    DBMS_SQL.RETURN_RESULT(manager);
+END get_employee_manager;
+/
+-- TESTING
+--EXEC get_employee_manager(4);
 
+-- 4.3.1
+CREATE OR REPLACE PROCEDURE get_customer_profinfo
+( cust_id IN NUMBER )
+AS
+    prof_info SYS_REFCURSOR;
+BEGIN
+    OPEN prof_info FOR
+    SELECT firstname, lastname, company
+    FROM CUSTOMER
+    WHERE customerid = cust_id;
+    DBMS_SQL.RETURN_RESULT(prof_info);
+END get_customer_profinfo;
+/
+--EXEC get_customer_profinfo(6);
 
+-- 5.0.1
+-- DELETE INVOICE BY SPECIFIED ID
+-- DELETES CASCADE CONSTRAINTS SHOULD BE PRESENT FROM 2.7.1
+CREATE OR REPLACE PROCEDURE delete_invoice_by_id
+( invoice_id IN NUMBER )
+IS
+BEGIN
+    DELETE FROM INVOICE
+    WHERE invoiceid = invoice_id;
+END;
+/
+--EXEC delete_invoice_by_id(1);
 
+-- 5.0.2
+-- AUTO INCREMENT NEW CUSTOMER IDS
+CREATE SEQUENCE cust_seq
+    START WITH 150
+    INCREMENT BY 1;
+    
+CREATE OR REPLACE TRIGGER cust_seq_trigger
+BEFORE INSERT ON CUSTOMER
+FOR EACH ROW
+BEGIN
+    IF :new.customerid IS NULL THEN
+    SELECT cust_seq.nextval INTO :new.customerid FROM dual;
+    END IF;
+END;
+/
+-- INSERTION PROCDURE
+CREATE OR REPLACE PROCEDURE insert_new_customer
+(   first_name IN VARCHAR2, 
+    last_name IN VARCHAR2 , 
+    a_email IN VARCHAR2)
+IS
+BEGIN
+    INSERT INTO CUSTOMER (firstname, lastname, email)
+    VALUES (first_name, last_name, a_email);
+END;
+/
+EXEC insert_new_customer('Vladimir', 'Lenin', 'VILENIN@RSFSR.ORG');
 
+-- 6.1.1
+CREATE OR REPLACE TRIGGER after_insert_employee
+AFTER INSERT ON EMPLOYEE
+FOR EACH ROW
+BEGIN
+    INSERT INTO EMPLOYEE (employeeid, lastname, firstname)
+    VALUES (:new.employeeid, :new.lastname, 
+    :new.firstname);
+END;
+/
 
