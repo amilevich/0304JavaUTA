@@ -33,7 +33,7 @@ SELECT * FROM customer;
  UPDATE customer SET lastname = 'Walter' WHERE lastname = 'Mitchell';
  SELECT * FROM customer;
  
- UPDATE customer SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival';
+ UPDATE artist SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival';
  SELECT * FROM artist;
  
 --2.5-LIKE----------------------------------------------------------------------------------------------------------------------
@@ -46,6 +46,8 @@ SELECT * FROM employee WHERE hiredate BETWEEN '01-JUN-03' AND '01-MAR-04';
 
 --2.7-DELETE--------------------------------------------------------------------------------------------------------------------
 ALTER TABLE invoice DROP CONSTRAINT fk_invoicecustomerid;
+--DELETE FROM invoiceline WHERE invoiceidid = invoiceline.invoiceid; -doesn't work this way apparently
+--DELETE FROM invoice WHERE invoice.customerid = customer.customerid;
 DELETE FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter';
 SELECT * FROM customer;
 
@@ -209,7 +211,7 @@ IS
 BEGIN
     --DECLARE the_new_cust
     BEGIN
-        INSERT INTO customer VALUES (64, cust_fname, cust_lname, cust_company, null, null, null, null, null, null, null, 'fakee@gmail.com', null);
+        INSERT INTO customer VALUES ((SELECT MAX(customerid)FROM customer)+1, cust_fname, cust_lname, cust_company, null, null, null, null, null, null, null, 'fakee@gmail.com', null);
     END;
 END;
 /
@@ -257,9 +259,8 @@ END;
 /
 SET SERVEROUTPUT ON;
 /
-DELETE FROM invoice where 
-DELETE FROM invoice where customerid = 22;
-DELETE FROM customer where customerid = 22;
+DELETE FROM invoice where customerid = (SELECT MAX(customerid)FROM customer)+1;
+DELETE FROM customer where customerid = (SELECT MAX(customerid)FROM customer)+1;
 /
 
 --7.1-INNER-JOINS---------------------------------------------------------------------------------------------------------------
