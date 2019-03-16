@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.bankApp.BankUserDAO.BankUserDAOImpl;
 import com.bankApp.EmployeeDAO.EmployeeDAOImpl;
 import com.bankApp.People.BankUser;
+import com.bankApp.People.Employee;
 
 public class Tester {
 
@@ -125,9 +126,9 @@ public class Tester {
 		BankUser p = t.login("Quinton", "1234");
 		BankUser p2 = t.login("Rowen", "1234");
 		
-		assertEquals("this should be true", true, t.transfer(5, 0 , 0, p, p2));
+		assertEquals("this should be true", true, t.transfer(5, 0 , 0, p));
 		System.out.println("Successful transfer test successful");
-		t.transfer(5, 0, 0, p2, p);
+		t.transfer(5, 0, 0, p2);
 	}
 
 	@Ignore
@@ -136,7 +137,7 @@ public class Tester {
 		BankUser p = t.login("Quinton", "1234");
 		BankUser p2 = t.login("Rowen", "1234");
 		
-		assertEquals("this should be false", false, t.transfer(-3,0,0,p,p2));
+		assertEquals("this should be false", false, t.transfer(-3,0,0,p));
 		System.out.println("Unsuccessful transfer of negative money test successful");
 	}
 
@@ -147,7 +148,7 @@ public class Tester {
 		BankUser p = t.login("Quinton", "1234");
 		BankUser p2 = t.login("Rowen", "1234");
 		
-		assertEquals("this should be false", false, t.transfer(101, 0, 0, p,p2));
+		assertEquals("this should be false", false, t.transfer(101, 0, 0, p));
 		System.out.println("Unsuccessful transfer overdraw test successful");
 	}
 
@@ -203,12 +204,19 @@ public class Tester {
 	// *******************End Employee Tests******************************
 
 	// *******************Begin Bank Admin Tests**************************
-	@Test
+	@Ignore
 	public void cancelAccountTest() {
 		EmployeeDAOImpl t = new EmployeeDAOImpl();
 		
 		assertEquals("this should be true", true, t.deleteAccount(81));
 		System.out.println("Cancel Account test successful");
+	}
+	
+	@Test
+	public void loginEmployee() {
+		EmployeeDAOImpl t = new EmployeeDAOImpl();
+		
+		assertEquals("This should be true", 1, t.login("Haley", "hs").getAccountType());
 	}
 	
 }

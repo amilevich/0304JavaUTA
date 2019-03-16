@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.bankApp.People.Account;
 import com.bankApp.People.BankUser;
+import com.bankApp.People.Employee;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
@@ -112,6 +113,28 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			return null;
 		}
 
+	}
+
+	@Override
+	public Employee login(String usrName, String password) {
+		try {
+			Connection conn = DriverManager.getConnection(url, username, passwordDB);
+			String SQLStatement = "SELECT * FROM EMPLOYEE1 WHERE USERNAME = ? AND PASSWORD_USER = ?";
+
+			PreparedStatement ps = conn.prepareStatement(SQLStatement);
+			ps.setString(1, usrName);
+			ps.setString(2, password);
+			ResultSet rs1 = ps.executeQuery();
+
+			rs1.next();
+			Employee tmp = new Employee(rs1.getString(2), rs1.getString(3), rs1.getString(1), rs1.getString(4), rs1.getInt(5));
+
+			return tmp;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

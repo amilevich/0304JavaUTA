@@ -5,6 +5,39 @@ public class Account {
 	private int accountNumber;
 	private int accountStatus;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 1997;
+		int result = 1;
+		result = prime * result + accountNumber;
+		result = prime * result + accountStatus;
+		long temp;
+		temp = Double.doubleToLongBits(currentBalance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Account other = (Account) obj;
+		if (accountNumber != other.accountNumber)
+			return false;
+		if (accountStatus != other.accountStatus)
+			return false;
+		if (Double.doubleToLongBits(currentBalance) != Double.doubleToLongBits(other.currentBalance))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Account [currentBalance=" + currentBalance + ", accountNumber=" + accountNumber + ", accountStatus="
+				+ accountStatus + "]";
+	}
 	public double getCurrentBalance() {
 		return currentBalance;
 	}

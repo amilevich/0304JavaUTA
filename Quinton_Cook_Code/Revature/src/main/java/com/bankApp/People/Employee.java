@@ -4,18 +4,11 @@ import com.bankApp.BankUserDAO.BankUserDAO;
 
 public class Employee extends Person {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/*
-	 * TODO Currently employees cannot login because there is no need for them to, yet.
-	 */
+	private int accountType;
 	
-	public Employee(String firstName, String lastName, String username, String password) {
+	public Employee(String firstName, String lastName, String username, String password, int accountType) {
 		super(firstName, lastName, username, password);
-		// TODO Auto-generated constructor stub
+		this.setAccountType(accountType);
 	}
 
 	public static String recallInformation(BankUserDAO act) {
@@ -24,15 +17,12 @@ public class Employee extends Person {
 		return info;
 	}
 	
-	//currently this is just a rubber stamp, Accounts for everyone!
-	public static boolean reviewAccount(BankUserDAO acct) {
-		// TODO Auto-generated method stub
-		return true;
+	public int getAccountType() {
+		return accountType;
 	}
 
-	public static double viewAccountBalance(BankUserDAO act) {
-		// TODO Auto-generated method stub
-		return act.getCurrentBalance();
+	public void setAccountType(int accountType) {
+		this.accountType = accountType;
 	}
 
 }

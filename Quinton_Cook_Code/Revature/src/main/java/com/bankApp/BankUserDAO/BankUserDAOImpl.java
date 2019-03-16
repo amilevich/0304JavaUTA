@@ -102,8 +102,34 @@ public class BankUserDAOImpl implements BankUserDAO {
 	}
 
 	@Override
-	public boolean transfer(double amt, int whichAccountFrom, int whichAccountTo, BankUser from, BankUser to) {
-		return withdraw(amt, whichAccountTo, from) && deposit(amt, whichAccountFrom, to);
+	public boolean transfer(double amt, int whichAccountFrom, int whichAccountTo,BankUser from) {
+		
+		Account tmp2 = null;
+		
+		try {
+			Connection conn = DriverManager.getConnection(url, username, passwordDB);
+			String query = "SELECT CURRENT_BALANCE, ACCOUNT_STATUS FROM CHECKING_ACCOUNT WHERE ACCOUNT_NUMBER = ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			
+			ps.setInt(1,whichAccountTo);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			
+			tmp2 = new Account(rs.getDouble(1),whichAccountTo,rs.getInt(2));
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(tmp2.getAccountStatus() == 0) {
+			return false;
+		}
+		
+		BankUser tmp = new BankUser("TRANSFER","TRANSFER","TRANSFER","TRANSFER");
+		
+		tmp.addAccount(tmp2);
+		
+		return withdraw(amt, whichAccountFrom, from) && deposit(amt, 0, tmp);
 	}
 
 	@Override
@@ -135,14 +161,15 @@ public class BankUserDAOImpl implements BankUserDAO {
 		try {
 
 			Connection conn = DriverManager.getConnection(url, username, passwordDB);
-			CallableStatement cStmt = conn.prepareCall("{call add_bank_user(?,?,?,?)}");
+			String insertUser = "INSERT INTO BANK_USER VALUES(?,?,?,?)";
+			PreparedStatement cStmt = conn.prepareStatement(insertUser);
 
 			cStmt.setString(1, acct.getUsername());
 			cStmt.setString(2, acct.getFirstName());
 			cStmt.setString(3, acct.getLastName());
 			cStmt.setString(4, acct.getPassword());
 
-			cStmt.execute();
+			cStmt.executeUpdate();
 			// Lesson learned, close the connections after you're done
 			// otherwise they wait on each other
 			conn.prepareStatement("COMMIT").execute();
@@ -162,7 +189,7 @@ public class BankUserDAOImpl implements BankUserDAO {
 			cStmt2.setString(1, acct.getUsername());
 			cStmt2.setInt(2, acct.getAccount(0).getAccountNumber());
 
-			cStmt2.execute();
+			cStmt2.executeUpdate();
 			conn.prepareStatement("COMMIT").execute();
 			conn.close();
 
@@ -207,6 +234,29 @@ public class BankUserDAOImpl implements BankUserDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public boolean addAccountHolder(Account act, String usrName) {
+		
+		try {
+			Connection conn = DriverManager.getConnection(url, username, passwordDB);
+			
+			String addUserCheckingAccount = "INSERT INTO USER_CHECKING_ACCOUNT VALUES(?,?)";
+			PreparedStatement ps = conn.prepareStatement(addUserCheckingAccount);
+			ps.setString(1, usrName);
+			ps.setInt(2, act.getAccountNumber());
+			ps.execute();
+			conn.prepareStatement("COMMIT").execute();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	/*

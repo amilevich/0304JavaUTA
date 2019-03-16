@@ -10,6 +10,15 @@ public class BankUser extends Person {
 		super(firstName, lastName, username, password);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public ArrayList<Account> getAccounts(){
+		return accounts;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString()+ " [accounts=" + accounts + "]";
+	}
 
 	public Account getAccount(int whichAccount) {
 		// TODO Auto-generated method stub
