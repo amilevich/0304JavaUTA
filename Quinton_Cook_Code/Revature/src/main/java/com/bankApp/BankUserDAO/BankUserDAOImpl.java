@@ -50,7 +50,8 @@ public class BankUserDAOImpl implements BankUserDAO {
 				// updates the local objects current balance, then updates the databases record
 				tmp.setCurrentBalance(currentBalance - amt);
 				PreparedStatement ps = conn.prepareStatement(sqlStatement);
-				ps.executeQuery();
+				ps.execute();
+				conn.prepareStatement("COMMIT").execute();
 				conn.close();
 				return true;
 			}
@@ -88,7 +89,8 @@ public class BankUserDAOImpl implements BankUserDAO {
 			} else {
 				tmp.setCurrentBalance(currentBalance + amt);
 				PreparedStatement ps = conn.prepareStatement(sqlStatement);
-				ps.executeQuery();
+				ps.execute();
+				conn.prepareStatement("COMMIT").execute();
 				conn.close();
 				return true;
 			}
@@ -117,6 +119,7 @@ public class BankUserDAOImpl implements BankUserDAO {
 
 			Account tmp = new Account(0, cStmt.getInt(2), 0);
 			acct.addAccount(tmp);
+			conn.prepareStatement("COMMIT").execute();
 			conn.close();
 
 		} catch (SQLException e) {
@@ -142,6 +145,7 @@ public class BankUserDAOImpl implements BankUserDAO {
 			cStmt.execute();
 			// Lesson learned, close the connections after you're done
 			// otherwise they wait on each other
+			conn.prepareStatement("COMMIT").execute();
 			conn.close();
 
 			// create an account for the user
@@ -158,8 +162,8 @@ public class BankUserDAOImpl implements BankUserDAO {
 			cStmt2.setString(1, acct.getUsername());
 			cStmt2.setInt(2, acct.getAccount(0).getAccountNumber());
 
-			cStmt2.executeQuery();
-
+			cStmt2.execute();
+			conn.prepareStatement("COMMIT").execute();
 			conn.close();
 
 		} catch (SQLException e) {

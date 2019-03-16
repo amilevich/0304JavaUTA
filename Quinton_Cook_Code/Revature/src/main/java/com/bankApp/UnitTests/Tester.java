@@ -2,6 +2,8 @@ package com.bankApp.UnitTests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -187,32 +189,25 @@ public class Tester {
 	// *****************Begin Employee
 	// Tests**************************
 
-	@Test
+	@Ignore
 	public void viewAccountInfoTest() {
 		EmployeeDAOImpl t = new EmployeeDAOImpl();
-		BankUserDAOImpl t2 = new BankUserDAOImpl();
-		BankUser p = new BankUser("Alex","M","A","1234");
 		
-		t2.insertBankUser(p);
+		ArrayList<BankUser> test = t.recallInformation(75);
 		
-		p = t2.login("A", "1234");
+		System.out.println(test.get(1).getFirstName());
 		
-		BankUser[] test = t.recallInformation(p.getAccount(0).getAccountNumber());
-		
-		assertEquals("this should be true",true,p.equals(test[0]));
+		assertEquals("this should be true","D",test.get(1).getFirstName());
 	}
 	
 	// *******************End Employee Tests******************************
 
 	// *******************Begin Bank Admin Tests**************************
-	@Ignore
+	@Test
 	public void cancelAccountTest() {
 		EmployeeDAOImpl t = new EmployeeDAOImpl();
-		BankUserDAOImpl t2 = new BankUserDAOImpl();
-		BankUser p = t2.login("A", "1234");
 		
-
-		assertEquals("this should be true", true, t.deleteAccount(p.getAccount(0).getAccountNumber()));
+		assertEquals("this should be true", true, t.deleteAccount(81));
 		System.out.println("Cancel Account test successful");
 	}
 	
