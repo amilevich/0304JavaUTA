@@ -1,28 +1,44 @@
 package com.bankApp.UI;
 
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.bankApp.Account.Account;
+import com.bankApp.BankUserDAO.BankUserDAO;
 import com.bankApp.People.Person;
 
 public class ConsoleController {
-
+		
 	final static Logger logger = Logger.getLogger(ConsoleController.class.getName());
 	static Scanner consoleReader = new Scanner(System.in);
-
 	// this string will hold the accounts username if they are successfully
 	// authenticated, this is used for logging purposes
 	static String name;
 
+	
+	
 	public static void main(String[] args) {
+		
+		
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");  
 
+			Connection con=DriverManager.getConnection(  
+					"jdbc:oracle:thin:@atworkdb.c05sxxntbuck.us-east-2.rds.amazonaws.com:1521:ORCL","the_manager1","p4ssw0rd"); 
+		
+			CallableStatement cStmt = con.prepareCall("{call add_bank_user('?','?','?','?')}");
+			System.out.println(cStmt.toString());
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  
+		
 		boolean loop = true;
-
+		
 		logger.info("APPLICATION HAS STARTED");
-		Account.load();
 
 		do {
 
@@ -58,7 +74,6 @@ public class ConsoleController {
 		} while (loop);
 
 		consoleReader.close();
-		Account.close();
 
 	}
 
@@ -93,9 +108,9 @@ public class ConsoleController {
 		String jointHolders = consoleReader.nextLine();
 
 		// TODO currently accounts can be created with no money in them
-		Account newAccount = new Account(firstName, lastName, userName, password, 0, jointHolders);
+		BankUserDAO newAccount = new BankUserDAO(firstName, lastName, userName, password, 0, jointHolders);
 
-		if (Account.applyForAccount(newAccount)) {
+		if (BankUserDAO.applyForAccount(newAccount)) {
 			System.out.println("Account created successfully");
 		} else {
 			System.out.println("Account creation failure");
@@ -114,10 +129,10 @@ public class ConsoleController {
 
 		Person user = Person.login(usrName, pswd);
 
-		if (user instanceof Account) {
+		if (user instanceof BankUserDAO) {
 			// cast user to the correct type and log the event
 			logger.info("Account:" + usrName + " successfully authenticated");
-			bankingScreen((Account) user);
+			bankingScreen((BankUserDAO) user);
 		} else {
 			logger.info("Account:" + usrName + " failed to authenticate");
 			System.out.println("Invalid login credentials");
@@ -125,7 +140,7 @@ public class ConsoleController {
 
 	}
 
-	private static void bankingScreen(Account user) {
+	private static void bankingScreen(BankUserDAO user) {
 		boolean loop = true;
 		double amt;
 

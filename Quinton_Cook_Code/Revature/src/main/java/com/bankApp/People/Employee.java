@@ -1,6 +1,6 @@
 package com.bankApp.People;
 
-import com.bankApp.Account.Account;
+import com.bankApp.BankUserDAO.BankUserDAO;
 
 public class Employee extends Person {
 
@@ -18,19 +18,19 @@ public class Employee extends Person {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static String recallInformation(Account act) {
+	public static String recallInformation(BankUserDAO act) {
 		String info = act.toString();
 		
 		return info;
 	}
 	
 	//currently this is just a rubber stamp, Accounts for everyone!
-	public static boolean reviewAccount(Account acct) {
+	public static boolean reviewAccount(BankUserDAO acct) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	public static double viewAccountBalance(Account act) {
+	public static double viewAccountBalance(BankUserDAO act) {
 		// TODO Auto-generated method stub
 		return act.getCurrentBalance();
 	}

@@ -1,36 +1,15 @@
 package com.bankApp.People;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-
-import com.bankApp.Account.Account;
-
 /*
  * this will be the bean that all of the AccountHolders and Employee objects
  * extend, we're all human after all
  */
-public class Person implements Serializable {
-	// default save location
-	private static final String filename = "Account";
-	private static final String counterFile = "counter.sv";
-	private static final long serialVersionUID = 1L;
-	private static int counter;
-
+public class Person {
+	
 	private String firstName;
 	private String lastName;
 	private String username;
 	private String password;
-
-	// stores all of the accounts in memory this allows all users to authenticate
-	protected static HashMap<String, Person> loginInfo = new HashMap<String, Person>();
 
 	public Person(String firstName, String lastName, String username, String password) {
 		super();
@@ -47,140 +26,6 @@ public class Person implements Serializable {
 	}
 
 	// *********************************************************************************************************
-
-	// static methods
-	public static Person login(String usrName, String pswd) {
-		if (loginInfo.containsKey(usrName) && loginInfo.get(usrName).getPassword().equals(pswd)) {
-			return loginInfo.get(usrName);
-		} else {
-			return null;
-		}
-	}
-
-	public static boolean userNameNotUnique(String usrName) {
-		return loginInfo.containsKey(usrName);
-	}
-
-	public static void load() {
-
-		// first the counter int is loaded so that we know how many account files to
-		// load
-		try {
-			ObjectInputStream ois = new ObjectInputStream(
-					new FileInputStream(System.getProperty("user.dir") + "\\" + counterFile));
-
-			counter = (int) ois.readObject();
-
-			ois.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("File:" + counterFile + " not found will create one now");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		// next for each of the accounts load them into the loginInfo hashmap
-		for (int i = 0; i < counter; i++) {
-
-			try {
-				// recall that all user account save files are saved under the name
-				// Account[i].sv
-				ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
-						System.getProperty("user.dir") + "\\" + filename + Integer.toString(i) + ".sv"));
-
-				Account acct = (Account) ois.readObject();
-
-				loginInfo.put(acct.getUsername(), acct);
-
-				ois.close();
-			} catch (FileNotFoundException e) {
-				System.out.println("No previous accounts found. Please create one");
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
-
-	// TODO not terribly efficient, each time a person is closed this will write the
-	// whole loginInfo to a file
-
-	// writes all of the approved accounts in loginInfo to a file on the computer
-	public static void close() {
-
-		Iterator<Entry<String, Person>> it = loginInfo.entrySet().iterator();
-
-		// counter must be reset everytime this is called otherwise it will keep
-		// counting up forever
-		counter = 0;
-		/*
-		 * this method will iterate through the loginInfo hashmap, create a new file for
-		 * each account under the name Account[n].sv this will overwrite any previous
-		 * save file that exists in the current working directory
-		 */
-		while (it.hasNext()) {
-
-			try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(
-					System.getProperty("user.dir") + "\\" + filename + Integer.toString(counter) + ".sv", false))) {
-				counter++;
-				oos.writeObject(it.next().getValue());
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-		// saves counters value for the load method in the file counterFile
-		try {
-
-			ObjectOutputStream oos = new ObjectOutputStream(
-					new FileOutputStream(System.getProperty("user.dir") + "\\" + counterFile, false));
-
-			oos.writeObject(counter);
-
-			oos.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public static boolean applyForAccount(Account acct) {
-
-		// if the bank approves the account and if the username is unique, accept the
-		// account
-		if (Employee.reviewAccount(acct) && !(loginInfo.containsKey(acct.getUsername()))) {
-			loginInfo.put(acct.getUsername(), acct);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	// adding this because I anticipate employees will have to login at some point
-
-	/*
-	 * public static boolean applyForAccount(Employee acct) {
-	 * 
-	 * // if the user name is unique add the account to the loginInfo hashmap if
-	 * (!(loginInfo.containsKey(acct.getUsername()))) {
-	 * loginInfo.put(acct.getUsername(), acct); return true; } else { return false;
-	 * } }
-	 */
-
-	// ****************************************************************************************************
-
-	// end static methods
 
 	@Override
 	public String toString() {
