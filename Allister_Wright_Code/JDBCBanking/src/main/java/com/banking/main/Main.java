@@ -24,10 +24,13 @@ public class Main
 
 		ArrayList<User> users = userDB.getAllUsers();
 		ArrayList<Account> accounts = accountDB.getAllAccounts();
-		userDB.registerUser("admin", "password", 3, null);
-		userDB.registerUser("employee", "password", 2, null);
-		userDB.commitDB();
-		
+		if (users.size() == 0)
+		{
+			userDB.registerUser("admin", "password", 3, null);
+			userDB.registerUser("employee", "password", 2, null);
+			userDB.commitDB();
+		}
+
 		String loginInput = "";
 		User currentUser = null;
 
@@ -37,7 +40,8 @@ public class Main
 			loginInput = getUserInput("Please select an option (Login/Register/Exit): ").toUpperCase();
 			if (loginInput.equals("QUIT") || loginInput.equals("EXIT"))
 			{
-				// COMMIT ON APPLICATION CLOSE
+				// Both userDB and accountDB commit the whole Database
+				userDB.commitDB();
 				logger.info("APPLICATION EXIT");
 				System.exit(0);
 			}
@@ -45,7 +49,8 @@ public class Main
 			// Did not choose Exit
 			if (loginInput.equals("R") || loginInput.equals("REGISTER"))
 			{
-				currentUser = registerUser(users, 1); 		// commit inside
+				// Register new customer and Commit Data
+				currentUser = registerUser(users, 1);
 				logger.info("Registered new user: " + currentUser);
 				// Send them back to the login screen
 			}
@@ -65,49 +70,82 @@ public class Main
 					// To login loop
 				}
 
-				String accountInput = "";
-				System.out.println("What account will you be working with today?");
-				if (currentUser instanceof Customer)
-					System.out.println("(Enter NEW if you would like to apply for an account)");
-
-				// Display accounts in memory
-				ArrayList<Long> accountNums = new ArrayList<>();
-				for (Account acct : accountDB.getAllAccounts())
-					accountNums.add(acct.getAccountNumber());
-				System.out.println("Current Accounts: " + accountNums);
-
 				Account currentAccount = null;
-				accountInput = getUserInput("").toUpperCase();
-				// Open Application for new account
-				if (accountInput.equals("NEW"))
+				while (currentAccount == null)
 				{
-					currentAccount = applyForAccount(currentUser, accounts);
-					logger.info("New account registered");
-					logger.info(currentUser + " created Account # " + currentAccount.getAccountNumber());
-					// INSERT NEW ACCOUNT TO DATABASE AND COMMIT
-				}
-				else // Use existing account
-				{
-					currentAccount = findAccount(accountInput, accounts);
+					String accountInput = "";
+					System.out.println("What account will you be working with today?");
+					
+					// Display accounts in memory
+					ArrayList<Long> accountNums = new ArrayList<>();
+					for (Account acct : accountDB.getAllAccounts())
+						accountNums.add(acct.getAccountNumber());
+					System.out.println("Current Accounts: " + accountNums);
+					if (currentUser instanceof Customer)
+						System.out.println("(Enter NEW if you would like to apply for an account)");
 
-					// Account found ; verify access for current user and get operation request
-					String userOperation = getUserOperation(currentUser, currentAccount);
-
-					switch (userOperation)
+					accountInput = getUserInput("").toUpperCase();
+					// Open Application for new account
+					if (accountInput.equals("NEW"))
 					{
-					case "WITHDRAW":
-						double withdrawAmount = -1;
-						double currBalance = currentAccount.getBalance();
-						System.out.println("Current balance is: " + currBalance);
-						if (currBalance > 0)
+						currentAccount = applyForAccount(currentUser, accounts);
+						logger.info("New account registered");
+						logger.info(currentUser + " created Account # " + currentAccount.getAccountNumber());
+					}
+					else // Use existing account
+					{
+						currentAccount = findAccount(accountInput, accounts);
+
+						// Account found ; verify access for current user and get operation request
+						String userOperation = getUserOperation(currentUser, currentAccount);
+
+						switch (userOperation)
 						{
-							while (withdrawAmount < 0)
+						case "WITHDRAW":
+							double withdrawAmount = -1;
+							double currBalance = currentAccount.getBalance();
+							System.out.println("Current balance is: " + currBalance);
+							if (currBalance > 0)
 							{
-								withdrawAmount = getDoubleInput("How much would you like to withdraw?");
+								while (withdrawAmount < 0)
+								{
+									withdrawAmount = getDoubleInput("How much would you like to withdraw?");
+									try
+									{
+										currentAccount.requestWithdrawl(withdrawAmount);
+										accountDB.updateAccountBalance(currentAccount.getAccountNumber(),
+												currentAccount.getBalance());
+										logger.info(currentUser + " withdrew " + withdrawAmount + " from Account #"
+												+ currentAccount.getAccountNumber());
+									}
+									catch (AccountNotOpenException e)
+									{
+										System.out.println("This account is not open");
+									}
+									catch (InvalidBalanceException e)
+									{
+										System.out.println("Your maximum withdrawl is " + currBalance);
+									}
+									catch (NegativeMoneyException e)
+									{
+										System.out.println("Please enter a positive value to withdraw");
+										e.printStackTrace();
+									}
+								}
+							}
+							break;
+						case "DEPOSIT":
+							double depositAmount = -1;
+							System.out.println("Current Balance is: " + currentAccount.getBalance());
+							while (depositAmount < 0)
+							{
+								depositAmount = getDoubleInput("How much would you like to deposit?");
 								try
 								{
-									currentAccount.requestWithdrawl(withdrawAmount);
-									logger.info(currentUser + " withdrew " + withdrawAmount + " from Account #"
+									currentAccount.requestDeposit(depositAmount);
+									accountDB.updateAccountBalance(currentAccount.getAccountNumber(),
+											currentAccount.getBalance());
+									logger.info(currentUser + " deposited " + depositAmount + " to Account #"
 											+ currentAccount.getAccountNumber());
 								}
 								catch (AccountNotOpenException e)
@@ -116,153 +154,137 @@ public class Main
 								}
 								catch (InvalidBalanceException e)
 								{
-									System.out.println("Your maximum withdrawl is " + currBalance);
+									System.out.println("Memory Error. Deposit not able to be processed at this time");
 								}
 								catch (NegativeMoneyException e)
 								{
-									System.out.println("Please enter a positive value to withdraw");
+									System.out.println("Please enter a positive amount to deposit");
 									e.printStackTrace();
 								}
 							}
-						}
-						break;
-					case "DEPOSIT":
-						double depositAmount = -1;
-						System.out.println("Current Balance is: " + currentAccount.getBalance());
-						while (depositAmount < 0)
-						{
-							depositAmount = getDoubleInput("How much would you like to deposit?");
+							break;
+						case "TRANSFER":
+							double transferAmount = -1;
+							System.out.println("Current Balance is: " + currentAccount.getBalance());
+							// Only able to transfer out to another account
+							Account targetAccount = null;
+							while (transferAmount < 0)
+							{
+								transferAmount = getDoubleInput("How much would you like to transfer?");
+								System.out.println("Which account will you be transferring to?");
+								System.out.println(accounts);
+								long targetInput = -1;
+								while (targetAccount == null)
+								{
+									try
+									{
+										targetInput = Long.valueOf(getUserInput(""));
+										for (Account account : accounts)
+											if (account.getAccountNumber() == targetInput)
+												targetAccount = account;
+									}
+									catch (NumberFormatException e)
+									{
+									}
+								}
+							}
 							try
 							{
-								currentAccount.requestDeposit(depositAmount);
-								logger.info(currentUser + " deposited " + depositAmount + " to Account #"
-										+ currentAccount.getAccountNumber());
+								currentAccount.requestTransfer(transferAmount, targetAccount);
+								logger.info(currentUser + " transferred " + transferAmount + " from Account #"
+										+ currentAccount.getAccountNumber() + " to Account #"
+										+ targetAccount.getAccountNumber());
 							}
 							catch (AccountNotOpenException e)
 							{
-								System.out.println("This account is not open");
 							}
 							catch (InvalidBalanceException e)
 							{
-								System.out.println("Memory Error. Deposit not able to be processed at this time");
 							}
 							catch (NegativeMoneyException e)
 							{
-								System.out.println("Please enter a positive amount to deposit");
+							}
+							catch (NullPointerException e)
+							{
 								e.printStackTrace();
+								// Ideally, I don't end up here anyway
 							}
-						}
-						break;
-					case "TRANSFER":
-						double transferAmount = -1;
-						System.out.println("Current Balance is: " + currentAccount.getBalance());
-						// Only able to transfer out to another account
-						Account targetAccount = null;
-						while (transferAmount < 0)
-						{
-							transferAmount = getDoubleInput("How much would you like to transfer?");
-							System.out.println("Which account will you be transferring to?");
-							System.out.println(accounts);
-							long targetInput = -1;
-							while (targetAccount == null)
+							accountDB.updateAccountBalance(currentAccount.getAccountNumber(),
+									currentAccount.getBalance());
+							accountDB.updateAccountBalance(targetAccount.getAccountNumber(),
+									targetAccount.getBalance());
+
+							break;
+						case "RESPOND TO APPLICATION":
+							if (currentAccount.getState() == Account.AccountState.PENDING_APPROVAL)
 							{
-								try
+								System.out.println("Please select your decision for this account application");
+								System.out.println("- APPROVE");
+								System.out.println("- DENY");
+
+								boolean validSelection = false;
+								while (!validSelection)
 								{
-									targetInput = Long.valueOf(getUserInput(""));
-									for (Account account : accounts)
-										if (account.getAccountNumber() == targetInput)
-											targetAccount = account;
-								}
-								catch (NumberFormatException e)
-								{
+									String applicationResponse = getUserInput("").toUpperCase();
+									if (applicationResponse.equals("APPROVE"))
+									{
+										currentAccount.approveAccount();
+										accountDB.updateAccountState(currentAccount.getAccountNumber(),
+												currentAccount.getState());
+										logger.info("Application for Account #" + currentAccount.getAccountNumber()
+												+ " has been approved by " + currentUser);
+										validSelection = true;
+									}
+									else if (applicationResponse.equals("DENY"))
+									{
+										currentAccount.closeAccount();
+										accountDB.updateAccountState(currentAccount.getAccountNumber(),
+												currentAccount.getState());
+										logger.info("Application for Account #" + currentAccount.getAccountNumber()
+												+ " has been denied by " + currentUser);
+										validSelection = true;
+									}
 								}
 							}
-						}
-						try
-						{
-							currentAccount.requestTransfer(transferAmount, targetAccount);
-							logger.info(currentUser + " transferred " + transferAmount + " from Account #"
-									+ currentAccount.getAccountNumber() + " to Account #"
-									+ targetAccount.getAccountNumber());
-						}
-						catch (AccountNotOpenException e)
-						{
-						}
-						catch (InvalidBalanceException e)
-						{
-						}
-						catch (NegativeMoneyException e)
-						{
-						}
-						catch (NullPointerException e)
-						{
-							e.printStackTrace();
-							// Ideally, I don't end up here anyway
-						}
-
-						break;
-					case "RESPOND TO APPLICATION":
-						if (currentAccount.getState() == Account.AccountState.PENDING_APPROVAL)
-						{
-							System.out.println("Please select your decision for this account application");
-							System.out.println("- APPROVE");
-							System.out.println("- DENY");
-
-							boolean validSelection = false;
-							while (!validSelection)
+							break;
+						case "VIEW ACCOUNT INFO":
+							System.out.println(currentAccount);
+							break;
+						case "VIEW ACCOUNT BALANCE":
+							System.out.println(currentAccount.getBalance());
+							break;
+						case "VIEW CUSTOMER INFORMATION":
+							System.out.println((ArrayList<Customer>) currentAccount.getAccountInfo()[2]);
+							break;
+						case "CLOSE":
+							String confirmClose = "";
+							while (confirmClose.equals(""))
 							{
-								String applicationResponse = getUserInput("").toUpperCase();
-								if (applicationResponse.equals("APPROVE"))
-								{
-									currentAccount.approveAccount();
-									logger.info("Application for Account #" + currentAccount.getAccountNumber()
-											+ " has been approved by " + currentUser);
-									validSelection = true;
-								}
-								else if (applicationResponse.equals("DENY"))
+								confirmClose = getUserInput("Are you sure you want to close Account #"
+										+ currentAccount.getAccountNumber() + "?").toUpperCase();
+								if (confirmClose.equals("Y") || confirmClose.equals("YES"))
 								{
 									currentAccount.closeAccount();
-									logger.info("Application for Account #" + currentAccount.getAccountNumber()
-											+ " has been denied by " + currentUser);
-									validSelection = true;
-								}
-							}
-						}
-						break;
-					case "VIEW ACCOUNT INFO":
-						System.out.println(currentAccount);
-						break;
-					case "VIEW ACCOUNT BALANCE":
-						System.out.println(currentAccount.getBalance());
-						break;
-					case "VIEW CUSTOMER INFORMATION":
-						System.out.println((ArrayList<Customer>) currentAccount.getAccountInfo()[2]);
-						break;
-					case "CLOSE":
-						String confirmClose = "";
-						while (confirmClose.equals(""))
-						{
-							confirmClose = getUserInput("Are you sure you want to close Account #"
-									+ currentAccount.getAccountNumber() + "?").toUpperCase();
-							if (confirmClose.equals("Y") || confirmClose.equals("YES"))
-							{
-								currentAccount.closeAccount();
-								logger.info("Account #" + currentAccount.getAccountNumber() + " has been terminated by "
-										+ currentUser);
+									accountDB.updateAccountState(currentAccount.getAccountNumber(),
+											currentAccount.getState());
+									logger.info("Account #" + currentAccount.getAccountNumber()
+											+ " has been terminated by " + currentUser);
 
+								}
+								else if (confirmClose.equals("N") || confirmClose.equals("NO"))
+									;
+								else
+									confirmClose = "";
 							}
-							else if (confirmClose.equals("N") || confirmClose.equals("NO"))
-								;
-							else
-								confirmClose = "";
+							break;
+						// no operations available to user for account
+						case "":
+							continue;
 						}
-						break;
-					// no operations available to user for account
-					case "":
-						continue;
+						accountDB.commitDB();
+						// UPDATE ACCOUNTS AFTER TRANSACTION AND COMMIT
+						// End Switch Block
 					}
-					// UPDATE ACCOUNTS AFTER TRANSACTION AND COMMIT
-					// End Switch Block
 				}
 				// End Account Access
 			}
@@ -370,7 +392,7 @@ public class Main
 			currentUser = new Admin(username, password);
 			break;
 		}
-		
+
 		users.add(currentUser);
 		userDB.commitDB();
 		System.out.println("Your registration is complete! Thank you for choosing Revature Banking.");
@@ -387,7 +409,7 @@ public class Main
 		{
 			String username = getUserInput("Please enter your username: ");
 			String password = getUserInput("Please enter your password: ");
-			
+
 			if ((currentUser = userDB.getUserLogin(username, password)) != null)
 				loggedIn = true;
 		}
@@ -409,7 +431,7 @@ public class Main
 			accountType = getIntInput(accountSelectMessage);
 		}
 		// Add the new account with the current user
-		currentAccount = ((Customer) currentUser).applyForAccount(accountDB, 
+		currentAccount = ((Customer) currentUser).applyForAccount(accountDB,
 				Account.AccountType.values()[accountType - 1]);
 		accounts.add(currentAccount);
 
@@ -455,7 +477,7 @@ public class Main
 			}
 			catch (NumberFormatException e)
 			{
-				
+
 			}
 			for (Account acct : accounts)
 			{

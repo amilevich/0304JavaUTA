@@ -8,7 +8,7 @@ public interface AccountDao
 {
 	// CREATE
 	public abstract long registerAccount(String bankUser, Account.AccountType type);
-	public abstract int addAccountOwner(long accountNumber, String bankUser);
+//	public abstract int addAccountOwner(long accountNumber, String bankUser);
 	
 	// READ
 	public abstract ArrayList<Account> getAllAccounts();

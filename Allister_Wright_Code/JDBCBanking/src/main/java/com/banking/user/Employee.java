@@ -28,7 +28,8 @@ public class Employee extends User
 		// Array List used here for uniformity with Customer Access Rights
 		ArrayList<String> options = new ArrayList<>();
 		
-		options.add("RESPOND TO APPLICATION");
+		if (acct.getState() == Account.AccountState.PENDING_APPROVAL)
+			options.add("RESPOND TO APPLICATION");
 		options.add("VIEW ACCOUNT INFO");
 		options.add("VIEW ACCOUNT BALANCE");
 		options.add("VIEW CUSTOMER INFO");

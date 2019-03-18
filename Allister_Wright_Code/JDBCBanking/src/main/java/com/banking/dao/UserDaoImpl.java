@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.banking.user.*;
 
@@ -52,7 +51,7 @@ public class UserDaoImpl implements UserDao
 
 			while (rs.next())
 			{
-				users.add(getUserByType(rs.getString("username"), rs.getString("password"),
+				users.add(getUserByType(rs.getString("username"), rs.getString("user_pass"),
 						rs.getInt("user_type"), rs.getString("full_name")));
 			}
 		}
@@ -75,7 +74,7 @@ public class UserDaoImpl implements UserDao
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next())
-				user = getUserByType(rs.getString("username"), rs.getString("password"), 
+				user = getUserByType(rs.getString("username"), rs.getString("user_pass"), 
 						rs.getInt("user_type"), rs.getString("full_name"));
 		}
 		catch (SQLException e)
@@ -92,13 +91,13 @@ public class UserDaoImpl implements UserDao
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement(
-					"SELECT * FROM BANK_USER WHERE username = ? AND password = ?");
+					"SELECT * FROM BANK_USER WHERE username = ? AND user_pass = ?");
 			ps.setString(1, bankUser);
 			ps.setString(2, bankPass);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next())
-				user = getUserByType(rs.getString("username"), rs.getString("password"), 
+				user = getUserByType(rs.getString("username"), rs.getString("user_pass"), 
 						rs.getInt("user_type"), rs.getString("full_name"));
 		}
 		catch (SQLException e)
@@ -114,7 +113,7 @@ public class UserDaoImpl implements UserDao
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement(
-					"UPDATE BANK_USER SET password = ? WHERE username = ?");
+					"UPDATE BANK_USER SET user_pass = ? WHERE username = ?");
 			ps.setString(1, bankPass);
 			ps.setString(2, bankUser);
 			ps.executeUpdate();
@@ -161,11 +160,11 @@ public class UserDaoImpl implements UserDao
 	{
 		switch (userType)
 		{
-		case 0:
-			return new Customer(username, password, fullName);
 		case 1:
-			return new Employee(username, password);
+			return new Customer(username, password, fullName);
 		case 2:
+			return new Employee(username, password);
+		case 3:
 			return new Admin(username, password);
 		default:
 			return null;
