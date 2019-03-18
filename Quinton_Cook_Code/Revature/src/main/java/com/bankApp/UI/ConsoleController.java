@@ -272,6 +272,8 @@ public class ConsoleController {
 					System.out.println("Input not reconized");
 					break;
 				}
+				
+				user = bankUser.login(user.getUsername(), user.getPassword());
 
 			} catch (InputMismatchException e) {
 				System.out.println("Input not Reconized");
