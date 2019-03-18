@@ -3,7 +3,8 @@ package project0.ui;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import project0.account.Account;
 import project0.users.User;
@@ -15,13 +16,15 @@ public class ConsoleUI {
 	static String username;
 	static String accountID;
 	
+	public static void initialize()
+	{
+		logger.info("The banking app has started");
+		startMenu();
+	}
+	
 	public static void startMenu()
 	{
 		boolean loop = true;
-
-		logger.info("The banking app has started");
-		User.loadUsers();
-		Account.loadAccounts();
 		
 		do {
 
@@ -31,7 +34,6 @@ public class ConsoleUI {
 			System.out.println("3: Exit");
 			
 			try {
-
 				switch (scanner.nextInt()) {
 					case 1:
 						loginScreen();
@@ -43,6 +45,7 @@ public class ConsoleUI {
 	
 					case 3:
 						loop = false;
+						exit();
 						break;
 	
 					default:
@@ -51,43 +54,54 @@ public class ConsoleUI {
 				}
 
 			} catch (InputMismatchException e) {
+				scanner.nextLine();
 				System.out.println("Input not valid");
 			}
 
 		} while (loop);
-
-		scanner.close();
-		User.saveUsers();
-		Account.saveAccounts();
+		exit();
 	}
 	
 	private static void loginScreen() {
 		String username;
 		String password;
 
-		System.out.println("Username:");
-		username = scanner.next();
-		System.out.println("Password:");
-		password = scanner.next();
-
-		User user = User.login(username, password);
-
-		if (user == null) {
-			
-			logger.info("User:" + username + " failed to log in.");
-			System.out.println("Invalid username or password");
-			
-		} else {
-			logger.info("User:" + username + " successfully logged in.");
-			ConsoleUI.username = username;
-			userScreen(user);
+		boolean loop = true;
+		
+		do {
+			try {
+				System.out.println("Username:");
+				username = scanner.next();
+				
+				System.out.println("Password:");
+				password = scanner.next();
+		
+				System.out.println(username + " " + password);
+				User user = User.login(username, password);
+		
+				if (user == null) {
+					
+					logger.info("User:" + username + " failed to log in.");
+					System.out.println("Invalid username or password");
+					
+				} else {
+					logger.info("User:" + username + " successfully logged in.");
+					ConsoleUI.username = username;
+					loop = false;
+					userScreen(user);
+				}
+			}catch(InputMismatchException e) {
+				scanner.nextLine();
+				System.out.println("Input not valid");
+			}
 		}
+		while(loop);
 	}
 	
 	private static void userMenuScreen(User user) {
 		
 		boolean loop = true;
-		ArrayList<Account> accounts = Account.getAccounts(user.getAccountIDs());
+		ArrayList<Account> accounts = user.getBankAccounts();
 		int accountSize = accounts.size();
 		
 		System.out.println("Welcome " + user.getUsername());
@@ -99,31 +113,32 @@ public class ConsoleUI {
 				System.out.println(i + 1 + ": Access account " + accounts.get(i).getName());
 			}
 			
-			System.out.println(accountSize + ": Create a bank account");
-			System.out.println(accountSize + 1 + ": Logout");
-			System.out.println(accountSize + 2 + ": Exit");
+			System.out.println(accountSize + 1 + ": Create a bank account");
+			System.out.println(accountSize + 2 + ": Logout");
+			System.out.println(accountSize + 3 + ": Exit");
 
 			try {
 				int input = scanner.nextInt();
-				if(input > 0 && input < accountSize)
+				if(input > 0 && input <= accountSize)
 				{
 					ConsoleUI.accountID = accounts.get(input - 1).getAccountID();
 					bankAccountOptionsScreen(accounts.get(input - 1));
 				}
-				else if(input == accountSize)
-				{
-					createBankAccountScreen(user);
-					break;
-				}
 				else if(input == accountSize + 1)
 				{
-					loop = false;
-					ConsoleUI.logout();
+					createBankAccountScreen(user);
 					break;
 				}
 				else if(input == accountSize + 2)
 				{
 					loop = false;
+					ConsoleUI.logout();
+					break;
+				}
+				else if(input == accountSize + 3)
+				{
+					loop = false;
+					exit();
 					break;
 				}
 				else
@@ -132,6 +147,7 @@ public class ConsoleUI {
 				}
 
 			} catch (InputMismatchException e) {
+				scanner.nextLine();
 				System.out.println("Input not valid");
 			}
 		}
@@ -165,7 +181,7 @@ public class ConsoleUI {
 						
 						User userTo = User.getUser(usrTo);
 						Account accountTo = null;
-						ArrayList<Account> accounts = Account.getAccounts(userTo.getAccountIDs());
+						ArrayList<Account> accounts = userTo.getBankAccounts();
 						
 						int accountSize = accounts.size();
 						
@@ -200,8 +216,12 @@ public class ConsoleUI {
 						}
 						break;
 					case 4:
+						loop = false;
 						logout();
 						break;
+					case 5:
+						loop = false;
+						exit();
 					default:
 						System.out.println("Input out of range");
 						break;
@@ -209,6 +229,7 @@ public class ConsoleUI {
 
 			} catch (InputMismatchException e) {
 				System.out.println("Input not valid");
+				scanner.nextLine();
 			}
 
 		} while (loop);
@@ -217,41 +238,63 @@ public class ConsoleUI {
 	private static void createAccountScreen() {
 		
 		boolean loop = true;
-		String user;
+		String user = null;
+		String password = null;
+		String lastName = null;
+		String firstName = null;
 		do {
-
-			System.out.println("Enter a unique username " + 
-							   "(8-20 characters no white spaces or special characters)");
-			user = scanner.nextLine();
-			
-			if(User.checkUsernameAvailability(user))
-			{
-				if(user.matches("^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$)"))
+			try {
+				System.out.println("Enter a unique username " + 
+								   "(8-20 characters no white spaces or special characters)");
+				user = scanner.next();
+				
+				if(User.checkUsernameAvailability(user))
 				{
-					loop = false;
+					if(user.matches("[a-zA-Z0-9\\._\\-]{8,20}"))
+					{
+						loop = false;
+					}
+					else
+					{
+						System.out.println("Invalid username format");
+					}
+				}
+				else
+				{
+					System.out.println("User already exists.");
 				}
 			}
-			else
-			{
-				System.out.println("User already exists.");
+			catch(InputMismatchException e) {
+				System.out.println("Input not valid");
+				scanner.nextLine();
+			}
+		}while(loop);
+		
+		loop = true;
+		do {
+			try {
+				System.out.println("What is your first name?");
+				firstName = scanner.next();
+				
+				System.out.println("What is your last name?");
+				lastName = scanner.next();
+				
+				loop = false;
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Input not valid");
+				scanner.nextLine();
 			}
 			
 		}while(loop);
 		
-		
-
-		System.out.println("What is your first name?");
-		String firstName = scanner.nextLine();
-		
-		System.out.println("What is your last name?");
-		String lastName = scanner.nextLine();
-		String password;
+		loop = true;
 		do {
 
-			System.out.print("Enter a password " + 
+			System.out.println("Enter a password " + 
 					"(8-20 characters no white spaces or special characters)");
-			password = scanner.nextLine();
-			if(password.matches("^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$)"))
+			password = scanner.next();
+			if(password.matches("[a-zA-Z0-9\\._\\-]{8,20}"))
 			{
 				loop = false;
 			}
@@ -262,8 +305,14 @@ public class ConsoleUI {
 			
 		}while(loop);
 		
-		User u = new User(firstName, lastName, user, password);
+		System.out.println(firstName + " " + lastName + " " + user + " " + password);
+		//User.addUser(new User(firstName, lastName, user, password));
 		System.out.println("User created successfully.");
+		//ArrayList<User> users = User.getAllUsers();
+//		for(User u : users)
+//		{
+//			System.out.println(u.getUsername());
+//		}
 		startMenu();
 	}
 
@@ -274,9 +323,9 @@ public class ConsoleUI {
 		do {
 
 			System.out.println("Enter a name for your new bank account:");
-			accountName = scanner.nextLine();
+			accountName = scanner.next();
 			
-			if(accountName.matches("^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$)"))
+			if(accountName.matches("[a-zA-Z0-9\\._\\-]{8,20}"))
 			{
 				loop = false;
 			}
@@ -293,7 +342,7 @@ public class ConsoleUI {
 			System.out.println("Current owners: " + String.join(", ", owners));
 			System.out.println("Enter any users you wish to share this account with or enter 1 to continue:");
 			
-			String owner = scanner.nextLine();
+			String owner = scanner.next();
 			if(owner.equals("1"))
 			{
 				loop = false;
@@ -313,7 +362,8 @@ public class ConsoleUI {
 			
 		}while(loop);
 		
-		new Account(accountName, owners);
+//		Account ac = new Account(accountName, owners);
+//		ac.ge
 		
 		System.out.println("Your account " + accountName + " has been created and is awaiting approval.");
 		
@@ -337,18 +387,105 @@ public class ConsoleUI {
 	
 	public static void employeeMenuScreen(User user)
 	{
+		boolean loop = true;
 		
+		do {
+
+			System.out.println("Employee Menu");
+			System.out.println("1: List all users");
+			System.out.println("2: View User Info");
+			System.out.println("3: View Account Info");
+			System.out.println("4: Logout");
+			System.out.println("5: Exit");
+			
+			try {
+
+				switch (scanner.nextInt()) {
+					case 1:
+						break;
+						
+					case 2:
+						break;
+						
+					case 3:
+						break;
+	
+					case 4:
+						loop = false;
+						logout();
+						break;
+	
+					case 5:
+						loop = false;
+						break;
+	
+					default:
+						System.out.println("Input out of range");
+						break;
+				}
+
+			} catch (InputMismatchException e) {
+				System.out.println("Input not valid");
+			}
+
+		} while (loop);
 	}
 	
 	public static void adminMenuScreen(User user)
 	{
+		boolean loop = true;
 		
+		do {
+
+			System.out.println("Admin Menu");
+			System.out.println("1: List all users");
+			System.out.println("2: View User Info");
+			System.out.println("3: View Account Info");
+			System.out.println("4: Logout");
+			System.out.println("5: Exit");
+			
+			try {
+
+				switch (scanner.nextInt()) {
+					case 1:
+						break;
+						
+					case 2:
+						break;
+						
+					case 3:
+						break;
+	
+					case 4:
+						loop = false;
+						logout();
+						break;
+	
+					case 5:
+						loop = false;
+						break;
+	
+					default:
+						System.out.println("Input out of range");
+						break;
+				}
+
+			} catch (InputMismatchException e) {
+				System.out.println("Input not valid");
+			}
+
+		} while (loop);
 	}
 	public static void logout()
 	{
 		ConsoleUI.username = null;
 		ConsoleUI.accountID = null;
 		startMenu();
+	}
+	
+	public static void exit() {
+		scanner.close();
+		System.exit(0);
 	}
 	
 }

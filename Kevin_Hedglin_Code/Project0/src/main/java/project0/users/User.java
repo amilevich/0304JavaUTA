@@ -1,136 +1,73 @@
 package project0.users;
 
 import project0.account.Account;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import project0.dao.UserDaoImpl;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
-
-public class User implements Serializable{
+public class User{
 	
 	public static enum userLevel {
-		CUSTOMER, EMPLOYEE, ADMIN
+		CUSTOMER(0), EMPLOYEE(1), ADMIN(2);
+		
+		private final int value;
+	    private userLevel(int value) {
+	        this.value = value;
+	    }
+
+	    public int getValue() {
+	        return value;
+	    }
 	}
-	
-	private static final long serialVersionUID = 9110193908388065501L;
 	
 	private String firstName;
 	private String lastName;
 	private String username;
 	private String password;
-	private ArrayList<String> accountIDs = new ArrayList<String>();
+	private ArrayList<Account> bankAccounts = new ArrayList<Account>();
 	private User.userLevel level = User.userLevel.CUSTOMER;
+	private static UserDaoImpl userDao = new UserDaoImpl();
 	
 	
-	protected static HashMap<String, User> users = new HashMap<String, User>();
-	
-	
-	public User(String firstName, String lastName, String username, String password) 
+	public User(String firstName, String lastName, String username, String password, ArrayList<Account> accounts) 
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		User.users.put(this.username, this);
+		this.bankAccounts = accounts;
 	}
 	
 	public static User login(String username, String pass) {
-		if (users.containsKey(username) && users.get(username).getPassword().equals(pass)) {
-			return users.get(username);
-		} else {
-			return null;
-		}
+		return userDao.login(username, pass);
+	}
+	
+	public static boolean saveUser(User u) {
+		return userDao.insertUser(u);
+	}
+	
+	public static User loadUser(String user) {
+		return userDao.selectUserByUsername(user);
 	}
 	
 	public static User getUser(String username) {
-		if (users.containsKey(username)) {
-			return users.get(username);
-		} 
-		else {
-			return null;
-		}
+		return userDao.selectUserByUsername(username);
 	}
 	
-	public static ArrayList<User> getAllUsers() {
-		return new ArrayList<User>(users.values());
+	public static ArrayList<User> getAllCustomers() {
+		return userDao.selectAllCustomers();
 	}
 	
 	public static boolean checkUsernameAvailability(String username)
 	{
-		if (users.containsKey(username))
+		if (userDao.selectUserByUsername(username) != null)
 			return false;
 		else
 			return true;
 	}
 	
-	public static void saveUsers()
-	{
-		try
-		{
-			FileOutputStream fos = new FileOutputStream("users.txt");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(users);
-			oos.close();
-			fos.close();
-			System.out.printf("Serialized User data is saved in users.txt");
-		}catch(IOException ioe)
-		{
-			ioe.printStackTrace();
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static void loadUsers()
-	{
-		try
-		{
-			FileInputStream fis = new FileInputStream("users.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			users = (HashMap<String, User>) ois.readObject();
-			ois.close();
-			fis.close();
-		}catch(IOException ioe)
-		{
-			ioe.printStackTrace();
-			return;
-		}catch(ClassNotFoundException c)
-		{
-			System.out.println("Class not found");
-			c.printStackTrace();
-			return;
-		}
-	}
-	
 	public static void printAllUsers()
 	{
-		Set<Entry<String, User>> set = users.entrySet();
-		Iterator<Entry<String, User>> iterator = set.iterator();
-		while(iterator.hasNext()) {
-			Map.Entry mentry = (Map.Entry)iterator.next();
-			System.out.print("key: "+ mentry.getKey() + " & Value: ");
-			System.out.println(mentry.getValue().toString());
-		}
-	}
-	
-	public void addAccountID(String acct)
-	{
-		this.accountIDs.add(acct);
-	}
-	
-	public void removeAccountID(String acct)
-	{
-		this.accountIDs.remove(acct);
+		
 	}
 
 	public String getFirstName() {
@@ -165,14 +102,6 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public ArrayList<String> getAccountIDs() {
-		return accountIDs;
-	}
-
-	public void setAccountIDs(ArrayList<String> ids) {
-		this.accountIDs = ids;
-	}
-
 	public User.userLevel getUserLevel()
 	{
 		return this.level;
@@ -183,14 +112,16 @@ public class User implements Serializable{
 		this.level = level;
 	}
 	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public ArrayList<Account> getBankAccounts()
+	{
+		return this.bankAccounts;
 	}
 
 	@Override
 	public String toString() {
+		
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password="
-				+ password + ", accounts=" + accountIDs + "]";
+				+ password + "]";
 	}
 	
 }

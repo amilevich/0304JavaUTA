@@ -1,11 +1,12 @@
 package project0.testing;
 
-import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import project0.account.Account;
@@ -15,9 +16,10 @@ import project0.users.User;
 
 public class UnitTests {
 
-	private User testUser;
-	private Employee testEmployee;
-	private Admin testAdmin;
+	private User testUserA;
+	private User testUserB;
+//	private Employee testEmployee;
+//	private Admin testAdmin;
 	private Account testBankAccountA;
 	private Account testBankAccountB;
 
@@ -27,18 +29,36 @@ public class UnitTests {
 
 	@Before
 	public void setUp() {
-		testUser = new User("jim", "bobson", "User1", "password");
-		testEmployee = new Employee("ralph", "smith", "Employee1", "password");
-		testAdmin = new Admin("Tim", "Franklin", "Admin1", "password");
-
-		ArrayList<String> accountOwners = new ArrayList<String>();
-		accountOwners.add("User1");
-		accountOwners.add("Employee1");
-		accountOwners.add("Admin1");
-		testBankAccountA = new Account("TestAccountA", accountOwners);
-		testBankAccountB = new Account("TestAccountB", accountOwners);
 		
-		testBankAccountA.deposit(20);
+		//testEmployee = new Employee("ralph", "smith", "Employee1", "password");
+		//testAdmin = new Admin("Tim", "Franklin", "Admin1", "password");
+		
+		testUserA = User.getUser("UserA");
+		testUserB = User.getUser("UserB");
+		
+		if(testUserA == null)
+		{
+			testBankAccountA = new Account("TestAccountA", 50f, true, new ArrayList<String>(Arrays.asList("UserA")));
+			testUserA = new User("jim", "bobson", "UserA", "password", new ArrayList<Account>(Arrays.asList(testBankAccountA)));
+			User.saveUser(testUserA);
+			Account.insertAccount(testBankAccountA);
+		}
+		else
+		{
+			testBankAccountA = testUserA.getBankAccounts().get(0);
+		}
+		if(testUserB == null)
+		{
+			testBankAccountB = new Account("TestAccountB", 50f, true, new ArrayList<String>(Arrays.asList("UserB")));
+			testUserB = new User("ron", "Walters", "UserB", "password", new ArrayList<Account>(Arrays.asList(testBankAccountB)));
+			User.saveUser(testUserB);
+			Account.insertAccount(testBankAccountB);
+		}
+		else
+		{
+			testBankAccountB = testUserB.getBankAccounts().get(0);
+		}
+		
 		
 		System.out.println("Beginning test...");
 	}
@@ -58,7 +78,7 @@ public class UnitTests {
 	@Test
 	public void successfulDepositAmount() {
 		testBankAccountA.deposit(5);
-		assertEquals("This should be true", 25, testBankAccountA.getBalance(), 0.001);
+		assertEquals("This should be true", 55, testBankAccountA.getBalance(), 0.001);
 	
 		System.out.println("deposited successfully");
 	}
@@ -78,13 +98,13 @@ public class UnitTests {
 	@Test
 	public void successfulWithdrawAmount() {
 		testBankAccountA.withdraw(10);
-		assertEquals("This should be true", 10, testBankAccountA.getBalance(), 0.001);
+		assertEquals("This should be true", 40, testBankAccountA.getBalance(), 0.001);
 		System.out.println("Withdrew successfully");
 	}
 
 	@Test
 	public void unsuccessfulOverdraw() {
-		assertEquals("This should be false", false, testBankAccountA.withdraw(50));
+		assertEquals("This should be false", false, testBankAccountA.withdraw(200));
 		System.out.println("Overdraw test successful");
 	}
 
@@ -105,14 +125,14 @@ public class UnitTests {
 	@Test
 	public void successfulTransferAmountAccountA() {
 		testBankAccountA.transferFunds(testBankAccountB, 10);
-		assertEquals("This should be true", 10, testBankAccountA.getBalance(), 0.001);
+		assertEquals("This should be true", 40, testBankAccountA.getBalance(), 0.001);
 		System.out.println("successful transfer test");
 	}
 	@Test
 	public void successfulTransferAmountAccountB() {
 
 		testBankAccountA.transferFunds(testBankAccountB, 10);
-		assertEquals("This should be true", 10, testBankAccountB.getBalance(), 0.001);
+		assertEquals("This should be true", 60, testBankAccountB.getBalance(), 0.001);
 		System.out.println("successful transfer test");
 	}
 
@@ -124,7 +144,7 @@ public class UnitTests {
 
 	@Test
 	public void unsuccessfulTransferOverdraw() {
-		assertEquals("This should be false", false, testBankAccountA.transferFunds(testBankAccountB, 50));
+		assertEquals("This should be false", false, testBankAccountA.transferFunds(testBankAccountB, 200));
 		System.out.println("Unsuccessful transfer of negative money test successful");
 	}
 
@@ -132,7 +152,7 @@ public class UnitTests {
 	public void successfulLogin() {
 		boolean test;
 
-		if(User.login("User1", "password") != null)
+		if(User.login("UserA", "password") != null)
 		{
 			test = true;
 		}
@@ -176,6 +196,20 @@ public class UnitTests {
 		assertEquals("this should be false", false, test);
 		System.out.println("Wrong password test successful");
 	}
-
-
+	
+	@Test
+	public void loadUser() {
+		User u = User.loadUser(testUserA.getUsername());
+		
+		assertEquals("this should be jim", "jim", u.getFirstName());
+		System.out.println("Save user test successful");
+	}
+	
+	@Test
+	public void loadAccount() {
+		Account a = Account.getAccount(testBankAccountA.getAccountID());
+		
+		assertEquals("this should be 50", 50, a.getBalance(), 0.001);
+		System.out.println("Save user test successful");
+	}
 }

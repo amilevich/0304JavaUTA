@@ -1,43 +1,36 @@
 package project0.users;
 
 import java.util.ArrayList;
-
 import project0.account.Account;
 
 public class Employee extends User{
-	
-	
-	private static final long serialVersionUID = -2356012502525195201L;
 
-	public Employee(String firstName, String lastName, String username, String password) {
-		super(firstName, lastName, username, password);
+	public Employee(String firstName, String lastName, String username, String password, ArrayList<Account> accounts) {
+		super(firstName, lastName, username, password, accounts);
 		super.setUserLevel(User.userLevel.EMPLOYEE);
 	}
 
-	public ArrayList<String> getCustomerInfo(ArrayList<User> users)
+	public String getCustomerInfo(String username)
 	{
-		ArrayList<String> info = new ArrayList<String>();
-		for(User u : users)
-		{
-			info.add(u.toString());
-		}
-		return info;
+		return User.getUser(username).toString();
 	}
 	
-	public ArrayList<User> getAllCustomers()
+	public String getAccountInfo(String acctID) {
+		return Account.getAccount(acctID).toString();
+	}
+	
+	public ArrayList<User> getCustomers()
 	{
-		return User.getAllUsers();
+		return User.getAllCustomers();
 	}
 	
-	public static void approveAccount(Account acct) {
-		acct.approveAccount();
+	public ArrayList<String> getAllPendingAccounts()
+	{
+		return new ArrayList<String>(Account.getPendingAccounts());
 	}
 	
-	public static void rejectAccount(Account acct) {
-		acct.rejectAccount();
-	}
-
-	public static String getAccountInfo(Account acct) {
-		return acct.toString();
+	public static boolean approveAccount(String acctID) {
+		
+		return Account.getAccount(acctID).approveAccount();
 	}
 }

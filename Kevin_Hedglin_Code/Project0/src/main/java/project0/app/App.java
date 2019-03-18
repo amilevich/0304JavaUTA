@@ -8,7 +8,14 @@ public class App
 {
     public static void main( String[] args )
     {
-//        User u = new User("Kevin", "Hedglin", "123", "pass");
+//       User.addUser( new User("Kevin", "Hedglin", "Username123", "Password123"));
+//       if(User.login("Username123", "Password123") != null)
+//       {
+//    	   System.out.println("ok");
+//       }
+       
+       
+       
 //        Account a = new Account("Kevin");
 //        
 //        User.saveUsers();
@@ -19,8 +26,7 @@ public class App
 //        User.printAllUsers();
 //        Account.printApprovedAccounts();
 //        Account.printPendingAccounts();
-    	
-    	//ConsoleUI.startMenu();
+    	ConsoleUI.initialize();
     	
     }
     

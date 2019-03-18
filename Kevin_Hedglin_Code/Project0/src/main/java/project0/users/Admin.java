@@ -1,14 +1,13 @@
 package project0.users;
 
+import java.util.ArrayList;
+
 import project0.account.Account;
 
 public class Admin extends Employee{
 
-
-	private static final long serialVersionUID = -3806098696225224388L;
-
-	public Admin(String firstName, String lastName, String username, String password) {
-		super(firstName, lastName, username, password);
+	public Admin(String firstName, String lastName, String username, String password, ArrayList<Account> accounts) {
+		super(firstName, lastName, username, password, accounts);
 		super.setUserLevel(User.userLevel.ADMIN);
 	}
 
@@ -26,7 +25,7 @@ public class Admin extends Employee{
 		return acct1.transferFunds(acct2, amt);
 	}
 	
-	public void cancelAccount(Account acct) {
-		acct.cancelAccount();
+	public void deleteAccount(Account acct) {
+		acct.deleteAccount();
 	}
 }
