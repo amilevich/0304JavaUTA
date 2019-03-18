@@ -411,8 +411,7 @@ public class AppDriver {
 		System.out.println("Press 3: Edit Customer Accounts    Press 4: Logout");
 		
 		int choice = 0; choice = CheckInt(choice,"Choose a menu option");
-		switch (choice) { // reads input for switch case to choose employee function
-
+		switch (choice) {
 		case 1: {
 			AccountDaoImpl ADI = new AccountDaoImpl();// CustomerDaoImple CDI = new CustomerDaoImple();
 			ArrayList<Accounts> masterlist = ADI.selectAllAccounts();
@@ -547,6 +546,7 @@ public class AppDriver {
 			break;
 		}
 		}
+		
 	}
 	
 	
