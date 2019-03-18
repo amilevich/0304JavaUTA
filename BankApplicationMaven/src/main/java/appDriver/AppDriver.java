@@ -563,7 +563,7 @@ public class AppDriver {
 		boolean check = false;int i;
 		for(Customer cus : cust) {
 			i = cus.getUsername().compareTo(UserN);
-			if(i == 0) {check = true;System.out.println("Entered if loop");Log.debug("Register Attempted");Log.info("Register Attempted");}
+			if(i == 0) {check = true;Log.debug("Register Attempted");}
 		}
 	return check;
 	}

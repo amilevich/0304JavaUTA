@@ -4,6 +4,12 @@ import java.util.List;
 
 public class Employee implements AllUsers,ConsumerAndAdmin {
 
+	/*
+	 * This is the Employee Bean, it contains the Username, password, and
+	 * 	admin privileges modifier
+	 */
+	
+	
 	String Username;
 	int password;
 	int admin_privileges;

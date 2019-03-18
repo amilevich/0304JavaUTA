@@ -8,6 +8,11 @@ import appModels.Employee;
 
 public interface AccountDao {
 
+	
+	/*
+	 * This is my Data Access Object for the Account Objects
+	 */
+	
 	public int insertAccount(Accounts A);
 	
 	public Accounts selectOneCustAccount(int A);
