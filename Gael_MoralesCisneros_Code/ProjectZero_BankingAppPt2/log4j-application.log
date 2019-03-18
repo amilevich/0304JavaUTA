@@ -1,0 +1,145 @@
+2019-03-17 10:49:11 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 10:49:35 INFO  Main:255 - stan successfull login
+2019-03-17 10:49:35 INFO  Main:539 - ***Project Zero Banking App Closing***
+2019-03-17 10:53:11 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 10:53:24 INFO  Main:258 - admin failed login
+2019-03-17 10:55:32 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 10:55:43 INFO  Main:258 - admin failed login
+2019-03-17 11:01:48 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:02:00 INFO  Main:258 - admin failed login
+2019-03-17 11:06:56 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:07:11 INFO  Main:261 - admin failed login
+2019-03-17 11:07:12 INFO  Main:542 - ***Project Zero Banking App Closing***
+2019-03-17 11:07:15 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:07:28 INFO  Main:261 - admin failed login
+2019-03-17 11:07:31 INFO  Main:542 - ***Project Zero Banking App Closing***
+2019-03-17 11:07:47 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:07:58 INFO  Main:258 - stan successfull login
+2019-03-17 11:07:59 INFO  Main:542 - ***Project Zero Banking App Closing***
+2019-03-17 11:08:50 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:09:05 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:09:14 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:09:25 INFO  Main:258 - stan successfull login
+2019-03-17 11:09:25 INFO  Main:542 - ***Project Zero Banking App Closing***
+2019-03-17 11:10:24 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:10:33 INFO  Main:261 - admin failed login
+2019-03-17 11:10:35 INFO  Main:542 - ***Project Zero Banking App Closing***
+2019-03-17 11:10:41 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:10:50 INFO  Main:261 - admin failed login
+2019-03-17 11:10:52 INFO  Main:542 - ***Project Zero Banking App Closing***
+2019-03-17 11:31:12 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:31:22 INFO  Main:254 - admin failed login
+2019-03-17 11:31:24 INFO  Main:534 - ***Project Zero Banking App Closing***
+2019-03-17 11:33:28 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 11:33:39 INFO  Main:230 - admin successfull login
+2019-03-17 11:33:57 INFO  Main:256 - admin failed login
+2019-03-17 11:33:57 INFO  Main:534 - ***Project Zero Banking App Closing***
+2019-03-17 12:01:24 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:01:47 INFO  Main:125 - set balance
+2019-03-17 12:01:47 INFO  Main:131 - set account pending
+2019-03-17 12:01:48 INFO  Main:133 - inserted new account
+2019-03-17 12:01:48 INFO  Main:137 - called procedure for accNum
+2019-03-17 12:01:48 INFO  Main:139 - inserted newUser
+2019-03-17 12:01:48 INFO  Main:142 - past waitpage
+2019-03-17 12:11:52 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:12:14 INFO  Main:125 - set balance
+2019-03-17 12:12:14 INFO  Main:131 - set account pending
+2019-03-17 12:12:14 INFO  Main:133 - inserted new account
+2019-03-17 12:12:14 INFO  Main:137 - called procedure for accNum
+2019-03-17 12:12:15 INFO  Main:139 - inserted newUser
+2019-03-17 12:12:15 INFO  Main:142 - past waitpage
+2019-03-17 12:12:25 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:12:35 INFO  Main:229 - emp1 successfull login
+2019-03-17 12:12:41 INFO  Main:254 - emp1 failed login
+2019-03-17 12:12:41 INFO  Main:521 - ***Project Zero Banking App Closing***
+2019-03-17 12:16:15 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:16:24 INFO  Main:229 - emp1 successfull login
+2019-03-17 12:16:26 INFO  Main:254 - emp1 failed login
+2019-03-17 12:16:26 INFO  Main:521 - ***Project Zero Banking App Closing***
+2019-03-17 12:32:14 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:32:22 INFO  Main:229 - emp1 successfull login
+2019-03-17 12:33:02 INFO  Main:541 - ***Project Zero Banking App Closing***
+2019-03-17 12:33:26 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:33:50 INFO  Main:229 - stan successfull login
+2019-03-17 12:33:51 INFO  Main:541 - ***Project Zero Banking App Closing***
+2019-03-17 12:33:58 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:34:07 INFO  Main:229 - eric successfull login
+2019-03-17 12:34:07 INFO  Main:541 - ***Project Zero Banking App Closing***
+2019-03-17 12:47:35 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:47:51 INFO  Main:229 - eric successfull login
+2019-03-17 12:48:32 INFO  Main:540 - ***Project Zero Banking App Closing***
+2019-03-17 12:48:52 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 12:49:02 INFO  Main:229 - admin successfull login
+2019-03-17 14:06:15 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 14:06:28 INFO  Main:229 - stan successfull login
+2019-03-17 14:06:36 INFO  Main:543 - ***Project Zero Banking App Closing***
+2019-03-17 14:06:39 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 14:06:50 INFO  Main:229 - admin successfull login
+2019-03-17 14:07:12 INFO  Main:543 - ***Project Zero Banking App Closing***
+2019-03-17 14:52:47 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 14:53:02 INFO  Main:229 - admin successfull login
+2019-03-17 14:54:05 INFO  Main:543 - ***Project Zero Banking App Closing***
+2019-03-17 15:13:06 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:13:17 INFO  Main:229 - admin successfull login
+2019-03-17 15:13:52 INFO  Main:546 - ***Project Zero Banking App Closing***
+2019-03-17 15:16:47 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:16:57 INFO  Main:229 - admin successfull login
+2019-03-17 15:18:35 INFO  Main:548 - ***Project Zero Banking App Closing***
+2019-03-17 15:22:49 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:22:59 INFO  Main:229 - admin successfull login
+2019-03-17 15:26:54 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:27:03 INFO  Main:229 - admin successfull login
+2019-03-17 15:28:17 INFO  Main:548 - ***Project Zero Banking App Closing***
+2019-03-17 15:30:32 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:30:41 INFO  Main:229 - admin successfull login
+2019-03-17 15:31:03 INFO  Main:548 - ***Project Zero Banking App Closing***
+2019-03-17 15:31:10 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:31:21 INFO  Main:229 - admin successfull login
+2019-03-17 15:31:51 INFO  Main:548 - ***Project Zero Banking App Closing***
+2019-03-17 15:32:24 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:32:32 INFO  Main:229 - emp1 successfull login
+2019-03-17 15:32:39 INFO  Main:254 - emp1 failed login
+2019-03-17 15:32:39 INFO  Main:548 - ***Project Zero Banking App Closing***
+2019-03-17 15:38:55 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 15:39:04 INFO  Main:229 - emp1 successfull login
+2019-03-17 15:39:22 INFO  Main:546 - ***Project Zero Banking App Closing***
+2019-03-17 16:14:23 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 16:19:41 INFO  Main:125 - set balance
+2019-03-17 16:19:41 INFO  Main:129 - set account pending
+2019-03-17 16:19:41 INFO  Main:131 - inserted new account
+2019-03-17 16:19:42 INFO  Main:144 - select for max accNum
+2019-03-17 16:19:42 INFO  Main:146 - inserted newUser
+2019-03-17 16:19:55 INFO  Main:149 - past waitpage
+2019-03-17 16:34:34 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 16:35:22 INFO  Main:125 - set balance
+2019-03-17 16:35:22 INFO  Main:129 - set account pending
+2019-03-17 16:35:23 INFO  Main:131 - inserted new account
+2019-03-17 16:36:06 INFO  Main:185 - select for max accNum
+2019-03-17 16:36:06 INFO  Main:187 - inserted newUser
+2019-03-17 16:36:07 INFO  Main:190 - select for max accNum
+2019-03-17 16:36:08 INFO  Main:192 - inserted newJointUser
+2019-03-17 16:36:10 INFO  Main:195 - past waitpage
+2019-03-17 16:36:10 INFO  Main:145 - select for max accNum
+2019-03-17 16:36:11 INFO  Main:147 - inserted newUser
+2019-03-17 16:36:13 INFO  Main:150 - past waitpage
+2019-03-17 18:23:14 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:23:29 INFO  Main:214 - admin successfull login
+2019-03-17 18:24:29 INFO  Main:559 - ***Project Zero Banking App Closing***
+2019-03-17 18:30:08 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:30:22 INFO  Main:214 - emp1 successfull login
+2019-03-17 18:30:33 INFO  Main:559 - ***Project Zero Banking App Closing***
+2019-03-17 18:33:13 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:33:22 INFO  Main:559 - ***Project Zero Banking App Closing***
+2019-03-17 18:53:03 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:53:12 INFO  Main:214 - admin successfull login
+2019-03-17 18:57:04 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:57:13 INFO  Main:214 - admin successfull login
+2019-03-17 18:57:38 INFO  Main:557 - Changed firstname of kenny to 
+2019-03-17 18:57:45 INFO  Main:598 - ***Project Zero Banking App Closing***
+2019-03-17 18:59:09 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:59:20 INFO  Main:239 - admin failed login
+2019-03-17 18:59:25 INFO  Main:598 - ***Project Zero Banking App Closing***
+2019-03-17 18:59:28 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-17 18:59:37 INFO  Main:214 - admin successfull login
+2019-03-17 19:00:07 INFO  Main:557 - Changed firstname of kenny to Kenneth
+2019-03-17 19:00:10 INFO  Main:598 - ***Project Zero Banking App Closing***
