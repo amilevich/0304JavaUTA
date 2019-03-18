@@ -1,0 +1,22 @@
+2019-03-18 16:13:34 INFO  Main:21 - Banking App Started
+2019-03-18 16:16:38 INFO  Main:42 - Login Menu
+2019-03-18 16:17:00 INFO  Main:265 - Unapproved account login
+2019-03-18 16:17:12 INFO  Main:262 - Customer login successful
+2019-03-18 16:17:12 INFO  Main:277 - Customer Logged in
+2019-03-18 16:17:22 INFO  Main:294 - Customer transferring
+2019-03-18 16:18:01 INFO  Main:357 - Transfer amount too large
+2019-03-18 16:18:16 INFO  Main:294 - Customer transferring
+2019-03-18 16:18:21 INFO  Main:357 - Transfer amount too large
+2019-03-18 16:18:43 INFO  Main:298 - Customer logging out
+2019-03-18 16:19:14 INFO  Main:21 - Banking App Started
+2019-03-18 16:19:16 INFO  Main:42 - Login Menu
+2019-03-18 16:19:25 INFO  Main:262 - Customer login successful
+2019-03-18 16:19:25 INFO  Main:277 - Customer Logged in
+2019-03-18 16:19:27 INFO  Main:294 - Customer transferring
+2019-03-18 16:19:34 INFO  Main:354 - Transfer successful
+2019-03-18 16:19:43 INFO  Main:286 - Customer withdrawing
+2019-03-18 16:19:47 INFO  Main:320 - Withdraw amount too large
+2019-03-18 16:19:49 INFO  Main:286 - Customer withdrawing
+2019-03-18 16:19:53 INFO  Main:317 - Withdraw successful
+2019-03-18 16:19:56 INFO  Main:298 - Customer logging out
+2019-03-18 16:20:00 INFO  Main:66 - Employee Login
