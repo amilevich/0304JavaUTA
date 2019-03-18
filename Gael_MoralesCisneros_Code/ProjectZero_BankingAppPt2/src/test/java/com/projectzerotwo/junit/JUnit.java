@@ -15,7 +15,7 @@ public class JUnit {
 	public JUnit() {
 	}
 	
-	Account tester = new Account();
+	Account tester = new Account(3,100.00, 1);
 
 	@BeforeClass
 	public static void methodCallBeforeAllTests() {

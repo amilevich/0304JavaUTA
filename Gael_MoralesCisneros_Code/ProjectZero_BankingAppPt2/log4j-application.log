@@ -143,3 +143,23 @@
 2019-03-17 18:59:37 INFO  Main:214 - admin successfull login
 2019-03-17 19:00:07 INFO  Main:557 - Changed firstname of kenny to Kenneth
 2019-03-17 19:00:10 INFO  Main:598 - ***Project Zero Banking App Closing***
+2019-03-18 10:54:31 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 10:54:44 INFO  Main:214 - admin successfull login
+2019-03-18 10:56:25 INFO  Main:593 - Account 3 was cancelled by admin
+2019-03-18 10:56:28 INFO  Main:597 - ***Project Zero Banking App Closing***
+2019-03-18 13:31:35 INFO  Main:361 - Amount $ 50.0was transfered from account 3 to account 1
+2019-03-18 13:31:36 INFO  Main:344 - Amount $ 50.0was deposited to account 3
+2019-03-18 13:31:36 INFO  Main:334 - Amount $ 50.0was withdrawn from account 3
+2019-03-18 13:32:11 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 13:32:50 INFO  Main:125 - set balance
+2019-03-18 13:32:50 INFO  Main:129 - set account pending
+2019-03-18 13:32:50 INFO  Main:131 - inserted new account
+2019-03-18 13:32:56 INFO  Main:145 - select for max accNum
+2019-03-18 13:32:57 INFO  Main:147 - inserted newUser
+2019-03-18 13:33:23 INFO  Main:214 - emp1 successfull login
+2019-03-18 13:33:50 INFO  Main:586 - Account 21 was approved
+2019-03-18 13:33:54 INFO  Main:597 - ***Project Zero Banking App Closing***
+2019-03-18 13:33:58 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 13:34:05 INFO  Main:214 - duck successfull login
+2019-03-18 13:34:15 INFO  Main:334 - Amount $ 279.28was withdrawn from account 21
+2019-03-18 13:34:24 INFO  Main:597 - ***Project Zero Banking App Closing***

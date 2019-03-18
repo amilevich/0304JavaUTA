@@ -81,7 +81,6 @@ public class AccountDaoImpl implements AccountDao {
 	public int deleteAccount(Account a) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM accounts WHERE accNumber=?");
-			// problem with setString
 			ps.setInt(1, a.getAccNumber());
 			ps.executeUpdate();
 		} catch (SQLException e) {
