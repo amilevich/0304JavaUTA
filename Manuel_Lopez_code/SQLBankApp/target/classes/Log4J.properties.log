@@ -1,0 +1,27 @@
+2019-03-08 11:59:06 INFO  Main:12 - Application was started!!
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started!
+2019-03-08 11:59:06 ERROR Main:16 - message about error
+java.lang.IndexOutOfBoundsException
+	at com.example.log.Main.main(Main.java:16)
+2019-03-08 11:59:06 FATAL Main:17 - fatal message
+2019-03-08 11:59:06 WARN  Main:18 - warning message
+2019-03-08 11:59:30 INFO  Main:12 - this is info
+2019-03-08 11:59:30 INFO  Main:15 - info
+2019-03-08 11:59:30 ERROR Main:16 - message about error
+java.lang.IndexOutOfBoundsException
+	at com.example.log.Main.main(Main.java:16)
+2019-03-08 11:59:30 FATAL Main:17 - fatal message
+2019-03-08 11:59:30 WARN  Main:18 - warning message
+2019-03-08 11:59:06 INFO  Main:12 - User was registed
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started!
+2019-03-08 11:59:06 INFO  Main:12 - Customer was launched
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started
+2019-03-08 11:59:06 INFO  Main:12 - Customer withdrew 50
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started!
+2019-03-08 11:59:06 INFO  Main:12 - Employee was logged in
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started!
+2019-03-08 11:59:06 INFO  Main:12 - Application was stat
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started!
+2019-03-08 11:59:06 INFO  Main:12 - Employee was logged
+2019-03-08 11:59:06 INFO  Main:15 - Logged in started!
+2019-03-08 11:59:06 INFO  Main:12 - Application was started
