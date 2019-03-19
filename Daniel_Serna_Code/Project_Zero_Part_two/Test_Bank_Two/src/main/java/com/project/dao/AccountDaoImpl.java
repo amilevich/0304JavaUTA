@@ -82,6 +82,29 @@ public class AccountDaoImpl implements AccountDao {
 		return accounts;
 	}
 	
+	@Override
+	public double grabAccountBalance(int id)
+	{
+		double currentBalance = 0;
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT BALANCE FROM ACCOUNT WHERE ACCOUNT_ID=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				currentBalance = rs.getDouble("BALANCE");
+				// System.out.println("ACCOUNT: "+acc.getAccount_id()+" "+acc.getBalance()+" "+acc.getStatus());
+			}
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return currentBalance;
+	}
+	
 	@Override 
 	public List<Account> selectAllOpenAccounts()
 	{
@@ -89,6 +112,27 @@ public class AccountDaoImpl implements AccountDao {
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ACCOUNT WHERE STATUS=0"); 
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				accounts.add(new Account(rs.getInt(1), rs.getDouble(2), rs.getInt(3)));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return accounts;
+	}
+	
+	@Override 
+	public List<Account> selectAllOnGoingAccounts()
+	{
+		List<Account> accounts = new ArrayList<>(); 
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ACCOUNT WHERE STATUS=1"); 
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next())
@@ -118,6 +162,69 @@ public class AccountDaoImpl implements AccountDao {
 			ps.setDouble(1, 200.0 );
 			ps.setInt(2, 1);
 			ps.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateAccountStatusCancel(int id)
+	{
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			PreparedStatement ps = conn.prepareStatement("UPDATE ACCOUNT SET STATUS=? WHERE ACCOUNT_ID="+id);
+			ps.setInt(1, 0);
+			ps.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateAccountBalanceAfterWithdraw(int id, double with)
+	{
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			PreparedStatement ps = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE=? WHERE ACCOUNT_ID=?");
+			ps.setDouble(1, with);
+			ps.setInt(2, id);
+			ps.executeUpdate(); 
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateAccountBalanceAfterDeposit(int id, double depo)
+	{
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			PreparedStatement ps = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE=? WHERE ACCOUNT_ID=?");
+			ps.setDouble(1, depo);
+			ps.setInt(2, id);
+			ps.executeUpdate(); 
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void updateAccountBalanceAfterTransfer(int id, double trans)
+	{
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			PreparedStatement ps = conn.prepareStatement("UPDATE ACCOUNT SET BALANCE=? WHERE ACCOUNT_ID=?");
+			ps.setDouble(1, trans);
+			ps.setInt(2, id);
+			ps.executeUpdate(); 
 		}
 		catch(SQLException e)
 		{

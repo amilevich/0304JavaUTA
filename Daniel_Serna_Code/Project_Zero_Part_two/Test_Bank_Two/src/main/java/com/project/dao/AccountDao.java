@@ -14,11 +14,24 @@ public interface AccountDao {
 	public List<Account> selectAllAccounts(); // select (DISPLAY) all accounts
 	
 	public List<Account> selectAllOpenAccounts(); // display all open accounts
+	
+	public List<Account> selectAllOnGoingAccounts();  // display active accounts
+	
+	public double grabAccountBalance(int id); // grab current account balance
 
 	
 	// UPDATE
 	public int updateAccount(Account a); 
+	
 	public void updateAccountStatus(int id); 
+	
+	public void updateAccountBalanceAfterWithdraw(int id, double with); 
+	
+	public void updateAccountBalanceAfterDeposit(int id, double depo);
+	
+	public void updateAccountBalanceAfterTransfer(int id, double trans);
+	
+	public void updateAccountStatusCancel(int id);
 	
 	
 	// DELETE
