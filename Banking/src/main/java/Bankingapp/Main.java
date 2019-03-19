@@ -35,10 +35,10 @@ public class Main {
 					String p = scanner.next();
 					CustomerDaoImpl newlog = new CustomerDaoImpl();
 					newlog.selectByUsername(u);
-					// logcust = newlog.selectByUsername(u);
 					for (Customer logcust : newlog.selectAllCustomer())
 						if (u.equals(l) && p.equals(k)) {
 							adminmenu(logcust);
+							break;
 						} else if (logcust.getUsername().equals(u) && logcust.getPassword().equals(p)) {
 							
 							{
@@ -154,10 +154,12 @@ public class Main {
 	}
 
 	public static void adminmenu(Customer logcust) {
+		
 		System.out.println("Please select from the following: ");
 		System.out.println("1. View Account by Username");
 		System.out.println("2. Delete Account by Username");
 		System.out.println("3. Approve Account");
+		System.out.println("4. Return to Login");
 		switch (scanner.nextInt()) {
 
 		case 1:
@@ -177,9 +179,14 @@ public class Main {
 			String delo = scanner.next();
 			Account delee = new Account();
 			AccountDaoImpl deleto = new AccountDaoImpl();
-
+			Customer delcust = new Customer();
+			CustomerDaoImpl delcusto = new CustomerDaoImpl();
 			delee = deleto.selectByUsername(delo);
 			deleto.deleteAccount(delee);
+			deleto.updateAccount(delee);
+			delcust = delcusto.selectByUsername(delo);
+			delcusto.deleteCustomer(delcust);
+			delcusto.updateCustomer(delcust);
 
 			break;
 
@@ -193,8 +200,10 @@ public class Main {
 			approvee.updateAccount(approvo);
 
 			break;
-
+			
+			
+				
 		}
-
+			
 	}
 }

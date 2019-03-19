@@ -118,8 +118,8 @@ public class AccountDaoImpl implements AccountDao {
 
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM Accounts WHERE username= ?");
 			ps.setString(1, a.getUsername());
-			// ps.setDouble(2, a.getBalance());
-			// ps.setBoolean(3, a.isStatus());
+//			 ps.setDouble(2, a.getBalance());
+//			 ps.setBoolean(3, a.isStatus());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

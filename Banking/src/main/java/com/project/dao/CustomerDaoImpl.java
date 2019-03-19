@@ -77,10 +77,11 @@ public class CustomerDaoImpl implements CustomerDao {
 		int res = 0;
 
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			String sql = "UPDATE Customer SET username= ?, password=? WHERE username =" + c.getUsername();
+			String sql = "UPDATE Customer SET username= ?, password=? WHERE username =? ";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, c.getUsername());
 			ps.setString(2, c.getPassword());
+			ps.setString(3, c.getUsername());
 			res = ps.executeUpdate();
 
 		} catch (SQLException e) {
