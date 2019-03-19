@@ -1,5 +1,7 @@
+
 package com.example.driver;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -12,12 +14,15 @@ import com.example.model.User;
 public class Driver {
 	
 	
-	
+	User currentCustomer; 
 	
 	final static Logger logger = Logger.getLogger(Driver.class);
 	static Scanner myScanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
+		
+		
+		
 		
 		
 		
@@ -61,7 +66,8 @@ public class Driver {
 	
 	public static void makeAnAccount() {
 		
-		String userName;
+		BankAcctDaoImpl bankAcctDaoImpl = new BankAcctDaoImpl(); 
+		List<BankAcct> accounts = bankAcctDaoImpl.selectAllBankAccts();
 		
 		myScanner.nextLine();
 		
@@ -72,17 +78,27 @@ public class Driver {
 		String lName = myScanner.nextLine();
 		
 		System.out.println("Please enter a username for your account: ");
-		userName = myScanner.nextLine();
+		String userName = myScanner.nextLine();
 		
-		//while(User.userNameNotUnique(userName));
 		
 		System.out.println("Please enter a password for your account");
 		String password = myScanner.nextLine();
+		
 		BankAcct account = new BankAcct();
+		//System.out.println(account);
 		account.setAccountStatus(0);
 		account.setBalance(0.0);
-		BankAcctDaoImpl bankAcctDaoImpl = new BankAcctDaoImpl(); 
+		bankAcctDaoImpl = new BankAcctDaoImpl(); 
+		
+		
 		bankAcctDaoImpl.insertBankAcct(account);
+		
+		accounts = bankAcctDaoImpl.selectAllBankAccts();
+		System.out.println(accounts);
+		//System.out.println(bankAcctDaoImpl.selectAllBankAccts());
+		
+		//int increment = account.getAccountNumber();
+		//System.out.println(increment);
 		User user = new User(); 
 		
 		user.setfName(fName);
@@ -90,30 +106,22 @@ public class Driver {
 		user.setUserName(userName);
 		user.setPassword(password);
 		user.setType(3);
-		user.setAccNumUser(0);
+		//System.out.println(account);
+		//user.setAccNumUser
+		//System.out.println(account.getAccountNumber());
+		
 		
 		UserDaoImpl userDaoImpl = new UserDaoImpl();
 		userDaoImpl.insertUser(user);
 		
-		
-		int accNum = account.getAccountNumber();
-		user.setAccNumUser(accNum);
+		//int accNum = account.getAccountNumber();
+		int accNumber = bankAcctDaoImpl.selectAccNumByMax(); 
+		user.setAccNumUser(accNumber);
 		
 		userDaoImpl.updateUser(user);
+		//System.out.println(user);
+
 		
-		
-//		System.out.println("Would you like to add a joint account holder?");
-//		System.out.println("If yes enter their first name and last name in the style of first:last ");
-//		System.out.println("If no enter NONE");
-			//String jointHolder = myScanner.nextLine();
-			
-		//BankAcct newAccount = new BankAcct(0, 0, 0);
-		
-		//if(BankAcct.setUpAccount(newAccount)) {
-		//	System.out.println("Account was created");
-		//}else {
-		//	System.out.println("Account could not be created");
-		//}
 	}
 	
 	
@@ -125,29 +133,133 @@ public class Driver {
 		System.out.println("\n Enter Password: ");
 		String password = myScanner.next();
 		
-		if(userName=="admin" & password=="password") {
-			//do admin stuff
-			//switch case 
+		if(userName.equals("admin") & password.equals("password")) { 
+			adminScreen(); 
 		}
-		else if(userName=="employee" & password=="password") {
-			boolean employeeLoop = true;
+		else if(userName.equals("employee") & password.equals("password")) {
+			employeeScreen("employee"); 
 			
-			logger.info("Now in the transaction screen");
+		}
+		else {
+			customerScreen(userName);}
+			
+			
+		}
+		
+		
+		public static void adminScreen() {
+			boolean adminLoop = true;
+			
+			logger.info("Now in the admin screen");
 			do {
 				
 				System.out.println("Select your option: ");
-				System.out.println("1 to view accounts");
-				System.out.println("2 to approve accounts");
+				System.out.println("1 to view account");
+				System.out.println("2 to approve account");
+				System.out.println("3 to cancel an account");
+				System.out.println("4 to logout");
+				
+				switch(myScanner.nextInt()) {
+				
+				case 1:
+					System.out.println("Enter the account you wish to view ");
+					Integer accNum = myScanner.nextInt();
+					
+					BankAcctDaoImpl bankAcctDaoImpl = new BankAcctDaoImpl();
+					UserDaoImpl userDaoImpl = new UserDaoImpl();
+					User u = new User();
+					
+					for(BankAcct a : bankAcctDaoImpl.selectAllBankAccts()) {
+						u = userDaoImpl.selectUserByAcctNum(a.getAccountNumber());
+						System.out.println(u.getfName() + a);
+					}
+					break;
+				
+				case 2: 
+					System.out.println("Enter the account you want to approve ");
+					accNum = myScanner.nextInt();
+					
+					bankAcctDaoImpl = new BankAcctDaoImpl();
+					
+					BankAcct account = new BankAcct();
+					
+					account = bankAcctDaoImpl.selectUserByAccountNum(accNum);
+					
+					account.setAccountStatus(1);
+					
+					bankAcctDaoImpl.updateBankAcct(account);
+					break;
+					
+				case 3:
+					System.out.println("Enter the account you want to cancel ");
+					accNum = myScanner.nextInt();
+					
+					bankAcctDaoImpl = new BankAcctDaoImpl();
+					
+					account = new BankAcct();
+					
+					account = bankAcctDaoImpl.selectUserByAccountNum(accNum);
+					
+					//account.setAccountStatus(1);
+					
+					bankAcctDaoImpl.deleteAccount(account);
+					break;
+					
+				case 4: 
+					adminLoop = false;
+					break;
+			
+				default:
+					System.out.println("Option not available");
+					break;
+					
+				}
+			}while(adminLoop);}
+		
+		
+		
+		public static void employeeScreen(String userName) {
+			
+			boolean employeeLoop = true;
+			
+			logger.info("Now in the employee screen");
+			do {
+				
+				System.out.println("Select your option: ");
+				System.out.println("1 to view account");
+				System.out.println("2 to approve account");
 				System.out.println("3 to logout");
 				
 				switch(myScanner.nextInt()) {
 				
 				case 1:
 					System.out.println("Enter the account you wish to view ");
+					Integer accNum = myScanner.nextInt();
+					
+					BankAcctDaoImpl bankAcctDaoImpl = new BankAcctDaoImpl();
+					UserDaoImpl userDaoImpl = new UserDaoImpl();
+					User u = new User();
+					
+					for(BankAcct a : bankAcctDaoImpl.selectAllBankAccts()) {
+						u = userDaoImpl.selectUserByAcctNum(a.getAccountNumber());
+						System.out.println(u.getfName() + a);
+					}
 					break;
 				
 				case 2: 
 					System.out.println("Enter the account you want to approve");
+					
+					bankAcctDaoImpl = new BankAcctDaoImpl();
+					
+					BankAcct account = new BankAcct();
+					
+					accNum = account.getAccountNumber();
+					
+					account = bankAcctDaoImpl.selectUserByAccountNum(accNum);
+					
+					account.setAccountStatus(1);
+					
+					bankAcctDaoImpl.updateBankAcct(account);
 					break;
 					
 				case 3: 
@@ -160,11 +272,12 @@ public class Driver {
 					
 				}
 			}while(employeeLoop);
-			
 		}
-		else {
+		
+		public static void customerScreen(String userName) {
+			
 			boolean anotherLoop = true;
-			double amount;
+			//double amount;
 		
 			logger.info("Now in the transaction screen");
 			do {
@@ -176,65 +289,87 @@ public class Driver {
 				System.out.println("4 to logout");
 				
 				User user;
-				BankAcct account;
+				//BankAcct account;
+				
 				switch(myScanner.nextInt()) {
 				
 				case 1:
 					System.out.println("Enter amount to be deposited: ");
-					amount = myScanner.nextDouble();
+					double amount = myScanner.nextDouble();
 					
 					UserDaoImpl userDaoImpl = new UserDaoImpl(); 
-					
+					System.out.println(userName);
 					user = userDaoImpl.selectUserByUsername(userName);
+					System.out.println(user + "user object");
 					
-					int AcctNum = user.getAccNumUser();
+					//int AcctNum = user.getAccNumUser();
+					int AccNum = userDaoImpl.getAccNumByUserName(userName);
+					
+					System.out.println(AccNum + "account object");
 					
 					BankAcctDaoImpl bankAcctDaoImpl = new BankAcctDaoImpl();
 					
-					account = bankAcctDaoImpl.selectUserByAccountNum(AcctNum);
+					BankAcct account = bankAcctDaoImpl.selectUserByAccountNum(AccNum);
+					System.out.println(account);
 					
 					double balance = account.getBalance();
+					System.out.println(balance);
 					
 					account.setBalance(balance + amount);
-					
+					System.out.println(balance+amount);
+					System.out.println(account.getBalance());
 					bankAcctDaoImpl.updateBankAcct(account);
-				
 					
 					
-					
-					
-					/*if(user.deposit(amount)) {
-						System.out.println("deposit of " + amount + " was successfu1");
-					}else {
-						System.out.println("deposit of " + amount + " was unsuccessful");
-					}*/
+					System.out.println("done depositing");
 					break;
 					
 				case 2:
 					System.out.println("Enter amount to be withdrawn: ");
 					amount = myScanner.nextDouble();
+					
+					userDaoImpl = new UserDaoImpl(); 
+					
+					user = userDaoImpl.selectUserByUsername(userName);
+					
+					AccNum = user.getAccNumUser();
+					
+					bankAcctDaoImpl = new BankAcctDaoImpl();
+					
+					account = bankAcctDaoImpl.selectUserByAccountNum(AccNum);
+					
+					balance = account.getBalance();
+					
+					account.setBalance(balance - amount);
+					
+					bankAcctDaoImpl.updateBankAcct(account);
 				
-					/*if(user.withdraw(amount)) {
-						System.out.println("withdraw of " + amount + " was successful");
-					}else {
-						System.out.println("withdraw of " + amount + " was unsuccessful");
-					}*/
 					
 					break;
 					
 				case 3: 
 					System.out.println("Enter the account you are transfering to: ");
-					String to = myScanner.next();
+					int to = myScanner.nextInt();
 					
 					System.out.println("Enter the amount to  be transfered: ");
 					amount = myScanner.nextDouble();
 					
+					bankAcctDaoImpl = new BankAcctDaoImpl();
+					BankAcct from = new BankAcct();
+					BankAcct accountTo = bankAcctDaoImpl.selectUserByAccountNum(to);
 					
-					/*if(user.transferTo(user, amount)) {
-						System.out.println("Transfer of " + amount + "to " + to + " successful");
-					}else {
-						System.out.println("Transfer of " + amount + "to " + to + " unsuccessful");
-					}*/
+					if(amount > from.getBalance()) {
+						System.out.println("exceeds withdraw amount avaiable");
+					}
+						
+					balance = from.getBalance() - amount;
+					from.setBalance(balance);
+					balance = accountTo.getBalance() + amount;
+					accountTo.setBalance(balance);
+					
+					bankAcctDaoImpl.updateBankAcct(from);
+					bankAcctDaoImpl.updateBankAcct(accountTo);
+	
 					
 					break;
 					
@@ -247,66 +382,13 @@ public class Driver {
 					break;
 						
 				}
-			}while(anotherLoop);
-			
+			}while(anotherLoop);}
 			
 		}
-		
-		
-		
-		//User user = User.logIn(userName, password);
-		
-		
-		/*if(user instanceof BankAcct) {
-			transactionScreen((BankAcct) user);
-		}else {
-			System.out.println("invalid username or password");
-		}*/
-		
-	}
-	
-
-
-
-	
-	
-	public static void EmployeeScreen(User employee) {
-		boolean employeeLoop = true;
-		double amount;
-		
-		logger.info("Now in the transaction screen");
-		do {
 			
-			System.out.println("Select your option: ");
-			System.out.println("1 to view accounts");
-			System.out.println("2 to approve accounts");
-			System.out.println("3 to logout");
-			
-			switch(myScanner.nextInt()) {
-			
-			case 1:
-				System.out.println("Enter the account you wish to view ");
-				break;
-			
-			case 2: 
-				System.out.println("Enter the account you want to approve");
-				break;
-				
-			case 3: 
-				employeeLoop = false;
-				break;
 		
-			default:
-				System.out.println("Option not available");
-				break;
-				
-			}
-		}while(employeeLoop);
-		
-	}
-		
-	}
 	
 	
+		
 	
 

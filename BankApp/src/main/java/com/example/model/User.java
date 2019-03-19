@@ -10,7 +10,7 @@ public class User {
 	protected String userName;
 	private String password;
 	private int type;
-	private int AccNumUser;
+	private Integer AccNumUser;
 //	
 //	ArrayList<BankAcct> account = new ArrayList<BankAcct>();
 //	protected static HashMap<String, User> loginStuff = new HashMap<String, User>();
@@ -34,7 +34,7 @@ public String toString() {
 	this.userName = userName;
 	this.password = password;
 	this.type = type;
-	AccNumUser = accNumUser;
+	this.AccNumUser = null;
 }
 
 
@@ -88,7 +88,7 @@ public void setType(int type) {
 }
 
 
-public int getAccNumUser() {
+public Integer getAccNumUser() {
 	return AccNumUser;
 }
 

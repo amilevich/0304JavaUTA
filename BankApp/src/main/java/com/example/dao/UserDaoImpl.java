@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.example.model.User;
 
 public class UserDaoImpl implements UserDao {
@@ -21,13 +22,13 @@ public class UserDaoImpl implements UserDao {
 	public int insertUser(User u) {
 			try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-				PreparedStatement ps = conn.prepareStatement("INSERT INTO USERS VALUES (?,?,?,?,?,?)");
+				PreparedStatement ps = conn.prepareStatement("INSERT INTO USERS (fName, lName, userName, password, type) VALUES (?,?,?,?,?)");
 				ps.setString(1, u.getfName());
 				ps.setString(2, u.getlName());
 				ps.setString(3, u.getUserName());
 				ps.setString(4, u.getPassword());
 				ps.setInt(5, u.getType());
-				ps.setInt(6, u.getAccNumUser());
+				//ps.setInt(6, u.getAccNumUser());
 				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -56,13 +57,14 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int updateUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("UPDATE Users SET fName=?, lName = ?, userName=?, password =?, type=?, AccNumUser=? WHERE userName=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE Users SET fName=?, lName =?, userName=?, password =?, type=?, AccNumUser=? WHERE userName=?");
 			ps.setString(1, u.getfName());
 			ps.setString(2, u.getlName());
 			ps.setString(3, u.getUserName());
 			ps.setString(4, u.getPassword());
 			ps.setInt(5, u.getType());
 			ps.setInt(6, u.getAccNumUser());
+			ps.setString(7, u.getUserName());
 			ps.executeQuery();
 			
 		}catch (SQLException e) {
@@ -80,7 +82,12 @@ public class UserDaoImpl implements UserDao {
 			ResultSet rs = ps.executeQuery();	
 			
 			while(rs.next()) {
-				user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6));
+				user = new User(rs.getString(1), 
+						rs.getString(2), 
+						rs.getString(3),
+						rs.getString(4), 
+						rs.getInt(5), 
+						rs.getInt(6));
 			}}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -88,6 +95,46 @@ public class UserDaoImpl implements UserDao {
 		return user;
 		
 	}
+
+
+	@Override
+	public User selectUserByAcctNum(Integer AccNumUser) {
+		User user = null;
+		try(Connection conn = DriverManager.getConnection(url, username, password)){
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE AccNumUser = ?");
+			ps.setInt(1, AccNumUser);
+			ResultSet rs = ps.executeQuery();	
+			
+			while(rs.next()) {
+				user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6));
+			}}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		return user;
+	}
+
+
+	@Override
+	public int getAccNumByUserName(String userName) {
+		int AccNum = 0;
+		try(Connection conn = DriverManager.getConnection(url, username, password)){
+			PreparedStatement ps = conn.prepareStatement("SELECT AccNumUser FROM Users WHERE userName = ?");
+			ps.setString(1, userName);
+			ResultSet rs = ps.executeQuery();	
+			
+			while(rs.next()) {
+				AccNum = rs.getInt("accNumUser");
+			}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		return AccNum;
+	}
+
+
+	
 
 
 

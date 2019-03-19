@@ -15,6 +15,12 @@ public interface UserDao {
 	
 	public User selectUserByUsername(String userName);
 	
+	public User selectUserByAcctNum(Integer AccNumUser);
+	
+	public int getAccNumByUserName(String userName);
+	
+	
+	
 
 	
 	

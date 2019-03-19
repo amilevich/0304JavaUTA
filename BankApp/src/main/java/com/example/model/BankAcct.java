@@ -2,7 +2,7 @@ package com.example.model;
 
 public class BankAcct extends User implements Transactions{
 
-	private int accountNumber;
+	private Integer accountNumber;
 	private int accountStatus;
 	private double balance;
 	
@@ -29,7 +29,7 @@ public class BankAcct extends User implements Transactions{
 
 
 
-	public int getAccountNumber() {
+	public Integer getAccountNumber() {
 		return accountNumber;
 	}
 
