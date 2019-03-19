@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+span{
+	text-align: right;
+}
+
+.header{
+	color: teal;
+}
+
+/* this is how u comment */
+/* # is for id selection */
+/* . is for class selection */
