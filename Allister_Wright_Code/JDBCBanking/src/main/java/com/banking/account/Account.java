@@ -11,8 +11,28 @@ public class Account// implements Serializable
 
 	public enum AccountType
 	{
-		CHECKING, SAVINGS, MONEY_MARKET_DEPOSIT, CERTIFICATE_DEPOSIT, 
-		NUM_ACCOUNT_TYPE
+		CHECKING(1), SAVINGS(2), MONEY_MARKET_DEPOSIT(3), CERTIFICATE_DEPOSIT(4), 
+		NUM_ACCOUNT_TYPE(5);
+		
+		private int value;
+		AccountType(int value)
+		{
+			this.value = value;
+		}
+		
+		public int getValue()
+		{
+			return value;
+		}
+		
+		public static AccountType convertIntToType(int iType) {
+			for (AccountType type : AccountType.values()) {
+				if (type.getValue() == iType) {
+					return type;
+				}
+			}
+			return null;
+		}
 	}
 	
 	public enum AccountState
@@ -33,7 +53,7 @@ public class Account// implements Serializable
 //		this(accountNumber, AccountType.CHECKING, customer);
 //	}
 	
-	public Account(long accountNumber, AccountType type, AccountState state, Customer customer)
+	public Account(long accountNumber, AccountType type, AccountState state, double balance, Customer customer)
 	{
 		this.accountNumber = accountNumber;
 		this.type = type;
@@ -41,7 +61,7 @@ public class Account// implements Serializable
 		addOwner(customer);
 		
 		this.state = state;
-		balance = 0;
+		this.balance = balance;
 	}
 	
 	public long getAccountNumber()
@@ -76,9 +96,11 @@ public class Account// implements Serializable
 			return true;
 		if (state != AccountState.OPEN)
 			throw new AccountNotOpenException();
+//		System.out.println("Checking access of " + user.getUsername());
 		for (Customer owner : owners)
 		{
-			if (user.equals(owner))
+//			System.out.println("Checking against " + owner.getUsername());
+			if (user.getUsername().equals(owner.getUsername()))
 				return true;
 		}
 		throw new InvalidUserAccessException();

@@ -24,6 +24,7 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public int registerUser(String bankUser, String bankPass, int typeKey, String fullName)
 	{
+		System.out.println("## Submitting user registration ...");
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			CallableStatement cs = conn.prepareCall("{call register_user (?, ?, ?, ?)");
@@ -31,7 +32,8 @@ public class UserDaoImpl implements UserDao
 			cs.setString(2, bankPass);
 			cs.setInt(3, typeKey);
 			cs.setString(4, fullName);
-			cs.execute();
+			cs.executeQuery();
+			commitDB();
 		}
 		catch (SQLException e)
 		{
@@ -43,6 +45,7 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public ArrayList<User> getAllUsers()
 	{
+		System.out.println("## Fetching most recent user information ...");
 		ArrayList<User> users = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
@@ -65,6 +68,7 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public User getUserByName(String bankUser)
 	{
+		System.out.println("## Searching for user ...");
 		User user = null;
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
@@ -87,6 +91,7 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public User getUserLogin(String bankUser, String bankPass)
 	{
+		System.out.println("## Validating login credentials ...");
 		User user = null;
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
@@ -110,6 +115,7 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public int updatePasswordByName(String bankUser, String bankPass)
 	{
+		System.out.println("## Updating user information ...");
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement(
@@ -117,6 +123,7 @@ public class UserDaoImpl implements UserDao
 			ps.setString(1, bankPass);
 			ps.setString(2, bankUser);
 			ps.executeUpdate();
+			commitDB();
 		}
 		catch (SQLException e)
 		{
@@ -128,12 +135,14 @@ public class UserDaoImpl implements UserDao
 	@Override
 	public int deleteUser(String bankUser)
 	{
+		System.out.println("## Deleting user ...");
 		try (Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement(
 					"DELETE FROM BANK_USER WHERE username = ?");
 			ps.setString(1, bankUser);
 			ps.executeUpdate();
+			commitDB();
 		}
 		catch (SQLException e)
 		{
@@ -161,7 +170,7 @@ public class UserDaoImpl implements UserDao
 		switch (userType)
 		{
 		case 1:
-			return new Customer(username, password, fullName);
+			return new Customer(fullName, username, password);
 		case 2:
 			return new Employee(username, password);
 		case 3:

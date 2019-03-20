@@ -3,11 +3,12 @@ package com.banking.dao;
 import java.util.ArrayList;
 
 import com.banking.account.Account;
+import com.banking.user.Customer;
 
 public interface AccountDao
 {
 	// CREATE
-	public abstract long registerAccount(String bankUser, Account.AccountType type);
+	public abstract int registerAccount(Customer customer, Account account);
 //	public abstract int addAccountOwner(long accountNumber, String bankUser);
 	
 	// READ

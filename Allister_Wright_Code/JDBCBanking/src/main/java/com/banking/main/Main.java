@@ -22,20 +22,21 @@ public class Main
 		logger.info("APPLICATION START");
 		System.out.println("Welcome to the Revature Banking Application");
 
-		ArrayList<User> users = userDB.getAllUsers();
-		ArrayList<Account> accounts = accountDB.getAllAccounts();
-		if (users.size() == 0)
-		{
-			userDB.registerUser("admin", "password", 3, null);
-			userDB.registerUser("employee", "password", 2, null);
-			userDB.commitDB();
-		}
+		ArrayList<User> users = new ArrayList<>();
+		ArrayList<Account> accounts = new ArrayList<>();
 
 		String loginInput = "";
 		User currentUser = null;
 
 		while (true)
 		{
+			users = userDB.getAllUsers();
+			accounts = accountDB.getAllAccounts();
+			if (users.size() == 0)
+			{
+				userDB.registerUser("admin", "password", 3, null);
+				userDB.registerUser("employee", "password", 2, null);
+			}
 			System.out.println("========----------------========");
 			loginInput = getUserInput("Please select an option (Login/Register/Exit): ").toUpperCase();
 			if (loginInput.equals("QUIT") || loginInput.equals("EXIT"))
@@ -75,10 +76,10 @@ public class Main
 				{
 					String accountInput = "";
 					System.out.println("What account will you be working with today?");
-					
+
 					// Display accounts in memory
 					ArrayList<Long> accountNums = new ArrayList<>();
-					for (Account acct : accountDB.getAllAccounts())
+					for (Account acct : accounts)
 						accountNums.add(acct.getAccountNumber());
 					System.out.println("Current Accounts: " + accountNums);
 					if (currentUser instanceof Customer)
@@ -88,7 +89,7 @@ public class Main
 					// Open Application for new account
 					if (accountInput.equals("NEW"))
 					{
-						currentAccount = applyForAccount(currentUser, accounts);
+						currentAccount = applyForAccount(currentUser, accounts, users);
 						logger.info("New account registered");
 						logger.info(currentUser + " created Account # " + currentAccount.getAccountNumber());
 					}
@@ -99,6 +100,7 @@ public class Main
 						// Account found ; verify access for current user and get operation request
 						String userOperation = getUserOperation(currentUser, currentAccount);
 
+// BEGIN OPERATION SWITCH						
 						switch (userOperation)
 						{
 						case "WITHDRAW":
@@ -172,7 +174,10 @@ public class Main
 							{
 								transferAmount = getDoubleInput("How much would you like to transfer?");
 								System.out.println("Which account will you be transferring to?");
-								System.out.println(accounts);
+								ArrayList<Long> txList = new ArrayList<>();
+								for (Account a : accounts)
+									txList.add(a.getAccountNumber());
+								System.out.println(txList);
 								long targetInput = -1;
 								while (targetAccount == null)
 								{
@@ -271,20 +276,21 @@ public class Main
 											+ " has been terminated by " + currentUser);
 
 								}
-								else if (confirmClose.equals("N") || confirmClose.equals("NO"))
-									;
+								else if (confirmClose.equals("N") || confirmClose.equals("NO"))	;
 								else
 									confirmClose = "";
 							}
 							break;
-						// no operations available to user for account
+						// empty command or no operations available
 						case "":
 							continue;
 						}
-						accountDB.commitDB();
-						// UPDATE ACCOUNTS AFTER TRANSACTION AND COMMIT
-						// End Switch Block
+						
+	// UPDATE ACCOUNTS AFTER TRANSACTION AND COMMIT
+	// End Switch Block
 					}
+//					accountDB.commitDB();
+					// commits should be handles in dao impls
 				}
 				// End Account Access
 			}
@@ -394,7 +400,7 @@ public class Main
 		}
 
 		users.add(currentUser);
-		userDB.commitDB();
+//		userDB.commitDB();
 		System.out.println("Your registration is complete! Thank you for choosing Revature Banking.");
 		return currentUser;
 	}
@@ -418,7 +424,7 @@ public class Main
 	}
 
 	// ****** APPLY FOR ACCOUNT ******
-	public static Account applyForAccount(User currentUser, ArrayList<Account> accounts)
+	public static Account applyForAccount(User currentUser, ArrayList<Account> accounts, ArrayList<User> users)
 	{
 		Account currentAccount = null;
 
@@ -431,13 +437,14 @@ public class Main
 			accountType = getIntInput(accountSelectMessage);
 		}
 		// Add the new account with the current user
-		currentAccount = ((Customer) currentUser).applyForAccount(accountDB,
+		currentAccount = ((Customer) currentUser).applyForAccount(accounts,
 				Account.AccountType.values()[accountType - 1]);
+		accountDB.registerAccount((Customer) currentUser, currentAccount);
 		accounts.add(currentAccount);
 
 		// get any joint account holders
 //		System.out.println("For this account, will there be any joint partners?");
-//		System.out.println("For each of the joint holders, please enter their full name below.");
+//		System.out.println("For each of the joint holders, please enter their banking username.");
 //		System.out.println("Once you are done, please enter NONE or leave the field empty.");
 //		boolean jointLoopingFlag = true;
 //
@@ -452,7 +459,18 @@ public class Main
 //					jointLoopingFlag = false;
 //			}
 //			if (jointLoopingFlag) // if not exiting
-//				currentAccount.addOwner(new Customer(jointOwner, null, null));
+//			{
+//				System.out.println("!!! SEARCHING FOR USER !!!");
+//				for (User user : users)
+//				{
+//					if (jointOwner.equals(user.getUsername()))
+//					{
+//						currentAccount.addOwner((Customer) user);
+//						accountDB.addJointOwner((Customer) user, currentAccount);
+//						System.out.println("* User successfully added *");
+//					}
+//				}
+//			}
 //		}
 		// Account Registration Complete
 		System.out.println("Thank you for opening an account with Revature Banking!");
@@ -468,32 +486,32 @@ public class Main
 		Account currentAccount = null;
 
 		// While account not located
-		while (currentAccount == null)
+//		while (currentAccount == null)
+//		{
+		long targetAccount = -1;
+		try
 		{
-			long targetAccount = -1;
-			try
-			{
-				targetAccount = Long.valueOf(accountInput);
-			}
-			catch (NumberFormatException e)
-			{
+			targetAccount = Long.valueOf(accountInput);
+		}
+		catch (NumberFormatException e)
+		{
 
-			}
-			for (Account acct : accounts)
+		}
+		for (Account acct : accounts)
+		{
+			if (acct.getAccountNumber() == targetAccount)
 			{
-				if (acct.getAccountNumber() == targetAccount)
-				{
-					currentAccount = acct;
-					break;
-				}
-			}
-			// Accounts searched
-			if (currentAccount == null)
-			{
-				System.out.println("Sorry. We weren't able to find that account");
-				accountInput = getUserInput("Please check your account number: ");
+				currentAccount = acct;
+				break;
 			}
 		}
+		// Accounts searched
+		if (currentAccount == null)
+		{
+			System.out.println("Sorry. We weren't able to find that account");
+//			accountInput = getUserInput("Please check your account number: ");
+		}
+//		}
 		return currentAccount;
 	}
 
@@ -514,18 +532,9 @@ public class Main
 			for (String op : legalOperations)
 				if (userOperation.equals(op))
 					validCommand = true;
+			if (userOperation.equals(""))
+				validCommand = true;
 		}
 		return userOperation;
 	}
-
-	// ****** OBJECT SERIALIZATION ******
-//	static Object readObject(String filename)
-//	{
-//		
-//	}
-//
-//	static void writeObject(String filename, Object obj)
-//	{
-//		
-//	}
 }

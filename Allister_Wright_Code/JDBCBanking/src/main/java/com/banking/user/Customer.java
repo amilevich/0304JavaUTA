@@ -23,10 +23,11 @@ public class Customer extends User
 //		ssn = social;
 	}
 
-	public Account applyForAccount(AccountDaoImpl accountDB, Account.AccountType type)
+	public Account applyForAccount(ArrayList<Account> accounts, Account.AccountType type)
 	{
-		long accountNum = accountDB.registerAccount(getUsername(), type);
-		return accountDB.getAccountByNumber(accountNum);
+		Account account = new Account(accounts.size() + 1, 
+				type, Account.AccountState.PENDING_APPROVAL, 0, this);
+		return account;
 	}
 
 //	public Account applyForJointAccount(long accountNumber, 
@@ -44,15 +45,13 @@ public class Customer extends User
 		{
 			acct.hasWriteAccess(this);
 		}
-		catch (InvalidUserAccessException e)
+		catch (Exception e)
 		{
+//			System.out.println("YOU DO NOT HAVE ACCESS TO THIS ACCOUNT");
 			return options; 	// Return empty list
 		}
-		catch (AccountNotOpenException e)
-		{
-			
-		}
-		options.add("VIEW ACCOUNT");
+
+		options.add("VIEW ACCOUNT INFO");
 		options.add("WITHDRAW");
 		options.add("DEPOSIT");
 		options.add("TRANSFER");
