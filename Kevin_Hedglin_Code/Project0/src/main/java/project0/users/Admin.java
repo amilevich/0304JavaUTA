@@ -1,13 +1,11 @@
 package project0.users;
 
-import java.util.ArrayList;
-
 import project0.account.Account;
 
 public class Admin extends Employee{
 
-	public Admin(String firstName, String lastName, String username, String password, ArrayList<Account> accounts) {
-		super(firstName, lastName, username, password, accounts);
+	public Admin(String firstName, String lastName, String username, String password) {
+		super(firstName, lastName, username, password);
 		super.setUserLevel(User.userLevel.ADMIN);
 	}
 

@@ -23,18 +23,16 @@ public class User{
 	private String lastName;
 	private String username;
 	private String password;
-	private ArrayList<Account> bankAccounts = new ArrayList<Account>();
 	private User.userLevel level = User.userLevel.CUSTOMER;
 	private static UserDaoImpl userDao = new UserDaoImpl();
 	
 	
-	public User(String firstName, String lastName, String username, String password, ArrayList<Account> accounts) 
+	public User(String firstName, String lastName, String username, String password) 
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.bankAccounts = accounts;
 	}
 	
 	public static User login(String username, String pass) {
@@ -53,10 +51,6 @@ public class User{
 		return userDao.selectUserByUsername(username);
 	}
 	
-	public static ArrayList<User> getAllCustomers() {
-		return userDao.selectAllCustomers();
-	}
-	
 	public static boolean checkUsernameAvailability(String username)
 	{
 		if (userDao.selectUserByUsername(username) != null)
@@ -65,9 +59,9 @@ public class User{
 			return true;
 	}
 	
-	public static void printAllUsers()
+	public static void deleteUser(String u)
 	{
-		
+		userDao.deleteUser(u);
 	}
 
 	public String getFirstName() {
@@ -114,7 +108,7 @@ public class User{
 	
 	public ArrayList<Account> getBankAccounts()
 	{
-		return this.bankAccounts;
+		return User.userDao.getBankAccounts(this.username);
 	}
 
 	@Override

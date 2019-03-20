@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,42 +17,49 @@ public class AccountDaoImpl implements AccountDao{
 	private static String username = "user123";
 	private static String password = "pass";
 	
-	public boolean insertAccount(Account a) {
+	public int insertAccount(Account a) {
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO ACCOUNTS VALUES(?, ?, ?, ?)");
-			ps.setString(1, a.getAccountID());
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ACCOUNTS VALUES(?, ?, ?, ?)", 
+					new String[] { "AccountID" });
+			ps.setInt(1, a.getAccountID());
 			ps.setString(2, a.getName());
 			ps.setFloat(3, a.getBalance());
 			int val = a.isApproved()? 1 : 0;
 			ps.setInt(4, val);
 			
+			int id = 0;
+			
 			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+			     id = Math.toIntExact(rs.getLong(1));
+			}
 			
 			for(String owner : a.getOwners())
 			{
 				ps = conn.prepareStatement("INSERT INTO USERSACCOUNTSJOINTTABLE VALUES(?, ?)");
 				ps.setString(1, owner);
-				ps.setString(2, a.getAccountID());
+				ps.setInt(2, id);
 			
 				ps.executeUpdate();
 			}
-			return true;
+			return id;
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 
-	public Account selectAccountByID(String accountID) {
+	public Account selectAccountByID(int accountID) {
 		Account account = null;
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			
 			PreparedStatement ps = conn.prepareStatement("SELECT Username FROM UsersAccountsJointTable WHERE AccountID = ?");
-			ps.setString(1, accountID);
+			ps.setInt(1, accountID);
 			ResultSet rs = ps.executeQuery();
 			
 			ArrayList<String> owners = new ArrayList<String>();
@@ -62,7 +70,7 @@ public class AccountDaoImpl implements AccountDao{
 			}
 			
 			ps = conn.prepareStatement("SELECT * FROM Accounts WHERE AccountID = ?");
-			ps.setString(1, accountID);
+			ps.setInt(1, accountID);
 			rs = ps.executeQuery();
 			
 			while(rs.next())
@@ -72,7 +80,7 @@ public class AccountDaoImpl implements AccountDao{
 				{
 					val = true;
 				}
-				account = new Account(rs.getString(1), rs.getString(2), rs.getFloat(3), val, owners);
+				account = new Account(rs.getInt(1), rs.getString(2), rs.getFloat(3), val, owners);
 			}
 			
 			
@@ -84,24 +92,24 @@ public class AccountDaoImpl implements AccountDao{
 		return account;
 	}
 	
-	public ArrayList<Account> selectAccountsByID(List<String> accountIDs) {
+	public ArrayList<Account> selectAccountsByID(List<Integer> accountIDs) {
 		ArrayList<Account> accounts = new ArrayList<Account>();
-		for(String accountID : accountIDs)
+		for(int accountID : accountIDs)
 		{
 			accounts.add(selectAccountByID(accountID));
 		}
 		return accounts;
 	}
 
-	public boolean deleteAccount(String accountID) {
+	public boolean deleteAccount(int accountID) {
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM Accounts WHERE ACCOUNTID = ?");
-			ps.setString(1, accountID);
+			ps.setInt(1, accountID);
 			ps.executeUpdate();
 			
 			ps = conn.prepareStatement("DELETE FROM UsersAccountsJointTable WHERE ACCOUNTID = ?");
-			ps.setString(1, accountID);
+			ps.setInt(1, accountID);
 			ps.executeUpdate();
 			return true;
 		}
@@ -113,16 +121,18 @@ public class AccountDaoImpl implements AccountDao{
 	}
 	
 	@Override
-	public ArrayList<String> selectAllUnapprovedAccounts() {
-		ArrayList<String> accounts = new ArrayList<String>();
+	public ArrayList<Account> selectAllUnapprovedAccounts() {
+		ArrayList<Account> accounts = new ArrayList<Account>();
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
+			ArrayList<Integer> ids = new ArrayList<Integer>();
 			PreparedStatement ps = conn.prepareStatement("SELECT AccountID FROM ACCOUNTS WHERE APPROVED = 0");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				accounts.add(rs.getString(1));
+				ids.add(rs.getInt(1));
 			}
+			accounts = selectAccountsByID(ids);
 		}
 		catch(SQLException e)
 		{
@@ -151,13 +161,13 @@ public class AccountDaoImpl implements AccountDao{
 		return accounts;
 	}
 	
-	public ArrayList<String> selectAllOwnersOfAccount(String accountID)
+	public ArrayList<String> selectAllOwnersOfAccount(int accountID)
 	{
 		ArrayList<String> owners = new ArrayList<String>();
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("SELECT Username FROM UsersAccountsJointTable WHERE AccountID = ?");
-			ps.setString(1, accountID);
+			ps.setInt(1, accountID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
@@ -171,12 +181,12 @@ public class AccountDaoImpl implements AccountDao{
 		return owners;
 	}
 	
-	public boolean approveAccount(String accountID)
+	public boolean approveAccount(int accountID)
 	{
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("UPDATE Accounts SET APPROVED = 1 WHERE AccountID = ?");
-			ps.setString(1, accountID);
+			ps.setInt(1, accountID);
 			ps.executeUpdate();
 			return true;
 		}
@@ -187,7 +197,7 @@ public class AccountDaoImpl implements AccountDao{
 		return false;
 	}
 	
-	public boolean saveAccount(Account account)
+	public int saveAccount(Account account)
 	{
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
@@ -196,15 +206,36 @@ public class AccountDaoImpl implements AccountDao{
 			ps.setFloat(2, account.getBalance());
 			int val = account.isApproved()? 1 : 0;
 			ps.setInt(3, val);
-			ps.setString(4, account.getAccountID());
+			ps.setInt(4, account.getAccountID());
 			ps.executeUpdate();
-			return true;
+			return account.getAccountID();
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
+	}
+	
+	@Override
+	public ArrayList<Account> getAllAccounts() {
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		try(Connection conn = DriverManager.getConnection(url, username, password))
+		{
+			ArrayList<Integer> ids = new ArrayList<Integer>();
+			PreparedStatement ps = conn.prepareStatement("SELECT AccountID FROM ACCOUNTS");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				ids.add(rs.getInt(1));
+			}
+			accounts = selectAccountsByID(ids);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return accounts;
 	}
 
 	@Override

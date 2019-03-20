@@ -8,21 +8,22 @@ import project0.account.Account;
 public interface AccountDao {
 	
 	//CREATE
-	public boolean insertAccount(Account a);
+	public int insertAccount(Account a);
 	
 	//READ
-	public Account selectAccountByID(String accountID);
-	public ArrayList<Account> selectAccountsByID(List<String> accountIDs);
-	public ArrayList<String> selectAllUnapprovedAccounts();
+	public Account selectAccountByID(int accountID);
+	public ArrayList<Account> selectAccountsByID(List<Integer> accountIDs);
+	public ArrayList<Account> selectAllUnapprovedAccounts();
 	public ArrayList<String> selectAllAccountsByUser(String username);
-	public ArrayList<String> selectAllOwnersOfAccount(String accountID);
+	public ArrayList<String> selectAllOwnersOfAccount(int accountID);
+	public ArrayList<Account> getAllAccounts();
 	
 	//UPDATE
-	public boolean approveAccount(String accountID);
-	public boolean saveAccount(Account account);
+	public boolean approveAccount(int accountID);
+	public int saveAccount(Account account);
 	
 	//DELETE
-	public boolean deleteAccount(String accountID);
+	public boolean deleteAccount(int accountID);
 
 	int nextSequence();
 }

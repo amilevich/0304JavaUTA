@@ -7,14 +7,14 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import project0.account.Account;
+import project0.users.Employee;
 import project0.users.User;
 
 public class ConsoleUI {
 	final static Logger logger = Logger.getLogger(ConsoleUI.class.getName());
 	static Scanner scanner = new Scanner(System.in);
 
-	static String username;
-	static String accountID;
+	static User user;
 	
 	public static void initialize()
 	{
@@ -49,13 +49,15 @@ public class ConsoleUI {
 						break;
 	
 					default:
-						System.out.println("Input out of range");
+						System.out.println("Invalid input.");
+						stall();
 						break;
 				}
 
 			} catch (InputMismatchException e) {
 				scanner.nextLine();
-				System.out.println("Input not valid");
+				System.out.println("Input not an integer");
+				stall();
 			}
 
 		} while (loop);
@@ -76,29 +78,28 @@ public class ConsoleUI {
 				System.out.println("Password:");
 				password = scanner.next();
 		
-				System.out.println(username + " " + password);
 				User user = User.login(username, password);
 		
 				if (user == null) {
 					
 					logger.info("User:" + username + " failed to log in.");
 					System.out.println("Invalid username or password");
+					stall();
 					
 				} else {
 					logger.info("User:" + username + " successfully logged in.");
-					ConsoleUI.username = username;
+					ConsoleUI.user = User.getUser(username);
 					loop = false;
-					userScreen(user);
+					userScreen();
 				}
 			}catch(InputMismatchException e) {
-				scanner.nextLine();
-				System.out.println("Input not valid");
+				stall();
 			}
 		}
 		while(loop);
 	}
 	
-	private static void userMenuScreen(User user) {
+	private static void userMenuScreen() {
 		
 		boolean loop = true;
 		ArrayList<Account> accounts = user.getBankAccounts();
@@ -113,20 +114,27 @@ public class ConsoleUI {
 				System.out.println(i + 1 + ": Access account " + accounts.get(i).getName());
 			}
 			
-			System.out.println(accountSize + 1 + ": Create a bank account");
+			System.out.println(accountSize + 1 + ": Create a new bank account");
 			System.out.println(accountSize + 2 + ": Logout");
-			System.out.println(accountSize + 3 + ": Exit");
 
 			try {
 				int input = scanner.nextInt();
 				if(input > 0 && input <= accountSize)
 				{
-					ConsoleUI.accountID = accounts.get(input - 1).getAccountID();
-					bankAccountOptionsScreen(accounts.get(input - 1));
+					Account a = accounts.get(input - 1);
+					if(a.isApproved())
+					{
+						bankAccountOptionsScreen(Account.getAccount(a.getAccountID()));
+					}
+					else
+					{
+						System.out.println("This account is still pending approval by an admin.");
+						stall();
+					}
 				}
 				else if(input == accountSize + 1)
 				{
-					createBankAccountScreen(user);
+					createBankAccountScreen();
 					break;
 				}
 				else if(input == accountSize + 2)
@@ -135,20 +143,16 @@ public class ConsoleUI {
 					ConsoleUI.logout();
 					break;
 				}
-				else if(input == accountSize + 3)
-				{
-					loop = false;
-					exit();
-					break;
-				}
 				else
 				{
 					System.out.println("Input out of range");
+					stall();
 				}
 
 			} catch (InputMismatchException e) {
 				scanner.nextLine();
-				System.out.println("Input not valid");
+				System.out.println("Input not an integer");
+				stall();
 			}
 		}
 		while (loop);
@@ -164,7 +168,6 @@ public class ConsoleUI {
 				System.out.println("2: Deposit");
 				System.out.println("3: Transfer");
 				System.out.println("4: Logout");
-				System.out.println("5: Exit");
 
 				switch (scanner.nextInt()) {
 					case 1:
@@ -173,7 +176,7 @@ public class ConsoleUI {
 						break;
 					case 2:
 						System.out.print("How much would you like to deposit?");
-						account.withdraw(scanner.nextDouble());
+						account.deposit(scanner.nextDouble());
 						break;
 					case 3:
 						System.out.print("Which user do you want to transfer funds to?");
@@ -203,6 +206,7 @@ public class ConsoleUI {
 							}
 							else {
 								System.out.println("invalid input");
+								stall();
 							}
 						}while(loop2);
 	
@@ -211,25 +215,26 @@ public class ConsoleUI {
 	
 						if (account.transferFunds(accountTo, amount)) {
 							System.out.println("Transaction success, sent $" + amount + " to account "  + accountTo.getAccountID());
+							stall();
 						} else {
 							System.out.println("Transaction failed, could not send $" + amount + " to account "  + accountTo.getAccountID());
+							stall();
 						}
 						break;
 					case 4:
 						loop = false;
 						logout();
 						break;
-					case 5:
-						loop = false;
-						exit();
 					default:
 						System.out.println("Input out of range");
+						stall();
 						break;
 				}
 
 			} catch (InputMismatchException e) {
 				System.out.println("Input not valid");
 				scanner.nextLine();
+				stall();
 			}
 
 		} while (loop);
@@ -257,16 +262,19 @@ public class ConsoleUI {
 					else
 					{
 						System.out.println("Invalid username format");
+						stall();
 					}
 				}
 				else
 				{
 					System.out.println("User already exists.");
+					stall();
 				}
 			}
 			catch(InputMismatchException e) {
 				System.out.println("Input not valid");
 				scanner.nextLine();
+				stall();
 			}
 		}while(loop);
 		
@@ -284,6 +292,7 @@ public class ConsoleUI {
 			catch(InputMismatchException e) {
 				System.out.println("Input not valid");
 				scanner.nextLine();
+				stall();
 			}
 			
 		}while(loop);
@@ -301,22 +310,18 @@ public class ConsoleUI {
 			else
 			{
 				System.out.println("Password improperly formatted.");
+				stall();
 			}
 			
 		}while(loop);
 		
-		System.out.println(firstName + " " + lastName + " " + user + " " + password);
-		//User.addUser(new User(firstName, lastName, user, password));
+		User.saveUser(new User(firstName, lastName, user, password));
 		System.out.println("User created successfully.");
-		//ArrayList<User> users = User.getAllUsers();
-//		for(User u : users)
-//		{
-//			System.out.println(u.getUsername());
-//		}
+		stall();
 		startMenu();
 	}
 
-	private static void createBankAccountScreen(User user) {
+	private static void createBankAccountScreen() {
 		boolean loop = true;
 		String accountName;
 		
@@ -332,12 +337,14 @@ public class ConsoleUI {
 			else
 			{
 				System.out.println("Account name improperly formatted.");
+				stall();
 			}
 			
 		}while(loop);
 		
 		ArrayList<String> owners = new ArrayList<String>();
-		owners.add(ConsoleUI.username);
+		owners.add(ConsoleUI.user.getUsername());
+		loop = true;
 		do {
 			System.out.println("Current owners: " + String.join(", ", owners));
 			System.out.println("Enter any users you wish to share this account with or enter 1 to continue:");
@@ -354,132 +361,402 @@ public class ConsoleUI {
 					owners.add(owner);
 				}
 				System.out.println("User added.");
+				stall();
 			}
 			else
 			{
 				System.out.println("User " + owner +" does not exist.");
+				stall();
 			}
 			
 		}while(loop);
 		
-//		Account ac = new Account(accountName, owners);
-//		ac.ge
+		Account ac = new Account(accountName, 0, false, owners);
 		
-		System.out.println("Your account " + accountName + " has been created and is awaiting approval.");
-		
-		userScreen(user);
+		System.out.println("Your account " + ac.getName() + " has been created and is awaiting approval.");
+		stall();
+		userScreen();
 	}
 	
-	public static void userScreen(User user) {
+	public static void userScreen() {
 		if(user.getUserLevel() == User.userLevel.CUSTOMER)
 		{
-			userMenuScreen(user);
+			userMenuScreen();
 		}
-		else if(user.getUserLevel() == User.userLevel.EMPLOYEE) 
+		else 
 		{
-			employeeMenuScreen(user);
-		}
-		else if(user.getUserLevel() == User.userLevel.ADMIN)
-		{
-			adminMenuScreen(user);
+			priviledgedMenuScreen();
 		}
 	}
 	
-	public static void employeeMenuScreen(User user)
+	public static void priviledgedMenuScreen()
 	{
 		boolean loop = true;
 		
 		do {
 
-			System.out.println("Employee Menu");
+			System.out.println("Employee/Admin Menu");
 			System.out.println("1: List all users");
-			System.out.println("2: View User Info");
-			System.out.println("3: View Account Info");
-			System.out.println("4: Logout");
-			System.out.println("5: Exit");
+			System.out.println("2: List all unapproved accounts");
+			System.out.println("3: List all accounts");
+			System.out.println("4: Select user");
+			System.out.println("5: Select an account");
+			System.out.println("6: Logout");
 			
 			try {
 
 				switch (scanner.nextInt()) {
 					case 1:
+						ArrayList<String> unames = Employee.getAllCustomerUsernames();
+						for(String u : unames)
+						{
+							System.out.println(u);
+						}
+						stall();
 						break;
-						
 					case 2:
+						ArrayList<Account> pending = Account.getPendingAccounts();
+						for(Account ac : pending)
+						{
+							System.out.println("Account id: " + ac.getAccountID() + " Name: " + ac.getName() + " Owned by: "  + String.join(", ", ac.getOwners()));
+						}
+						stall();
 						break;
-						
 					case 3:
+						ArrayList<Account> all = Account.getAllAccounts();
+						for(Account ac : all)
+						{
+							System.out.println("Account id: " + ac.getAccountID() + " Name: " + ac.getName() + " Owned by: "  + String.join(", ", ac.getOwners()));
+						}
+						stall();
 						break;
-	
 					case 4:
+						boolean loop2 = true;
+						do {
+							try {
+								System.out.println("Enter a username to view their account information:");
+								User usr = User.getUser(scanner.next());
+								
+								if(usr != null)
+								{
+									loop2 = true;
+									viewUserInfo(usr);
+								}
+								else
+								{
+									System.out.println("This user does not exist.");
+									stall();
+								}
+							}
+							catch(InputMismatchException e) {
+								System.out.println("Input not valid");
+								scanner.nextLine();
+								stall();
+							}
+						}while(loop2);
+						loop = false;
+						break;
+					case 5:
+						loop2 = true;
+						do {
+							try {
+								System.out.println("Enter a bank account id to view the account information:");
+								Account ac = Account.getAccount(scanner.nextInt());
+								
+								if(ac != null)
+								{
+									loop2 = true;
+									editAccountScreen(ac);
+								}
+								else
+								{
+									System.out.println("This account id does not exist.");
+									stall();
+								}
+							}
+							catch(InputMismatchException e) {
+								System.out.println("Input not valid");
+								scanner.nextLine();
+								stall();
+							}
+						}while(loop2);
+						break;
+					case 6:
 						loop = false;
 						logout();
 						break;
-	
-					case 5:
-						loop = false;
-						break;
-	
 					default:
 						System.out.println("Input out of range");
+						stall();
 						break;
 				}
 
 			} catch (InputMismatchException e) {
-				System.out.println("Input not valid");
+				System.out.println("Input not an integer");
+				scanner.nextLine();
+				stall();
 			}
 
 		} while (loop);
 	}
 	
-	public static void adminMenuScreen(User user)
+	public static void viewUserInfo(User viewUser)
+	{
+		boolean loop = true;
+		
+		ArrayList<Account> accounts = viewUser.getBankAccounts();
+		
+		do {
+
+			System.out.println("View data of user " + viewUser.getUsername() + ".");
+			System.out.println("1: View user info");
+			System.out.println("2: List bank accounts of user");
+			System.out.println("3: Select bank account");
+			System.out.println("4: Back");
+			System.out.println("5: Logout");
+			
+			try {
+				
+				switch (scanner.nextInt()) {
+					case 1:
+						viewUser.toString();
+						break;
+					case 2:
+						for(Account a : accounts)
+						{
+							System.out.println("account name: " + a.getName() + " id: " + a.getAccountID());
+						}
+						stall();
+						break;
+					case 3:
+						boolean loop2 = true;
+						do {
+							try {
+								System.out.println("Enter the integer id of one of " + viewUser.getUsername() + "'s bank accounts.");
+								Account ac = null;
+								int id = scanner.nextInt();
+								
+								for(Account a : accounts)
+								{
+									if(a.getAccountID() == id)
+									{
+										ac = a;
+									}
+								}
+								
+								if(ac != null)
+								{
+									loop2 = true;
+									editAccountScreen(ac);
+								}
+								else
+								{
+									System.out.println("This account does not exist for " + viewUser.getUsername());
+									stall();
+								}
+							}
+							catch(InputMismatchException e) {
+								System.out.println("Input not valid");
+								scanner.nextLine();
+								stall();
+							}
+						}
+						while(loop2);
+						loop = false;
+						break;
+					case 4:
+						loop = false;
+						priviledgedMenuScreen();
+						break;
+					case 5:
+						loop = false;
+						logout();
+						break;
+					default:
+						System.out.println("Input out of range");
+						stall();
+						break;
+				}
+				
+			}catch (InputMismatchException e) {
+				System.out.println("Input not an integer");
+				scanner.nextLine();
+				stall();
+			}
+			
+		}
+		while(loop);
+
+	}
+	
+	public static void editAccountScreen(Account account)
 	{
 		boolean loop = true;
 		
 		do {
-
-			System.out.println("Admin Menu");
-			System.out.println("1: List all users");
-			System.out.println("2: View User Info");
-			System.out.println("3: View Account Info");
-			System.out.println("4: Logout");
-			System.out.println("5: Exit");
+			System.out.println("The balance in this account is $" + account.getBalance());
+			System.out.println("1: Withdraw");
+			System.out.println("2: Deposit");
+			System.out.println("3: Transfer");
+			System.out.println("4: Approve Account");
+			System.out.println("5: Delete Account");
+			System.out.println("6: Back");
+			System.out.println("7: Logout");
 			
 			try {
-
 				switch (scanner.nextInt()) {
 					case 1:
+						if(user.getUserLevel().getValue() < 2)
+						{
+							System.out.print("You must be admin level to access this function.");
+							stall();
+						}
+						else
+						{
+							System.out.print("How much would you like to withdraw?");
+							if(!account.withdraw(scanner.nextDouble()))
+							{
+								System.out.print("You cannot overdraw from this account");
+								stall();
+							}
+						}
 						break;
-						
 					case 2:
+						if(user.getUserLevel().getValue() < 2)
+						{
+							System.out.print("You must be admin level to access this function.");
+							stall();
+						}
+						else
+						{
+							System.out.print("How much would you like to deposit?");
+							account.deposit(scanner.nextDouble());
+						}
 						break;
-						
 					case 3:
+						if(user.getUserLevel().getValue() < 2)
+						{
+							System.out.print("You must be admin level to access this function.");
+							stall();
+						}
+						else
+						{
+							System.out.print("Which user do you want to transfer funds to?");
+							String usrTo = scanner.next();
+							Account accountTo = null;
+							User userTo = User.getUser(usrTo);
+							if(userTo != null)
+							{
+								ArrayList<Account> accounts = userTo.getBankAccounts();
+								
+								int accountSize = accounts.size();
+								
+								boolean loop2 = true;
+								
+								do {
+									System.out.println("Which account?");
+									for(int i = 0; i < accounts.size(); i++)
+									{
+										System.out.println(i + 1 + ": " + accounts.get(i).getName());
+									}
+									
+									int input = scanner.nextInt();
+								
+									if(input > 0 && input <= accountSize)
+									{
+										accountTo = accounts.get(input - 1);
+										loop2 = false;
+									}
+									else {
+										System.out.println("invalid input");
+										stall();
+									}
+								}while(loop2);
+								System.out.print("How much money would you like to transfer?");
+								double amount = scanner.nextDouble();
+			
+								if (account.transferFunds(accountTo, amount)) {
+									System.out.println("Transaction success, sent $" + amount + " to account "  + accountTo.getAccountID());
+									stall();
+								} else {
+									System.out.println("Transaction failed, you cannot overdraw");
+									stall();
+								}
+							}
+							else
+							{
+								System.out.println("This user does not exist.");
+								stall();
+							}
+						}
 						break;
-	
 					case 4:
+						if(account.approveAccount())
+						{
+							System.out.println("Account approved.");
+							stall();
+						}
+						else
+						{
+							System.out.println("Something went wrong.");
+							stall();
+						}
+						break;
+					case 5:
+						if(user.getUserLevel().getValue() < 2)
+						{
+							System.out.print("You must be admin level to access this function.");
+							stall();
+						}
+						else
+						{
+							if(account.deleteAccount())
+							{
+								System.out.println("Account deleted. Returning to menu.");
+								stall();
+								loop = false;
+								priviledgedMenuScreen();
+							}
+							else
+							{
+								System.out.println("Something went wrong.");
+								stall();
+							}
+						}
+						break;
+					case 6:
+						loop = false;
+						priviledgedMenuScreen();
+						break;
+					case 7:
 						loop = false;
 						logout();
 						break;
-	
-					case 5:
-						loop = false;
-						break;
-	
 					default:
 						System.out.println("Input out of range");
+						stall();
 						break;
 				}
-
-			} catch (InputMismatchException e) {
-				System.out.println("Input not valid");
+			}catch (InputMismatchException e) {
+				System.out.println("Input not an integer");
+				//scanner.nextLine();
+				stall();
 			}
+			
 
-		} while (loop);
+		}while(loop);
+		
+		
 	}
+	
+	public static void stall() {
+		System.out.println("(Press any key + enter to continue.)");
+		scanner.next();
+	}
+	
 	public static void logout()
 	{
-		ConsoleUI.username = null;
-		ConsoleUI.accountID = null;
+		ConsoleUI.user = null;
 		startMenu();
 	}
 	

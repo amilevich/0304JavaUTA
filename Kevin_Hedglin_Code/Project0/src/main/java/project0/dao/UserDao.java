@@ -13,7 +13,7 @@ public interface UserDao {
 	//READ
 	public User selectUserByUsername(String username);
 	public User login(String username, String password);
-	public ArrayList<User> selectAllCustomers();
+	public ArrayList<String> selectAllCustomerUsernames();
 	public ArrayList<User> selectAllCustomers(ArrayList<String> usernames);
 	
 	//DELETE

@@ -18,8 +18,6 @@ public class UnitTests {
 
 	private User testUserA;
 	private User testUserB;
-//	private Employee testEmployee;
-//	private Admin testAdmin;
 	private Account testBankAccountA;
 	private Account testBankAccountB;
 
@@ -30,35 +28,22 @@ public class UnitTests {
 	@Before
 	public void setUp() {
 		
-		//testEmployee = new Employee("ralph", "smith", "Employee1", "password");
-		//testAdmin = new Admin("Tim", "Franklin", "Admin1", "password");
-		
-		testUserA = User.getUser("UserA");
-		testUserB = User.getUser("UserB");
-		
-		if(testUserA == null)
+		if(!User.checkUsernameAvailability("UserA"))
 		{
-			testBankAccountA = new Account("TestAccountA", 50f, true, new ArrayList<String>(Arrays.asList("UserA")));
-			testUserA = new User("jim", "bobson", "UserA", "password", new ArrayList<Account>(Arrays.asList(testBankAccountA)));
-			User.saveUser(testUserA);
-			Account.insertAccount(testBankAccountA);
+			User.deleteUser("UserA");
 		}
-		else
+		if(!User.checkUsernameAvailability("UserB"))
 		{
-			testBankAccountA = testUserA.getBankAccounts().get(0);
-		}
-		if(testUserB == null)
-		{
-			testBankAccountB = new Account("TestAccountB", 50f, true, new ArrayList<String>(Arrays.asList("UserB")));
-			testUserB = new User("ron", "Walters", "UserB", "password", new ArrayList<Account>(Arrays.asList(testBankAccountB)));
-			User.saveUser(testUserB);
-			Account.insertAccount(testBankAccountB);
-		}
-		else
-		{
-			testBankAccountB = testUserB.getBankAccounts().get(0);
+			User.deleteUser("UserB");
 		}
 		
+		testUserA = new User("jim", "bobson", "UserA", "password");
+		User.saveUser(testUserA);
+		testBankAccountA = new Account("TestAccountA", 50f, true, new ArrayList<String>(Arrays.asList("UserA")));
+
+		testUserB = new User("ron", "Walters", "UserB", "password");
+		User.saveUser(testUserB);
+		testBankAccountB = new Account("TestAccountB", 50f, true, new ArrayList<String>(Arrays.asList("UserB")));
 		
 		System.out.println("Beginning test...");
 	}

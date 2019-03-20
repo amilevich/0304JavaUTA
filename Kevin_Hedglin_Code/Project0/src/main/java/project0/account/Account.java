@@ -2,7 +2,6 @@ package project0.account;
 
 import project0.dao.AccountDaoImpl;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import org.apache.log4j.Logger;
 
@@ -10,14 +9,14 @@ public class Account{
 	
 	final static Logger logger = Logger.getLogger(Account.class.getName());
 	
-	private String accountID = null;
+	private int accountID;
 	private String accountName = null;
 	private boolean isApproved = false;
 	private float balance = 0;
-	private static AccountDaoImpl acountDao = new AccountDaoImpl();
+	private static AccountDaoImpl accountDao = new AccountDaoImpl();
 	ArrayList<String> owners = new ArrayList<String>();
 	
-	public Account(String accountID, String accountName, float balance, boolean approved, ArrayList<String> owners) {
+	public Account(int accountID, String accountName, float balance, boolean approved, ArrayList<String> owners) {
 		this.accountID = accountID;
 		this.accountName = accountName;
 		this.balance = balance;
@@ -30,30 +29,32 @@ public class Account{
 		this.balance = balance;
 		this.isApproved = approved;
 		this.owners = owners;
-		generateID();
+		this.accountID = Account.saveAccount(this);
 	}
 
-	public static ArrayList<String> getPendingAccounts()
+	public static ArrayList<Account> getPendingAccounts()
 	{
-		return acountDao.selectAllUnapprovedAccounts();
+		return accountDao.selectAllUnapprovedAccounts();
 	}
 	
-	public static boolean insertAccount(Account account)
+	public static int saveAccount(Account account)
 	{
-		return acountDao.insertAccount(account);
+		if(accountDao.selectAccountByID(account.getAccountID()) != null)
+		{
+			return accountDao.saveAccount(account);
+		}
+		else
+		{
+			return accountDao.insertAccount(account);
+		}
 	}
 	
-	public static boolean saveAccount(Account account)
+	public static Account getAccount(int id)
 	{
-		return acountDao.saveAccount(account);
+		return accountDao.selectAccountByID(id);
 	}
 	
-	public static Account getAccount(String id)
-	{
-		return acountDao.selectAccountByID(id);
-	}
-	
-	public static ArrayList<Account> getAccounts(ArrayList<String> ids)
+	public static ArrayList<Account> getAccounts(ArrayList<Integer> ids)
 	{
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		for(int i = 0; i < ids.size(); i++)
@@ -63,19 +64,25 @@ public class Account{
 		return accounts;
 	}
 	
-	public static void printAccounts()
+	public static ArrayList<Account> getAllAccounts()
 	{
-		
+		return accountDao.getAllAccounts();
 	}
 	
 	public boolean approveAccount()
 	{
-		return Account.acountDao.approveAccount(this.accountID);
+		boolean success = Account.accountDao.approveAccount(this.accountID);
+		if(success)
+		{
+			this.isApproved = true;
+			accountDao.saveAccount(this);
+		}
+		return success;
 	}
 	
-	public void deleteAccount()
+	public boolean deleteAccount()
 	{
-		Account.acountDao.deleteAccount(accountID);
+		return Account.accountDao.deleteAccount(accountID);
 	}
 	
 	public boolean withdraw(double amt) 
@@ -84,6 +91,7 @@ public class Account{
 		{
 			balance -= amt;
 			logger.info("Bank Account " + this.accountName + " withdrew $" + amt);
+			Account.saveAccount(this);
 			return true;
 		}
 		else
@@ -98,6 +106,7 @@ public class Account{
 		{
 			logger.info("Bank Account " + this.accountName + " deposited $" + amt);
 			balance += amt;
+			Account.saveAccount(this);
 			return true;
 		}
 		else
@@ -124,8 +133,12 @@ public class Account{
 		return balance;
 	}
 
-	public String getAccountID() {
+	public int getAccountID() {
 		return this.accountID;
+	}
+	
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
 	}
 	
 	public String getName() {
@@ -135,10 +148,6 @@ public class Account{
 	public boolean isApproved()
 	{
 		return isApproved;
-	}
-	
-	public void generateID() {
-		this.accountID = UUID.randomUUID().toString();
 	}
 	
 	public void setOwners(ArrayList<String> owners)

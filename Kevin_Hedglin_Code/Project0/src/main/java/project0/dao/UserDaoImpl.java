@@ -52,13 +52,13 @@ public class UserDaoImpl implements UserDao{
 				switch(rs.getInt(5))
 				{
 					case 0:
-						user = new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), getBankAccounts(usr));
+						user = new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
 						break;
 					case 1:
-						//user = new Employee(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), getBankAccounts(usr));
+						user = new Employee(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
 						break;
 					case 2:
-						//user = new Admin(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), getBankAccounts(usr));
+						user = new Admin(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
 						break;
 					default:
 						break;
@@ -87,13 +87,13 @@ public class UserDaoImpl implements UserDao{
 				switch(rs.getInt(5))
 				{
 					case 0:
-						user = new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), getBankAccounts(usr));
+						user = new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
 						break;
 					case 1:
-						//user = new Employee(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
+						user = new Employee(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
 						break;
 					case 2:
-						//user = new Admin(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
+						user = new Admin(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4));
 						break;
 					default:
 						break;
@@ -118,7 +118,7 @@ public class UserDaoImpl implements UserDao{
 			
 			while(rs.next())
 			{
-				accounts.add(accountDao.selectAccountByID(rs.getString(1)));
+				accounts.add(accountDao.selectAccountByID(rs.getInt(1)));
 			}
 		}
 		catch(SQLException e)
@@ -129,15 +129,21 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	public boolean deleteUser(String usr) {
+		
+		ArrayList<Account> accounts = getBankAccounts(usr);
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM USERS WHERE Username = ?");
 			ps.setString(1, usr);
 			ps.executeUpdate();
 			
-			ps = conn.prepareStatement("DELETE FROM UsersAccountsJointTable WHERE Username = ?");
-			ps.setString(1, usr);
-			ps.executeUpdate();
+			for(Account a : accounts)
+			{
+				ps = conn.prepareStatement("DELETE FROM Accounts WHERE AccountID = ?");
+				ps.setInt(1, a.getAccountID());
+				ps.executeUpdate();
+			}
+			
 			return true;
 		}
 		catch(SQLException e)
@@ -148,15 +154,15 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	@Override
-	public ArrayList<User> selectAllCustomers() {
-		ArrayList<User> users = new ArrayList<User>();
+	public ArrayList<String> selectAllCustomerUsernames() {
+		ArrayList<String> users = new ArrayList<String>();
 		try(Connection conn = DriverManager.getConnection(url, username, password))
 		{
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM USERS WHERE USERLEVEl = 0");
+			PreparedStatement ps = conn.prepareStatement("SELECT Username FROM USERS WHERE USERLEVEl = 0");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				users.add(new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), getBankAccounts(rs.getString(1))));
+				users.add(rs.getString(1));
 			}
 		}
 		catch(SQLException e)
@@ -182,7 +188,7 @@ public class UserDaoImpl implements UserDao{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				users.add(new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4), getBankAccounts(rs.getString(1))));
+				users.add(new User(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4)));
 			}
 		}
 		catch(SQLException e)
