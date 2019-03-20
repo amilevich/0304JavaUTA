@@ -4,6 +4,10 @@ Password NUMBER NOT NULL,
 Admin_Access VARCHAR2(100) NOT NULL
 );
 
+
+
+
+
 CREATE TABLE bank_Customers(
 Username VARCHAR2(100) PRIMARY KEY,
 Password NUMBER NOT NULL,
@@ -11,7 +15,9 @@ account_State NUMBER,--DROPPED
 credit_Score NUMBER,
 account_Tracker NUMBER
 );
-ALTER TABLE bank_Customers DROP COLUMN account_State;
+
+
+
 
 CREATE TABLE Accounts(
 account_Number NUMBER PRIMARY KEY,
@@ -25,15 +31,18 @@ account_Balance NUMBER,
 CONSTRAINT account_Count_fk FOREIGN KEY (customer_Username)REFERENCES bank_Customers(Username) ON DELETE CASCADE,
 CONSTRAINT account_Count2_fk FOREIGN KEY (customer_Username2)REFERENCES bank_Customers(Username)ON DELETE CASCADE
 );
-ALTER TABLE Accounts ADD account_State NUMBER;
-ALTER TABLE Accounts MODIFY customer_Username VARCHAR2(20) NOT NULL;
-SELECT * FROM Accounts;
+
+
+
 
 CREATE SEQUENCE accounts_seq
 MINVALUE 1000
 START WITH 1000
 INCREMENT BY 10
 NOCACHE;
+
+
+
 
 
 CREATE OR REPLACE TRIGGER accounts_trigger
@@ -47,7 +56,8 @@ BEGIN
     :new.account_Number :=accounts_seq_var;
 END;
 
-DROP TRIGGER accounts_trigger; --i messed up
+
+
 
 
 CREATE OR REPLACE PROCEDURE Approve_Deny(CreditScore IN NUMBER,UN IN VARCHAR, message OUT VARCHAR)
@@ -62,7 +72,9 @@ BEGIN
     END IF;
     END IF;
 END;
-DROP PROCEDURE Approve_Deny;
+
+
+
 
 CREATE OR REPLACE PROCEDURE WITHDRAW(withdraw_Req IN NUMBER, UN IN VARCHAR, AN IN NUMBER, message OUT VARCHAR, TEMP_VAR OUT NUMBER)
 AS
@@ -78,7 +90,12 @@ BEGIN
     END IF;
     END IF;
 END;
-DROP PROCEDURE WITHDRAW;
+
+
+
+
+
+
 
 CREATE OR REPLACE PROCEDURE DEPOSIT( amount IN NUMBER, UN IN VARCHAR, AN IN NUMBER, message OUT VARCHAR, TEMP_VAR OUT NUMBER)
 AS
@@ -89,7 +106,13 @@ BEGIN
     message := 'Deposit Went through';
 END;
 
-DROP PROCEDURE DEPOSIT;
+
+
+
+
+
+
+
 
 CREATE OR REPLACE PROCEDURE TRANSFER( amount IN NUMBER, AN IN NUMBER, AN2 IN NUMBER, message OUT VARCHAR, TEMP_VAR OUT NUMBER, TEMP_VAR2 OUT NUMBER)
 AS
@@ -114,13 +137,18 @@ BEGIN
     END IF;
 END;
 
-TRUNCATE TABLE bank_Customers;
+
+
+
+
+--TRUNCATE TABLE bank_Customers;
 SELECT * FROM bank_Customers;
 
-TRUNCATE TABLE Accounts;
+--TRUNCATE TABLE Accounts;
 
-DELETE FROM bank_Customers WHERE Username LIKE 'J%';
-DELETE FROM bank_Customers WHERE Username LIKE 'A%';
+--DELETE FROM bank_Customers WHERE Username LIKE 'J%';
+--DELETE FROM bank_Customers WHERE Username LIKE 'j%';
+
 
 SELECT * FROM bank_Employees;
 
@@ -129,7 +157,23 @@ TRUNCATE TABLE bank_Employees;
 
 SELECT * FROM bank_Employees WHERE Username = 'Dad';
 
+--UPDATE Accounts SET account_State = 1 WHERE account_Number = 31;
 SELECT * FROM Accounts;
+
+
+--DROP PROCEDURE DEPOSIT;
+
+--DROP PROCEDURE WITHDRAW;
+
+--DROP PROCEDURE Approve_Deny;
+
+--DROP TRIGGER accounts_trigger; --i messed up
+
+--ALTER TABLE bank_Customers DROP COLUMN account_State;
+
+--ALTER TABLE Accounts ADD account_State NUMBER;
+--ALTER TABLE Accounts MODIFY customer_Username VARCHAR2(20) NOT NULL;
+--SELECT * FROM Accounts;
 
 --Kemmel
 --Falon

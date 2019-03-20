@@ -17,23 +17,23 @@ public class CustomerDaoImple implements CustomerDao {
 	private static String username = "AlimWooden";
 	private static String password = "Donkey123";
 	
-	Logger Log = Logger.getGlobal();
+	//Logger Log = Logger.getGlobal();
 	
 	//create in java editor
 	@Override
 	public int insertCustomer(Customer C) {//passes in Object type to access its getters for the query performed //COMMITS at end
 		try (Connection conn = DriverManager.getConnection(url,username,password)){
-			Log.info("Customer insert query attempted");
+			//Log.info("Customer insert query attempted");
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO bank_Customers VALUES(?,?,?,?)");//NUMBER OF QUESTION MARKS CORRESPOND TO TABLE COLUMNS
 					ps.setString(1, C.getUsername());
 					ps.setInt(2, C.getPassword());
 					ps.setInt(3, C.getCreditscore());
 					ps.setInt(4, C.getAccount_tracker());
 					ps.executeQuery();
-					Log.info("Completed customer insert query");
+					//Log.info("Completed customer insert query");
 					
 		}
-		catch(SQLException e){e.printStackTrace(); Log.warning("Customer Request couldn't connect");}
+		catch(SQLException e){e.printStackTrace(); }//Log.warning("Customer Request couldn't connect");
 		
 		return 0;//for debugging purposes
 	}

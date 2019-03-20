@@ -17,7 +17,7 @@ public class EmployeeDaoImple implements EmployeeDao {
 	private static String username = "AlimWooden"; //Username
 	private static String password = "Donkey123"; //Password
 	
-	Logger Log = Logger.getGlobal();
+	//Logger Log = Logger.getGlobal();
 	
 	@Override
 	public int insertEmployee(Employee E) {//commits //passes in Object type to access its getters for the query performed
@@ -27,7 +27,7 @@ public class EmployeeDaoImple implements EmployeeDao {
 			ps.setInt(2, E.getPassword());
 			ps.setInt(3, E.getAdmin_privileges());
 			ps.executeQuery();
-			Log.info("Employee added");
+			//Log.info("Employee added");
 		}
 		catch(SQLException e){e.printStackTrace();}
 
@@ -41,12 +41,12 @@ public class EmployeeDaoImple implements EmployeeDao {
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM bank_Employees WHERE Username=?");//NUMBER OF QUESTION MARKS CORRESPOND TO TABLE COLUMNS
 			ps.setString(1, UserName);
 			ResultSet rs = ps.executeQuery();
-			Log.info("Query was executed");
+			//Log.info("Query was executed");
 			while(rs.next()) {
 				E = new Employee(rs.getString("Username"),rs.getInt("Password"),rs.getInt("Admin_Access"));
 			}
 		}
-		catch(SQLException e){Log.info("Couldn't get employee");e.printStackTrace();}
+		catch(SQLException e){e.printStackTrace();}//Log.info("Couldn't get employee");
 		
 		return E;//for debugging purposes
 	}
