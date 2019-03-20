@@ -1,5 +1,6 @@
 package com.dbbank.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -70,12 +71,75 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int updateUser(Users u) {
 		// TODO Auto-generated method stub
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			CallableStatement storedProc = conn.prepareCall("{call NEW__APPROVED(?)}");
+	        storedProc.setInt(1, u.getUserID());
+	        storedProc.execute();
+//			PreparedStatement ps = conn.prepareStatement("call NEW__APPROVED(?)");
+//			ps.setInt(1, u.getUserID());
+//			ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	@Override
 	public int deleteUser(Users u) {
+		/*
+		CREATE OR REPLACE PROCEDURE DELETE_CUSTOMER (CID IN NUMBER) IS
+		BEGIN
+    		DELETE FROM Account         	WHERE	accountID 	= CID+100 IF EXISTS; 
+    		DELETE FROM CustomerAccount 	WHERE	custID 		= CID IF EXISTS;
+    		DELETE FROM Customer        WHERE 	customerID 	= CID IF EXISTS;
+    		Delete FROM Users           WHERE 	userID 		= CID; 
+    		---
+    		DBMS_OUTPUT.PUT_LINE('Personal information update for employee with ID: '||CID);
+    		COMMIT;
+		END;
+		 */
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			CallableStatement storedProc = conn.prepareCall("{call DELETE_CUSTOMER (?)}");
+	        storedProc.setInt(1, u.getUserID());
+	        storedProc.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public Users selectUserByID(Integer UID) {
 		// TODO Auto-generated method stub
+		Users account = null;
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE userID=?");
+			ps.setInt(1, UID);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				account = new Users(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return account;
+	}
+
+	@Override
+	public int unregisteredUser(String username2, String Password2) {
+		Users u = null;
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			CallableStatement storedProc = conn.prepareCall("{call NEW_USER(?,?)}");
+	        storedProc.setString(1, username2);
+	        storedProc.setString(2, Password2);
+	        storedProc.execute();
+//			PreparedStatement ps = conn.prepareStatement("call NEW__APPROVED(?)");
+//			ps.setInt(1, u.getUserID());
+//			ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

@@ -20,8 +20,7 @@ public class AccountDaoImpl implements AccountDao {
 	public int insertAccount(Account a) {
 		// TODO Auto-generated method stub
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn
-					.prepareStatement("INSERT INTO Account (accountID, accountBalance) VALUES(?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO Account (accountID, accountBalance) VALUES(?,?)");
 			ps.setInt(1, a.getAccountID());
 			ps.setDouble(2, a.getAccountBalance());
 			ps.executeUpdate();
@@ -70,7 +69,8 @@ public class AccountDaoImpl implements AccountDao {
 	public int updateAccount(Account a) {
 		// TODO Auto-generated method stub
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("UPDATE Account SET accountBalance=?, status=? WHERE accNumber=?");
+			PreparedStatement ps = conn
+					.prepareStatement("UPDATE Account SET accountBalance=?, status=? WHERE accNumber=?");
 			ps.setDouble(1, a.getAccountID());
 			ps.setDouble(2, a.getAccountBalance());
 			ps.executeUpdate();
@@ -85,6 +85,20 @@ public class AccountDaoImpl implements AccountDao {
 		// TODO Auto-generated method stub
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM Account WHERE accountID=?");
+			// problem with setString
+			ps.setInt(1, a.getAccountID());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int getAccountByID(Account a) {
+		// TODO Auto-generated method stub
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM  Account WHERE accountID=?");
 			// problem with setString
 			ps.setInt(1, a.getAccountID());
 			ps.executeUpdate();

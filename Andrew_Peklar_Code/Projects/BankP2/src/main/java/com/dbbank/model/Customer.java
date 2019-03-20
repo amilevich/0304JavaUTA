@@ -40,7 +40,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [customerID=" + customerID + ", cFirstName=" + cFirstName + ", cLastName=" + cLastName + "]";
+		return " " + customerID + "\t" + cFirstName + "\t\t" + cLastName;
 	}
 
 	public Customer(Integer customerID, String cFirstName, String cLastName) {

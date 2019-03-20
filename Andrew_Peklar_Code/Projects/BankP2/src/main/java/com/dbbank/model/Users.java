@@ -67,8 +67,7 @@ public class Users {
 	
 	@Override
 	public String toString() {
-		return "Users [userID=" + userID + ", userName=" + userName + ", userPass=" + userPass + ", accountType="
-				+ accountType + "]";
+		return " " + userID + "\t" + userName + "\t\t" + userPass + "\t\t" + accountType +"";
 	}
 
 	public Users(Integer userID, String userName, String userPass, Integer accountType) {

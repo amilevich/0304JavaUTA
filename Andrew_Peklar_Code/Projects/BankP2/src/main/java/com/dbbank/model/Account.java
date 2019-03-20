@@ -26,7 +26,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Accounts [accountID=" + accountID + ", accountBalance=" + accountBalance + "]";
+		return " " + accountID + "\t\tUSD $" + accountBalance + "0";
 	}
 
 	public Account(Integer accountID, double accountBalance) {

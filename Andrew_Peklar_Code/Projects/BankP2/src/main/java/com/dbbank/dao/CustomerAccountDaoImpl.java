@@ -20,8 +20,9 @@ public class CustomerAccountDaoImpl implements CustomerAccountDao {
 	@Override
 	public int insertCustomerAccount(CustomerAccount ca) {
 		// TODO Auto-generated method stub
+		List<CustomerAccount> custACC = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO CustomerAccount (custID, AccID) VALUES(?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO CustomerAccount (custID, accountID) VALUES(?,?)");
 			ps.setInt(1, ca.getCustID());
 			ps.setInt(2, ca.getAccId());
 			ps.executeUpdate();
@@ -34,21 +35,21 @@ public class CustomerAccountDaoImpl implements CustomerAccountDao {
 
 
 	@Override
-	public CustomerAccount selectCustomerAccountByCID(Integer CustomerAccountAID) {
+	public List<String> selectCustomerAccountByCID(Integer CustomerAccountAID) {
 		// TODO Auto-generated method stub
-		CustomerAccount account = null;
+		List<String> custACC = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM CustomerAccount WHERE custID=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Account natural join CustomerAccount WHERE custID=?");
 			ps.setInt(1, CustomerAccountAID);
 			ResultSet rs = ps.executeQuery();
-
 			while (rs.next()) {
-				account = new CustomerAccount(rs.getInt(1), rs.getInt(2));
+				String s = "  " +  Integer.toString(rs.getInt(1)) + "\t\tUSD\t$" + Integer.toString(rs.getInt(2))+".00";
+				custACC.add(s);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return account;
+		return custACC;
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class CustomerAccountDaoImpl implements CustomerAccountDao {
 		// TODO Auto-generated method stub
 		CustomerAccount account = null;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM CustomerAccount WHERE AccID=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM CustomerAccount WHERE accountID=?");
 			ps.setInt(1, CustomerAccountCID);
 			ResultSet rs = ps.executeQuery();
 
@@ -87,7 +88,7 @@ public class CustomerAccountDaoImpl implements CustomerAccountDao {
 	public int updateCustomerAccount(CustomerAccount ca) {
 		// TODO Auto-generated method stub
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("UPDATE CustomerAccount SET custID=?, ACCID=? WHERE accNumber=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE CustomerAccount SET custID=?, accountID=? WHERE accNumber=?");
 			ps.setDouble(1, ca.getCustID());
 			ps.setDouble(2, ca.getAccId());
 			ps.executeUpdate();
