@@ -163,6 +163,29 @@ public class AccountDaoImpl implements AccountDao {
 		return amount;
 	}
 
+	@Override
+	public float selectAccount2(String userName) {
+		String user = null;
+		float amount = 0;
+		String stat = null;
+		try(Connection con = DriverManager.getConnection(url,username,password)) {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM accounts WHERE username=?");
+			ps.setString(1,userName);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				user= rs.getString("username");
+				amount = rs.getFloat("amount");
+				stat = rs.getString("status");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return amount;
+		
+	}
+
 
 
 

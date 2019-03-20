@@ -25,9 +25,13 @@ public class MainApp {
 		
 	    UserDaoImpl imp = new UserDaoImpl();
 	    AccountDaoImpl accountdaoimpl = new AccountDaoImpl();
+	    start(imp, accountdaoimpl);
 	    
+	}
+	
+	public static void start(UserDaoImpl imp, AccountDaoImpl accountdaoimpl) {
 		Scanner start = new Scanner(System.in); 
-		System.out.println("register or login?");
+		System.out.println("register,login or terminate?");
 		String startAction = start.nextLine(); 
 		
 		switch(startAction) {
@@ -45,14 +49,18 @@ public class MainApp {
 				System.out.println("Desired Password?");
 				String ps = pass.nextLine();
 				
-				register(reg,rgnme, ps, "Customer", imp, accountdaoimpl);
+				register(reg, ps, rgnme, "Customer", imp, accountdaoimpl);
 				System.out.println("Your Account has been registered. Please sign back in");
-				System.exit(0);	
+				start(imp, accountdaoimpl);	
 				break;
-				
+			case "terminate":
+				System.exit(0);
+			
+			case "login" :
+				break;
 			default:
-				break;
-							
+				System.out.println("Invalid");
+				start(imp, accountdaoimpl);				
 		}
 		
 		 User user= null;
@@ -68,20 +76,28 @@ public class MainApp {
 		 
 		 user = imp.selectUser(userInput, passwordInput);
 		 
+		 if(user == null) {
+			 System.out.println("Invalid Credentials");
+			 start(imp, accountdaoimpl);
+		 }
+		 
 		 switch(user.getType()) {
 		 	case "Customer": 
 		 		account= accountdaoimpl.selectAccount(user.getUsername(), user.getPassword(), user.getName(), user.getType());
 		 		customerFunction(user,account,imp,accountdaoimpl); //calls the customer methods
-		 		accountdaoimpl.updateAccountAmount(account); //updates account
+		 		start(imp, accountdaoimpl);
 		 		break;
 		 	case "Employee":
 		 		employeeFunction(user, imp, accountdaoimpl);
+		 		start(imp, accountdaoimpl);
 		 		break;
 		 	case "Admin":
 		 		adminFunction(user,imp,accountdaoimpl);
+		 		start(imp, accountdaoimpl);
 		 }
 	}
 	
+
 	public static void register(String username, String password, String name, String type, UserDaoImpl imp, AccountDaoImpl imp2) {
 		User user= new User(username, password, name, type);
 		Account account = new Account(username, password, name, type, 0, "waiting"); //default values are 0 and waiting for account creation
@@ -93,26 +109,69 @@ public class MainApp {
 	public static void customerFunction(User user, Account account, UserDaoImpl imp, AccountDaoImpl imp2) {
 		System.out.println("Hello " + account.getName() + "!");
     	Scanner myObj4 = new Scanner(System.in);  // Create a Scanner object
-   	    System.out.println("What would you like to do? (deposit, withdraw, delete, terminate)");
+   	    System.out.println("What would you like to do? (deposit, withdraw, transfer, delete, terminate)");
    	    String action  = myObj4.nextLine(); 
    	    switch (action) {
    	    	case "deposit":
+   	    		switch(account.getStatus()) {
+   	    			case "approved":
+   	    				break;
+   	    			default: 
+   	    				System.out.println("Your Account needs to be approved first");
+   	    				customerFunction(user,account,imp,imp2);
+   	    		}
    	    		Scanner myObj5 = new Scanner(System.in);
    	    		System.out.println("How much would you like to deposit?"); 
    	    		float amount = myObj5.nextFloat(); //amount to be deposited
    	    		account.deposit(amount);
    	    		System.out.println("Your new balance is: " + account.getBalance());
+   	    		imp2.updateAccountAmount(account); 
 //   	    		logger.info("User Deposited");
    	    		break;
    	    		
    	    	case "withdraw":
+   	    		switch(account.getStatus()) {
+	    			case "approved":
+	    				break;
+	    			default: 
+	    				System.out.println("Your Account needs to be approved first");
+	    				customerFunction(user,account,imp,imp2);
+	    		}
    	    		Scanner myObj6 = new Scanner(System.in);
    	    		System.out.println("How much would you like to withdraw?");
    	    		int amount2 = myObj6.nextInt();
    	    		account.withdraw(amount2);
    	    		System.out.println("Your balance is:" + account.getBalance());
+   	    		imp2.updateAccountAmount(account);
 //   	    		logger.info("User Withdrew");
    	    		break;	
+   	    	case "transfer":
+   	    		switch(account.getStatus()) {
+	    			case "approved":
+	    				break;
+	    			default: 
+	    				System.out.println("Your Account needs to be approved first");
+	    				customerFunction(user,account,imp,imp2);
+	    		}
+   	    		float balanceBeforeTransfer;
+   	    		float balanceAfterTransfer;
+   	    		float newUserBalance;
+   	    		
+   	    		Scanner transfer = new Scanner(System.in);
+	    		System.out.println("What is the username of the person's account you would like to transfer to?");
+	    		String transName  = transfer.nextLine();
+	    		balanceBeforeTransfer= imp2.selectAccount2(transName);
+	    		
+	    		Scanner transfer2 = new Scanner(System.in);
+	    		System.out.println("How much would you like to transfer?");
+	    		float t = transfer2.nextFloat();
+	    		balanceAfterTransfer = balanceBeforeTransfer + t;
+	    		imp2.updateAccountAmount(transName, balanceAfterTransfer);
+	    		newUserBalance = account.getBalance() - t;
+	    		account.setBalance(newUserBalance);
+	    		imp2.updateAccountAmount(account);
+   	    		break;
+   	    		
    	    	case "delete":
    	    		Scanner deleteObj = new Scanner (System.in);
    	    		System.out.println("Are you sure you want to delete your account? (yes or no)");
@@ -126,7 +185,8 @@ public class MainApp {
    	    		System.exit(0);
    	    		break;
    	    	case "terminate":
-   	    		System.exit(0);
+   	    		start(imp, imp2);
+   	    		break;
    	     default:
  	    	System.out.println("Invalid Command");
  	    } 
@@ -143,7 +203,7 @@ public class MainApp {
 	public static void employeeFunction(User p, UserDaoImpl d, AccountDaoImpl f) {
 		Employee employee = new Employee(p.getUsername(), p.getPassword(), p.getName(), p.getType());
     	Scanner emp = new Scanner(System.in);  // Create a Scanner object
-   	    System.out.println("What would you like to do? (customerlist, accountretrieval, changeaccountstatus)");
+   	    System.out.println("What would you like to do? (customerlist, accountretrieval, changeaccountstatus,terminate)");
    	    String actionemp  = emp.nextLine(); 
    	    	switch(actionemp) {
    	    		case "customerlist" :
@@ -172,8 +232,11 @@ public class MainApp {
    	    					break;
    	    			}   	    			
    	    			break;
+   	    		case "terminate": 
+   	    			start(d, f);
    	    		default: 
    	    			System.out.println("Invalid");
+   	    			break;
    	    	}
    	   Scanner question = new Scanner(System.in);  // Create a Scanner object
    	   System.out.println("Would you like to perform another action? (yes or no)");
@@ -189,7 +252,7 @@ public class MainApp {
 		
 		Admin admin = new Admin(p.getUsername(),p.getPassword(), p.getName(), p.getType());
     	Scanner emp = new Scanner(System.in);  // Create a Scanner object
-   	    System.out.println("What would you like to do? (customerlist, accountretrieval, withdraw, deposit)");
+   	    System.out.println("What would you like to do? (customerlist, accountretrieval, changeaccountstatus, withdraw, deposit)");
    	    String actionemp  = emp.nextLine(); 
    	    	switch(actionemp) {
    	    		case "customerlist" :
@@ -253,6 +316,12 @@ public class MainApp {
    	    			f.updateAccountAmount(names2, newBalance2);
 //   	    			logger.info("Admin Updated Account");
    	    		    break;	
+   	    		case "terminate":
+   	    			start(d, f);
+   	    			break;
+   	    		default:
+   	    			System.out.println("Invalid");
+   	    			break;
    	    	}
    	   Scanner question = new Scanner(System.in);  // Create a Scanner object
    	   System.out.println("Would you like to perform another action? (yes or no)");
