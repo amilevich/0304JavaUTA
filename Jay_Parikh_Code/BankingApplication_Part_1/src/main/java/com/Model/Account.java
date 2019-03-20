@@ -18,13 +18,13 @@ public class Account extends Customer{
 	}
 	@Override
 	public String toString() {
-		return "account number:  "+ this.getAccountid() +" balance = " + balance  + " account status: " + accStatusPrint();
+		return "account number: "+ this.getAccountid() +" balance = " + balance  + " account status: " + accStatusPrint();
 	}
 
 	public String accStatusPrint() {
 		String accStatus = null;
 		if (this.status.equals(0)) {
-			accStatus = "pending";
+			accStatus = "pending approval";
 		} else if (this.status.equals(1)) {
 			accStatus = "approved";
 		}

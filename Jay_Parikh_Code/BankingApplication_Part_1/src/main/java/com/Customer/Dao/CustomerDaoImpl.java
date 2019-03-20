@@ -21,7 +21,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	public int insertCustomer(Customer c) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO customers (username, password, firstname, lastname, personalinfo, accountnumber) VALUES (?,?,?,?,?,?)");
-			//PreparedStatement ps2 = conn.prepareStatement("INSERT INTO accounts () VALUES (?,?,?)");
 			ps.setString(1, c.getUserName());
 			ps.setString(2, c.getPassWord());
 			ps.setString(3, c.getFirstName());

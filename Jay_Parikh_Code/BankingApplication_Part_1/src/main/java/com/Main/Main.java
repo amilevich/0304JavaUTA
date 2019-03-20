@@ -17,11 +17,10 @@ public class Main {
 	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		//System.out.println("Welcome to the Pizza Bank, would you like to (A) login or (B) create an account?");
 		logger.info("Banking App Started");
 		String input;
 		do {
-			System.out.println("Welcome to the Bank, would you like to (A) login or (B) create an account?");
+			System.out.println("Welcome to the Bank, would you like to (A) login, (B) create an account, or (E) exit the banking app?");
 			input = scan.next();
 			switch(input) {
 			case "A":
@@ -30,7 +29,10 @@ public class Main {
 			case "B":
 				registerAccount();
 				break;
-			
+			case "E":
+				System.out.println("Thank you for banking with us, please come again.");
+				System.exit(0);
+				break;
 			default:
 				System.out.println("Invalid input, please try again.");
 			}
@@ -77,11 +79,11 @@ public class Main {
 				employeeMenu();
 			}else if(emp.getType().equals(1)){
 				adminMenu();
-			}else {
-				System.out.println("Invalid input, please try again.");
-				employeeLoginMenu();
 			}
-		}	
+		}else {
+			System.out.println("Wrong username or password, please try again.");
+			employeeLoginMenu();
+		}
 		
 	}
 
@@ -94,10 +96,16 @@ public class Main {
 		do {
 			System.out.println();
 			System.out.println("***Welcome to the Admin Portal***");
+			System.out.println();
+			System.out.println("All Customers:");
+			for(Customer cust : customerImpl.selectAllCustomers()) {
+				System.out.println(cust);
+			}
 			System.out.println("What actions would you like to perform? "
-					        + "\n" + "(A) View Accounts, (B) Edit an Account, (C) Approve an Account, "
+					        + "\n" + "(A) View All Alterable Accounts, (B) Edit an Account, (C) Approve an Account, "
 					        + "\n" + "(D) Cancel an Account, (E) Withdraw, (F) Deposit, (G) Transfer, "
-					        + "\n" + "or (H) Exit.");
+					        + "\n" + "or (H) Exit.");		
+			System.out.println();
 			String admChoice = scan.next();
 			switch(admChoice) {
 			case "A":
@@ -146,15 +154,13 @@ public class Main {
 				break;
 			case "H":
 				logger.info("Admin logout");
+				System.out.println("Exiting Bank App.");
 				b = true;
 				break;
 			default:
 				System.out.println("Invalid input, please try again.");
 			}
-			
-			
-		}while(!b);
-		
+		}while(!b);		
 	}
 
 	public static void editAccount(Customer c) {
@@ -209,6 +215,7 @@ public class Main {
 				break;
 			case "E":
 				logger.info("Employee Logout");
+				System.out.println("Exiting Bank App.");
 				b = true;
 				break;
 			default:
@@ -222,6 +229,7 @@ public class Main {
 		AccountDaoImpl accImpl = new AccountDaoImpl();
 		for(Account a : accImpl.selectAllAccounts()) {	
 			System.out.println(customerImpl.selectCustomerByAccountid(a.getAccountid()).getUserName() + "'s " + a);
+			System.out.println("--------------------------------------------------------------------------------");
 		}
 	}
 
@@ -233,6 +241,7 @@ public class Main {
 			
 			if(a.getStatus() == 0) {
 				System.out.println(customerImpl.selectCustomerByAccountid(a.getAccountid()).getFirstName() + "'s " + a);
+				System.out.println("--------------------------------------------------------------------------------");
 			}
 		}
 		System.out.println("Input the account number that you want to approve.");
@@ -264,7 +273,7 @@ public class Main {
 			}else {
 				logger.info("Unapproved account login");
 				System.out.println("Your account has not been approved yet.");
-				customerLoginMenu();
+				loginMenu();
 			}
 		}else {
 			logger.info("Customer login failed");
@@ -275,11 +284,14 @@ public class Main {
 
 	public static void customerMenu(Customer c) {
 		logger.info("Customer Logged in");
+		AccountDaoImpl adi = new AccountDaoImpl();
+		Account acc = adi.selectAccountById(c.getAccountid());
 		boolean b = false;
 		do {
 			System.out.println();
-			System.out.println("***Welcome " + c.getFirstName() + ", How can we help you today?***");
-			System.out.println("(A) Withdraw, (B) Deposit, (C) Transfer, or (E) Exit."); //, or (D) Make your accout joint?
+			System.out.println("***Welcome " + c.getFirstName() +" " + c.getLastName() + ", How can we help you today?***");
+			System.out.println("Your account balance is: " + acc.getBalance() + ". Would you like to: ");
+			System.out.println("(A) Withdraw, (B) Deposit, (C) Transfer, or (E) Exit.");
 			String input = scan.next();
 			switch(input) {
 			case "A":
@@ -295,6 +307,7 @@ public class Main {
 				transfer(c);
 				break;
 			case "E":
+				System.out.println("Thank you for banking with us.");
 				logger.info("Customer logging out");
 				b = true;
 				break;
@@ -360,6 +373,7 @@ public class Main {
 		}else {
 			logger.info("No account to transfer to");
 			System.out.println("We are sorry but the selected account does not exist, please try again.");
+			transfer(c);
 		}	
 		return 0;
 	}
@@ -387,7 +401,36 @@ public class Main {
 		int accNum = customerImpl.selectAccountForCustomer();
 		Customer customer = new Customer(userName, passW, fname, lname, ssn, accNum);
 		customerImpl.insertCustomer(customer);
-		System.out.println(customer.getFirstName() + "'s account created");
+		System.out.println(customer.getFirstName() + "'s account created, ");
 		logger.info(customer.getFirstName() + "'s account created");
+		
+		System.out.println("Would you like to make this a joint account? (Y/N)");
+		String ans;
+		do {
+		ans = scan.next();
+			if(ans.equals("Y")) {
+				System.out.println("To create a new Account please enter your first name.");
+				String fname2 = scan.next();
+				System.out.println("Last name?");
+				String lname2 = scan.next();
+				System.out.println("What would you like your username to be?");
+				String userName2 = scan.next();
+				System.out.println("Create a password.");
+				String passW2 = scan.next();
+				System.out.println("Enter your SSN.");
+				String ssn2 = scan.next();
+				
+				Customer customer2 = new Customer(userName2, passW2, fname2, lname2, ssn2, accNum);
+				customerImpl.insertCustomer(customer2);
+				System.out.println(customer2.getFirstName() + "'s joint account created with" + customer.getFirstName() + ".");
+				logger.info(customer2.getFirstName() + "'s user created");
+				break;
+			}else if(ans.equals("N")) {
+				System.out.println("Thank you " + customer.getFirstName() + ", your single account was created, please wait for approval to access your account.");
+				break;
+			}else {
+				System.out.println("Invalid input please try again.");
+			}
+		}while(!(ans.equals("Y")) && !(ans.equals("N")));
 	}
 }

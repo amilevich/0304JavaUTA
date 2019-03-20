@@ -42,7 +42,7 @@ public class Customer{
 
 	@Override
 	public String toString() {
-		return "Customer " + firstName + " " + lastName + ", with userName = " + userName + ", and SSN = " + personalInfo + ".";
+		return firstName + " " + lastName + ", \t with userName = " + userName + " , \t SSN = " + personalInfo + ", \t and account number: "+ accountid +".";
 	}
 
 

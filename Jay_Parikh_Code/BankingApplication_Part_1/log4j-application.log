@@ -20,3 +20,191 @@
 2019-03-18 16:19:53 INFO  Main:317 - Withdraw successful
 2019-03-18 16:19:56 INFO  Main:298 - Customer logging out
 2019-03-18 16:20:00 INFO  Main:66 - Employee Login
+2019-03-19 09:06:29 INFO  Main:21 - Banking App Started
+2019-03-19 09:06:31 INFO  Main:42 - Login Menu
+2019-03-19 09:06:33 INFO  Main:66 - Employee Login
+2019-03-19 09:06:39 INFO  Main:89 - Admin Logged in
+2019-03-19 09:06:40 INFO  Main:104 - Admin viewing accounts
+2019-03-19 13:02:26 INFO  Main:21 - Banking App Started
+2019-03-19 13:09:47 INFO  Main:21 - Banking App Started
+2019-03-19 13:10:11 INFO  Main:394 - Tomas's account created
+2019-03-19 13:10:31 INFO  Main:415 - Kevin's user created
+2019-03-19 13:10:37 INFO  Main:42 - Login Menu
+2019-03-19 13:10:44 INFO  Main:268 - Unapproved account login
+2019-03-19 13:12:48 INFO  Main:273 - Customer login failed
+2019-03-19 13:12:55 INFO  Main:265 - Customer login successful
+2019-03-19 13:12:55 INFO  Main:280 - Customer Logged in
+2019-03-19 13:13:05 INFO  Main:289 - Customer withdrawing
+2019-03-19 13:13:18 INFO  Main:320 - Withdraw successful
+2019-03-19 13:13:23 INFO  Main:301 - Customer logging out
+2019-03-19 13:13:27 INFO  Main:66 - Employee Login
+2019-03-19 13:13:44 INFO  Main:197 - Employee Logged in
+2019-03-19 13:13:47 INFO  Main:206 - Employee viewing accounts
+2019-03-19 13:13:56 INFO  Main:210 - Employee approving accounts
+2019-03-19 13:15:55 INFO  Main:247 - Kevin's account approved!
+2019-03-19 13:16:01 INFO  Main:214 - Employee Logout
+2019-03-19 13:16:03 INFO  Main:66 - Employee Login
+2019-03-19 13:17:42 INFO  Main:21 - Banking App Started
+2019-03-19 13:17:47 INFO  Main:42 - Login Menu
+2019-03-19 13:18:03 INFO  Main:265 - Customer login successful
+2019-03-19 13:18:03 INFO  Main:280 - Customer Logged in
+2019-03-19 13:18:07 INFO  Main:293 - Customer depositing
+2019-03-19 13:19:33 INFO  Main:336 - Deposit successful
+2019-03-19 13:19:36 INFO  Main:289 - Customer withdrawing
+2019-03-19 13:19:39 INFO  Main:320 - Withdraw successful
+2019-03-19 13:19:41 INFO  Main:301 - Customer logging out
+2019-03-19 13:23:09 INFO  Main:42 - Login Menu
+2019-03-19 13:23:13 INFO  Main:66 - Employee Login
+2019-03-19 13:23:20 INFO  Main:89 - Admin Logged in
+2019-03-19 13:23:48 INFO  Main:111 - Admin editing accounts
+2019-03-19 13:24:33 INFO  Main:185 - Customers account info updated.
+2019-03-19 13:25:03 INFO  Main:151 - Admin logout
+2019-03-19 13:28:22 INFO  Main:21 - Banking App Started
+2019-03-19 13:39:02 INFO  Main:21 - Banking App Started
+2019-03-19 13:39:03 INFO  Main:45 - Login Menu
+2019-03-19 13:39:15 INFO  Main:266 - Customer login successful
+2019-03-19 13:39:15 INFO  Main:281 - Customer Logged in
+2019-03-19 16:25:30 INFO  Main:21 - Banking App Started
+2019-03-19 16:25:33 INFO  Main:45 - Login Menu
+2019-03-19 16:25:36 INFO  Main:69 - Employee Login
+2019-03-19 16:25:42 INFO  Main:92 - Admin Logged in
+2019-03-19 20:49:04 INFO  Main:21 - Banking App Started
+2019-03-19 20:49:50 INFO  Main:401 - Raj's account created
+2019-03-19 22:01:20 INFO  Main:20 - Banking App Started
+2019-03-19 22:01:44 INFO  Main:44 - Login Menu
+2019-03-19 22:01:49 INFO  Main:68 - Employee Login
+2019-03-19 22:02:01 INFO  Main:196 - Employee Logged in
+2019-03-19 22:02:04 INFO  Main:205 - Employee viewing accounts
+2019-03-19 22:02:31 INFO  Main:209 - Employee approving accounts
+2019-03-19 22:16:40 INFO  Main:20 - Banking App Started
+2019-03-19 22:16:46 INFO  Main:44 - Login Menu
+2019-03-19 22:16:47 INFO  Main:68 - Employee Login
+2019-03-19 22:17:05 INFO  Main:196 - Employee Logged in
+2019-03-19 22:17:12 INFO  Main:205 - Employee viewing accounts
+2019-03-19 22:17:17 INFO  Main:209 - Employee approving accounts
+2019-03-19 22:17:26 INFO  Main:248 - asteez's account approved!
+2019-03-19 22:17:31 INFO  Main:205 - Employee viewing accounts
+2019-03-19 22:17:51 INFO  Main:213 - Employee Logout
+2019-03-20 08:21:59 INFO  Main:20 - Banking App Started
+2019-03-20 08:22:01 INFO  Main:44 - Login Menu
+2019-03-20 08:22:02 INFO  Main:68 - Employee Login
+2019-03-20 08:22:11 INFO  Main:91 - Admin Logged in
+2019-03-20 08:22:32 INFO  Main:124 - Admin cancelling accounts
+2019-03-20 08:22:38 INFO  Main:193 - asteez frank's account deleted.
+2019-03-20 08:23:07 INFO  Main:124 - Admin cancelling accounts
+2019-03-20 08:23:21 INFO  Main:20 - Banking App Started
+2019-03-20 08:23:24 INFO  Main:44 - Login Menu
+2019-03-20 08:23:25 INFO  Main:68 - Employee Login
+2019-03-20 08:24:35 INFO  Main:20 - Banking App Started
+2019-03-20 08:24:38 INFO  Main:44 - Login Menu
+2019-03-20 08:24:39 INFO  Main:68 - Employee Login
+2019-03-20 08:24:44 INFO  Main:68 - Employee Login
+2019-03-20 08:24:51 INFO  Main:91 - Admin Logged in
+2019-03-20 08:25:32 INFO  Main:139 - Admin depositing
+2019-03-20 08:25:49 INFO  Main:343 - Deposit successful
+2019-03-20 08:26:04 INFO  Main:120 - Admin approving accounts
+2019-03-20 08:26:14 INFO  Main:250 - Raj's account approved!
+2019-03-20 08:26:32 INFO  Main:146 - Admin transferring
+2019-03-20 08:31:09 INFO  Main:20 - Banking App Started
+2019-03-20 08:31:13 INFO  Main:44 - Login Menu
+2019-03-20 08:31:13 INFO  Main:68 - Employee Login
+2019-03-20 08:31:20 INFO  Main:91 - Admin Logged in
+2019-03-20 08:32:54 INFO  Main:20 - Banking App Started
+2019-03-20 08:32:56 INFO  Main:44 - Login Menu
+2019-03-20 08:32:57 INFO  Main:68 - Employee Login
+2019-03-20 08:33:02 INFO  Main:91 - Admin Logged in
+2019-03-20 08:33:41 INFO  Main:20 - Banking App Started
+2019-03-20 08:33:44 INFO  Main:44 - Login Menu
+2019-03-20 08:33:45 INFO  Main:68 - Employee Login
+2019-03-20 08:33:49 INFO  Main:91 - Admin Logged in
+2019-03-20 08:35:35 INFO  Main:20 - Banking App Started
+2019-03-20 08:35:37 INFO  Main:44 - Login Menu
+2019-03-20 08:35:39 INFO  Main:68 - Employee Login
+2019-03-20 08:35:45 INFO  Main:20 - Banking App Started
+2019-03-20 08:35:49 INFO  Main:44 - Login Menu
+2019-03-20 08:35:50 INFO  Main:68 - Employee Login
+2019-03-20 08:35:56 INFO  Main:91 - Admin Logged in
+2019-03-20 08:36:44 INFO  Main:20 - Banking App Started
+2019-03-20 08:36:46 INFO  Main:44 - Login Menu
+2019-03-20 08:36:46 INFO  Main:68 - Employee Login
+2019-03-20 08:36:51 INFO  Main:91 - Admin Logged in
+2019-03-20 08:37:27 INFO  Main:20 - Banking App Started
+2019-03-20 08:37:35 INFO  Main:20 - Banking App Started
+2019-03-20 08:37:40 INFO  Main:44 - Login Menu
+2019-03-20 08:37:41 INFO  Main:68 - Employee Login
+2019-03-20 08:37:47 INFO  Main:91 - Admin Logged in
+2019-03-20 08:39:10 INFO  Main:20 - Banking App Started
+2019-03-20 08:39:11 INFO  Main:44 - Login Menu
+2019-03-20 08:39:12 INFO  Main:68 - Employee Login
+2019-03-20 08:39:17 INFO  Main:91 - Admin Logged in
+2019-03-20 08:39:41 INFO  Main:20 - Banking App Started
+2019-03-20 08:39:47 INFO  Main:44 - Login Menu
+2019-03-20 08:39:48 INFO  Main:68 - Employee Login
+2019-03-20 08:39:52 INFO  Main:91 - Admin Logged in
+2019-03-20 08:40:39 INFO  Main:20 - Banking App Started
+2019-03-20 08:40:44 INFO  Main:44 - Login Menu
+2019-03-20 08:40:45 INFO  Main:68 - Employee Login
+2019-03-20 08:40:50 INFO  Main:91 - Admin Logged in
+2019-03-20 08:41:47 INFO  Main:115 - Admin editing accounts
+2019-03-20 08:42:22 INFO  Main:187 - Customers account info updated.
+2019-03-20 08:42:36 INFO  Main:134 - Adming withdrawing
+2019-03-20 08:42:46 INFO  Main:329 - Withdraw successful
+2019-03-20 08:42:50 INFO  Main:115 - Admin editing accounts
+2019-03-20 08:43:17 INFO  Main:187 - Customers account info updated.
+2019-03-20 08:43:23 INFO  Main:115 - Admin editing accounts
+2019-03-20 08:44:14 INFO  Main:187 - Customers account info updated.
+2019-03-20 08:45:22 INFO  Main:115 - Admin editing accounts
+2019-03-20 08:45:53 INFO  Main:187 - Customers account info updated.
+2019-03-20 08:46:03 INFO  Main:111 - Admin viewing accounts
+2019-03-20 08:46:22 INFO  Main:20 - Banking App Started
+2019-03-20 08:46:26 INFO  Main:44 - Login Menu
+2019-03-20 08:46:27 INFO  Main:68 - Employee Login
+2019-03-20 08:46:31 INFO  Main:91 - Admin Logged in
+2019-03-20 08:46:33 INFO  Main:111 - Admin viewing accounts
+2019-03-20 08:47:52 INFO  Main:20 - Banking App Started
+2019-03-20 08:47:53 INFO  Main:44 - Login Menu
+2019-03-20 08:47:54 INFO  Main:68 - Employee Login
+2019-03-20 08:48:01 INFO  Main:91 - Admin Logged in
+2019-03-20 08:48:03 INFO  Main:111 - Admin viewing accounts
+2019-03-20 08:49:20 INFO  Main:20 - Banking App Started
+2019-03-20 08:49:21 INFO  Main:44 - Login Menu
+2019-03-20 08:49:23 INFO  Main:68 - Employee Login
+2019-03-20 08:49:27 INFO  Main:91 - Admin Logged in
+2019-03-20 08:49:29 INFO  Main:111 - Admin viewing accounts
+2019-03-20 08:50:07 INFO  Main:20 - Banking App Started
+2019-03-20 08:50:11 INFO  Main:44 - Login Menu
+2019-03-20 08:50:12 INFO  Main:68 - Employee Login
+2019-03-20 08:50:19 INFO  Main:91 - Admin Logged in
+2019-03-20 08:50:21 INFO  Main:111 - Admin viewing accounts
+2019-03-20 10:44:30 INFO  Main:20 - Banking App Started
+2019-03-20 10:45:06 INFO  Main:405 - Jarod's account created
+2019-03-20 10:45:20 INFO  Main:44 - Login Menu
+2019-03-20 10:45:43 INFO  Main:274 - Unapproved account login
+2019-03-20 10:45:43 INFO  Main:44 - Login Menu
+2019-03-20 12:40:04 INFO  Main:20 - Banking App Started
+2019-03-20 12:40:18 INFO  Main:20 - Banking App Started
+2019-03-20 12:40:54 INFO  Main:405 - Quinton's account created
+2019-03-20 12:41:28 INFO  Main:426 - Angelo's user created
+2019-03-20 12:41:47 INFO  Main:44 - Login Menu
+2019-03-20 12:42:01 INFO  Main:274 - Unapproved account login
+2019-03-20 12:42:01 INFO  Main:44 - Login Menu
+2019-03-20 12:42:09 INFO  Main:68 - Employee Login
+2019-03-20 12:42:18 INFO  Main:200 - Employee Logged in
+2019-03-20 12:42:23 INFO  Main:209 - Employee viewing accounts
+2019-03-20 12:42:33 INFO  Main:213 - Employee approving accounts
+2019-03-20 12:42:46 INFO  Main:253 - Quinton's account approved!
+2019-03-20 12:42:49 INFO  Main:217 - Employee Logout
+2019-03-20 12:42:58 INFO  Main:271 - Customer login successful
+2019-03-20 12:42:58 INFO  Main:286 - Customer Logged in
+2019-03-20 12:43:06 INFO  Main:302 - Customer depositing
+2019-03-20 12:43:10 INFO  Main:346 - Deposit successful
+2019-03-20 12:43:16 INFO  Main:311 - Customer logging out
+2019-03-20 12:43:30 INFO  Main:279 - Customer login failed
+2019-03-20 12:43:45 INFO  Main:271 - Customer login successful
+2019-03-20 12:43:45 INFO  Main:286 - Customer Logged in
+2019-03-20 12:43:49 INFO  Main:306 - Customer transferring
+2019-03-20 12:44:09 INFO  Main:367 - Transfer successful
+2019-03-20 12:44:15 INFO  Main:311 - Customer logging out
+2019-03-20 12:44:18 INFO  Main:68 - Employee Login
+2019-03-20 12:44:25 INFO  Main:91 - Admin Logged in
+2019-03-20 12:44:33 INFO  Main:112 - Admin viewing accounts
