@@ -1,7 +1,13 @@
 package com.bank.users;
 
-public class Customer 
+import com.bank.account.Account;
+import com.bank.daoimpl.CustomerDaoImpl;
+
+import java.util.List;
+
+public class Customer
 {
+    private CustomerDaoImpl cdi = new CustomerDaoImpl();
 	private String userName;
 	private String passWord;
 	private int id;
@@ -58,12 +64,26 @@ public class Customer
 		this.jointID = jointID;
 	}
 	
-	@Override
-	public String toString() 
+	
+	public void printString() 
 	{
-		return "Customer [userName=" + userName + ", passWord=" + passWord + ", id=" + id + ", mainAccountID="
-				+ mainAccountID + ", jointID=" + jointID + "]";
+		System.out.println("Userame: " + userName + "\n Password: " + passWord + "\n UserID: " + id + "\n Main AccountID: "
+				+ mainAccountID + "\n Joint AccountID: " + jointID + "");
 	}
-	
-	
+
+
+	public void accountWithdraw(Account account , double amount)
+	{
+		if(amount <= account.getBalance())
+			account.setBalance(account.getBalance()-amount);
+
+		else
+			System.out.println("Insufficient funds");
+		cdi.updateAccount(account);
+	}
+	public void accountDeposit(Account account , double amount)
+	{
+		account.setBalance(account.getBalance()+amount);
+		cdi.updateAccount(account);
+	}
 }

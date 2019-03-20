@@ -31,7 +31,7 @@ public class CustomerDaoImpl implements CustomerDao
 			
 			while (rs.next()) 
 			{
-				account = new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"));
+				account = new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"),1);
 				for (int i = 4; i < 8; i++)
 					account.setSecondaryOwnerID(i, rs.getInt(i));
 				accounts.add(account);
@@ -85,7 +85,7 @@ public class CustomerDaoImpl implements CustomerDao
 			int counter = 0;
 			while (rs.next()) 
 			{
-				account.add(new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID")));
+				account.add(new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"),1));
 				
 				for (int i = 4; i < 8; i++)
 					account.get(counter).setSecondaryOwnerID(i, rs.getInt(i));

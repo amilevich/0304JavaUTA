@@ -13,6 +13,65 @@ import com.bank.users.Customer;
 import com.bank.utility.Util;
 public class AdminDaoImpl implements AdminDao
 {
+	@Override
+	public int getCustomerID()
+	{
+		int nextId =0;
+		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ids ");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+				nextId = rs.getInt("CUSTOMERID");
+
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		//System.out.println(nextId);
+		return nextId;
+	}
+
+	@Override
+	public int getAccountID()
+	{
+		int nextId =0;
+		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ids");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+				nextId = rs.getInt("ACCOUNTID");
+
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		//System.out.println(nextId);
+		return nextId;
+	}
+
+	@Override
+	public int getJointID()
+	{
+		int nextId =0;
+		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ids");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+				nextId = rs.getInt("JOINTID");
+
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		//System.out.println(nextId);
+		return nextId;
+	}
 
 	@Override
 	public int insertAccount(Account a) 
@@ -20,7 +79,7 @@ public class AdminDaoImpl implements AdminDao
 		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
 		{
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO accounts VALUES(?,?,?,?,?,?,?)");
-			ps.setLong(1, a.getId());
+			ps.setLong(1, getAccountID());
 			ps.setString(2, a.getBalanceString());
 			ps.setLong(3, a.getOwnerID());
 			for(int i = 4; i < 8;i++)
@@ -42,11 +101,11 @@ public class AdminDaoImpl implements AdminDao
 		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
 		{
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO Customers VALUES(?,?,?,?,?)");
-			ps.setLong(1, in.getId());
+			ps.setLong(1, getCustomerID());
 			ps.setString(2, in.getUserName());	//System.out.println("un added");
 			ps.setString(3, in.getPassWord());	//System.out.println("pw added");
-			ps.setLong(4,in.getMainAccountID());	//System.out.println("mid added");
-			ps.setLong(5, in.getJointID());	//System.out.println("jid added");
+			ps.setLong(4,getAccountID());	//System.out.println("mid added");
+			ps.setLong(5, getJointID());	//System.out.println("jid added");
 			ps.executeUpdate();
 			ps.close();
 			
@@ -72,7 +131,7 @@ public class AdminDaoImpl implements AdminDao
 			
 			while (rs.next()) 
 			{
-				account = new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"));
+				account = new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"),1);
 				for (int i = 4; i < 8; i++)
 					account.setSecondaryOwnerID(i, rs.getInt(i));
 				accounts.add(account);
@@ -91,8 +150,11 @@ public class AdminDaoImpl implements AdminDao
 	{
 		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
 		{
-			PreparedStatement ps = conn.prepareStatement("UPDATE accounts SET balance =?,JOINTACCOUNTID1=?,JOINTACCOUNTID2 =?,JOINTACCOUNTID3=?,JOINTACCOUNTID4 =? WHERE accountid =?");
-			ps.setString(1, a.getBalanceString());
+			PreparedStatement ps = conn.prepareStatement("UPDATE accounts SET balance =?," +
+															  "JOINTACCOUNTID1=?,JOINTACCOUNTID2 =?," +
+															  "JOINTACCOUNTID3=?,JOINTACCOUNTID4 =? " +
+															  "WHERE accountid =?");
+			ps.setDouble(1, a.getBalance());
 			ps.setInt(2, a.getSecondaryOwnerID(0));
 			ps.setInt(3, a.getSecondaryOwnerID(1));
 			ps.setInt(4, a.getSecondaryOwnerID(2));
@@ -122,7 +184,8 @@ public class AdminDaoImpl implements AdminDao
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
-		} 
+		}
+		Util.refreshCustomers();
 		return 0;
 	}
 
@@ -150,14 +213,17 @@ public class AdminDaoImpl implements AdminDao
 		{
 			PreparedStatement ps = conn.prepareStatement("DELETE FROM customers WHERE CUSTOMERID =?");
 			ps.setInt(1, in.getId());
-
 			ps.executeUpdate();
 
+			ps = conn.prepareStatement("DELETE FROM accounts WHERE PRIMARYOWNERID =?");
+			ps.setInt(1, in.getId());
+			ps.executeUpdate();
 		}
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
-		} 
+		}
+		Util.refreshCustomers();
 		return 0;
 	}
 
@@ -172,7 +238,7 @@ public class AdminDaoImpl implements AdminDao
 			int counter = 0;
 			while (rs.next()) 
 			{
-				account.add(new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID")));
+				account.add(new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"),1));
 				
 				for (int i = 4; i < 8; i++)
 					account.get(counter).setSecondaryOwnerID(i, rs.getInt(i));
@@ -210,17 +276,20 @@ public class AdminDaoImpl implements AdminDao
 		return customer;
 	}
 
+
+
 	@Override
 	public Account selectAccount(int id) 
 	{	
 		Account account = null;
 		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
 		{
-			PreparedStatement ps = conn.prepareStatement("SELECT*FROM accounts");
+			PreparedStatement ps = conn.prepareStatement("SELECT*FROM accounts WHERE accountid = ?");
+			ps.setInt(1,id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) 
 			{
-				account = new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"));
+				account = new Account(rs.getInt("ACCOUNTID"),rs.getDouble("balance"),rs.getInt("PRIMARYOWNERID"),1);
 				
 				for (int i = 4; i < 8; i++)
 					account.setSecondaryOwnerID(i, rs.getInt(i));
@@ -241,7 +310,9 @@ public class AdminDaoImpl implements AdminDao
 		Customer customer = null;
 		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
 		{
-			PreparedStatement ps = conn.prepareStatement("SELECT*FROM accounts");
+			PreparedStatement ps = conn.prepareStatement("SELECT*FROM accounts WHERE accountid = ?");
+			ps.setInt(1,id);
+
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) 
 			{
@@ -256,7 +327,29 @@ public class AdminDaoImpl implements AdminDao
 		} 
 		return customer;
 	}
-	
 
-	
+	@Override
+	public Customer selectCustomer(String username)
+	{
+		Customer customer = null;
+		try (Connection conn = DriverManager.getConnection(Util.url, Util.username, Util.password))
+		{
+			PreparedStatement ps = conn.prepareStatement("SELECT*FROM customers WHERE customerusername = ?");
+			ps.setString(1,username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				customer =new Customer(rs.getInt("CUSTOMERID"),rs.getString("CUSTOMERUSERNAME"),rs.getString("CUSTOMERPASSWORD"),
+						rs.getInt("PRIMARYACCOUNTID"),rs.getInt("JOINTACCOUNTID"));
+			}
+
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return customer;
+	}
+
+
 }

@@ -10,18 +10,22 @@ public class Account
 	private int id;
 	private int ownerID;
 	private int[] secondaryOwnerID;
+	private int state;
 	
 	
 	public Account() {}
 
 
-	public Account(int id,double balance, int ownerID) 
+	public Account(int id,double balance, int ownerID, int state)
 	{
 		super();
 		this.id = id;
 		this.balance = balance;
 		this.ownerID = ownerID;
 		this.secondaryOwnerID = new int[4];
+		for(int i = 0; i < 4; ++i)
+			this.secondaryOwnerID[i] = 0;
+		this.state = state;
 	}
 
 
@@ -50,11 +54,10 @@ public class Account
 	}
 
 
-	@Override
-	public String toString()
+	public void printString()
 	{
-		return "Account [balance=" + balance + ", id=" + id + ", ownerID=" + ownerID + ", secondaryOwnerID="
-				+ Arrays.toString(secondaryOwnerID) + "]";
+		System.out.println("Account [balance=" + balance + ", id=" + id + ", ownerID=" + ownerID + ", secondaryOwnerID="
+				+ Arrays.toString(secondaryOwnerID) + "");
 	}
 
 	
