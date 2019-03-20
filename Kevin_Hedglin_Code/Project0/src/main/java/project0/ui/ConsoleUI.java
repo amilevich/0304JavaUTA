@@ -172,7 +172,11 @@ public class ConsoleUI {
 				switch (scanner.nextInt()) {
 					case 1:
 						System.out.print("How much would you like to withdraw?");
-						account.withdraw(scanner.nextDouble());
+						if(!account.withdraw(scanner.nextDouble()))
+						{
+							System.out.print("You cannot overdraw from this account");
+							stall();
+						}
 						break;
 					case 2:
 						System.out.print("How much would you like to deposit?");
@@ -181,43 +185,49 @@ public class ConsoleUI {
 					case 3:
 						System.out.print("Which user do you want to transfer funds to?");
 						String usrTo = scanner.next();
-						
-						User userTo = User.getUser(usrTo);
 						Account accountTo = null;
-						ArrayList<Account> accounts = userTo.getBankAccounts();
-						
-						int accountSize = accounts.size();
-						
-						boolean loop2 = true;
-						
-						do {
-							System.out.print("Which account?");
-							for(int i = 0; i < accounts.size(); i++)
-							{
-								System.out.println(i + 1 + ": Access account " + accounts.get(i).getName());
-							}
+						User userTo = User.getUser(usrTo);
+						if(userTo != null)
+						{
+							ArrayList<Account> accounts = userTo.getBankAccounts();
 							
-							int input = scanner.nextInt();
-						
-							if(input > 0 && input < accountSize)
-							{
-								accountTo = accounts.get(input - 1);
-								loop2 = false;
-							}
-							else {
-								System.out.println("invalid input");
+							int accountSize = accounts.size();
+							
+							boolean loop2 = true;
+							
+							do {
+								System.out.println("Which account?");
+								for(int i = 0; i < accounts.size(); i++)
+								{
+									System.out.println(i + 1 + ": " + accounts.get(i).getName());
+								}
+								
+								int input = scanner.nextInt();
+							
+								if(input > 0 && input <= accountSize)
+								{
+									accountTo = accounts.get(input - 1);
+									loop2 = false;
+								}
+								else {
+									System.out.println("invalid input");
+									stall();
+								}
+							}while(loop2);
+							System.out.print("How much money would you like to transfer?");
+							double amount = scanner.nextDouble();
+		
+							if (account.transferFunds(accountTo, amount)) {
+								System.out.println("Transaction success, sent $" + amount + " to account "  + accountTo.getAccountID());
+								stall();
+							} else {
+								System.out.println("Transaction failed, you cannot overdraw");
 								stall();
 							}
-						}while(loop2);
-	
-						System.out.print("How much money would you like to transfer?");
-						double amount = scanner.nextDouble();
-	
-						if (account.transferFunds(accountTo, amount)) {
-							System.out.println("Transaction success, sent $" + amount + " to account "  + accountTo.getAccountID());
-							stall();
-						} else {
-							System.out.println("Transaction failed, could not send $" + amount + " to account "  + accountTo.getAccountID());
+						}
+						else
+						{
+							System.out.println("This user does not exist.");
 							stall();
 						}
 						break;
@@ -519,7 +529,7 @@ public class ConsoleUI {
 				
 				switch (scanner.nextInt()) {
 					case 1:
-						viewUser.toString();
+						System.out.println(viewUser.toString());
 						break;
 					case 2:
 						for(Account a : accounts)

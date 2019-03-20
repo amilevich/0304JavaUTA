@@ -1,0 +1,35 @@
+2019-03-20 09:08:35 INFO  ConsoleUI:21 - The banking app has started
+2019-03-20 09:08:43 INFO  ConsoleUI:90 - User:Admin successfully logged in.
+2019-03-20 10:07:31 INFO  ConsoleUI:21 - The banking app has started
+2019-03-20 10:08:22 INFO  ConsoleUI:90 - User:User1234 successfully logged in.
+2019-03-20 10:09:30 INFO  ConsoleUI:90 - User:Admin successfully logged in.
+2019-03-20 10:13:35 INFO  ConsoleUI:21 - The banking app has started
+2019-03-20 10:13:47 INFO  ConsoleUI:90 - User:Admin successfully logged in.
+2019-03-20 10:16:29 INFO  Account:93 - Bank Account GillBatesAccount withdrew $50.0
+2019-03-20 10:16:30 INFO  Account:122 - Bank Account GillBatesAccount transfered $50.0 to account BankAccountA
+2019-03-20 10:16:30 INFO  Account:107 - Bank Account BankAccountA deposited $50.0
+2019-03-20 10:16:50 INFO  ConsoleUI:90 - User:User1234 successfully logged in.
+2019-03-20 10:17:11 INFO  Account:93 - Bank Account BankAccountA withdrew $10.0
+2019-03-20 10:17:16 INFO  Account:107 - Bank Account BankAccountA deposited $10.0
+2019-03-20 10:21:20 INFO  ConsoleUI:21 - The banking app has started
+2019-03-20 10:21:29 INFO  ConsoleUI:90 - User:User1234 successfully logged in.
+2019-03-20 10:21:50 INFO  Account:93 - Bank Account BankAccountA withdrew $50.0
+2019-03-20 10:21:52 INFO  Account:122 - Bank Account BankAccountA transfered $50.0 to account GillBatesAccount
+2019-03-20 10:21:52 INFO  Account:107 - Bank Account GillBatesAccount deposited $50.0
+2019-03-20 10:23:46 INFO  ConsoleUI:21 - The banking app has started
+2019-03-20 10:23:53 INFO  ConsoleUI:85 - User:User1234 failed to log in.
+2019-03-20 10:24:02 INFO  ConsoleUI:90 - User:User1234 successfully logged in.
+2019-03-20 10:27:39 INFO  ConsoleUI:21 - The banking app has started
+2019-03-20 10:30:35 INFO  Account:107 - Bank Account TestAccountA deposited $5.0
+2019-03-20 10:30:55 INFO  Account:93 - Bank Account TestAccountA withdrew $10.0
+2019-03-20 10:31:06 INFO  Account:93 - Bank Account TestAccountA withdrew $10.0
+2019-03-20 10:31:08 INFO  Account:122 - Bank Account TestAccountA transfered $10.0 to account TestAccountB
+2019-03-20 10:31:08 INFO  Account:107 - Bank Account TestAccountB deposited $10.0
+2019-03-20 10:31:28 INFO  Account:93 - Bank Account TestAccountA withdrew $10.0
+2019-03-20 10:31:29 INFO  Account:122 - Bank Account TestAccountA transfered $10.0 to account TestAccountB
+2019-03-20 10:31:29 INFO  Account:107 - Bank Account TestAccountB deposited $10.0
+2019-03-20 10:31:40 INFO  Account:93 - Bank Account TestAccountA withdrew $10.0
+2019-03-20 10:31:41 INFO  Account:122 - Bank Account TestAccountA transfered $10.0 to account TestAccountB
+2019-03-20 10:31:41 INFO  Account:107 - Bank Account TestAccountB deposited $10.0
+2019-03-20 10:32:10 INFO  Account:93 - Bank Account TestAccountA withdrew $10.0
+2019-03-20 10:32:49 INFO  Account:107 - Bank Account TestAccountA deposited $5.0
