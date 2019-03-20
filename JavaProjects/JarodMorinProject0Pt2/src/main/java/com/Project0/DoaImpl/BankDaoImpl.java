@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -28,17 +29,29 @@ public class BankDaoImpl implements BankDao {
 			// s.executeUpdate("DROP TABLE Accounts");
 			PreparedStatement ps = conn.prepareStatement("CREATE TABLE Users( username VARCHAR2(20) PRIMARY KEY, "
 					+ "password VARCHAR2(20), name VARCHAR2(20), userType NUMBER(2))");
-			ps.executeUpdate();
+			try{ps.executeUpdate();
+			} catch(SQLSyntaxErrorException e) {
+				;
+			}
 			ps = conn.prepareStatement(
 					"CREATE TABLE Accounts( accountId NUMBER(5) PRIMARY KEY, " + "balance FLOAT(10))");
-			ps.executeUpdate();
+			try{ps.executeUpdate();
+			} catch(SQLSyntaxErrorException e) {
+				;
+			}
 			ps = conn.prepareStatement(
 					"CREATE TABLE Applications( accountId NUMBER(5) PRIMARY KEY, " + "balance FLOAT(10))");
-			ps.executeUpdate();
-			ps = conn.prepareStatement(
+			try{ps.executeUpdate();
+			} catch(SQLSyntaxErrorException e) {
+				;
+			}
+			PreparedStatement ps2 = conn.prepareStatement(
 					"CREATE TABLE Junction( accountId NUMBER(5) NOT NULL, " + "username VARCHAR2(20) NOT NULL,"
 							+ "CONSTRAINT pk_acId_usrNm PRIMARY KEY (accountId, username))");
-			ps.executeUpdate();
+			try{ps2.executeUpdate();
+			} catch(SQLSyntaxErrorException e) {
+				;
+			}
 
 		} catch (SQLException e) {
 //			e.printStackTrace();

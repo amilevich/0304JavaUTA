@@ -13,7 +13,6 @@ public class Main {
 		
 		banky.initializeBank();
 		
-		
 		homeMenu(banky);
 		FileOutputStream fileOut = null;
 		ObjectOutputStream objOut = null;
