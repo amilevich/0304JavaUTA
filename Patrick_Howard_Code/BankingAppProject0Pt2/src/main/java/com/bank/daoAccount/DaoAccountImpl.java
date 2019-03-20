@@ -131,4 +131,16 @@ public class DaoAccountImpl implements DaoAccount {
 		}
 		return account.getAccountId();
 	}
+
+	public int deleteAccount(int accountId) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM Accounts WHERE AccountId = ?");
+			ps.setInt(1, accountId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accountId;
+	}
+
 }

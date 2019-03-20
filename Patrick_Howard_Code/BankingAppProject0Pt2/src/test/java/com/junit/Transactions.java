@@ -25,7 +25,7 @@ public class Transactions {
 		accountBalance = total;
 
 		assertEquals("should deposit funds", 300, tester.depositFunds(0, total), 0.0);
-		System.out.println("Mehtod deposited funds successfully");
+		System.out.println("Method deposited funds successfully");
 	}
 
 	@Test

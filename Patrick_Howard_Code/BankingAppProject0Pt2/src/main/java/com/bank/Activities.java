@@ -42,18 +42,15 @@ public class Activities {
 		return true;
 	}
 
-	// public boolean doesUserExist(String userName) {
-	// for (User user : users) {
-	// if (userName.equals(user.getUsername())) {
-	// return true;
-	// }
-	// }
-	// return false;
-	// }
+	public boolean doesUserExist(String userName) {
+		if (daoUserImpl.getUserByName(userName) != null) {
+			return true;
+		} else
+			return false;
+	}
 
 	public int getUserIdByName(String un) {
 		return daoUserImpl.getUserByName(un).getUserId();
-
 	}
 
 	public String validateUser(String userName, String password) {
@@ -93,25 +90,33 @@ public class Activities {
 		return true;
 	}
 
-	// public boolean createNewJointAccount(String userName, String secondaryUser,
-	// String accountName) {
-	// // add an account (applied for)
-	// accounts.add(new Account(userName, secondaryUser, accountName));
-	// storage.storeAccounts(accounts);
-	// return true;
-	// }
-	//
-	// public boolean validateAccount(int userId, String accountName) {
-	// if (accountName.equals(daoAccountImpl.getAccountByName(userId,
-	// accountName).getaccountName())) {
-	// return true;
-	// } else {
-	// log.warn("Account already exist! " + accountName);
-	// System.out.println("Account already exists. Please try again.");
-	// return false;
-	// }
-	// return false;
-	// }
+	public boolean createNewJointAccount(String userName, String secondaryUser, String accountName) {
+		int primaryUserId = daoUserImpl.getUserByName(userName).getUserId();
+		int secondaryUserId = daoUserImpl.getUserByName(secondaryUser).getUserId();
+		int accountId = 0;
+		Account tmpAcct = new Account();
+		tmpAcct.setAccountName(accountName);
+		tmpAcct.setBalance(0.0);
+		tmpAcct.setIsActive(1);
+		tmpAcct.setIsApproved(0);
+
+		accountId = daoAccountImpl.insertAccount(tmpAcct);
+
+		Junction tmpJnctPri = new Junction();
+		tmpJnctPri.setUserId(primaryUserId);
+		tmpJnctPri.setAccountId(accountId);
+		tmpJnctPri.setIsJointAccount(1);
+
+		daoJunctionImpl.insertJunction(tmpJnctPri);
+
+		Junction tmpJnctSec = new Junction();
+		tmpJnctSec.setUserId(secondaryUserId);
+		tmpJnctSec.setAccountId(accountId);
+		tmpJnctSec.setIsJointAccount(1);
+
+		daoJunctionImpl.insertJunction(tmpJnctSec);
+		return true;
+	}
 
 	public int displayAccountsByUser(int userId) {
 		User user = daoUserImpl.getUser(userId);
@@ -122,7 +127,7 @@ public class Activities {
 
 		Formatter fmt = new Formatter();
 		fmt.format("----------------------------------------------------------------------------------\n");
-		fmt.format("%1$-5s %2$-20s %3$10s %4$6s %5$6s\n", "No", "Account Name", "Balance", "Active", "Approved");
+		fmt.format("%1$-5s %2$-25s %3$15s %4$11s\n", "No", "Account Name", "Balance", "Approved");
 		fmt.format("----------------------------------------------------------------------------------\n");
 		for (Account account : accountList) {
 			++i;
@@ -134,8 +139,8 @@ public class Activities {
 			if (account.getIsApproved() == 1) {
 				approvedWord = "YES";
 			}
-			fmt.format("%1$-5s:%2$-20s %3$10s %4$6s %5$6s\n", account.getAccountId(), account.getAccountName(),
-					df.format(account.getBalance()), activeWord, approvedWord);
+			fmt.format("%1$-5s:%2$-25s %3$15s %4$8s\n", account.getAccountId(), account.getAccountName(),
+					df.format(account.getBalance()), approvedWord);
 		}
 		System.out.println(fmt);
 		if (i == 0) {
@@ -155,7 +160,7 @@ public class Activities {
 
 		Formatter fmt = new Formatter();
 		fmt.format("----------------------------------------------------------------------------------\n");
-		fmt.format("%1$-5s %2$-20s %3$10s %4$6s %5$6s\n", "No", "Account Name", "Balance", "Active", "Approved");
+		fmt.format("%1$-5s %2$-25s %3$15s %4$11s\n", "No", "Account Name", "Balance", "Approved");
 		fmt.format("----------------------------------------------------------------------------------\n");
 		for (UserAccount useraccount : useraccountList) {
 			++i;
@@ -167,8 +172,8 @@ public class Activities {
 			if (useraccount.getIsApproved() == 1) {
 				approvedWord = "YES";
 			}
-			fmt.format("%1$-5s:%2$-20s %3$10s %4$6s %5$6s\n", useraccount.getAccountId(), useraccount.getAccountName(),
-					df.format(useraccount.getBalance()), activeWord, approvedWord);
+			fmt.format("%1$-5s:%2$-25s %3$15s %4$8s\n", useraccount.getAccountId(), useraccount.getAccountName(),
+					df.format(useraccount.getBalance()), approvedWord);
 
 		}
 		System.out.println(fmt);
@@ -187,8 +192,8 @@ public class Activities {
 
 		Formatter fmt = new Formatter();
 		fmt.format("----------------------------------------------------------------------------------\n");
-		fmt.format("%1$-5s %2$-20s %3$-20s %4$10s %5$6s %6$6s\n", "No", "Primary User", "Account Name", "Balance",
-				"Active", "Approved");
+		fmt.format("%1$-5s %2$-20s %3$-25s %4$15s %5$11s\n", "No", "Primary User", "Account Name", "Balance",
+				"Approved");
 		fmt.format("----------------------------------------------------------------------------------\n");
 		for (UserAccount useraccount : useraccountList) {
 			++i;
@@ -200,9 +205,8 @@ public class Activities {
 			if (useraccount.getIsApproved() == 1) {
 				approvedWord = "YES";
 			}
-			fmt.format("%1$-5s:%2$-20s %3$-20s %4$10s %5$6s %6$6s\n", useraccount.getAccountId(),
-					useraccount.getUsername(), useraccount.getAccountName(), df.format(useraccount.getBalance()),
-					activeWord, approvedWord);
+			fmt.format("%1$-5s:%2$-20s %3$-25s %4$15s %5$8s\n", useraccount.getAccountId(), useraccount.getUsername(),
+					useraccount.getAccountName(), df.format(useraccount.getBalance()), approvedWord);
 
 		}
 		System.out.println(fmt);
@@ -253,15 +257,8 @@ public class Activities {
 		return true;
 	}
 
-	public boolean changeAccountActiveStatus(int accountid, boolean status) {
-		Account account = daoAccountImpl.getAccount(accountid);
-		if (status) {
-			account.setIsActive(1);
-		} else {
-			account.setIsActive(0);
-		}
-		daoAccountImpl.updateAccount(account);
-		return true;
+	public void cancelAccount(int accountid) {
+		daoAccountImpl.deleteAccount(accountid);
 	}
 
 	// // Transaction methods

@@ -9,8 +9,4 @@ public interface DaoUser {
 	public int insertUser(User u);
 
 	public User getUserByName(String n);
-	// public List<User> getAllUsers(String userName);
-	// public int getUserByUserNameAndPassword(String password);
-	// public int updateUser(User u);
-	// public int deleteUser(User u);
 }

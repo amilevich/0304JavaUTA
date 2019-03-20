@@ -15,8 +15,6 @@ public interface DaoAccount {
 	public List<Account> selectAllAccounts();
 
 	public int updateAccount(Account a);
-	// public List<User> getAllUsers(String userName);
-	// public int getUserByUserNameAndPassword(String password);
-	// public int updateUser(User u);
-	// public int deleteUser(User u);
+
+	public int deleteAccount(int accountId);
 }
