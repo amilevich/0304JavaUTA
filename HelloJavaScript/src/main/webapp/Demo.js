@@ -174,7 +174,241 @@ function printStuff(){
 }
 
 
+//Falsey Values
 
+// numbers are all inherently true, 0 is false
+// strings are inherently true, empty string is false
+// false is false, true is true
+// null is false
+// undefined is false
+// NaN is false
 
+// you can use any value in a boolean
+// context and it will be assigned
+// a truthy or falsy value
 
+function checkTruthy(input) {
+	console.log(`
+	input = ${input}, and is typeof: ${typeof(input)}
+	and input is ${!!input}`)
+}
+
+//checkTruthy(-1);
+//checkTruthy(0);
+//checkTruthy('');
+//checkTruthy([]);
+//checkTruthy(false);
+//checkTruthy('false');
+//checkTruthy(NaN);
+
+//let x = 10;
+//let y = 30;
+//function mult(){
+//	return x*y
+//}
+
+//errors
+//throw new Error('invalid statement');
+
+//loops
+//course=['exam1', 'exam2', 'exam3'];
+//for(let exam in course){
+//	console.log(exam, course[exam]);
+//}
+//for(let exam of course){
+//	console.log(exam);
+//} //TomasTM
+
+// ES6, arrow notation
+
+//ES5
+//var x = function(x,y) {
+//	return x*y;
+//}
+//ES6
+//const x = (x,y) => x*y;
+
+// isNaN - method returns true if
+// variable is not a type of number
+// NaN is not a keyword (unlike true,
+// false, null, etc...),
+// it is a property of the global
+// object.
+// The value of NaN is the same as 
+// the value of Number.Nan;
+
+//There are several in which NaN can happen:
+
+/*
+ * 1) Division of zero by zero
+ * 2) Division of infinity by infinity 
+ * 3) Multiplication of infinity by zero
+ * 4) Converting a non-numeric string
+ * 		or undefined into a number
+ */
+
+// Anonymous functions
+// - is a function without a name
+let anoFunc = function(){
+	console.log("in anoFunc")
+}
+//anoFunc(); 
+
+// Self Invoking Functions
+// invoked automatically, without 
+// being called
+// IIFE - immediately invokable function expression
+// function expression will execute
+// automatically if the expression
+// is followed by ()
+
+let funcTwo = function() {
+	let someVariable = "inside self invoking function";
+	console.log(someVariable);
+}();
+
+//Callback function
+//Simply put: function that is to be
+// executed after another function
+// has finished executing
+
+// any function that is passed as 
+// an argument is called a callback
+// function
+
+//function doHomework(subject, callback) {
+//	alert(`Starting my ${subject} homework.`);
+//	callback();
+//}
+//
+//doHomework('math', function(){
+//	alert('Finished my hnomework');
+//});
+
+//best practice for callback functions
+// we don't always have to define
+// our callback functions in our
+// function call
+
+function doHomework(subject, callback){
+	alert(`Starting my ${subject} homework.`);
+	callback();
+}
+function alertFinished(){
+	alert('Finished my hnomework');
+}
+doHomework('math', alertFinished);
+
+// different strokes for different folks YousefTM
+
+// closure 
+// simply put, JavaScript's encapsulation
+
+//A closure is an inner function
+// that has access to the
+// outer (enclosing) function's
+// variables. 
+// The closure has 3 scope chains:
+// 1) it has access to its own scope
+// 2) it has access to the outer function's variables
+// 3) it has access to global variables
+
+let foo = (function() {
+	let bar = 0;
+	return function() {
+		return bar += 1
+	};
+})();
+
+//console.log(bar);
+// bar is not global, cannot directly call it
+//console.log(foo());
+
+// Inheritance
+// Prototypical inheritance
+/*
+ * JavaScript, when it comes to inheritance,
+ * only has one construct: objects.
+ * Each object has a private property
+ * which holds a link to another object
+ * called its prototype.
+ * The prototype has a prototype of its own,
+ * and so on until an object is reached
+ * with null as its prototype.
+ * 
+ * 
+ *Let us create an object o from function f
+ *with its own properties
+ */
+
+let f = function () {
+	this.a = 1;
+	this.b =2;
+}
+
+//let o = new f(); 
+// add properties
+f.prototype.b = 3;
+f.prototype.c = 4;
+//
+// o.[[Prototype]]; properties b and c
+// o.[[Prototype]].[[Prototype]] is Object.prototype
+// o.[[Prototype]].[[Prototype]].[[Prototype]] is null
+// this is the end of the prototype chain
+// as null, by definition, has no 
+// [[Prototype]].
+
+//console.log(o.a); // this returned 1
+//console.log(o.b);  
+// property shadowing
+// is there a own 'b' property on o?
+// yes, its value is 2
+// the prototype also has a 'b' property
+// but it's not visited.
+//console.log(o.c);
+// is there a c property on? no
+// is there a c property on o's prototype?
+// yes, its value is 4
+//console.log(o.e);
+// no property found, return undefined
+
+// is there a e property for o object? no
+// o.[[Prototype]], again nada
+// o.[[Prototype]].[[Prototype]]. nothing
+// o.[[Prototype]].[[Prototype]].[[Prototype]]
+// null, so we stop searching
+
+//In JS, any function can be added to an 
+//object in the form of a property.
+// An inherited function acts just as any
+// other property, including property
+// shadowing as shown above.
+// (in this case, form of method overriding)
+
+/*
+when an inherited function is executed,
+the value points to the inheriting object,
+not the prototype object where the function
+is its own property.
+*/
+
+var o = {
+		a : 2,
+		m : function() {
+			return this.a +1;
+		}
+};
+
+console.log(o.m()); //3
+
+var p = Object.create(o);
+// p is an object that inherits from o
+//p.a = 4; 
+//creates a property 'a' on p and the value is 4
+console.log(p.m()); //5
+// when p.m is called,
+// 'this' refers to p
+// so when p inherits the function m of o,
+// 'this.a' mean p.a, the property
+// 'a' of p
 
