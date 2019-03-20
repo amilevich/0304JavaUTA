@@ -23,17 +23,15 @@ public class Main {
 			// Welcome screen with options
 			System.out.println(
 					"Welcome to Project Zero Banking App!" + "\nPress 1: User\nPress 2: Employee\nPress 3: Quit");
-			String choice = sc.nextLine();
-			switch (choice) {
-			case "1":
+			switch (sc.nextInt()) {
+			case 1:
 				UserLogin();
 				break;
-			case "2":
+			case 2:
 				employeeLogin();
 				break;
-			case "3":
-				// escape loop
-				b = true;
+			case 3:
+				quit();
 				break;
 			default:
 				// If any other key is pressed
@@ -41,10 +39,6 @@ public class Main {
 				break;
 			}
 		} while (!b);
-		// goodbye message, program end
-		System.out.println("Goodbye");
-		sc.close();
-		quit();
 	}
 
 	public static void UserLogin() {
@@ -54,17 +48,18 @@ public class Main {
 			// Welcome screen with options
 			System.out.println(
 					"Welcome to Project Zero Banking App!" + "\nPress 1: Login\nPress 2: Sign up\nPress 3: Exit");
-			String choice = sc.nextLine();
-			switch (choice) {
-			case "1":
+			switch (sc.nextInt()) {
+			case 1:
 				// Goes to Login class to enter username & password
 				appLogin();
+				b = true;
 				break;
-			case "2":
+			case 2:
 				// Goes to register to input info and make a pending account
 				register();
+				b = true;
 				break;
-			case "3":
+			case 3:
 				// escape loop
 				b = true;
 				break;
@@ -81,13 +76,13 @@ public class Main {
 
 		do {
 			System.out.println("\n***Project Zero Banking App Workspace***" + "\nPress 1: Login\nPress 2: Exit");
-			String choice = sc.nextLine();
-			switch (choice) {
-			case "1":
+			switch (sc.nextInt()) {
+			case 1:
 				// Goes to Login class to enter username & password
 				appLogin();
+				b = true;
 				break;
-			case "2":
+			case 2:
 				// escape loop
 				b = true;
 				break;
@@ -107,18 +102,18 @@ public class Main {
 		// type of 0 is customer
 		newUser.setType(0);
 		System.out.println("Enter your First Name: ");
-		newUser.setFirstname(sc.nextLine());
+		newUser.setFirstname(sc.next());
 		System.out.println("Enter your Last Name: ");
-		newUser.setLastname(sc.nextLine());
+		newUser.setLastname(sc.next());
 		System.out.println("Enter new username: ");
-		newUser.setUsername(sc.nextLine());
+		newUser.setUsername(sc.next());
 		// loop to check if username is already being used
 		while (usernameInUse(newUser.getUsername())) {
 			System.out.println("Username already in use\nEnter new username: ");
-			newUser.setUsername(sc.nextLine());
+			newUser.setUsername(sc.next());
 		}
 		System.out.println("Enter new password: ");
-		newUser.setPassword(sc.nextLine());
+		newUser.setPassword(sc.next());
 		// set starting balance of account
 		System.out.println("\nTo apply for a bank account enter a starting balance $: ");
 		newAccount.setBalance(sc.nextDouble());
@@ -137,26 +132,22 @@ public class Main {
 		String n = sc.nextLine();
 		if (n.equals("y")) {
 			jointUserRegister(newUser);
+		} else {
+			// get accNumber for user
+			// don't know accNumber, get accNumber_seq.nextval
+			newUser.setAccNumber(userDaoImpl.selectAccNumByMax());
+			logger.info("select for max accNum");
+			userDaoImpl.insertUser(newUser);
+			logger.info("inserted newUser");
+
+			waitPage();
 		}
-
-		// get accNumber for user
-		// don't know accNumber, get accNumber_seq.nextval
-		newUser.setAccNumber(userDaoImpl.selectAccNumByMax());
-		logger.info("select for max accNum");
-		userDaoImpl.insertUser(newUser);
-		logger.info("inserted newUser");
-
-		waitPage();
 	}
 
 	public static void waitPage() {
 
 		System.out.println("\nThanks for registering!\n Please log out and wait for your account to be approved."
 				+ "\nYou will be contacted by an employee when your account is ready.");
-		System.out.println("To log out press 'Y': ");
-		String y = sc.nextLine();
-		if (y == "y" || y == "Y")
-			quit();
 	}
 
 	public static void jointUserRegister(User primUser) {
@@ -166,18 +157,18 @@ public class Main {
 		// type of 0 is customer
 		newJointUser.setType(0);
 		System.out.println("Enter second account holder First Name: ");
-		newJointUser.setFirstname(Main.sc.nextLine());
+		newJointUser.setFirstname(sc.next());
 		System.out.println("Enter second account holder Last Name: ");
-		newJointUser.setLastname(Main.sc.nextLine());
+		newJointUser.setLastname(sc.next());
 		System.out.println("Enter second account holder username: ");
-		newJointUser.setUsername(Main.sc.nextLine());
+		newJointUser.setUsername(sc.next());
 		// loop to check if username is already being used
 		while (usernameInUse(newJointUser.getUsername())) {
 			System.out.println("Username already in use\nEnter new username: ");
-			newJointUser.setUsername(sc.nextLine());
+			newJointUser.setUsername(sc.next());
 		}
 		System.out.println("Enter second account holder password: ");
-		newJointUser.setPassword(sc.nextLine());
+		newJointUser.setPassword(sc.next());
 
 		newUser.setAccNumber(udi.selectAccNumByMax());
 		logger.info("select for max accNum");
@@ -202,57 +193,65 @@ public class Main {
 	}
 
 	public static void appLogin() {
-		System.out.println("Enter username: ");
-		// sc.nextLine();
-		String un = sc.nextLine();
-		System.out.println("Enter password: ");
-		// sc.nextLine();
-		String pw = sc.nextLine();
-		UserDaoImpl userDaoImpl = new UserDaoImpl();
-		for (User u : userDaoImpl.selectAllUsers()) {
-			if (u.getUsername().equals(un) && u.getPassword().equals(pw)) {
-				logger.info(un + " successfull login");
-				if (u.getType().equals(0)) {
-					AccountDaoImpl adi = new AccountDaoImpl();
-					Account userAcc = new Account();
-					userAcc = adi.selectAccountByAccNumber(u.getAccNumber());
+		boolean b = false;
+		do {
+			System.out.println("Enter username: ");
+			// sc.nextLine();
+			String un = sc.next();
+			System.out.println("Enter password: ");
+			// sc.nextLine();
+			String pw = sc.next();
+			UserDaoImpl userDaoImpl = new UserDaoImpl();
+			for (User u : userDaoImpl.selectAllUsers()) {
+				if (u.getUsername().equals(un) && u.getPassword().equals(pw)) {
+					logger.info(un + " successfull login");
+					if (u.getType().equals(0)) {
+						AccountDaoImpl adi = new AccountDaoImpl();
+						Account userAcc = new Account();
+						userAcc = adi.selectAccountByAccNumber(u.getAccNumber());
 
-					// check account status
-					if (userAcc.getStatus().equals(1)) {
-						// go to banking with successful user's account number
-						userBanking(userAcc);
-					} else {
-						System.out.println(
-								"Your account is still pending approval, please login when your account has been approved!");
-						quit();
+						// check account status
+						if (userAcc.getStatus().equals(1)) {
+							// go to banking with successful user's account number
+							userBanking(userAcc);
+							b = true;
+							break;
+						} else {
+							System.out.println(
+									"Your account is still pending approval, please login when your account has been approved!");
+							b = true;
+							break;
+						}
+					} else if (u.getType().equals(1)) {
+						// go to employee work
+						employeeWork();
+						b = true;
+						break;
+					} else if (u.getType().equals(2)) {
+						// go to admin work
+						adminWork();
+						b = true;
+						break;
 					}
-				} else if (u.getType().equals(1)) {
-					// go to employee work
-					employeeWork();
-				} else if (u.getType().equals(2)) {
-					// go to admin work
-					adminWork();
 				}
-			}
-		}
-		logger.info(un + " failed login");
-		loginRetry();
+			} b = true;
+		} while (!b);
 	}
 
 	// method to retry appLogin method or quit the program
-	public static void loginRetry() {
-		System.out.println("To retry press 'Y'\tTo quit press 'N'");
-		String s = sc.nextLine();
-		switch (s) {
-		case "y":
-			appLogin();
-			break;
-		default:
-			sc.close();
-			quit();
-			break;
-		}
-	}
+	// public static void loginRetry() {
+	// System.out.println("To retry press 'Y'\tTo quit press 'N'");
+	// String s = sc.nextLine();
+	// switch (s) {
+	// case "y":
+	// appLogin();
+	// break;
+	// default:
+	// sc.close();
+	// quit();
+	// break;
+	// }
+	// }
 
 	public static void userBanking(Account uA) {
 		// lookup account by accNum
@@ -262,7 +261,7 @@ public class Main {
 		boolean b = false;
 		do {
 			System.out.println("\nYour account balance is \n$ " + userAcc.getBalance() + "\nWhat would you like to do?:"
-					+ "\n 1: Withdraw\n 2: Deposit\n 3: Transfer\n 4: Quit");
+					+ "\n 1: Withdraw\n 2: Deposit\n 3: Transfer\n 4: Exit");
 			switch (sc.nextInt()) {
 			case 1:
 				System.out.print("Withdraw amount: \n$ ");
@@ -313,8 +312,7 @@ public class Main {
 				}
 				break;
 			case 4:
-				b = false;
-				quit();
+				b = true;
 				break;
 			default:
 				System.out.println("Try again!");
@@ -367,8 +365,8 @@ public class Main {
 		// menu options
 		boolean b = false;
 		do {
-			System.out.println("\\n***Project Zero Banking App Workspace***\" +\nWelcome Project Zero Employee!"
-					+ "\nPress 1: View UserInfo" + "\nPress 2: View Accounts\nPress 3: Quit\n");
+			System.out.println("\n***Project Zero Banking App Workspace***" +"\nWelcome Project Zero Employee!"
+					+ "\nPress 1: View UserInfo" + "\nPress 2: View Accounts\nPress 3: Exit\n");
 			switch (sc.nextInt()) {
 			case 1:
 				System.out.println("***List of customers***");
@@ -390,8 +388,7 @@ public class Main {
 				viewAccountInfo();
 				break;
 			case 3:
-				// method to close program
-				quit();
+				b = true;
 				break;
 			default:
 				// if any other key is pressed, restart menu
@@ -405,9 +402,9 @@ public class Main {
 		// menu options
 		boolean b = false;
 		do {
-			System.out.println("\\n***Project Zero Banking App Workspace***\" +\nWelcome Project Zero Admin!"
+			System.out.println("\n***Project Zero Banking App Workspace***" +"\nWelcome Project Zero Admin!"
 					+ "\nPress 1: View UserInfo for user info edit or to w/d/t"
-					+ "\nPress 2: View Accounts for balance info or cancel account\nPress 3: Quit\n");
+					+ "\nPress 2: View Accounts for balance info or cancel account\nPress 3: Exit\n");
 			switch (sc.nextInt()) {
 			case 1:
 				System.out.println("***List of users***");
@@ -417,73 +414,81 @@ public class Main {
 				System.out.println("Make changes to user account? Y/N");
 				String y = sc.next();
 				if (y.equals("y") || y.equals("Y")) {
+					boolean bl = false;
+					do {
+						System.out.println("1: Edit user info\n2: withdraw from user account"
+								+ "\n3: deposit to user account" + "\n4: transfer from user account\n5: Exit");
+						switch (sc.nextInt()) {
+						case 1:
+							// display all users
+							viewUserInfoAdmin();
+							System.out.println("Enter customer username to edit info: ");
+							String nm = sc.next();
+							System.out.println(
+									"1: Edit username\n2: Edit password\n3: Edit first name\n4: Edit last name\n5: Exit");
+							Integer c = sc.nextInt();
+							editUserInfo(nm, c);
+							break;
+						case 2:
+							System.out.println("Enter customer account number to withdraw from: ");
+							Integer accNum = sc.nextInt();
+							AccountDaoImpl adi = new AccountDaoImpl();
+							Account custAcc = new Account();
+							custAcc = adi.selectAccountByAccNumber(accNum);
 
-					System.out.println("1: Edit user info\n2: withdraw from user account"
-							+ "\n3: deposit to user account" + "\n4: transfer from user account\n");
-					switch (sc.nextInt()) {
-					case 1:
-						// display all users
-						viewUserInfoAdmin();
-						System.out.println("Enter customer username to edit info: ");
-						String nm = sc.next();
-						System.out.println("1: Edit username\n2: Edit password\n3: Edit first name\n4: Edit last name");
-						Integer c = sc.nextInt();
-						editUserInfo(nm,c);
-						break;
-					case 2:
-						System.out.println("Enter customer account number to withdraw from: ");
-						Integer accNum = sc.nextInt();
-						AccountDaoImpl adi = new AccountDaoImpl();
-						Account custAcc = new Account();
-						custAcc = adi.selectAccountByAccNumber(accNum);
+							System.out.println("Enter amount to withdraw: $ ");
+							Double amt = sc.nextDouble();
+							try {
+								withdraw(custAcc, amt);
+							} catch (WithdrawTooBigException e) {
+								e.printStackTrace();
+							}
+							break;
+						case 3:
+							System.out.println("Enter customer account number to deposit to: ");
+							Integer accNum2 = sc.nextInt();
+							AccountDaoImpl adi2 = new AccountDaoImpl();
+							Account custAcc2 = new Account();
+							custAcc2 = adi2.selectAccountByAccNumber(accNum2);
 
-						System.out.println("Enter amount to withdraw: $ ");
-						Double amt = sc.nextDouble();
-						try {
-							withdraw(custAcc, amt);
-						} catch (WithdrawTooBigException e) {
-							e.printStackTrace();
+							System.out.println("Enter amount to deposit: $ ");
+							Double amt2 = sc.nextDouble();
+							deposit(custAcc2, amt2);
+							break;
+						case 4:
+							System.out.println("Enter customer account number to transfer from: ");
+							Integer accNumF = sc.nextInt();
+							AccountDaoImpl adi3 = new AccountDaoImpl();
+							Account custAccF = new Account();
+							custAccF = adi3.selectAccountByAccNumber(accNumF);
+
+							System.out.println("Enter customer account number to transfer to: ");
+							Integer accNumt = sc.nextInt();
+
+							System.out.println("Enter amount to transfer: $ ");
+							Double amt3 = sc.nextDouble();
+							try {
+								transfer(custAccF, amt3, accNumt);
+							} catch (WithdrawTooBigException e) {
+								e.printStackTrace();
+							}
+							break;
+						case 5:
+							bl = true;
+							break;
+						default:
+							System.out.println("Try again!");
+							break;
 						}
-						break;
-					case 3:
-						System.out.println("Enter customer account number to deposit to: ");
-						Integer accNum2 = sc.nextInt();
-						AccountDaoImpl adi2 = new AccountDaoImpl();
-						Account custAcc2 = new Account();
-						custAcc2 = adi2.selectAccountByAccNumber(accNum2);
-
-						System.out.println("Enter amount to deposit: $ ");
-						Double amt2 = sc.nextDouble();
-						deposit(custAcc2, amt2);
-						break;
-					case 4:
-						System.out.println("Enter customer account number to transfer from: ");
-						Integer accNumF = sc.nextInt();
-						AccountDaoImpl adi3 = new AccountDaoImpl();
-						Account custAccF = new Account();
-						custAccF = adi3.selectAccountByAccNumber(accNumF);
-
-						System.out.println("Enter customer account number to transfer to: ");
-						Integer accNumt = sc.nextInt();
-
-						System.out.println("Enter amount to transfer: $ ");
-						Double amt3 = sc.nextDouble();
-						try {
-							transfer(custAccF, amt3, accNumt);
-						} catch (WithdrawTooBigException e) {
-							e.printStackTrace();
-						}
-						break;
-					default:
-						System.out.println("Try again!");
-						break;
-					}
+					} while (!bl);
 				}
 				break;
 			case 2:
+				boolean bl = false;
+				do {
 				System.out.println("***List of accounts***");
 				viewAccountInfo();
-				System.out.println("1: Approve an account\n2: Cancel an account\n3: Quit");
+				System.out.println("1: Approve an account\n2: Cancel an account\n3: Exit");
 				switch (sc.nextInt()) {
 				case 1:
 					System.out.println("Enter account number to approve: ");
@@ -496,16 +501,16 @@ public class Main {
 					cancelAccount(accNumC);
 					break;
 				case 3:
-					quit();
+					bl = true;
 					break;
 				default:
 					System.out.println("Try again!");
-					b = true;
 					break;
 				}
+				}while (!bl);
 				break;
 			case 3:
-				quit();
+				b = true;
 				break;
 			default:
 				// if any other key is pressed, restart menu
@@ -533,7 +538,7 @@ public class Main {
 		}
 	}
 
-	public static void editUserInfo(String nm,Integer c) {
+	public static void editUserInfo(String nm, Integer c) {
 		UserDaoImpl udi = new UserDaoImpl();
 		User u = udi.selectUserByUsername(nm);
 		switch (c) {
@@ -541,25 +546,27 @@ public class Main {
 			System.out.println("Enter new username: ");
 			u.setUsername(sc.next());
 			udi.updateUser(u);
-			logger.info("Changed username "+ nm +" to " + u.getUsername());
+			logger.info("Changed username " + nm + " to " + u.getUsername());
 			break;
 		case 2:
 			System.out.println("Enter new password: ");
 			u.setPassword(sc.next());
 			udi.updateUser(u);
-			logger.info("Changed password of"+ nm +" to " + u.getPassword());
+			logger.info("Changed password of" + nm + " to " + u.getPassword());
 			break;
 		case 3:
 			System.out.println("Enter new first name: ");
 			u.setFirstname(sc.next());
 			udi.updateUser(u);
-			logger.info("Changed firstname of "+nm+" to "+ u.getFirstname());
+			logger.info("Changed firstname of " + nm + " to " + u.getFirstname());
 			break;
 		case 4:
 			System.out.println("Enter new last name: ");
 			u.setLastname(sc.next());
 			udi.updateUser(u);
-			logger.info("Changed lastname of "+nm+" to " + u.getLastname());
+			logger.info("Changed lastname of " + nm + " to " + u.getLastname());
+			break;
+		case 5:
 			break;
 		default:
 			System.out.println("Try again!");

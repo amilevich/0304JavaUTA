@@ -163,3 +163,131 @@
 2019-03-18 13:34:05 INFO  Main:214 - duck successfull login
 2019-03-18 13:34:15 INFO  Main:334 - Amount $ 279.28was withdrawn from account 21
 2019-03-18 13:34:24 INFO  Main:597 - ***Project Zero Banking App Closing***
+2019-03-18 20:53:40 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 20:53:57 INFO  Main:214 - emp1 successfull login
+2019-03-18 20:54:08 INFO  Main:597 - ***Project Zero Banking App Closing***
+2019-03-18 21:19:29 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:19:38 INFO  Main:210 - stan successfull login
+2019-03-18 21:19:50 INFO  Main:607 - ***Project Zero Banking App Closing***
+2019-03-18 21:19:53 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:20:22 INFO  Main:210 - emp1 successfull login
+2019-03-18 21:20:48 INFO  Main:596 - Account 6 was approved
+2019-03-18 21:20:52 INFO  Main:607 - ***Project Zero Banking App Closing***
+2019-03-18 21:23:14 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:23:48 INFO  Main:209 - emp1 successfull login
+2019-03-18 21:23:54 INFO  Main:606 - ***Project Zero Banking App Closing***
+2019-03-18 21:25:37 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:25:55 INFO  Main:605 - ***Project Zero Banking App Closing***
+2019-03-18 21:26:53 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:27:01 INFO  Main:605 - ***Project Zero Banking App Closing***
+2019-03-18 21:27:21 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:27:26 INFO  Main:605 - ***Project Zero Banking App Closing***
+2019-03-18 21:28:57 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:29:45 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-18 21:29:59 INFO  Main:207 - emp1 successfull login
+2019-03-18 21:30:04 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-19 21:05:55 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:08:03 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:08:54 INFO  Main:120 - set balance
+2019-03-19 21:08:54 INFO  Main:124 - set account pending
+2019-03-19 21:08:55 INFO  Main:126 - inserted new account
+2019-03-19 21:08:58 INFO  Main:139 - select for max accNum
+2019-03-19 21:08:59 INFO  Main:141 - inserted newUser
+2019-03-19 21:09:06 INFO  Main:207 - eric successfull login
+2019-03-19 21:09:22 INFO  Main:207 - emp1 successfull login
+2019-03-19 21:09:35 INFO  Main:593 - Account 41 was approved
+2019-03-19 21:09:56 INFO  Main:207 - eric successfull login
+2019-03-19 21:10:47 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:10:55 INFO  Main:207 - eric successfull login
+2019-03-19 21:11:01 INFO  Main:359 - Amount $ 200.0was transfered from account 41 to account 6
+2019-03-19 21:11:19 INFO  Main:207 - admin successfull login
+2019-03-19 21:11:44 INFO  Main:342 - Amount $ 200.0was deposited to account 41
+2019-03-19 21:12:22 INFO  Main:600 - Account 6 was cancelled by admin
+2019-03-19 21:12:30 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-19 21:16:00 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:16:05 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-19 21:24:18 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:24:45 INFO  Main:120 - set balance
+2019-03-19 21:24:45 INFO  Main:124 - set account pending
+2019-03-19 21:24:45 INFO  Main:126 - inserted new account
+2019-03-19 21:25:01 INFO  Main:174 - select for max accNum
+2019-03-19 21:25:02 INFO  Main:176 - inserted newUser
+2019-03-19 21:25:02 INFO  Main:179 - select for max accNum
+2019-03-19 21:25:03 INFO  Main:181 - inserted newJointUser
+2019-03-19 21:25:26 INFO  Main:207 - kenny successfull login
+2019-03-19 21:25:39 INFO  Main:207 - emp1 successfull login
+2019-03-19 21:25:57 INFO  Main:593 - Account 4 was approved
+2019-03-19 21:26:18 INFO  Main:207 - butters successfull login
+2019-03-19 21:26:44 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:27:01 INFO  Main:207 - admin successfull login
+2019-03-19 21:27:35 INFO  Main:561 - Changed firstname of kenny to Kenneth
+2019-03-19 21:27:50 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-19 21:37:17 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:38:17 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:38:41 INFO  Main:120 - set balance
+2019-03-19 21:38:41 INFO  Main:124 - set account pending
+2019-03-19 21:38:41 INFO  Main:126 - inserted new account
+2019-03-19 21:38:45 INFO  Main:139 - select for max accNum
+2019-03-19 21:38:45 INFO  Main:141 - inserted newUser
+2019-03-19 21:38:58 INFO  Main:207 - kyle successfull login
+2019-03-19 21:39:09 INFO  Main:207 - emp1 successfull login
+2019-03-19 21:39:26 INFO  Main:593 - Account 5 was approved
+2019-03-19 21:39:39 INFO  Main:207 - kyle successfull login
+2019-03-19 21:39:58 INFO  Main:359 - Amount $ 50.0was transfered from account 5 to account 4
+2019-03-19 21:40:12 INFO  Main:207 - admin successfull login
+2019-03-19 21:40:38 INFO  Main:600 - Account 3 was cancelled by admin
+2019-03-19 21:40:47 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-19 21:51:18 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-19 21:52:05 INFO  Main:120 - set balance
+2019-03-19 21:52:05 INFO  Main:124 - set account pending
+2019-03-19 21:52:06 INFO  Main:126 - inserted new account
+2019-03-19 21:52:09 INFO  Main:139 - select for max accNum
+2019-03-19 21:52:09 INFO  Main:141 - inserted newUser
+2019-03-19 21:52:24 INFO  Main:207 - stan successfull login
+2019-03-19 21:52:35 INFO  Main:207 - emp1 successfull login
+2019-03-19 21:52:49 INFO  Main:593 - Account 4 was approved
+2019-03-19 21:53:05 INFO  Main:207 - stan successfull login
+2019-03-19 21:53:24 INFO  Main:359 - Amount $ 50.0was transfered from account 4 to account 3
+2019-03-19 21:53:41 INFO  Main:207 - admin successfull login
+2019-03-19 21:54:11 INFO  Main:600 - Account 3 was cancelled by admin
+2019-03-19 21:54:38 INFO  Main:120 - set balance
+2019-03-19 21:54:38 INFO  Main:124 - set account pending
+2019-03-19 21:54:38 INFO  Main:126 - inserted new account
+2019-03-19 21:54:53 INFO  Main:174 - select for max accNum
+2019-03-19 21:54:54 INFO  Main:176 - inserted newUser
+2019-03-19 21:54:54 INFO  Main:179 - select for max accNum
+2019-03-19 21:54:55 INFO  Main:181 - inserted newJointUser
+2019-03-19 21:55:06 INFO  Main:207 - emp1 successfull login
+2019-03-19 21:55:14 INFO  Main:593 - Account 5 was approved
+2019-03-19 21:55:18 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-20 10:19:00 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-20 10:19:25 INFO  Main:207 - emp1 successfull login
+2019-03-20 10:20:09 INFO  Main:207 - admin successfull login
+2019-03-20 10:21:42 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-20 10:34:05 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-20 10:34:15 INFO  Main:207 - eric successfull login
+2019-03-20 10:34:23 INFO  Main:342 - Amount $ 400.0was deposited to account 3
+2019-03-20 10:34:32 INFO  Main:604 - ***Project Zero Banking App Closing***
+2019-03-20 13:11:22 INFO  Main:19 - ***Project Zero Banking App Start***
+2019-03-20 13:11:51 INFO  Main:120 - set balance
+2019-03-20 13:11:51 INFO  Main:124 - set account pending
+2019-03-20 13:11:52 INFO  Main:126 - inserted new account
+2019-03-20 13:11:57 INFO  Main:139 - select for max accNum
+2019-03-20 13:11:58 INFO  Main:141 - inserted newUser
+2019-03-20 13:12:15 INFO  Main:207 - emp1 successfull login
+2019-03-20 13:12:31 INFO  Main:593 - Account 4 was approved
+2019-03-20 13:12:49 INFO  Main:207 - stan successfull login
+2019-03-20 13:12:58 INFO  Main:342 - Amount $ 50.0was deposited to account 4
+2019-03-20 13:13:06 INFO  Main:332 - Amount $ 50.0was withdrawn from account 4
+2019-03-20 13:13:17 INFO  Main:359 - Amount $ 25.0was transfered from account 4 to account 3
+2019-03-20 13:13:52 INFO  Main:120 - set balance
+2019-03-20 13:13:52 INFO  Main:124 - set account pending
+2019-03-20 13:13:53 INFO  Main:126 - inserted new account
+2019-03-20 13:14:08 INFO  Main:174 - select for max accNum
+2019-03-20 13:14:09 INFO  Main:176 - inserted newUser
+2019-03-20 13:14:09 INFO  Main:179 - select for max accNum
+2019-03-20 13:14:10 INFO  Main:181 - inserted newJointUser
+2019-03-20 13:14:23 INFO  Main:207 - admin successfull login
+2019-03-20 13:14:50 INFO  Main:593 - Account 5 was approved
+2019-03-20 13:15:01 INFO  Main:600 - Account 3 was cancelled by admin
+2019-03-20 13:15:14 INFO  Main:604 - ***Project Zero Banking App Closing***
