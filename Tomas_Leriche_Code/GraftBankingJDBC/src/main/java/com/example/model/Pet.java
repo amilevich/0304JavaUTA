@@ -7,10 +7,11 @@ public class Pet {
 	Integer pet_id;
 	String name, type, password, hasAccount, accountApproved;
 	
-	public Pet(String name, String type) {
+	public Pet(String name, String type, String pword) {
 		super();
 		this.name = name;
 		this.type = type;
+		this.password = pword;
 		this.pet_id = null;
 
 	}

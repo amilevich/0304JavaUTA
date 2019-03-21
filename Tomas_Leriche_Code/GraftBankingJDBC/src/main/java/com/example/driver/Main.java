@@ -111,12 +111,13 @@ public class Main {
 		
 		String uname;
 		String pword;
+		String lname;
 		Pet currentUser = null;
 		Employee currentEmployee = null;
 		
 		while (cycle1 && !loggedin) {
 			
-			System.out.print("\nLogin as one of the following: 1 = Customer, 2 = Employee, 3 = Exit, 4 = Register \n>_");
+			System.out.print("\nLogin as one of the following: \n1 = Customer, \n2 = Employee, \n3 = Exit, \n4 = Register \n>_");
 			
 			ans = scan.next().toLowerCase().trim();
 			switch(ans) {
@@ -141,13 +142,13 @@ public class Main {
 
 						if (elem.getAccountApproved().equals("0")) {
 							printWait();
-							System.out.println("*******************************************************");
-							System.out.println("******** Your account is still pending approval *******");
-							System.out.println("******** But we can't wait to have your money *********");
-							System.out.println("*******************************************************");
+							System.out.println("***********************************************************");
+							System.out.println("******** You must be registered and approved first. *******");
+							System.out.println("******** But we can't wait to have your money *************");
+							System.out.println("***********************************************************");
 						}
 						
-						cycle1 = false;
+						cycle1 = false; 
 						break;
 					}					
 				}
@@ -204,8 +205,35 @@ public class Main {
 				
 			case "4": case "register":
 				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-				System.out.println("We are not accepting new customers at this time...");
-				System.out.println("Ill have this working before presenting on wednesday");
+				System.out.println("Enter Name: ");
+				uname = scan.next();
+				System.out.println("Last Name: ");
+				lname = scan.next();
+				System.out.println("Password: ");
+				pword = scan.next();
+				
+				Pet pet = new Pet(uname, lname, pword);
+				
+				
+				System.out.println(pet);
+				
+				// "INSERT INTO PET (name, type, password) VALUES (?, ?, ?)"
+				petDaoImpl.insertPet(pet);
+				
+//				public Pet(String name, String type, String pword) {
+//					super();
+//					this.name = name;
+//					this.type = type;
+//					this.password = pword;
+//					this.pet_id = null;
+//
+//				}
+//				
+				
+				pets = petDaoImpl.selectAllPets();
+				
+				printArray(pets);
+				
 				
 			default:
 				
@@ -333,7 +361,7 @@ public class Main {
 					break;
 				case "5": case "exit":
 					System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-					printBye();
+					printBye2();
 					System.out.println("\n\n|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 					System.out.println("|-=-=-=-=-=-= Exiting System =-=-=-=-=-=-|");
 					System.out.println("|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=| \n");
@@ -530,7 +558,7 @@ public class Main {
 					
 				case "8": case "exit":
 					System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-					printBye();
+					printBye2();
 					System.out.println("\n\n|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 					System.out.println("|-=-=-=-=-=-= Exiting System =-=-=-=-=-=-|");
 					System.out.println("|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=| \n");
@@ -759,6 +787,30 @@ public class Main {
 				"                              /    |    \\\r\n" + 
 				"      We Appreciate Your     /     |     \\\r\n" + 
 				"            Money!          /      |      \\\r\n" + 
+				"                           /       |       \\\r\n" + 
+				"                          /        |        \\\r\n" + 
+				"                         /         |         \\");
+		logger.info("System Exited");
+	}
+	
+	public static void printBye2() {
+		System.out.println("                                               _\r\n" + 
+				"                 ___                          (_)\r\n" + 
+				"               _/XXX\\\r\n" + 
+				"_             /XXXXXX\\_                                    __\r\n" + 
+				"X\\__    __   /X XXXX XX\\                          _       /XX\\__      ___\r\n" + 
+				"    \\__/  \\_/__       \\ \\                       _/X\\__   /XX XXX\\____/XXX\\\r\n" + 
+				"  \\  ___   \\/  \\_      \\ \\               __   _/      \\_/  _/  -   __  -  \\__/\r\n" + 
+				" ___/   \\__/   \\ \\__     \\\\__           /  \\_//  _ _ \\  \\     __  /  \\____//\r\n" + 
+				"/  __    \\  /     \\ \\_   _//_\\___     _/    //           \\___/  \\/     __/\r\n" + 
+				"__/_______\\________\\__\\_/________\\_ _/_____/_____________/_______\\____/_______\r\n" + 
+				"                                  /|\\\r\n" + 
+				"                                 / | \\\r\n" + 
+				"                                /  |  \\\r\n" + 
+				"                               /   |   \\\r\n" + 
+				"                              /    |    \\\r\n" + 
+				"      Keep up the good       /     |     \\\r\n" + 
+				"            Graft!          /      |      \\\r\n" + 
 				"                           /       |       \\\r\n" + 
 				"                          /        |        \\\r\n" + 
 				"                         /         |         \\");

@@ -40,7 +40,7 @@ public class PetDaoImpl implements PetDao {
 	public int insertPet(Pet p) {
 		// TODO Auto-generated method stub
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO PET VALUES (null, ?, ?, ?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO PET (name, type, password) VALUES (?, ?, ?)");
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getType());
 			ps.setString(3, p.getPassword());
@@ -184,6 +184,7 @@ public class PetDaoImpl implements PetDao {
 		return pets;
 	}
 
+	
 
 	
 }
