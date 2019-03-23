@@ -21,7 +21,11 @@ public class UserDaoImpl implements UserDao{
 	public int insertUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO Users (balance, status) VALUES (?,0)");
-			ps.setDouble(1, u.getBalance());
+			ps.setString(1, u.getUserName());
+			ps.setString(2, u.getPassWord());
+			ps.setString(3, u.getFirstName());
+			ps.setString(4, u.getLastName());
+			ps.setString(5, u.getEmail());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,7 +43,7 @@ public class UserDaoImpl implements UserDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				user = new User(rs.getInt("Usernumber"), rs.getInt("balance"), rs.getInt("status"));
+				user = new User();
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -56,7 +60,7 @@ public class UserDaoImpl implements UserDao{
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Users.add(new User(rs.getInt("Usernumber"), rs.getInt("balance"), rs.getInt("status")));
+				users.add(new User());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,9 +72,11 @@ public class UserDaoImpl implements UserDao{
 	public int updateUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("UPDATE Users SET balance=?, status=? WHERE usernumber=?");
-			ps.setDouble(1, u.getBalance());
-			ps.setDouble(2, u.getStatus());
-			ps.setInt(3, u.getUserid());
+			ps.setString(1, u.getUserName());
+			ps.setString(2, u.getPassWord());
+			ps.setString(3, u.getFirstName());
+			ps.setString(4, u.getLastName());
+			ps.setString(5, u.getEmail());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,7 +119,7 @@ public class UserDaoImpl implements UserDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				User = new User(rs.getInt("balance"), rs.getInt("status"));
+				user = new User();
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

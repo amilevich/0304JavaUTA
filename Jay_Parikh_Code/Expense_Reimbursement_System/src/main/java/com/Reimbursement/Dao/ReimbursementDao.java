@@ -11,7 +11,7 @@ public interface ReimbursementDao {
 		public int insertReimbursement(Reimbursement r);
 		
 		//READ
-		//public Reimbursement selectReimbursementByName(String name);
+		public Reimbursement selectReimbursementByName(String name);
 		public List<Reimbursement> selectAllReimbursements();
 		
 		// UPDATE

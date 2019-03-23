@@ -21,7 +21,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 	public int insertReimbursement(Reimbursement u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO Reimbursements (balance, status) VALUES (?,0)");
-			ps.setDouble(1, u.getBalance());
+			ps.setDouble(1, u.getAmount());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -32,20 +32,20 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 	//id
 	@Override
 	public Reimbursement selectReimbursementById(int id) {
-		Reimbursement Reimbursement = null;
+		Reimbursement reimbursement = null;
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Reimbursements WHERE Reimbursementnumber=?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				reimbursement = new Reimbursement(rs.getInt("Reimbursementnumber"), rs.getInt("balance"), rs.getInt("status"));
+				reimbursement = new Reimbursement();
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return Reimbursement;
+		return reimbursement;
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				reimbursements.add(new Reimbursement(rs.getInt("Reimbursementnumber"), rs.getInt("balance"), rs.getInt("status")));
+				reimbursements.add(new Reimbursement());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,9 +68,9 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 	public int updateReimbursement(Reimbursement u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("UPDATE Reimbursements SET balance=?, status=? WHERE Reimbursementnumber=?");
-			ps.setDouble(1, u.getBalance());
+			ps.setDouble(1, u.getAmount());
 			ps.setDouble(2, u.getStatus());
-			ps.setInt(3, u.getReimbursementid());
+			ps.setInt(3, u.getReimburseId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +92,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
 	@Override
 	public int nextSequence() {
-		try (Connection conn = DriverManager.getConnection(url, Reimbursementname, password)) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("SELECT acc_seq.NEXTVAL FROM dual");
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -113,7 +113,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				reimbursement = new Reimbursement(rs.getInt("balance"), rs.getInt("status"));
+				reimbursement = new Reimbursement();
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
