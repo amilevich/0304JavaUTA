@@ -247,19 +247,19 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 	}
 
 		
-	@Override
-	public int deleteReimbursement(int id) {
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("DELETE FROM Reimbursements WHERE Reimburse_ID=?");
-			ps.setInt(1, id);
-			Log.info("R Delete Query Prepared");
-			ps.executeUpdate();
-			Log.info("R Delete Query Executed");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
+//	@Override
+//	public int deleteReimbursement(int id) {
+//		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+//			PreparedStatement ps = conn.prepareStatement("DELETE FROM Reimbursements WHERE Reimburse_ID=?");
+//			ps.setInt(1, id);
+//			Log.info("R Delete Query Prepared");
+//			ps.executeUpdate();
+//			Log.info("R Delete Query Executed");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return 0;
+//	}
 
 
 

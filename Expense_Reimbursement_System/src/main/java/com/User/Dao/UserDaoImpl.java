@@ -42,14 +42,14 @@ public class UserDaoImpl implements UserDao{
 	public User selectUserByName(String name) {
 		User user = null;
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE Username=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Project1_Users WHERE Username=?");
 			ps.setString(1, name);
 			Log.info("U Select Query Prepared");
 			ResultSet rs = ps.executeQuery();
 			Log.info("U Select Query Executed");
 			
 			while (rs.next()) {
-				user = new User(rs.getString("Username"),rs.getInt("Password"),rs.getString("First_Name"),rs.getString("Last name"),rs.getString("Email"), rs.getInt("Status"));
+				user = new User(rs.getString("Username"),rs.getInt("Password"),rs.getString("First_Name"),rs.getString("Last_name"),rs.getString("Email"), rs.getInt("Status"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int updateUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("UPDATE Users SET Password=?, First_Name=?, Last_Name=?, Email=?, Status=?  WHERE Username=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE Project1_Users SET Password=?, First_Name=?, Last_Name=?, Email=?, Status=?  WHERE Username=?");
 			
 			ps.setInt(1, u.getPassWord());
 			ps.setString(2, u.getFirstName());

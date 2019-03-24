@@ -31,6 +31,6 @@ public interface ReimbursementDao {
 		public int updateReimbursement(Reimbursement r);
 		
 		// DELETE
-		public int deleteReimbursement(int id);
+		//public int deleteReimbursement(int id);
 
 }
