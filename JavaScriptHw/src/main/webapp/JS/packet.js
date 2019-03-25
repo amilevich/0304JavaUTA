@@ -104,6 +104,57 @@ console.log(isPalindrome("madam")) //test
 
 //Number 8
 
+const printShape = (shape, height, character) => {
+    let char= character
+    let character2=character
+    let space= ' '
+	switch (shape) {
+		case "Square":
+			for(let i=0; i<height; i++) {
+				character += char
+			}
+			console.log(character)
+			console.log(character)
+			console.log(character)
+			break;
+		case "Triangle":
+			for (let i=0; i<height; i++) {
+				console.log(character)
+				character+= char
+            }
+            break;
+        case "Diamond":
+            //first half
+            for(let i=0; i<height; i++) {  
+                
+                if( i<=height/2) {
+                    let spaces = ''
+                    for (let j=height/2; j>i; j--) { 
+                       spaces+= space
+                    }
+                    
+                    console.log(spaces+character)
+                    character = character+ char + char
+                }
+                
+                else if (i>height/2) {
+
+                    
+                    let spaces=''
+                    for (let j=i; j>height/2; j--) { 
+                        spaces+= space
+                     }
+                     
+                     console.log(spaces+character2)
+                     character2 = character2+ char +char
+                }
+            }
+     
+      
+	}
+}
+
+printShape('Diamond', 5, '*')
 
 //Number 9 
 
