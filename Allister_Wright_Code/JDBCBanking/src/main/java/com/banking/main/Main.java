@@ -297,7 +297,7 @@ public class Main
 			else
 			{
 				// Invalid User input
-				System.out.println("\fInput not recognised");
+				System.out.println("Input not recognised");
 			}
 			// Loop back to main menu
 		}
@@ -357,7 +357,7 @@ public class Main
 		boolean isAvailable;
 		do
 		{
-			username = getUserInput("\fPlease enter a new username: ");
+			username = getUserInput("Please enter a new username: ");
 			isAvailable = true;
 			for (User u : users)
 			{
@@ -440,38 +440,39 @@ public class Main
 		currentAccount = ((Customer) currentUser).applyForAccount(accounts,
 				Account.AccountType.values()[accountType - 1]);
 		accountDB.registerAccount((Customer) currentUser, currentAccount);
+		accountDB.addJointOwner((Customer) currentUser, currentAccount);
 		accounts.add(currentAccount);
 
 		// get any joint account holders
-//		System.out.println("For this account, will there be any joint partners?");
-//		System.out.println("For each of the joint holders, please enter their banking username.");
-//		System.out.println("Once you are done, please enter NONE or leave the field empty.");
-//		boolean jointLoopingFlag = true;
-//
-//		String[] closeJointLoop =
-//			{ "", "no", "none", "NO", "NONE" };
-//		while (jointLoopingFlag)
-//		{
-//			String jointOwner = getUserInput("").trim();
-//			for (String option : closeJointLoop)
-//			{
-//				if (jointOwner.equals(option))
-//					jointLoopingFlag = false;
-//			}
-//			if (jointLoopingFlag) // if not exiting
-//			{
+		System.out.println("For this account, will there be any joint partners?");
+		System.out.println("For each of the joint holders, please enter their banking username.");
+		System.out.println("Once you are done, please enter NONE or leave the field empty.");
+		boolean jointLoopingFlag = true;
+
+		String[] closeJointLoop =
+			{ "", "no", "none", "NO", "NONE" };
+		while (jointLoopingFlag)
+		{
+			String jointOwner = getUserInput("").trim();
+			for (String option : closeJointLoop)
+			{
+				if (jointOwner.equals(option))
+					jointLoopingFlag = false;
+			}
+			if (jointLoopingFlag) // if not exiting
+			{
 //				System.out.println("!!! SEARCHING FOR USER !!!");
-//				for (User user : users)
-//				{
-//					if (jointOwner.equals(user.getUsername()))
-//					{
-//						currentAccount.addOwner((Customer) user);
-//						accountDB.addJointOwner((Customer) user, currentAccount);
-//						System.out.println("* User successfully added *");
-//					}
-//				}
-//			}
-//		}
+				for (User user : users)
+				{
+					if (jointOwner.equals(user.getUsername()))
+					{
+						currentAccount.addOwner((Customer) user);
+						accountDB.addJointOwner((Customer) user, currentAccount);
+						System.out.println("* User successfully added *");
+					}
+				}
+			}
+		}
 		// Account Registration Complete
 		System.out.println("Thank you for opening an account with Revature Banking!");
 		System.out.println("We will have one of our associates review your application as soon as possible!");
