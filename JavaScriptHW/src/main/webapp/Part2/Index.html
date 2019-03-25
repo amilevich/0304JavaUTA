@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>DOM</title>
+</head>
+<body>
+    <div>
+   	 <div>
+   		 <h3>
+   			 Sum: <span id="sum"></span>
+   		 </h3>
+   		 <h5 id="currentTime"></h5>
+   	 </div>
+   	 <div>
+   		 <h1>
+   			 United <span data-customAttr="USA">States</span> of America (<span>USA</span>)
+   		 </h1>
+   		 <div>
+   			 <a>Click Here</a><a>Click Here</a><a>Click Here</a><a>Click Here</a><a>Click
+   				 Here</a>
+   		 </div>
+   		 <a>Click Here</a> <a>Click <span>Here1</span></a> <a>Click Here</a>
+   		 <div>
+   			 <select name="colors">
+   				 <option value="green">Green</option>
+   				 <option value="blue">Blue</option>
+   				 <option value="red" selected="selected">Red</option>
+   				 <option value="purple">Purple</option>
+   				 <option value="yellow" selected="selected">Yellow</option>
+   			 </select>
+   		 </div>
+   	 </div>
+   	 <p id="helloWorld">Hello, World!</p>
+   	 <div>
+   		 <table>
+   			 <tr>
+   				 <th>Name</th>
+   				 <th>Department</th>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">John</td>
+   				 <td>Sales</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Amy</td>
+   				 <td>Finance</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Austin</td>
+   				 <td>Sales</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Katie</td>
+   				 <td>Marketing</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName" data-customAttr="court">Courtney</td>
+   				 <td>Sales</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Scout</td>
+   				 <td>Sales</td>
+   			 </tr>
+   		 </table>
+   	 </div>
+   	 <form id="firstForm">
+   		 <a>Click <span>Here2</span></a> <input type="text"
+   			 data-customAttr="7" /><br /> <input type="text" data-customAttr="24" /><br />
+   		 <input type="radio" name="favoriteAnimal" value="dog" />Dog<br /> <input
+   			 type="radio" name="favoriteColor" value="blue" />Blue<br /> <input
+   			 id="num1" class="nums" type="text" /><br /> <input type="radio"
+   			 name="favoriteAnimal" value="cat" />Cat<br /> <input type="radio"
+   			 name="favoriteColor" value="red" />Red<br /> <input type="radio"
+   			 name="favoriteAnimal" value="horse" />Horse<br /> <input
+   			 type="radio" name="favoriteAnimal" value="dolphin" />Dolphin<br /> <a>Click
+   			 <span>Here</span>
+   		 </a><br /> <input type="radio" name="favoriteAnimal" value="eagle" />Eagle<br />
+   		 <input type="radio" name="favoriteColor" value="green" />Green<br />
+   		 <input type="radio" name="favoriteColor" value="orange" />Orange<br />
+   		 <select name="hobbies">
+   			 <option value="photography">Photography</option>
+   			 <option value="football" selected="selected">Football</option>
+   			 <option value="kayaking" selected="selected">Kayaking</option>
+   			 <option value="hiking">Hiking</option>
+   			 <option value="programming" selected="selected">Programming</option>
+   		 </select> <input id="num2" class="nums" type="text" /> <select name="skills">
+   			 <option value="java">Java</option>
+   			 <option value="net">.NET</option>
+   			 <option value="dom" selected="selected">DOM</option>
+   			 <option value="html">HTML</option>
+   			 <option value="css">CSS</option>
+   			 <option value="javascript" selected="selected">Javascript</option>
+   		 </select>
+   	 </form>
+    </div>
+    <a>Click Here</a>
+    <a>Click <span data-customAttr="500">Here3</span></a>
+    <a>Click Here</a>
+    <script type="text/javascript">
+   	 //TODO: Javascript homework
+   	 // 1 USA
+   	 console.log('************************Question1************************')
+   	 function getUSA(){
+   		var usa = document.getElementsByTagName('h1');
+   		console.log(usa[0].innerHTML);
+   		//for(i=0;i<usa.lenght;i++){
+   	   	//	 console.log(usa[i].innerHTML);
+   		//}
+   	 }
+    getUSA();
+   	 
+    // 2 Sales
+     console.log('************************Question2************************')
+   	  function getPeopleInSales(){
+   		 var Sale = document.getElementsByTagName("td");
+   		 for(i=1;i<Sale.length;i+=2){
+   			var comp = Sale[i].innerHTML
+   			if(comp == 'Sales'){
+   	   			console.log(Sale[i-1].innerHTML);
+   			}
+   		 }
+   	 }
+    getPeopleInSales();
+    
+   	 // 3 Click here
+   	 console.log('************************Question3************************')
+   	function getAnchorChildren(){
+   		 var anChild = document.getElementsByTagName("a");
+   		 for(i=0;i<anChild.length;i++){
+   			let Nex = anChild[i].getElementsByTagName("span");
+   			if(Nex[0] == undefined){
+   				
+   			}else{
+      		console.log(Nex[0].innerHTML);
+   			}
+   		 }
+    }
+   	getAnchorChildren();
+   	
+   	 // 4 Hobbies
+   	console.log('************************Question4************************')
+   	 function getHobbies(){
+   		 var Skill = document.getElementsByName("hobbies")[0];
+   		 for(i=0;i<Skill.length;i++){
+   			console.log(Skill[i]);
+   		 }
+   	 }
+   	 getHobbies();
+   	 
+   	 
+   	 // 5 Custom Attribute
+   	console.log('************************Question5************************')
+   	 function getCustomAttributes(){
+   		 var Cust = document.querySelectorAll('[data-customAttr]');
+   		 for(i=0;i<Cust.length;i++){
+   			 console.log(Cust[i].dataset.customattr);
+   			 console.log(Cust[i].parentNode);
+   		 }
+   	 }
+   	getCustomAttributes();
+   	 
+   	 // 6 Sum Event
+   	 // 7 Skills Event
+   	 console.log('************************Question7************************')
+   	 var SK = document.getElementsByName("skills")[0];
+   	 SK.addEventListener('change',Alarm)
+   	 function Alarm(){
+   		 for(i=0;i<SK.length;i++){
+   			 if(SK.value == SK[i].value){
+   	   			alert('Are you sure ' + SK[i].value + 'is one of your skills!'); 
+   	   		}
+   		 }
+   	 }
+   	 Alarm();
+   	 
+   	 // 8 Favorite Color Evnet
+   	 console.log('************************Question8************************')
+   	 /*
+   	 var col = document.getElementsByName('favoriteColor');
+   	 for(i=0;i<col.length;i++){
+   		col.addEventListener('change',CSwap) 
+   	 }
+   	 var Origin = null;
+   	 function CSwap{
+   		 if(Origin == null){
+   			 
+   		 }else{
+   			 alert('so you like ' ++ ' more than ' ++ 'now');
+   		 }
+   	 }
+   	 */
+   	 // 9 Show/Hide Event
+   	 console.log('************************Question9************************')
+    var toggin = document.getElementsByClassName("empName");
+    for(i=0;i<toggin.length;i++){
+   		console.log(toggin[i]);
+   		toggin[i].addEventListener("mouseover", function(){togName(i);});}
+   	console.log(document.getElementsByClassName("empName"));
+   	 function togName(N){
+   		var toggin = document.getElementsByClassName("empName");
+   		console.log(toggin[N]);
+   		toggin[1].style.display == "block"  ? toggin[1].innerHTML.style.display = "none" :
+   		toggin[1].style.display = "block";
+   	 }
+   	 
+   	 // 10 Current time
+   	 // 11 Delay
+   	 // 12 Walk DOM
+    </script>
+</body>
+</html>
+
+
