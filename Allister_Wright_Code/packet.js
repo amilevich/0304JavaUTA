@@ -74,5 +74,67 @@ function isPalindrome(someStr) {
 // console.log(isPalindrome("kayaak"));
 
 // 8) draw a specified shape on the console
-function printShape(shape, height, character) {}
+function printShape(shape, height, character) {
+  let drawing = "";
+  switch (shape) {
+    case "Square":
+      for (let i = 0; i < height; i++) {
+        drawing += character.repeat(height) + "\n";
+      }
+      break;
+    case "Triangle":
+      for (let i = 0; i <= height; i++) {
+        drawing += character.repeat(i) + "\n";
+      }
+      break;
+    case "Diamond":
+      for (let row = 0; row < 2 * height - 1; row++) {
+        let whitespaceCount = Math.abs(1 + row - height);
+        drawing += " ".repeat(whitespaceCount);
+        drawing += character.repeat(height - whitespaceCount - 1);
+        drawing += character;
+        drawing += character.repeat(height - whitespaceCount - 1);
+        drawing += " ".repeat(whitespaceCount) + "\n";
+      }
+      break;
+  }
+  console.log(drawing);
+}
+// printShape("Diamond", 3, "*");
+
+// 9) Print an object literal
+function traverseObject(ob) {
+  for (let prop in ob) console.log(`${prop}: ${ob[prop]}`);
+}
+// let test = {'name': 'Jim', 'phone': '555-555-5555'}
+// traverseObject(test);
+
+// 10) Delete element from array
+function deleteElement(someArr) {
+  console.log(someArr.length);
+  someArr[2] = null;
+  console.log(someArr.length);
+}
+// deleteElement([,,,1])
+
+// 11) Splice element
+function spliceElement(someArr) {
+  console.log(someArr.length);
+  someArr.splice(2, 1);
+  console.log(someArr.length);
+}
+// spliceElement([,,,1])
+
+// 12) Object Constructor
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+// traverseObject(new Person("John", 30))
+
+// 13) Object literal constructor
+function getPerson(name, age) {
+  return { name: name, age: age };
+}
+// traverseObject(getPerson("Jane", 28))
 
