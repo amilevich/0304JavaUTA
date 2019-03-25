@@ -117,60 +117,59 @@ character is a String that represents the contents of the shape. Assume this Str
 Use a switch statement to determine which shape was passed in.
 Use the console.log function to print the desired shape.*/
 function printShape(shape, height, character){
-	if(shape == "Square"){
-		for(i = 0; i < height; i++){
-			for(j= 0; j < height; j++){
-				console.log(character);
-			}
-			
-			console.log("\n");
-		}
 
-	}else if(shape == "Triangle"){
-		for(i = 0; i < height; i++){
-			for(j = 0; j <= i; j++){
-				console.log(character);
-			}
-			
-			console.log("\n");
-		}
-	}else if(shape == "Diamond"){
-		
-		
-		for(i = 0; i < height/2+.5; i++){
-			for(j = 0; j<height/2-.5-i;j++){
-				console.log("p");
-			}
+    if (height%2 == 1){
 
-			for(k = 0; k < 2*i+1; k++){
-				console.log(character);
-			}
-			
-			for(j = 0; j<height/2-.5-i;j++){
-				console.log("p");
-			}
+    switch(shape) {
+      case "Triangle":
+          for (let i = 0; i < height; i++){
+                for(j = 0; j <= i; j++){
+                    console.log(character);
+                }
+                
+                console.log("\n");
+            }
+          break;
+        
+      case "Square":
+          for(i = 0; i < height; i++){
+                for(j= 0; j < height; j++){
+                    console.log(character);
+                }
+                
+                console.log("\n");
+            }
+        break;
+    
+    case 'Diamond':
+        for(i=1;i<=height;i++){
+              txt = "";
+              for(j=i;j<10;j++){
+                txt += " ";
+              }
+              for(k=0;k<(i*2)-1;k++){
+                txt += character;
+              }
+              console.log(txt);
+            }
+            var txt = "";
+            for(i=height-1;i>=1;i--){
+              txt = "";
+              for(j=i;j<10;j++){
+                txt += " ";
+              }
+              for(k=0;k<(i*2)-1;k++){
+                txt += character;
+              }
+              console.log(txt);
+            }
+        break;
+        
+        default: console.log("Enter either a square, triangle, or diamond");
 
-			console.log("\n");
-		}
-		
-		for(i = height/2-.5; i > 0; i--){
-			for(j = height/2+.5-i; j > 0; j--){
-				console.log("p");
-			}
-			
-			for(k = i; k > 0; k--){
-				console.log("*");
-			}
-			
-			for(j = height/2+.5-i; j > 0; j--){
-				console.log("p");
-			}
-			
-			console.log("\n");
-			
-			
-		}
-	}
+    }
+}else{console.log("You must enter an odd number");
+}
 }
 
 printShape("Triangle", 2, "%");
