@@ -2,15 +2,29 @@ package com.reimb.model;
 
 public class Users {
 
-	Integer user_id, user_role_id;
+	Integer user_id;
 	String user_name, user_password, user_first_name, user_last_name, user_email;
-
+	Integer user_role_id;
+	String user_role;
 	public Users() {
 
 	}
 
-	public Users(Integer user_role_id, String user_name, String user_password, String user_first_name,
-			String user_last_name, String user_email) {
+	public Users(Integer user_id, String user_name, String user_password, String user_first_name,
+			String user_last_name, String user_email, Integer user_role_id, String user_role) {
+		super();
+		this.user_id = user_id;
+		this.user_role_id = user_role_id;
+		this.user_name = user_name;
+		this.user_password = user_password;
+		this.user_first_name = user_first_name;
+		this.user_last_name = user_last_name;
+		this.user_email = user_email;
+		this.user_role = user_role;
+	}
+	
+	public Users(String user_name, String user_password, String user_first_name,
+			String user_last_name, String user_email, Integer user_role_id) {
 		super();
 		this.user_role_id = user_role_id;
 		this.user_name = user_name;
@@ -21,8 +35,8 @@ public class Users {
 		this.user_id = null;
 	}
 
-	public Users(Integer user_id, Integer user_role_id, String user_name, String user_password, String user_first_name,
-			String user_last_name, String user_email) {
+	public Users(Integer user_id, String user_name, String user_password, String user_first_name,
+			String user_last_name, String user_email, Integer user_role_id) {
 		super();
 		this.user_id = user_id;
 		this.user_role_id = user_role_id;
@@ -87,6 +101,14 @@ public class Users {
 
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
+	}
+	
+	public String getUser_role() {
+		return user_role;
+	}
+
+	public void setUser_role(String user_role) {
+		this.user_role = user_role;
 	}
 
 	@Override
