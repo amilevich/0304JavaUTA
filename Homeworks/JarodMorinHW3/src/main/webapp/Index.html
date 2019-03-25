@@ -244,20 +244,12 @@
 	for(i = 0; i < colorButton.length; i++)
 		colorButton[i].addEventListener('change',favColor,false);
 	function favColor(c) {
-		if(prevColor == 'null') {
-			prevColor = c.target.value;
-			document.body.style.backgroundColor = c.target.value;
-//			for(i = 0; i < colorButton.length; i++)
-//				colorButton[i].style.backgroundColor = c.target.value
-			// Couldn't change button color, changed entire background instead
-		}
-		else {
+		if(prevColor != 'null') 
 			alert('So you like ' + c.target.value + ' more than ' + prevColor + ' now?');
-			prevColor = c.target.value;
-			document.body.style.backgroundColor = c.target.value;
-//			for(i = 0; i < colorButton.length; i++)
-//				colorButton[i]..style.backgroundColor= c.target.value
-		}
+		prevColor = c.target.value;
+		document.body.style.backgroundColor = c.target.value;
+//		for(i = 0; i < colorButton.length; i++)
+//			colorButton[i]..style.backgroundColor= c.target.value
 	}
 	console.log('Choose a color radio button!')
 	
