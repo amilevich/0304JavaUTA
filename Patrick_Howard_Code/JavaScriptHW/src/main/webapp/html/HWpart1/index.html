@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JavaScript HW</title>
+</head>
+<body>
+	<h1>JavaScript HW</h1>
+	<script type="text/javascript" src="../../packet.js"></script>
+	
+	<p>1. Fibonacci Define function: fib(n) Return the nth number in
+		the fibonacci sequence.</p>
+	<input type="button" onclick="showfib();"
+		value="Press button to show answer for 8" />
+	<br />
+	<br />
+	<p>2. Bubble Sort Define function: bubbleSort(numArray) Use the
+		bubble sort algorithm to sort the array. Return the sorted array.</p>
+	<input type="button" onclick="showbubbleSort();"
+		value="Press button to show answer for [ 12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213 ]" />
+	<br />
+	<br />
+	<p>3. Reverse String Define function: reverseStr(someStr) Reverse
+		and return the String.</p>
+	<input type="button" onclick="showreverseString();"
+		value="Press button to show answer for Hello, World!" />
+	<br />
+	<br />
+	<p>4. Factorial Define function: factorial(someNum) Use recursion
+		to compute and return the factorial of someNum.</p>
+	<input type="button" onclick="showfactorial();"
+		value="Press button to show answer for 5" />
+	<br />
+	<br />
+	<p>5. Substring Define function substring(someStr, length, offset)
+		Return the substring contained between offset and (offset + length)
+		inclusively. If incorrect input is entered, use the alert function and
+		describe why the input was incorrect.</p>
+	<form>
+		Some String:<br> <input type="text" id="SomeString"><br>
+		offset:<br> <input type="text" id="offset"><br>
+		length:<br> <input type="text" id="subStringLength"><br>
+	</form>
+	<input type="button" onclick="showsubString();"
+		value="Press button to show answer" />
+	<br />
+	<br />
+	<p>6. Even Number Define function: isEven(someNum) Return true if
+		even, false if odd. Do not use % operator.</p>
+	<input type="button" onclick="showisEven();"
+		value="Press button to show answer for 11" />
+	<br />
+	<br />
+	<p>7. Palindrome Define function isPalindrome(someStr) Return true
+		if someStr is a palindrome, otherwise return false</p>
+	<input type="button" onclick="showisPalindrome();"
+		value="Press button to show answer for racecar" />
+	<br />
+	<br />
+	<p>8. Shapes Define function: printShape(shape, height, character)
+		shape is a String and is either "Square", "Triangle", "Diamond".
+		height is a Number and is the height of the shape. Assume the number
+		is odd. character is a String that represents the contents of the
+		shape. Assume this String contains just one character. Use a switch
+		statement to determine which shape was passed in. Use the console.log
+		function to print the desired shape.</p>
+	<input type="button" onclick="showprintShape();"
+		value="Press button to show answer for square 5 @, triangle 7 %, diamond 9 $" />
+	<br />
+	<br />
+	<p>9. Object literal Define function traverseObject(someObj) Print
+		every property and it's value.</p>
+	<input type="button" onclick="showtraverseObject();"
+		value="Press button to show answer" />
+	<br />
+	<br />
+	<p>10. Delete Element Define function deleteElement(someArr) Print
+		length Delete the third element in the array. Print length The lengths
+		should be the same.</p>
+	<input type="button" onclick="showdeleteElement();"
+		value="Press button to show answer for deleting a, b, c, d, e, f" />
+	<br />
+	<br />
+	<p>11. Splice Element Define function spliceElement(someArr) Print
+		length Splice the third element in the array. Print length The lengths
+		should be one less than the original length.</p>
+	<input type="button" onclick="showspliceElement();"
+		value="Press button to show answer for splicing a, b, c, d, e, f" />
+	<br />
+	<br />
+	<p>12. Defining an object using a constructor Define a function
+		Person(name, age) The following line should set a Person object to the
+		variable john: var john = new Person("John", 30);</p>
+	<input type="button" onclick="showPerson();"
+		value="Press button to show answer constructor John 30" />
+	<br />
+	<br />
+	<p>13. Defining an object using an object literal Define function
+		getPerson(name, age) The following line should set a Person object to
+		the variable john: var john = getPerson("John", 30);</p>
+	<input type="button" onclick="showgetPerson();"
+		value="Press button to show answer for object literal John 30" />
+	<br />
+	<br />
+</body>
+</html>
