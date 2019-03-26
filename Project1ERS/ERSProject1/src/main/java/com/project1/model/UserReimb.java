@@ -3,7 +3,7 @@ package com.project1.model;
 import java.sql.Blob;
 import java.sql.Date;
 
-public class Reimbursement {
+public class UserReimb {
 
 	private int reimb_Id;
 	private Double reimb_amount;
@@ -15,38 +15,14 @@ public class Reimbursement {
 	private int reimb_resolver;
 	private int reimb_status_Id;
 	private int reimb_type_Id;
-
-	public Reimbursement() {
-
-	}
-
-	public Reimbursement(Double reimb_amount, Date reimb_submitted, Date reimb_resolved, String reimb_description,
-			Blob reimb_receipt, int reimb_author, int reimb_resolver, int reimb_status_Id, int reimb_type_Id) {
-		super();
-		this.reimb_amount = reimb_amount;
-		this.reimb_submitted = reimb_submitted;
-		this.reimb_resolved = reimb_resolved;
-		this.reimb_description = reimb_description;
-		this.reimb_receipt = reimb_receipt;
-		this.reimb_author = reimb_author;
-		this.reimb_resolver = reimb_resolver;
-		this.reimb_status_Id = reimb_status_Id;
-		this.reimb_type_Id = reimb_type_Id;
-	}
-
-	public Reimbursement(int reimb_Id, Double reimb_amount, Date reimb_submitted, Date reimb_resolved, String reimb_description,
-			Blob reimb_receipt, int reimb_author, int reimb_resolver, int reimb_status_Id, int reimb_type_Id) {
-		super();
-		this.reimb_Id = reimb_Id;
-		this.reimb_amount = reimb_amount;
-		this.reimb_submitted = reimb_submitted;
-		this.reimb_resolved = reimb_resolved;
-		this.reimb_description = reimb_description;
-		this.reimb_receipt = reimb_receipt;
-		this.reimb_author = reimb_author;
-		this.reimb_resolver = reimb_resolver;
-		this.reimb_status_Id = reimb_status_Id;
-		this.reimb_type_Id = reimb_type_Id;
+	private String reimbStatus;
+	private String reimbType;
+	private String ersUsername;
+	private String userFirstname;
+	private String userLastname;
+	
+	public UserReimb() {
+		
 	}
 
 	public int getReimb_Id() {
@@ -129,12 +105,56 @@ public class Reimbursement {
 		this.reimb_type_Id = reimb_type_Id;
 	}
 
-	@Override
-	public String toString() {
-		return "Reimbursement [reimb_Id=" + reimb_Id + ", reimb_amount=" + reimb_amount + ", reimb_submitted="
-				+ reimb_submitted + ", reimb_resolved=" + reimb_resolved + ", reimb_description=" + reimb_description
-				+ ", reimb_receipt=" + reimb_receipt + ", reimb_author=" + reimb_author + ", reimb_resolver=" + reimb_resolver
-				+ ", reimb_status_Id=" + reimb_status_Id + ", reimb_type_Id=" + reimb_type_Id + "]";
+	public String getReimbStatus() {
+		return reimbStatus;
 	}
 
+	public void setReimbStatus(String reimbStatus) {
+		this.reimbStatus = reimbStatus;
+	}
+
+	public String getReimbType() {
+		return reimbType;
+	}
+
+	public void setReimbType(String reimbType) {
+		this.reimbType = reimbType;
+	}
+
+	public String getErsUsername() {
+		return ersUsername;
+	}
+
+	public void setErsUsername(String ersUsername) {
+		this.ersUsername = ersUsername;
+	}
+
+	public String getUserFirstname() {
+		return userFirstname;
+	}
+
+	public void setUserFirstname(String userFirstname) {
+		this.userFirstname = userFirstname;
+	}
+
+	public String getUserLastname() {
+		return userLastname;
+	}
+
+	public void setUserLastname(String userLastname) {
+		this.userLastname = userLastname;
+	}
+
+	@Override
+	public String toString() {
+		return "UserReimb [reimb_Id=" + reimb_Id + ", reimb_amount=" + reimb_amount + ", reimb_submitted="
+				+ reimb_submitted + ", reimb_resolved=" + reimb_resolved + ", reimb_description=" + reimb_description
+				+ ", reimb_receipt=" + reimb_receipt + ", reimb_author=" + reimb_author + ", reimb_resolver="
+				+ reimb_resolver + ", reimb_status_Id=" + reimb_status_Id + ", reimb_type_Id=" + reimb_type_Id
+				+ ", reimbStatus=" + reimbStatus + ", reimbType=" + reimbType + ", ersUsername=" + ersUsername
+				+ ", userFirstname=" + userFirstname + ", userLastname=" + userLastname + "]";
+	}
+	
+	
+	
 }
