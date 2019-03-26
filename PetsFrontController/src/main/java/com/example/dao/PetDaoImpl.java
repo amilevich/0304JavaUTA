@@ -9,7 +9,19 @@ import java.sql.SQLException;
 import com.example.model.Pet;
 
 public class PetDaoImpl implements PetDao {
+	static{
 
+	       try {
+
+	           Class.forName("oracle.jdbc.driver.OracleDriver");
+
+	       } catch (ClassNotFoundException e) {
+
+	           e.printStackTrace();
+
+	       }
+
+	   }
 	private static String url = "jdbc:oracle:thin:@db-instance-0304uta.c4ngsdhhjuji.us-east-2.rds.amazonaws.com:1521:orcl";
 	private static String username = "PetLover";
 	private static String password = "p4ssw0rd";

@@ -17,6 +17,9 @@ public class RequestHelper {
 			
 		case "/PetsFrontController/html/Register.do":
 			return RegisterController.Register(request);
+			
+		case "/PetsFrontController/html/PetJSON.do":
+			return HomeController.PetJSON(request, response);
 		
 		default:
 			return "/html/Login.html";
