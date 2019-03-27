@@ -8,4 +8,6 @@ public interface PetDao {
 	public int insertPet(Pet p);
 	//READ
 	public Pet selectPetByName(String name);
+	// UPDATE
+		public int updatePet(Pet p);
 }

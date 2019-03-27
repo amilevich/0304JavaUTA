@@ -10,15 +10,12 @@
 </head>
 <body>
 
-	<h1>WELCOME HOME</h1>
-	
-	<h4>Here is your pet information: </h4>
-	<div id="name"></div>
-	<div id="type"></div>
-	
-	<a href="http://localhost:9005/PetsFrontController/html/Profile.html" class="btn btn-primary">Click to go to Profile</a>
-	
-<script type="text/javascript" src="../js/Home.js"></script>
+<h2>Please change your name below:</h2>
+<form method="POST" action="Update.do">
+<input type="text" name="type" id="type" 
+placeholder="Enter your pet's new type"/>
+<input type="submit" class="btn btn-primary" id="submitButton" value="Submit">
+</form>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script

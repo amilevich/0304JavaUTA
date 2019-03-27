@@ -20,6 +20,9 @@ public class RequestHelper {
 			
 		case "/PetsFrontController/html/PetJSON.do":
 			return HomeController.PetJSON(request, response);
+			
+		case "/PetsFrontController/html/Update.do":
+			return ProfileController.Update(request);
 		
 		default:
 			return "/html/Login.html";
