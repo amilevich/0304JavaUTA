@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register New User</title>
+
+<style type="text/css">
+
+.sidenav {
+  height: 100%;
+  width: 350px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+#register{
+		background-color: #E9E7DA;
+		 width: 300px;
+ 		 border: 25px solid #CDA34F;
+  		padding: 25px;
+  		margin: 25px;
+  		margin-left: auto;
+   		 margin-right: auto;
+   		 text-align: center;
+  	
+	}
+
+</style>
+
+
+</head>
+<body>
+
+
+<!-- Side navigation -->
+<div class="sidenav">
+  
+</div>
+
+
+<div id="register">
+	<h1>Register as a New User:</h1>
+	
+		<form method="POST" action="Register.do">
+		<label>First Name:</label>
+		<input type="text" name="firstname" id="firstname" placeholder="Enter your first name"/></br>
+		</br>
+		<label>Last Name:</label>
+		<input type="text" name="lastname" id="lastname" placeholder="Enter your last name"/></br>
+		</br>
+		<label>Email:</label>
+		<input type="text" name="email" id="email" placeholder="Enter your email"/></br>
+		</br>
+		<label>Username:</label>
+		<input type="text" name="username" id="username" placeholder="Enter your username"/></br>
+		</br>
+		<label>Password:</label>
+		<input type="text" name="password" id="password" placeholder="Enter your password"/></br>
+		</br>
+		<input type="submit" id="SubmitButton" value="Register"/>
+
+	
+	</form>
+</div>
+
+</body>
+</html>
