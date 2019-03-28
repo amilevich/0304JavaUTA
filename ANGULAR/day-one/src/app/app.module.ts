@@ -11,7 +11,10 @@ import { ClickerComponent } from './clicker/clicker.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeroComponent } from './hero/hero.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroService } from './hero.service';
 
 
 
@@ -32,6 +35,10 @@ const appRoutes: Routes = [
   {
     path: 'clicker',
     component: ClickerComponent
+  },
+  {
+    path: 'heroes',
+    component: HeroesComponent
   }
 ];
 
@@ -42,7 +49,9 @@ const appRoutes: Routes = [
     SecondComponent,
     NavComponent,
     PokemonComponent,
-    ClickerComponent
+    ClickerComponent,
+    HeroComponent,
+    HeroesComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +62,9 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    HeroService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
