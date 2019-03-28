@@ -18,6 +18,30 @@ public class Reimbursement {
 	
 	public Reimbursement() {
 	}
+	
+	
+
+	public Reimbursement(Double reimbAmount, Timestamp reimbSubmitted) {
+		super();
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+	}
+
+
+
+	public Reimbursement(Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
+			Blob reimbReceipt, Integer reimbAuthor, Integer reimbResolver, Integer reimbStatusId, Integer reimbTypeId) {
+		super();
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbResolved = reimbResolved;
+		this.reimbDescription = reimbDescription;
+		this.reimbReceipt = reimbReceipt;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbResolver = reimbResolver;
+		this.reimbStatusId = reimbStatusId;
+		this.reimbTypeId = reimbTypeId;
+	}
 
 	public Integer getReimbId() {
 		return reimbId;

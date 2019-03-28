@@ -31,7 +31,7 @@ public class ReimbursementStatusDaoImpl implements ReimbursementStatusDao {
 		return 0;
 	}
 	@Override
-	public ReimbursementStatus selectReimbursementTypeByName(Integer x) {
+	public ReimbursementStatus selectReimbursementStatusByName(Integer x) {
 		ReimbursementStatus pet = null;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT_STATUS WHERE REIMB_STATUS_ID=?");
@@ -46,6 +46,18 @@ public class ReimbursementStatusDaoImpl implements ReimbursementStatusDao {
 
 		}
 		return pet;
+	}
+	@Override
+	public int updateReimbursementStatus(String x, Integer y) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = conn.prepareStatement("UPDATE ERS_REIMBURSEMENT_STATUS SET REIMB_STATUS=? WHERE REIMB_STATUS_ID=?");
+			ps.setString(1, x);
+			ps.setInt(2, y);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

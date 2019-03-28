@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import com.projectone.models.Reimbursement;
 import com.projectone.models.Users;
@@ -56,6 +57,19 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
 		}
 		return pet;
+	}
+
+	@Override
+	public int updateReimbursement(Timestamp x, Integer y) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = conn.prepareStatement("UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVED=? WHERE REIMB_ID=?");
+			ps.setTimestamp(1, x);
+			ps.setInt(2, y);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

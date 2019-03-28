@@ -8,6 +8,11 @@ public class ReimbursementStatus {
 	public ReimbursementStatus() {
 	}
 
+	public ReimbursementStatus(String reimbStatus) {
+		super();
+		this.reimbStatus = reimbStatus;
+	}
+
 	public Integer getReimbStatusId() {
 		return reimbStatusId;
 	}

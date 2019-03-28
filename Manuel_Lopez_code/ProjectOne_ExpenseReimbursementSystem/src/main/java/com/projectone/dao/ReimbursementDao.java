@@ -1,5 +1,7 @@
 package com.projectone.dao;
 
+import java.sql.Timestamp;
+
 import com.projectone.models.Reimbursement;
 
 public interface ReimbursementDao {
@@ -11,5 +13,6 @@ public interface ReimbursementDao {
 	public Reimbursement selectReimbursementById(Integer x);
 
 	//UPDATE
+	public int updateReimbursement(Timestamp x, Integer y);
 	//DELETE
 }

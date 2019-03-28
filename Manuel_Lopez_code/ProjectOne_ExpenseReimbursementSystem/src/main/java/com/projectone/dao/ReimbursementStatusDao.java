@@ -8,7 +8,8 @@ public interface ReimbursementStatusDao {
 	//CREATE
 	public int insertReimbursementStatus(ReimbursementStatus x);
 	//READ
-	public ReimbursementStatus selectReimbursementTypeByName(Integer x);
+	public ReimbursementStatus selectReimbursementStatusByName(Integer x);
 	//UPDATE
+	public int updateReimbursementStatus(String x, Integer y);
 	//DELETE
 }

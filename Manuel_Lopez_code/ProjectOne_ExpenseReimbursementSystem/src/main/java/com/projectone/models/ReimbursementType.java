@@ -8,6 +8,11 @@ public class ReimbursementType {
 	public ReimbursementType() {
 	}
 
+	public ReimbursementType(String reimbType) {
+		super();
+		this.reimbType = reimbType;
+	}
+
 	public Integer getReimbTypeId() {
 		return reimbTypeId;
 	}
