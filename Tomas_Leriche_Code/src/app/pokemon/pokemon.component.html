@@ -1,0 +1,90 @@
+<ol>
+  <h1>Your Team:</h1>
+  <li *ngFor= 'let poke of team'>
+    {{poke?.name | titlecase}}<img *ngIf="poke" [src]="poke?.sprites.front_default">Stats Total: {{poke?.stats[0].base_stat + poke?.stats[1].base_stat +
+      poke?.stats[2].base_stat +  poke?.stats[3].base_stat + poke?.stats[4].base_stat +
+      poke?.stats[5].base_stat }}
+  </li>
+</ol>
+<button class="btn btn-primary" (click)= 'onClickMe()'></button>
+
+<div *ngFor= 'let pokemon of team'>
+  <div class="centered-content-container">
+    <p style="color: blue; font-size: 20px">
+      Name: {{pokemon?.name | titlecase}} >> Stats Total: {{pokemon?.stats[0].base_stat + pokemon?.stats[1].base_stat +
+        pokemon?.stats[2].base_stat +  pokemon?.stats[3].base_stat + pokemon?.stats[4].base_stat +
+        pokemon?.stats[5].base_stat }}
+    </p>
+    
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>Front Normal</td>
+          <td>Back Normal</td>
+          <td>Front Shiny</td>
+          <td>Back Shiny</td>
+        </tr>
+      </thead>
+      <tbody>
+        <Tr>
+          <td>
+            <img *ngIf="pokemon" [src]="pokemon?.sprites.front_default">
+
+          </td>
+          <td>
+            <img *ngIf="pokemon" [src]="pokemon?.sprites.back_default">
+
+          </td>
+          <td>
+            <img *ngIf="pokemon" [src]="pokemon?.sprites.front_shiny">
+
+          </td>
+          <td>
+            <img *ngIf="pokemon" [src]="pokemon?.sprites.back_shiny">
+
+          </td>
+        </Tr>
+        <tr>
+            <td>Speed: {{pokemon?.stats[0].base_stat}}</td>
+            <td>Special-Defense: {{pokemon?.stats[1].base_stat}}</td>
+            <td>Special-Attack: {{pokemon?.stats[2].base_stat}} </td>
+            <td>Defence: {{pokemon?.stats[3].base_stat}} </td>
+          </tr>
+          <tr>
+              <td>Attack:  {{pokemon?.stats[4].base_stat}}</td>
+              <td>HP:  {{pokemon?.stats[5].base_stat}}</td>
+              <td>Total Stats: {{pokemon?.stats[0].base_stat + pokemon?.stats[1].base_stat +
+                  pokemon?.stats[2].base_stat +  pokemon?.stats[3].base_stat + pokemon?.stats[4].base_stat +
+                  pokemon?.stats[5].base_stat }}</td>
+              <td></td>
+            </tr>
+      </tbody>
+
+    </table>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>Height: {{pokemon?.height}}</td>
+              <td>Weight: {{pokemon?.weight}}</td>
+              <td>Type 1 = {{pokemon?.types[0].type.name | titlecase}}</td>
+              <td><span *ngIf='pokemon?.types[1]'>Type 2 = {{pokemon?.types[1].type.name | titlecase}}</span></td>
+          </tr>
+          <tr>
+            <td>Ability: {{pokemon?.abilities[0].ability.name}}</td>
+            <td>Pokedex ID: {{pokemon?.id}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
