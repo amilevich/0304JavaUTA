@@ -1,0 +1,30 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+      {{pageTitle}}
+    </div>
+  
+    <div class='table-responsive'>
+      <table class='table' *ngIf='pokemon && pokemon.length'>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Id Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let temp of pokemon'>
+            <td>
+              <img [src]='temp.image' [title]='temp.pokemon' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
+            </td>
+            <td>
+              <a [routerLink]="['/profile', temp.name]">{{temp.name}}</a>
+            </td>
+            <td>{{temp.type}}</td>
+            <td>{{temp.id}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>  
