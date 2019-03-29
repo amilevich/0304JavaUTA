@@ -14,8 +14,8 @@ public class CheckLoginMethod {
 	@Test
 	public void test() {
 		ArrayList<User> EMPs = new ArrayList<User>();
-		EMPs.add(new User("JimmyD",123456,"Jay","3Legs","Jay3Legs",1));
-		boolean bool = CheckLoginMethodTester.CheckForUsers("JimmyD", 123456, EMPs);
+		EMPs.add(new User("JimmyD","123456","Jay","3Legs","Jay3Legs",1));
+		boolean bool = CheckLoginMethodTester.CheckForUsers("JimmyD", "123456", EMPs);
 		assertEquals(true,bool);
 	}
 

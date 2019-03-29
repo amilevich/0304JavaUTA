@@ -23,7 +23,7 @@ static ReimbursementDaoImpl RDI = new ReimbursementDaoImpl();
 	@BeforeClass
 	public static void setUp() throws Exception {
 		
-		UDI.insertUser(new User("JimmyD",123456,"Jay","3Legs","Jay3Legs",1));
+		UDI.insertUser(new User("JimmyD","123456","Jay","3Legs","Jay3Legs",1));
 		RDI.insertReimbursement(new Reimbursement(23.4,"JimmyD","Went to Reynosa",0,"Travel"));
 	}
 

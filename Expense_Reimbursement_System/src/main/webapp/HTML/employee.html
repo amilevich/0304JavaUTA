@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Reimbursement System</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+
+<!-- NavBar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="form-group col">
+<div class = "alert alert-primary" role = "alert">
+  <a class="navbar-brand" style = "border-bottom: 1px solid blue"; href="#">Employee Portal</a>
+  
+  <div class="collapse navbar-collapse" id="navbarText">
+  <div class="form-group col">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Create a Ticket</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="viewOwn" href="#">View Tickets</a>
+      </li>
+      
+    </ul>
+    </div>
+    <span class="navbar-text">
+      User FName and LName
+      <a href = "http://localhost:8080/PetsFrontController/HTML/index (1).html" class="btn btn-danger my-2 my-sm-0" id="logout" type="submit">Logout</button>
+    </span>
+  </div>
+  </div>
+  </div>
+</nav>
+<!-- padding-right: 100px; -->
+<!-- Ticket History Column -->
+<div class="row align-items-start">
+  <nav class="navbar navbar-expand-lg navbar-light">  
+  <div class="col"> <!-- style="width: 35rem; "-->
+    <div class = "alert alert-primary" role = "alert">          
+      <div class="form-row">
+          
+      <div class="col text-center">
+        <h4 class="navbar-text" style = "border-bottom: 1px solid blue;" >Ticket History</h4>
+      </div>     
+      
+      <table id="myTable" class="table table-hover">
+        <thead>
+          <tr class="table-primary">
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+      </table>
+
+      </div>
+    </div>
+  </div>
+  </nav>
+
+<!-- invisible column -->
+<!-- <div class="invisible col-3"></div> -->
+
+<!-- Ticket Form Column-->
+  <nav class="navbar navbar-expand-lg navbar-light"> 
+    <div class="col" style="width: 35rem;">
+      <div class = "alert alert-primary" role = "alert">
+         
+          <div class="col text-center">
+            <h4 class="navbar-text" style = "border-bottom: 1px solid blue;">Ticket Form</h4>
+          </div>      
+    <form id="ticket-form" method="POST" action="SubmitT.do" role="form">
+          <div class="form-row">
+            <label for="reimbAmount">Amount</label>
+            <input type="text" id="reimbAmount" name = "reimbAmount" class="form-control" placeholder="Enter Amount">
+          </div>
+
+          <div class="form-row">
+            <label for="reimbType">Type of Reimbursement</label>
+              <select id="reimbType" class="form-control">
+                  <option selected>Choose...</option>
+                  <option name ="Lodging">Lodging</option>
+                  <option name ="Travel">Travel</option>
+                  <option name ="Food">Food</option>
+                  <option name ="Other">Other</option>
+              </select>
+          </div>
+
+          <div class="form-row">
+            <label for="reimbExplain">Explain</label>
+            <div class="input-group">
+              <textarea class="form-control" id=reimbExplain name = "reimbExplain" placeholder="Enter Explanation"></textarea>
+              <br/>
+            </div>
+          </div>
+
+          <div class="form-row center"> 
+            <br/>
+            <input type="submit" class="btn btn-primary" id="crtab" onclick="stuffFunc()" value="Create Row">  
+          </div>
+      </form>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+<script type="text/javascript">
+
+function stuffFunc(){
+  var table = document.getElementById("myTable");
+  var row = table.insertRow();
+  row.className = "table-primary";
+  let d = new Date();
+  let time = (d.getMonth()+1) +"/"+d.getDate()+"/"+d.getFullYear()+" "+d.getHours()%12+":"+d.getMinutes();
+
+
+/*  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);*/
+  var cell3 = row.insertCell(0);
+  var cell4 = row.insertCell(1);
+  var cell5 = row.insertCell(2);
+  var cell6 = row.insertCell(3);
+  var cell7 = row.insertCell(4);
+  //var cell8 = row.insertCell(5);
+  //var cell9 = row.insertCell(6);
+
+ /* cell1.innerHTML = document.getElementById("firstName").value;
+  cell2.innerHTML = document.getElementById("lastName").value;*/
+  cell3.innerHTML = document.getElementById("reimbAmount").value;
+  cell4.innerHTML = document.getElementById("reimbType").value;
+  cell5.innerHTML = document.getElementById("reimbExplain").value;
+  cell6.innerHTML = time;//document.getElementById("time").value;
+  cell7.innerHTML = "status";//document.getElementById("status").value;
+/*  cell8.innerHTML = "Approve";
+  cell9.innerHTML = "Deny";*/
+}
+
+function cFunc(){
+  let amount = document.getElementById("reimbAmount").value;
+  let type = document.getElementById("reimbType").value;
+  let explain = document.getElementById("reimbExplain").value;
+  console.log("Create");
+  
+  console.log("Amount= " + amount);
+  console.log("Type= " + type);
+  console.log("Explain= " + explain);
+}
+
+function voFunc(){
+  console.log("View Own");
+}
+
+function lFunc(){
+  console.log("Logout");
+}
+
+document.getElementById("create").addEventListener('click', function(){cFunc()});
+document.getElementById("viewOwn").addEventListener('click', function(){voFunc()});
+document.getElementById("logout").addEventListener('click', function(){lFunc()});
+
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>

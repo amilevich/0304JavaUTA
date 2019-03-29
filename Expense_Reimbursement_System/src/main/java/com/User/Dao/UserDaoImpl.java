@@ -5,26 +5,39 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import com.Model.User;
 
 public class UserDaoImpl implements UserDao{
+	
+	static{	System.out.println("INITIALIZED JDBC DRIVER");
+
+    try {
+
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+    	System.out.println("FINISHED INITIALIZING JDBC DRIVER");
+
+    } catch (ClassNotFoundException e) {
+
+        e.printStackTrace();
+
+    }
+
+}
 
 	private static String url = "jdbc:oracle:thin:@oracle-instance1.cmseb0jui8wp.us-east-2.rds.amazonaws.com:1521:orcl";
-	private static String username = "Jay";
-	private static String password = "password";
+	private static String username = "AlimWooden";
+	private static String password = "Donkey123";
 	
 	Logger Log = Logger.getGlobal();
 	
 	@Override
 	public int insertUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO Project1_Users VALUES (?,?,?,?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO PROJECT1_USERS VALUES (?,?,?,?,?,?)");
 			ps.setString(1, u.getUserName());
-			ps.setInt(2, u.getPassWord());
+			ps.setString(2, u.getPassWord());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
 			ps.setString(5, u.getEmail());
@@ -40,22 +53,26 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User selectUserByName(String name) {
-		User user = null;
+		User users = null;
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Project1_Users WHERE Username=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM PROJECT1_USERS WHERE Username=?");
 			ps.setString(1, name);
 			Log.info("U Select Query Prepared");
 			ResultSet rs = ps.executeQuery();
 			Log.info("U Select Query Executed");
-			
-			while (rs.next()) {
-				user = new User(rs.getString("Username"),rs.getInt("Password"),rs.getString("First_Name"),rs.getString("Last_name"),rs.getString("Email"), rs.getInt("Status"));
+			System.out.println(rs.next());
+			System.out.println(rs.getString(1));
+			while(rs.next()) {
+				users = new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
 			}
+			
+			System.out.println(rs.next());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return user;
+
+		System.out.println(users);
+		return users;
 	}
 	
 //	@Override
@@ -77,9 +94,9 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int updateUser(User u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("UPDATE Project1_Users SET Password=?, First_Name=?, Last_Name=?, Email=?, Status=?  WHERE Username=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE PROJECT1_USERS SET Password=?, First_Name=?, Last_Name=?, Email=?, Status=?  WHERE Username=?");
 			
-			ps.setInt(1, u.getPassWord());
+			ps.setString(1, u.getPassWord());
 			ps.setString(2, u.getFirstName());
 			ps.setString(3, u.getLastName());
 			ps.setString(4, u.getEmail());
@@ -97,7 +114,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int deleteUser(String Username) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("DELETE FROM Project1_Users WHERE Username=?");
+			PreparedStatement ps = conn.prepareStatement("DELETE FROM PROJECT1_USERS WHERE Username=?");
 			ps.setString(1, Username);
 			Log.info("U Delete Query Prepared");
 			ps.executeUpdate();

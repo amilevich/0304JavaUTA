@@ -3,7 +3,7 @@ package com.Model;
 public class User {
 
 	private String userName;
-	private int password;
+	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -15,7 +15,7 @@ public class User {
 		
 	}
 
-	public User(String userName, int password, String firstName, String lastName, String email, int status) {
+	public User(String userName, String password, String firstName, String lastName, String email, int status) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -44,11 +44,11 @@ public class User {
 		this.userName = userName;
 	}
 
-	public int getPassWord() {
+	public String getPassWord() {
 		return password;
 	}
 
-	public void setPassWord(int password) {
+	public void setPassWord(String password) {
 		this.password = password;
 	}
 

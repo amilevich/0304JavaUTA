@@ -1,0 +1,18 @@
+<p>
+  clicker works!
+</p>
+<div class="clicker-container centered-content-container">
+  <p [ngClass]="{'blue': counter%5 === 0 }">Counter: {{ counter }}</p>
+  
+  <button class="btn btn-primary" (click)="increment(1)">Increment by 1</button>
+
+  <span *ngFor="let incr of incrementors">
+    <button *ngIf="counter >= incr" 
+        class="btn btn-primary" 
+        (click)="increment(incr)">
+        Increment by {{incr}}
+    </button>
+  </span>
+
+
+</div>

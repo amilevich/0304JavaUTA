@@ -12,6 +12,21 @@ import java.util.logging.Logger;
 import com.Model.Reimbursement;
 
 public class ReimbursementDaoImpl implements ReimbursementDao{
+	
+	static{	System.out.println("INITIALIZED JDBC DRIVER");
+
+    try {
+
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+    	System.out.println("FINISHED INITIALIZING JDBC DRIVER");
+
+    } catch (ClassNotFoundException e) {
+
+        e.printStackTrace();
+
+    }
+
+}
 
 	private static String url = "jdbc:oracle:thin:@oracle-instance1.cmseb0jui8wp.us-east-2.rds.amazonaws.com:1521:orcl";
 	private static String username = "Jay";
