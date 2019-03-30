@@ -20,21 +20,21 @@ public class LoginController {
 	
 	UserDaoImpl UDI = new UserDaoImpl();
 	//User user = new User();
-	User user = new User(name,password,"A", "W", "AW123",1);
-	UDI.insertUser(user); System.out.println("Finished creating User");
+	//User user = new User(name,password,"A", "W", "AW123",0);
+	//UDI.insertUser(user); System.out.println("Finished creating User");
 	
-	//user = UDI.selectUserByName(name); 
-	//if(user == null) {System.out.println( " User is null");  return "/HTML/Redirected.html";}
+	User user = UDI.selectUserByName(name); 
+	if(user == null) {System.out.println( " User is null");  return "/HTML/Redirected.html";}
 	System.out.println(user.getUserName() + "   " + user.getPassWord());
 	
-//	if(name.equals(user.getUserName()) & password.equals(user.getPassWord())) {
+	if(name.equals(user.getUserName()) & password.equals(user.getPassWord())) {
 		request.getSession().setAttribute("User",user);
 		if(user.getStatus() == 0) {return "/HTML/employee.html";}
 		if(user.getStatus() == 1) {return "/HTML/financeManager.html";}
 		
-//	}
-		return "/HTML/employee.html";
-		//return "/HTML/Redirected.html";
+	}
+		//return "/HTML/employee.html";
+		return "/HTML/Redirected.html";
 		
 	
 	}

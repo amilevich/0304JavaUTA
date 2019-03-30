@@ -28,9 +28,9 @@
       
     </ul>
     </div>
-    <span class="navbar-text">
-      User FName and LName
-      <a href = "http://localhost:8080/PetsFrontController/HTML/index (1).html" class="btn btn-danger my-2 my-sm-0" id="logout" type="submit">Logout</button>
+    <span class="navbar-text" id = "Session-Info">
+      
+      <a href = "http://localhost:8080/PetsFrontController/HTML/index(1).html" class="btn btn-danger my-2 my-sm-0" id="logout" type="submit">Logout</a>
     </span>
   </div>
   </div>
@@ -76,34 +76,35 @@
           <div class="col text-center">
             <h4 class="navbar-text" style = "border-bottom: 1px solid blue;">Ticket Form</h4>
           </div>      
-    <form id="ticket-form" method="POST" action="SubmitT.do" role="form">
-          <div class="form-row">
+    <form id="ticket-form" method="POST" action="SubmitR.do" role="form">
+         <div class="row">
             <label for="reimbAmount">Amount</label>
             <input type="text" id="reimbAmount" name = "reimbAmount" class="form-control" placeholder="Enter Amount">
           </div>
 
-          <div class="form-row">
+          <div class="row">
             <label for="reimbType">Type of Reimbursement</label>
-              <select id="reimbType" class="form-control">
+               <select id="reimbType" name = "reimbType" class="form-control">
                   <option selected>Choose...</option>
-                  <option name ="Lodging">Lodging</option>
-                  <option name ="Travel">Travel</option>
-                  <option name ="Food">Food</option>
-                  <option name ="Other">Other</option>
-              </select>
+                  <option >Lodging</option>
+                  <option >Travel</option>
+                  <option >Food</option>
+                  <option >Other</option>
+              </select> 
           </div>
 
-          <div class="form-row">
+          <div class="row">
             <label for="reimbExplain">Explain</label>
             <div class="input-group">
-              <textarea class="form-control" id=reimbExplain name = "reimbExplain" placeholder="Enter Explanation"></textarea>
+              <textarea class="form-control" id="reimbExplain" name = "reimbExplain" placeholder="Enter Explanation"></textarea>
               <br/>
             </div>
           </div>
 
-          <div class="form-row center"> 
+          <div class="row center"> 
             <br/>
-            <input type="submit" class="btn btn-primary" id="crtab" onclick="stuffFunc()" value="Create Row">  
+            <input type="submit" class="btn btn-primary" id="crtab"  value="Create Row">  
+            <!-- onclick="stuffFunc()" -->
           </div>
       </form>
 
@@ -113,7 +114,7 @@
 </div>
 
 
-<script type="text/javascript">
+<script type="text/javascript" src = "../JS/employee.js">
 
 function stuffFunc(){
   var table = document.getElementById("myTable");

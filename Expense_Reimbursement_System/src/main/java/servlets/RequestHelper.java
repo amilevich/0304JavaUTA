@@ -18,9 +18,9 @@ public class RequestHelper {
 		//Emp.rev
 		case "/Expense_Reimbursement_System/HTML/SubmitT.do" :
 			return EmployeePortalController.SubmitT(request, response);
-//			
-//		case "/Expense_Reimbursement_System/HTML/Fin.rev" :
-//			return FinanceEmployeeController.Fin(request);
+		
+		case "/Expense_Reimbursement_System/HTML/SubmitR.do" :
+			return EmployeePortalController.SubmitR(request, response);
 //		
 		}
 		

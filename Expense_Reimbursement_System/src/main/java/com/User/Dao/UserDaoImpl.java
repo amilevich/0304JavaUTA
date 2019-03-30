@@ -57,21 +57,18 @@ public class UserDaoImpl implements UserDao{
 		try(Connection conn = DriverManager.getConnection(url, username, password)){
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM PROJECT1_USERS WHERE Username=?");
 			ps.setString(1, name);
-			Log.info("U Select Query Prepared");
 			ResultSet rs = ps.executeQuery();
-			Log.info("U Select Query Executed");
-			System.out.println(rs.next());
-			System.out.println(rs.getString(1));
-			while(rs.next()) {
-				users = new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
-			}
+
 			
-			System.out.println(rs.next());
+			while(rs.next()) { System.out.println("Entered while loop " + users);
+				users = new User(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
+				 System.out.println("After results" + users);
+			}
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 
-		System.out.println(users);
 		return users;
 	}
 	
