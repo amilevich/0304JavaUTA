@@ -7,6 +7,15 @@ public class UserRoles {
 	
 	public UserRoles() {
 	}
+	
+	
+
+	public UserRoles(String userRole) {
+		super();
+		this.userRole = userRole;
+	}
+
+
 
 	public Integer getErsUserRoleId() {
 		return ersUserRoleId;

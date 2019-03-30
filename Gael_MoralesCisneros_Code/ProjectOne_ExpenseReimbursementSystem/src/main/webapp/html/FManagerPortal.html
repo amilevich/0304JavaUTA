@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ERS-Finance Manager Portal</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+table tbody tr.selected{
+	color: red;
+}	
+</style>
+</head>
+<body>
+
+	<div>
+		<div class="titleName">
+			<div class="jumbotron text-center">
+				<h1>ProjectOne ERS</h1>
+				<h5>Finance Manager Portal</h5>
+			</div>
+		</div>
+		<br/>
+		<form>
+		<div class=" table-responsive">
+			<table id="reimbRequestTable" class="table table-bordered table-striped">
+ 				<thead class="thead-light ">
+ 					<th scope="col">Id</th>
+ 					<th scope="col">Amount</th>
+ 					<th scope="col">Submitted</th>
+ 					<th scope="col">Resolved</th>
+ 					<th scope="col" >Description</th>
+ 					<th scope="col">Author</th>
+ 					<th scope="col">Resolver</th>
+ 					<th scope="col">Status</th>
+ 					<th scope="col">Expense type</th>
+ 				</thead>
+ 				<tbody>
+ 				<tr>
+ 					<td>1</td>
+ 					<td>Travel</td>
+ 					<td>180.00</td>
+ 					<td>Flight</td>
+ 					<td></td>
+ 					<td>Pending</td>
+ 				</tr>
+ 				<tr>
+ 					<td>2</td>
+ 					<td>Lodging</td>
+ 					<td>50.00</td>
+ 					<td>Motel</td>
+ 					<td></td>
+ 					<td>Approved</td>
+ 				</tr>
+ 				<tr>
+ 					<td>3</td>
+ 					<td>Other</td>
+ 					<td>200.00</td>
+ 					<td>Entertainment</td>
+ 					<td></td>
+ 					<td>Denied</td>
+ 				</tr>
+ 				</tbody>
+ 			</table>
+ 			<button type="button" class="btn btn-info">Approve</button>
+ 			<button type="button" class="btn btn-info">Deny</button> 			
+ 			<button id ="filter" type="button" class="btn btn-info">Filter</button>
+ 		</div>
+ 		</form>
+	</div>
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../js/FManagerPortal.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

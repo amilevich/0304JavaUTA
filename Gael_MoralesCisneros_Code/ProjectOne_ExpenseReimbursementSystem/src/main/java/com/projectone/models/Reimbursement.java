@@ -1,5 +1,6 @@
 package com.projectone.models;
 
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
@@ -9,13 +10,35 @@ public class Reimbursement {
 	private Timestamp reimbSubmitted;
 	private Timestamp reimbResolved;
 	private String reimbDescription;
-	private Byte[] reimbReceipt;
 	private Integer reimbAuthor;
 	private Integer reimbResolver;
 	private Integer reimbStatusId;
 	private Integer reimbTypeId;
 	
 	public Reimbursement() {
+	}
+	
+	
+
+	public Reimbursement(Double reimbAmount, Timestamp reimbSubmitted) {
+		super();
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+	}
+
+
+
+	public Reimbursement(Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved, String reimbDescription,
+			Blob reimbReceipt, Integer reimbAuthor, Integer reimbResolver, Integer reimbStatusId, Integer reimbTypeId) {
+		super();
+		this.reimbAmount = reimbAmount;
+		this.reimbSubmitted = reimbSubmitted;
+		this.reimbResolved = reimbResolved;
+		this.reimbDescription = reimbDescription;
+		this.reimbAuthor = reimbAuthor;
+		this.reimbResolver = reimbResolver;
+		this.reimbStatusId = reimbStatusId;
+		this.reimbTypeId = reimbTypeId;
 	}
 
 	public Integer getReimbId() {
@@ -58,14 +81,6 @@ public class Reimbursement {
 		this.reimbDescription = reimbDescription;
 	}
 
-	public Byte[] getReimbReceipt() {
-		return reimbReceipt;
-	}
-
-	public void setReimbReceipt(Byte[] reimbReceipt) {
-		this.reimbReceipt = reimbReceipt;
-	}
-
 	public Integer getReimbAuthor() {
 		return reimbAuthor;
 	}
@@ -98,17 +113,24 @@ public class Reimbursement {
 		this.reimbTypeId = reimbTypeId;
 	}
 
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Reimbursement [reimbId=" + reimbId + ", reimbAmount=" + reimbAmount + ", reimbSubmitted="
 				+ reimbSubmitted + ", reimbResolved=" + reimbResolved + ", reimbDescription=" + reimbDescription
-				+ ", reimbReceipt=" + Arrays.toString(reimbReceipt) + ", reimbAuthor=" + reimbAuthor
-				+ ", reimbResolver=" + reimbResolver + ", reimbStatusId=" + reimbStatusId + ", reimbTypeId="
-				+ reimbTypeId + "]";
+				+ ", reimbAuthor=" + reimbAuthor + ", reimbResolver=" + reimbResolver
+				+ ", reimbStatusId=" + reimbStatusId + ", reimbTypeId=" + reimbTypeId + "]";
 	}
 
+
+
 	public Reimbursement(Integer reimbId, Double reimbAmount, Timestamp reimbSubmitted, Timestamp reimbResolved,
-			String reimbDescription, Byte[] reimbReceipt, Integer reimbAuthor, Integer reimbResolver,
+			String reimbDescription, Integer reimbAuthor, Integer reimbResolver,
 			Integer reimbStatusId, Integer reimbTypeId) {
 		super();
 		this.reimbId = reimbId;
@@ -116,7 +138,6 @@ public class Reimbursement {
 		this.reimbSubmitted = reimbSubmitted;
 		this.reimbResolved = reimbResolved;
 		this.reimbDescription = reimbDescription;
-		this.reimbReceipt = reimbReceipt;
 		this.reimbAuthor = reimbAuthor;
 		this.reimbResolver = reimbResolver;
 		this.reimbStatusId = reimbStatusId;
