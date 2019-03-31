@@ -29,8 +29,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 }
 
 	private static String url = "jdbc:oracle:thin:@oracle-instance1.cmseb0jui8wp.us-east-2.rds.amazonaws.com:1521:orcl";
-	private static String username = "Jay";
-	private static String password = "password";
+	private static String username = "AlimWooden";
+	private static String password = "Donkey123";
 	
 	Logger Log = Logger.getGlobal();
 
@@ -222,7 +222,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 	public List<Reimbursement> selectAllReimbursements() {
 		List<Reimbursement> reimbursements = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Reimbursements");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM Reimbursement_Table");
 			Log.info("R Select Query Prepared");
 			ResultSet rs = ps.executeQuery();
 			Log.info("R Select Query Executed");
@@ -241,7 +241,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 	@Override
 	public int updateReimbursement(Reimbursement u) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("UPDATE Reimbursements SET Amount_Requested=?, Request_Author=?, Request_Resolver=?, Submission_Time=?, Resolved_Time=?, Request_Description=?, Approved_Status=?, Request_Category=? WHERE Reimbursementnumber=?");
+			PreparedStatement ps = conn.prepareStatement("UPDATE Reimbursement_Table SET Amount_Requested=?, Request_Author=?, Request_Resolver=?, Submission_Time=?, Resolved_Time=?, Request_Description=?, Approved_Status=?, Request_Category=? WHERE Reimburse_ID=?");
 			
 			ps.setDouble(1, u.getAmount());
 			ps.setString(2, u.getTicketAuthor());

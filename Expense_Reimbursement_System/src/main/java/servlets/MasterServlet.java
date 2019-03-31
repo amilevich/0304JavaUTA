@@ -14,14 +14,14 @@ public class MasterServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		log.info("Inside of MasterServlet");
+		log.info("Inside of GET MasterServlet");
 		RequestHelper.process(request,response);
 	}
 	
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		log.info("Inside of MasterServlet");
+		log.info("Inside of POST MasterServlet");
 		String targetURL = RequestHelper.process(request, response);
 		request.getRequestDispatcher(targetURL).forward(request, response);
 		

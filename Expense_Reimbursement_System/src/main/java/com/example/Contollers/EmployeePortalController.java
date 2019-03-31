@@ -1,6 +1,8 @@
 package com.example.Contollers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,11 +30,11 @@ public class EmployeePortalController {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}		
-		return null;
+		return "/HTML/employee.html";
 	}
 	
 	public static String SubmitR(HttpServletRequest request, HttpServletResponse response) {
-		Log.info("Entered ReimbursementController Method");
+		System.out.println("Entered ReimbursementController Method");
 		
 		String amount = request.getParameter("reimbAmount");
 		String type = request.getParameter("reimbType");
@@ -44,17 +46,31 @@ public class EmployeePortalController {
 		RDI.insertReimbursement(RI);
 		Log.info("Reimbursement Created by " + user.getUserName());
 		
-		return null;
+		request.getSession().setAttribute("User",user);
+		return "/HTML/employee.html";
 	}
 	
 
 	public static String PopulateTable(HttpServletRequest request, HttpServletResponse response) {
 		
-//		ReimbursementDaoImpl RDI = new ReimbursementDaoImpl();
-//		ArrayList<Reimbursement> RIList =  RDI.selectAllReimbursementsByName(name)
-//		request.getSession().setAttribute("RIList",RIList);
-//		
-		return null;
+		User user = (User)request.getSession().getAttribute("User");
+		ReimbursementDaoImpl RDI = new ReimbursementDaoImpl();
+		//System.out.println("User is: " + user.getFirstName() + " " + user.getLastName());
+		List<Reimbursement> RIList =  RDI.selectAllReimbursementsByName(user.getUserName());
+		request.getSession().setAttribute("RIList",RIList);
+//		for (Reimbursement RI : RIList) {
+//			System.out.println(RI);
+//		}
+		
+		try {
+			response.getWriter().write(new ObjectMapper().writeValueAsString(RIList));
+			Log.info("Table has been updated");
+		}catch(JsonProcessingException e){
+			System.out.println("Jackson tool not working");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}		
+		return "/HTML/employee.html";
 	}
 	
 

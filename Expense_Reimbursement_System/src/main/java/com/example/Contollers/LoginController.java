@@ -33,7 +33,7 @@ public class LoginController {
 		if(user.getStatus() == 1) {return "/HTML/financeManager.html";}
 		
 	}
-		//return "/HTML/employee.html";
+	
 		return "/HTML/Redirected.html";
 		
 	

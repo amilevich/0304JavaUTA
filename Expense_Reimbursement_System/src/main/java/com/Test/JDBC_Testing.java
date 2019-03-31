@@ -23,19 +23,21 @@ static ReimbursementDaoImpl RDI = new ReimbursementDaoImpl();
 	@BeforeClass
 	public static void setUp() throws Exception {
 		
-		UDI.insertUser(new User("JimmyD","123456","Jay","3Legs","Jay3Legs",1));
-		RDI.insertReimbursement(new Reimbursement(23.4,"JimmyD","Went to Reynosa",0,"Travel"));
+		//UDI.insertUser(new User("JimmyD","123456","Jay","3Legs","Jay3Legs",1));
+		User FM = UDI.selectUserByName("JimmyD");
+		String usern = FM.getUserName();
+		RDI.insertReimbursement(new Reimbursement(23.4,usern,"Went to Reynosa",0,"Travel"));
 	}
 
 	@Test
-	public void test() {
+	public void test() {System.out.println("testing username select");
 		User FM = UDI.selectUserByName("JimmyD");
 		String First = FM.getFirstName();
 		assertEquals("Jay",First);				
 	}
 	
 	@Test
-	public void test2() {
+	public void test2() { System.out.println("testing reimbursement");
 		ArrayList<Reimbursement> RIM = (ArrayList<Reimbursement>) RDI.selectAllReimbursementsByName("JimmyD");
 		Reimbursement RMBR = RIM.get(0);
 		Timestamp tm = RMBR.getSubmitTime();
@@ -44,9 +46,11 @@ static ReimbursementDaoImpl RDI = new ReimbursementDaoImpl();
 		assertEquals("JimmyD",Username);
 	}
 	
+
 	@AfterClass
 	public static void reset() {
-		UDI.deleteUser("JimmyD");
+		System.out.println("Done testing");
+		//UDI.deleteUser("JimmyD");
 		
 	}
 }
