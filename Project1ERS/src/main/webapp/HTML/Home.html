@@ -13,42 +13,86 @@
 <body>
 
 	<nav class="navbar navbar-light bg-light">
+
 		<div class="row-fluid" style="vertical-align: middle">
-			<div class="span12">
-				<a class="btn btn-primary" href="./Submit.html"
-					style="float: left; margin-right: 20px">Submit New Ticket</a>
-				<!-- button sends you back to Home -->
+			<!-- <form id="FilterForm" method="GET" action="TicketJSON.do"> -->
+				<div class="span12">
+					<a class="btn btn-primary" href="./Submit.html"
+						style="float: left; margin-right: 20px">Submit New Ticket</a>
+					<!-- button sends you back to Home -->
+
 					<p style="float: left; margin-right: 10px">Status</p>
-					<select id="StatusFilter" style="float: left; margin-right: 10px">
-						<option class="dropdown-option" value="StatusNull">No filter</option>
+					<select id="StatusFilter" style="float: left; margin-right: 10px" onchange="updateFilters()">  -->
+						<option class="dropdown-option" value="StatusNull">No
+							filter</option>
 						<option class="dropdown-option" value="StatusPending">Pending</option>
 						<option class="dropdown-option" value="StatusApproved">Approved</option>
 						<option class="dropdown-option" value="StatusDenied">Denied</option>
-				</select>
+					</select>
 					<p style="float: left; margin-right: 10px">Type</p>
-					<select id="TypeFilter" style="float: left; margin-right: 10px">
-						<option class="dropdown-option" value="TypeNull">No Filter</option>
+					<select id="TypeFilter" style="float: left; margin-right: 10px" onchange="updateFilters()">  -->
+						<option class="dropdown-option" value="TypeNull">No
+							Filter</option>
 						<option class="dropdown-option" value="TypeLodging">Lodging</option>
 						<option class="dropdown-option" value="TypeTravel">Travel</option>
 						<option class="dropdown-option" value="TypeFood">Food</option>
 						<option class="dropdown-option" value="TypeOther">Other</option>
-				</select>
-			</div>
+					</select>
+
+				</div>
+			</form>
 		</div>
-		<a class="btn btn-primary" href="./Login.html">Logout</a>
+		<form id="Logout-form" method="POST" action="Logout.do">
+			<a class="btn btn-primary" href="./Login.html">Logout</a>
+		</form>
 	</nav>
-	
-	<table>
-	<thead>
-	<tr>
-	<th>Username<th>
-	<th>Amount<th>
-	<th>Type<th>
-	<th>Status<th>
-	<th>Review<th>
-	</tr>
-	</thead>
-	<tbody id="HomeTicketTable"></tbody>
+
+	<table border="1" width="60%"
+		style="margin-left: 20%; margin-right: 20%">
+		<thead>
+			<tr>
+				<th width="20%">Username
+				<th>
+				<th width="20%">Amount
+				<th>
+				<th width="20%">Type
+				<th>
+				<th width="20%">Status
+				<th>
+				<th width="20%">Review
+				<th>
+			</tr>
+		</thead>
+		<tbody id="HomeTicketTable"
+			style="height: 80px !important; overflow: scroll">
+
+			<tr style="height: 80px">
+				<td width="20%">Username
+				<td>
+				<td width="20%">Amount
+				<td>
+				<td width="20%">Type
+				<td>
+				<td width="20%">Status
+				<td>
+				<td width="20%">Review
+				<td>
+			</tr>
+
+			<tr style="height: 80px">
+				<td width="20%">Username
+				<td>
+				<td width="20%">Amount
+				<td>
+				<td width="20%">Type
+				<td>
+				<td width="20%">Status
+				<td>
+				<td width="20%">Review
+				<td>
+			</tr>
+
+		</tbody>
 	</table>
 
 	<div id="name"></div>

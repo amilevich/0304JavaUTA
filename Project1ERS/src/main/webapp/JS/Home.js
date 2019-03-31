@@ -3,51 +3,82 @@
  */
 
 window.onload = function(){
-	var ticketTable = document.getElementById("HomeTicketTable");
-	var tableBodyHeader = "<tbody id='HomeTicketTable'>";
-	var options = document.getElementsByClass("dropdown-option");
-	for(var x in options){
-		x.addEventListener("click", updateFilters, true);
+	var options = document.getElementsByClassName("dropdown-option");
+	for(let i = 0; i < options.length; i++){
+		options[i].addEventListener("click", updateFilters, true);
 	}
-
+	console.log("in window.onload")
+	console.log("ddl options: "+ options.length)
 }
 
 function updateFilters(){
-	let statusDropdown = document.getElementById("StatusFilter").options()
+	console.log("In Update Filters")
+	let statusDropdown = document.getElementById("StatusFilter")
 	var statusFilter = statusDropdown.options[statusDropdown.selectedIndex].value; //get the selected value of statusDropdown using JavaScript
 	
-	let typeDropdown = document.getElementById("TypeFilter").options()
+	let typeDropdown = document.getElementById("TypeFilter")
 	var typeFilter = typeDropdown.options[typeDropdown.selectedIndex].value;
+	console.log(statusFilter);
+	console.log(typeFilter);
+	debugger;
+	//getTickets();
 }
 
-function getPokemon(){
-	//getting field value
-	let pokemonId = document.getElementById("pokemonId").value;
+/*
+function getTickets(){
+	console.log("In Get Tickets")
+	let ticketTable = document.getElementById("HomeTicketTable");
+	let tableBodyHeader = "<tbody id='HomeTicketTable'>";
 	
-	//this object allows us to make requests and get data back
+	// this object allows us to make requests and get data back
 	let xhttp = new XMLHttpRequest();
 	
 	xhttp.onreadystatechange = function(){
 
 		if (xhttp.readyState == 4 && xhttp.status == 200){
-			let pokemon = JSON.parse(xhttp.responseText);
+			debugger;
+			let tickets= JSON.parse(xhttp.responseText);
 			//JSON parse turns it into an object
-			setValues(pokemon);
+			
+			console.log(tickets)
+			ticketTable.innerHTML = tableBodyHeader +
+									buildTable(tickets) +
+									"</table>";
+			debugger;
+			return false;
 		}
 	}
-	//create a connection (method, url, boolean (asynchronous or not))
-	xhttp.open("GET", "https://pokeapi.co/api/v2/pokemon/" + pokemonId, true);
+	console.log("Building request")
+	// create a connection (method, url, boolean (asynchronous or not))
+	debugger;
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.open("GET", "localhost:8080", true);
 	
-	//send it
-	xhttp.send(); //this sends the request to the API
+	// send it
+	console.log("Sending request")
+	debugger;
+	xhttp.send(null);
+	
+	console.log("Leaving Get Tickets")
 }
+*/
 
-function setValues(pokemon){
-	document.getElementById("pokemonName").innerHTML = pokemon.name;
+function buildTable(tickets){
+	console.log("Building Table")
+	let tableData = "";
 	
-	let pokemonImgElement = document.getElementById("pokemonImg");
-	pokemonImgElement.setAttribute("src", pokemon.sprites.front_default);
-	pokemonImgElement.setAttribute("alt", pokemon.name);
+	for (let ticket in tickets)
+	{
+		tableData +=
+		`<tr>
+			<td>${ticket.username}</td>
+			<td>${ticket.amount}</td>
+			<td>${ticket.type}</td>
+			<td>${ticket.status}</td>
+			<td><a href="/Review.html">Review Ticket</a></td>
+		</tr>`
+	}
+	return tableData;
 }
 
 /*

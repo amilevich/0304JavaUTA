@@ -11,11 +11,21 @@
 <body>
 
 	<form method="POST" action="Register.do" role="form">
-		<label>New Username</label>
-		<input type="text" name="name" id="name" placeholder="Enter your username"/>
-		<label>New Password</label>
-		<input type="text" name="password" id="password" placeholder="Enter your password"/>
-		<input type="submit" class="btn btn-primary" id="submitButton" value="Register"/> <!-- class="btn btn-primary" makes the buttons blue -->
+		<div id="TicketData" style="margin: 1%">
+			<div class="row-fluid">
+				<div class="span10">
+					<label style="margin-right:10px">New Username</label>
+					<input type="text" name="name" id="name" placeholder="Enter your username" />
+					<br />
+					<label style="margin-right:14px">New Password</label> <!-- change px to align the two textboxes -->
+					<input type="text" name="password" id="password" placeholder="Enter your password" />
+					<br />
+					<input type="submit" class="btn btn-primary" id="submitButton" value="Register" /> <!-- class="btn btn-primary" makes the buttons blue -->
+					<br/>
+					<img src="https://revature.com/wp-content/uploads/2017/12/revature-logo-600x219.png" style="width: 200px;">
+				</div>
+			</div>
+		</div>
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

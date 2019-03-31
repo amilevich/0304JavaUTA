@@ -3,10 +3,67 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
 </head>
 <body>
 
-	<p>Inside Submit.html</p>
+	<nav class="navbar navbar-light bg-light">
+		<a class="btn btn-primary" href="./Home.html">Home</a>
+		<!-- button sends you back to Home -->
+		<a class="btn btn-primary" href="./Login.html">Logout</a>
+	</nav>
+
+	<div id="SubmitData" style="margin: 1%">
+		<div class="row-fluid">
+			<div class="span10">
+				<form id="Submit-form" method="POST" action="Submit.do">
+					<table>
+						<tr>
+							<td><p style="float: left; margin-right: 10px">Username</p></td>
+							<td><input type="text" id="SubmittedUsername" name="SubmittedUsername" value="" readonly style="background-color: #d3d3d3" /></td>
+						</tr>
+						<tr>
+							<td><p style="float: left; margin-right: 10px">Type</p></td>
+							<td><select id="TypeFilter" style="float: left; margin-right: 10px" name="SubmittedType">
+									<option class="dropdown-option" value="TypeNull">---</option>
+									<option class="dropdown-option" value="TypeLodging">Lodging</option>
+									<option class="dropdown-option" value="TypeTravel">Travel</option>
+									<option class="dropdown-option" value="TypeFood">Food</option>
+									<option class="dropdown-option" value="TypeOther">Other</option>
+							</select></td>
+						</tr>	
+						<tr>
+						<td> <p style="float: left; margin-right: 10px">Amount</p> </td>
+						<td> <input type="number" step="0.01" name="SubmittedAmount"/> </td>
+						</tr>
+						<tr>
+						<td> <p style="float: left; margin-right: 10px">Description</p></td>
+						<td> <textarea name="SubmittedDescription" rows="5" cols="70"></textarea> </td>
+						</tr>
+					</table>
+					
+					<input type="submit" class="btn btn-primary" value="Submit"/> <!-- add functionality to this button -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 
 </body>
 </html>

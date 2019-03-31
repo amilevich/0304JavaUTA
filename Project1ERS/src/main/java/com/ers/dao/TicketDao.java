@@ -11,7 +11,9 @@ public interface TicketDao {
 	
 	//READ
 	public ArrayList<Ticket> selectAllTickets(); 
-	public ArrayList<Ticket> selectTicketByUsername(String username);
-	public ArrayList<Ticket> selectTicketByType(String type); //LODGING, TRAVEL, FOOD, OTHER
-	public ArrayList<Ticket> selectTicketByState(String state); //PENDING, APPROVED, DENIED
+	public ArrayList<Ticket> selectTicketsByUsername(String username); //username alone, chosen by employee
+	public ArrayList<Ticket> selectTicketsByType(String type); //LODGING, TRAVEL, FOOD, OTHER //type alone, chosen by manager
+	public ArrayList<Ticket> selectTicketsByState(String state); //PENDING, APPROVED, DENIED //state alone, chosen by manager
+	
+	public ArrayList<Ticket> selectByAllFilters(String username, String type, String state);
 }

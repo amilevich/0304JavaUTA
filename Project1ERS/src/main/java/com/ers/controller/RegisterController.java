@@ -10,7 +10,7 @@ public class RegisterController {
 	public static String Register(HttpServletRequest request) {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-		System.out.println(request);
+		System.out.println("In RegisterController.Register");
 		System.out.println(name);
 		System.out.println(password);
 		

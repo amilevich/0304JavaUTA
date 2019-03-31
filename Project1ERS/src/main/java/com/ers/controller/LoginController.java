@@ -17,8 +17,15 @@ public class LoginController {
 		if (name.equals(user.getUsername()) && password.equals(user.getPassword())) {
 
 			request.getSession().setAttribute("User", user); // used in order to know who is logged in
-			return "/HTML/Home.html";
+			System.out.println("User set ready to load");
+			return "/HTML/Load.html";
 		}
+		return "/HTML/Login.html";
+	}
+	
+	public static String Logout(HttpServletRequest request)
+	{
+		request.getSession().setAttribute("User", null);
 		return "/HTML/Login.html";
 	}
 }

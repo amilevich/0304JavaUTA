@@ -4,7 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>Login portal</title>
 
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
@@ -12,14 +12,27 @@
 </head>
 <body>
 
+	<nav class="navbar navbar-light bg-light">
+	<span class="badge badge-light" style="margin-left: auto; margin-right: 5px">Don't have an account yet?</p>
 	<a href="http://localhost:8080/Project1ERS/HTML/Register.html" class="btn btn-primary" id="register-form-link">Register</a>
-	
+	</nav>
+
 	<form id="login-form" method="POST" action="Login.do" role="form">
-		<input type="text" name="name" id="name" placeholder="Username" value="">
-		<input type="password" name="password" id="password" placeholder="Password" value="">
-		<input type="submit" class="btn btn-primary" id="LoginButton" value="Login">
+		<div id="LoginData" style="margin: 1%">
+			<div class="row-fluid">
+				<div class="span10">
+					<input type="text" name="name" id="name" placeholder="Username" value="">
+					<br />
+					<br />
+					<input type="password" name="password" id="password" placeholder="Password" value="">
+					<br />
+					<br />
+					<input type="submit" class="btn btn-primary" id="LoginButton" value="Login">
+				</div>
+			</div>
+		</div>
 	</form>
-	
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

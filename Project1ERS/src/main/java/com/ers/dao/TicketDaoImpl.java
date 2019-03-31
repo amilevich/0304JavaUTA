@@ -28,10 +28,11 @@ public class TicketDaoImpl implements TicketDao {
 	public int insertTicket(Ticket t, String user) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_Tickets VALUES(?,?,?)");
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_Tickets VALUES(?,?,?,?)");
 			ps.setDouble(1, t.getAmount());
 			ps.setString(2, t.getType());
 			ps.setString(3, t.getState());
+			ps.setString(4, user);
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -59,7 +60,7 @@ public class TicketDaoImpl implements TicketDao {
 	}
 
 	@Override
-	public ArrayList<Ticket> selectTicketByUsername(String user) {
+	public ArrayList<Ticket> selectTicketsByUsername(String user) {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
@@ -78,7 +79,7 @@ public class TicketDaoImpl implements TicketDao {
 	}
 	
 	@Override
-	public ArrayList<Ticket> selectTicketByType(String type) {
+	public ArrayList<Ticket> selectTicketsByType(String type) {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
@@ -97,12 +98,32 @@ public class TicketDaoImpl implements TicketDao {
 	}
 	
 	@Override
-	public ArrayList<Ticket> selectTicketByState(String state) {
+	public ArrayList<Ticket> selectTicketsByState(String state) {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
 			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_state=?");
 			ps.setString(1, state);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				ticketArray.add(new Ticket(rs.getDouble("ticket_amount"), rs.getString("ticket_type"), rs.getString("ticket_state")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ticketArray;
+	}
+	
+	public ArrayList<Ticket> selectByAllFilters(String username, String type, String state){
+		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_user=? AND ticket_type=? AND ticket_state=?");
+			ps.setString(1, username);
+			ps.setString(2, (type.equals("TypeNull")) ? "*" : type);
+			ps.setString(3, (state.equals("StatusNull")) ? "*" : state);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
