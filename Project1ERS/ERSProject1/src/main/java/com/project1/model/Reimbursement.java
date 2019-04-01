@@ -12,7 +12,7 @@ public class Reimbursement {
 	private String reimb_description;
 	private Blob reimb_receipt;
 	private int reimb_author;
-	private int reimb_resolver;
+	private Integer reimb_resolver;
 	private int reimb_status_Id;
 	private int reimb_type_Id;
 
@@ -21,7 +21,7 @@ public class Reimbursement {
 	}
 
 	public Reimbursement(Double reimb_amount, Date reimb_submitted, Date reimb_resolved, String reimb_description,
-			Blob reimb_receipt, int reimb_author, int reimb_resolver, int reimb_status_Id, int reimb_type_Id) {
+			Blob reimb_receipt, int reimb_author, Integer reimb_resolver, int reimb_status_Id, int reimb_type_Id) {
 		super();
 		this.reimb_amount = reimb_amount;
 		this.reimb_submitted = reimb_submitted;
@@ -35,7 +35,7 @@ public class Reimbursement {
 	}
 
 	public Reimbursement(int reimb_Id, Double reimb_amount, Date reimb_submitted, Date reimb_resolved, String reimb_description,
-			Blob reimb_receipt, int reimb_author, int reimb_resolver, int reimb_status_Id, int reimb_type_Id) {
+			Blob reimb_receipt, int reimb_author, Integer reimb_resolver, int reimb_status_Id, int reimb_type_Id) {
 		super();
 		this.reimb_Id = reimb_Id;
 		this.reimb_amount = reimb_amount;
@@ -105,11 +105,11 @@ public class Reimbursement {
 		this.reimb_author = reimb_author;
 	}
 
-	public int getReimb_resolver() {
+	public Integer getReimb_resolver() {
 		return reimb_resolver;
 	}
 
-	public void setReimb_resolver(int reimb_resolver) {
+	public void setReimb_resolver(Integer reimb_resolver) {
 		this.reimb_resolver = reimb_resolver;
 	}
 

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Approve/Deny Reimbursement</title>
+
+<style type="text/css">
+body {
+	background-image:
+		url("https://www.tah-heetch.com/wp-content/uploads/2018/12/pretty-colourful-backgrounds-yelomdigitalsiteco.jpg");
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.sidenav {
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #E9E7DA;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: black;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #F68E2B;
+}
+
+#approveManager {
+	background-color: #E9E7DA;
+	width: 800px;
+	border: 25px solid #E9E7DA;
+	padding: 25px;
+	margin: 25px;
+	margin-left: 430px;
+	margin-right: auto;
+	text-align: center;
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<!-- Side navigation -->
+	<div class="sidenav">
+		<a href="Login.html">Login</a> <a href="ViewReimb.html">View
+			Reimbursements</a> <a href="ApproveReimb.html">Approve Reimbursements</a>
+		<a href="Profile.html">Profile</a>
+	</div>
+
+	<div id="approveManager">
+		<h1>inside approving reimbursements</h1>
+
+		<form>
+			<div class="form-group">
+				<label>Enter the reimbursement id:</label> <input type="text"
+					class="form-control" placeholder="reimbursement id">
+			</div>
+
+			<div class="form-group">
+				<label for="exampleFormControlSelect1">Select approve or
+					deny</label> <select class="form-control" id="exampleFormControlSelect1">
+					<option>Approve</option>
+					<option>Deny</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary" value="submit">Submit</button>
+		</form>
+	</div>
+
+	<div id="approveManager">
+		<h1>inside viewing reimbursements manager</h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Reimbursement ID</th>
+					<th scope="col">Type</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Description</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View Reimbursement</title>
+
+<style type="text/css">
+body {
+	background-image:
+		url("https://www.tah-heetch.com/wp-content/uploads/2018/12/pretty-colourful-backgrounds-yelomdigitalsiteco.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.sidenav {
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #E9E7DA;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: black;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #F68E2B;
+}
+
+#viewReimbEmp {
+	background-color: #E9E7DA;
+	width: 800px;
+	border: 25px solid #E9E7DA;
+	padding: 25px;
+	margin: 25px;
+	margin-left: 430px;
+	margin-right: auto;
+	text-align: center;
+	
+}
+</style>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	<!-- Side navigation -->
+	<div class="sidenav">
+			<a href="Login.html">Login</a> 
+			<a href="ViewReimb.html">View Reimbursements</a>
+			<a id="approveReimb" href="ApproveReimb.html">Approve/Deny Reimbursements</a> 
+			<a href="SubmitReimb.html">Submit Reimbursements</a> 
+			<a href="Profile.html">Profile</a>
+	</div>
+	<div id="viewReimbEmp">
+		<h4>Here is your user information</h4>
+		<div id="FirstName"></div>
+		<div id="LastName"></div>
+		<div id="Email"></div>
+
+
+		<h1>inside of viewing reimbursements</h1>
+		<div id="reimbursements">
+			<table id="myTable" class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Date Submitted</th>
+						<th scope="col">Type</th>
+						<th scope="col" style="text-align: right;">Amount</th>
+						<th scope="col" style="text-align: left;">Description</th>
+						<th scope="col">Status</th>
+						<th scope="col">Resolver</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+				<tfoot>
+					<tr>
+					</tr>
+				<tfoot>
+			</table>
+		</div>
+
+
+		<!-- <h1>inside of viewing reimbursements</h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Date Submitted</th>
+					<th scope="col">Type</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Description</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+		</table>
+	</div>-->
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="../JS/ViewReimb.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

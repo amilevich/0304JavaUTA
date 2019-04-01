@@ -15,6 +15,9 @@ public class UserReimb {
 	private int reimb_resolver;
 	private int reimb_status_Id;
 	private int reimb_type_Id;
+	private int ers_user_role_Id;
+	private String reimb_resolver_name;
+	private String reimb_author_name;
 	private String reimbStatus;
 	private String reimbType;
 	private String ersUsername;
@@ -145,16 +148,47 @@ public class UserReimb {
 		this.userLastname = userLastname;
 	}
 
+	
+	
+	public int getErs_user_role_Id() {
+		return ers_user_role_Id;
+	}
+
+	public void setErs_user_role_Id(int ers_user_role_Id) {
+		this.ers_user_role_Id = ers_user_role_Id;
+	}
+
+	public String getReimb_resolver_name() {
+		return reimb_resolver_name;
+	}
+
+	public void setReimb_resolver_name(String reimb_resolver_name) {
+		this.reimb_resolver_name = reimb_resolver_name;
+	}
+
+	public String getReimb_author_name() {
+		return reimb_author_name;
+	}
+
+	public void setReimb_author_name(String reimb_author_name) {
+		this.reimb_author_name = reimb_author_name;
+	}
+
 	@Override
 	public String toString() {
 		return "UserReimb [reimb_Id=" + reimb_Id + ", reimb_amount=" + reimb_amount + ", reimb_submitted="
 				+ reimb_submitted + ", reimb_resolved=" + reimb_resolved + ", reimb_description=" + reimb_description
 				+ ", reimb_receipt=" + reimb_receipt + ", reimb_author=" + reimb_author + ", reimb_resolver="
 				+ reimb_resolver + ", reimb_status_Id=" + reimb_status_Id + ", reimb_type_Id=" + reimb_type_Id
-				+ ", reimbStatus=" + reimbStatus + ", reimbType=" + reimbType + ", ersUsername=" + ersUsername
-				+ ", userFirstname=" + userFirstname + ", userLastname=" + userLastname + "]";
+				+ ", ers_user_role_Id=" + ers_user_role_Id + ", reimb_resolver_name=" + reimb_resolver_name
+				+ ", reimb_author_name=" + reimb_author_name + ", reimbStatus=" + reimbStatus + ", reimbType="
+				+ reimbType + ", ersUsername=" + ersUsername + ", userFirstname=" + userFirstname + ", userLastname="
+				+ userLastname + "]";
+	}
+
+
+	
 	}
 	
 	
-	
-}
+

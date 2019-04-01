@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Submit Reimbursement</title>
+
+<style type="text/css">
+body {
+	background-image:
+		url("https://www.tah-heetch.com/wp-content/uploads/2018/12/pretty-colourful-backgrounds-yelomdigitalsiteco.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.sidenav {
+	height: 100%;
+	width: 300px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #E9E7DA;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: black;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #F68E2B;
+}
+
+#submitReimb {
+	background-color: #E9E7DA;
+	width: 450px;
+	border: 25px solid #E9E7DA;
+	padding: 25px;
+	margin: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+</style>
+
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- Side navigation -->
+	<div class="sidenav">
+		<a href="Login.html">Login</a> <a href="ViewReimb.html">View
+			Reimbursements</a> <a href="SubmitReimb.html">Submit Reimbursements</a> <a
+			href="Profile.html">Profile</a>
+	</div>
+
+	<div id="submitReimb">
+		<h1>inside submit Reimbursement</h1>
+
+		<form method="POST" action="SubmitReimb.do">
+			<div class="form-group">
+				<label for="exampleFormControlSelect1">Select Reimbursement
+					Type</label> <select class="form-control" name="reimbType"
+					id="exampleFormControlSelect1">
+					<option value="LODGING">Lodging</option>
+					<option value="TRAVEL">Travel</option>
+					<option value="FOOD">Food</option>
+					<option value="OTHER">Other</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Enter your reimbursement amount</label> <input type="text"
+					class="form-control" name="amount" placeholder="Amount">
+			</div>
+			<div class="form-group">
+				<label>Description of your Reimbursement</label> <input type="text"
+					class="form-control" name="description" placeholder="Description">
+			</div>
+			<div class="form-group">
+				<label for="exampleFormControlFile1">Submit your receipt
+					file</label> <input type="file" class="form-control-file" name="receipt"
+					id="exampleFormControlFile1">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit
+				Reimbursement</button>
+		</form>
+
+		<!-- <form method="POST" action="SubmitReimb.do">
+			<label>Type of Reimbursement:</label> </br> <input type="radio"
+				name="reimbType" id="reimbLodging" value="LODGING" />Lodging <input
+				type="radio" name="reimbType" id="reimbTravel" value="TRAVEL" />Travel
+
+			<input type="radio" name="reimbType" id="reimbFood" value="FOOD" />Food
+
+			<input type="radio" name="reimbType" id="reimbOther" value="OTHER" />Other
+			</br> <label>Enter the Amount of your Reimbursement:</label> <input
+				type="number" name="amount" id="amount" placeholder="0.00"
+				step="0.01" /></br> <label>Enter the Description of your
+				Reimbursement:</label> <input type="text" name="description"
+				id="description" placeholder="Enter the description" /></br> <label>Submit
+				your Receipt:</label></br> <input type="text" name="receipt" id="receipt"
+				placeholder="Enter your recipt" /></br> <input type="submit"
+				id="submitButton" value="Submit Reimbursement" />
+
+		</form> -->
+	</div>
+</body>
+</html>

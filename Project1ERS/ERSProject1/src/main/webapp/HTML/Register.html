@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register New User</title>
+<style type="text/css">
+body {
+	background-color: #636B46;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+#register {
+	background-color: #E9E7DA;
+	width: 450px;
+	border: 25px solid #E9E7DA;
+	padding: 25px;
+	margin: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+</style>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	<!-- Side navigation -->
+	<div id="register">
+		<h1>Register as a New User:</h1>
+
+		<form method="POST" action="Register.do">
+
+			<div class="form-group">
+				<label>First name:</label> <input type="text" class="form-control" name="firstname"
+					placeholder="Enter your first name">
+			</div>
+			<div class="form-group">
+				<label>Last name:</label> <input type="text" class="form-control" name="lastname"
+					placeholder="Enter your last name">
+			</div>
+			<div class="form-group">
+				<label>Email:</label> <input type="text" class="form-control" name="email"
+					placeholder="Enter your email">
+			</div>
+			<div class="form-group">
+				<label>Username:</label> <input type="text" class="form-control" name="username"
+					placeholder="Enter your username">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Password:</label> <input
+					type="password" class="form-control" name="password" id="exampleInputPassword1"
+					placeholder="Enter your password">
+			</div>
+			<button type="submit" class="btn btn-primary" value="register">Register</button>
+		</form>
+	</div>
+</body>
+</html>

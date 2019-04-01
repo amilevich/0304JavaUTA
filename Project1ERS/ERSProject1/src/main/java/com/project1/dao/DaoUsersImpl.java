@@ -9,9 +9,16 @@ import java.sql.SQLException;
 import com.project1.model.Users;
 
 public class DaoUsersImpl implements DaoUsers {
+	static {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static String url = "jdbc:oracle:thin:@revaturedb.clyh6jvswypw.us-east-1.rds.amazonaws.com:1521:orcl";
-	private static String username = "reimbursement";
+	private static String username = "reimburse";
 	private static String password = "project1";
 
 	@Override
@@ -19,16 +26,15 @@ public class DaoUsersImpl implements DaoUsers {
 		int user_Id = 0;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn
-					.prepareStatement("INSERT INTO ERS_Users VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+					.prepareStatement("INSERT INTO ERS_Users VALUES (?, ?, ?, ?, ?, ?, ?)");
 			user_Id = nextUsersSequence();
 			ps.setInt(1, user_Id);
-			ps.setInt(2, user.getErsUsersId());
-			ps.setString(3, user.getErsUsername());
-			ps.setString(4, user.getErsPassword());
-			ps.setString(5, user.getUserFirstname());
-			ps.setString(6, user.getUserLastname());
-			ps.setString(7, user.getUserEmail());
-			ps.setInt(8, user.getUserRoleId());
+			ps.setString(2, user.getErsUsername());
+			ps.setString(3, user.getErsPassword());
+			ps.setString(4, user.getUserFirstname());
+			ps.setString(5, user.getUserLastname());
+			ps.setString(6, user.getUserEmail());
+			ps.setInt(7, 1);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,14 +46,14 @@ public class DaoUsersImpl implements DaoUsers {
 	public int updateUser(Users user) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement(
-					"UPDATE ERS_Users SET ERS_Username = ?, ERS_Password = ?, User_First_Name = ?, User_Last_Name = ?, User_Email = ?,"
-							+ " User_Role_Id = ?");
-			ps.setString(3, user.getErsUsername());
-			ps.setString(4, user.getErsPassword());
-			ps.setString(5, user.getUserFirstname());
-			ps.setString(6, user.getUserLastname());
-			ps.setString(7, user.getUserEmail());
-			ps.setInt(8, user.getUserRoleId());
+					"UPDATE ERS_Users SET ERS_Username = ?, ERS_Password = ?, User_First_Name = ?, User_Last_Name = ?, User_Email = ? "
+							+ " WHERE ERS_USERS_ID = ?");
+			ps.setString(1, user.getErsUsername());
+			ps.setString(2, user.getErsPassword());
+			ps.setString(3, user.getUserFirstname());
+			ps.setString(4, user.getUserLastname());
+			ps.setString(5, user.getUserEmail());
+			ps.setInt(6, user.getErsUsersId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,6 +74,7 @@ public class DaoUsersImpl implements DaoUsers {
 						rs.getString("User_First_Name"), rs.getString("User_Last_Name"), rs.getString("User_Email"), rs.getInt("User_Role_Id"));
 			}
 		} catch (SQLException e) {
+			System.out.println("error");
 			e.printStackTrace();
 		}
 		return user;

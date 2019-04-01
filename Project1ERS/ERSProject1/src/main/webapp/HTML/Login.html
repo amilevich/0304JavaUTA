@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+
+<style>
+body {
+	background-color: #636B46;
+	background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#login {
+	background-color: #E9E7DA;
+	width: 450px;
+	border: 25px solid #E9E7DA;
+	padding: 25px;
+	margin: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.sidenav {
+	height: 100%;
+	width: 350px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+</style>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+
+
+
+
+
+	<div id="login">
+		<h1>Login to Continue</h1>
+
+		<form id="login-form" method="POST" action="Login.do" role="form">
+			<div class="form-group">
+				<label>Enter your username:</label> <input type="text"
+					name="username" class="form-control"
+					placeholder="Enter your username">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Enter your password</label> <input
+					type="password" name="password" class="form-control"
+					id="exampleInputPassword1" placeholder="Enter your password">
+			</div>
+			<button type="submit" class="btn btn-primary" value="submit">Login</button>
+		</form>
+
+		<a href="Register.html"> Need to Register as new user? </a>
+	</div>
+
+
+
+
+</body>
+</html>
