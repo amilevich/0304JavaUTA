@@ -2,13 +2,23 @@ package com.ers.model;
 
 public class Ticket {
 	
+	long id;
 	double amount;
-	String type, state;
-	public Ticket(double amount, String type, String state) {
-		super();
+	String type, state, username, description;
+	public Ticket(long id, double amount, String username, String type, String state, String description) {
+		this.id = id;
 		this.amount = amount;
+		this.username= username;
 		this.type = type;
 		this.state = state;
+		this.description = description;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	public double getAmount() {
 		return amount;
@@ -28,9 +38,24 @@ public class Ticket {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public String toString() {
-		return "Ticket [amount=" + amount + ", type=" + type + ", state=" + state + "]";
+		return "Ticket [id=" + id + ", amount=" + amount + ", type=" + type + ", state=" + state + ", username="
+				+ username + ", description=" + description + "]";
 	}
+	
 
 }

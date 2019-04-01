@@ -25,14 +25,16 @@ public class TicketDaoImpl implements TicketDao {
 	private static String password = "Nightmarish1.";
 	
 	@Override
-	public int insertTicket(Ticket t, String user) {
+	public int insertTicket(Ticket t) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_Tickets VALUES(?,?,?,?)");
-			ps.setDouble(1, t.getAmount());
-			ps.setString(2, t.getType());
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO ERS_Tickets VALUES(?,?,?,?,?,?)");
+			ps.setLong(1, t.getId());
+			ps.setDouble(2, t.getAmount());
 			ps.setString(3, t.getState());
-			ps.setString(4, user);
+			ps.setString(4, t.getType());
+			ps.setString(5, t.getUsername());
+			ps.setString(6, t.getDescription());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -46,12 +48,19 @@ public class TicketDaoImpl implements TicketDao {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets ORDER BY ticket_id");
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ticketArray.add(new Ticket(rs.getDouble("ticket_amount"), rs.getString("ticket_type"), rs.getString("ticket_state")));
+				ticketArray.add(new Ticket(
+						rs.getLong("ticket_id"),
+						rs.getDouble("ticket_amount"), 
+						rs.getString("ticket_user"), 
+						rs.getString("ticket_type"), 
+						rs.getString("ticket_state"), 
+						rs.getString("ticket_description")));
 			}
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,12 +73,18 @@ public class TicketDaoImpl implements TicketDao {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_user=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_user=? ORDER BY ticket_id");
 			ps.setString(1, user);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ticketArray.add(new Ticket(rs.getDouble("ticket_amount"), rs.getString("ticket_type"), rs.getString("ticket_state")));
+				ticketArray.add(new Ticket(
+						rs.getLong("ticket_id"),
+						rs.getDouble("ticket_amount"), 
+						rs.getString("ticket_user"), 
+						rs.getString("ticket_type"), 
+						rs.getString("ticket_state"), 
+						rs.getString("ticket_description")));
 			}
 
 		} catch (SQLException e) {
@@ -83,12 +98,18 @@ public class TicketDaoImpl implements TicketDao {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_type=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_type=? ORDER BY ticket_id");
 			ps.setString(1, type);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ticketArray.add(new Ticket(rs.getDouble("ticket_amount"), rs.getString("ticket_type"), rs.getString("ticket_state")));
+				ticketArray.add(new Ticket(
+						rs.getLong("ticket_id"),
+						rs.getDouble("ticket_amount"), 
+						rs.getString("ticket_user"), 
+						rs.getString("ticket_type"), 
+						rs.getString("ticket_state"), 
+						rs.getString("ticket_description")));
 			}
 
 		} catch (SQLException e) {
@@ -102,12 +123,18 @@ public class TicketDaoImpl implements TicketDao {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_state=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_state=? ORDER BY ticket_id");
 			ps.setString(1, state);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ticketArray.add(new Ticket(rs.getDouble("ticket_amount"), rs.getString("ticket_type"), rs.getString("ticket_state")));
+				ticketArray.add(new Ticket(
+						rs.getLong("ticket_id"),
+						rs.getDouble("ticket_amount"), 
+						rs.getString("ticket_user"), 
+						rs.getString("ticket_type"), 
+						rs.getString("ticket_state"), 
+						rs.getString("ticket_description")));
 			}
 
 		} catch (SQLException e) {
@@ -120,20 +147,40 @@ public class TicketDaoImpl implements TicketDao {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_user=? AND ticket_type=? AND ticket_state=?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ERS_Tickets WHERE ticket_user=? AND ticket_type=? AND ticket_state=? ORDER BY ticket_id");
 			ps.setString(1, username);
 			ps.setString(2, (type.equals("TypeNull")) ? "*" : type);
 			ps.setString(3, (state.equals("StatusNull")) ? "*" : state);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				ticketArray.add(new Ticket(rs.getDouble("ticket_amount"), rs.getString("ticket_type"), rs.getString("ticket_state")));
+				ticketArray.add(new Ticket(
+						rs.getLong("ticket_id"),
+						rs.getDouble("ticket_amount"), 
+						rs.getString("ticket_user"), 
+						rs.getString("ticket_type"), 
+						rs.getString("ticket_state"), 
+						rs.getString("ticket_description")));
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return ticketArray;
+	}
+	
+	public void updateTicketStateById(long id, String state)
+	{
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			PreparedStatement ps = conn.prepareStatement("UPDATE ERS_Tickets SET ticket_state=? WHERE ticket_id=?");
+			ps.setString(1, state);
+			ps.setLong(2, id);
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

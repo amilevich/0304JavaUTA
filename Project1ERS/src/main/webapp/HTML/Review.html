@@ -23,7 +23,11 @@
 			<div class="span10">
 				<table style="width: 40%;" border="1">
 					<tr>
-						<td style="width: 80px;">User</td>
+						<td style="width: 80px;">Id</td>
+						<td id="TicketId"></td> <!-- add innerText here -->
+					</tr>
+					<tr>
+						<td>User</td>
 						<td id="TicketUsername"></td> <!-- add innerText here -->
 					</tr>
 					<tr>
@@ -39,17 +43,20 @@
 				<p>Ticket Description</p>
 				<textarea rows="5" cols="70" id="TicketDescription" style="width: 40%;" readonly></textarea>
 			</div>
-		</div>
-
-		<br />
+			<br />
+		
 		<span>
 			<p id="TicketStatus"></p> <!-- add innerText here -->
-			<input id="TicketApprove" class="btn btn-success" value="Approve" />
-			<input id="TicketDeny" class="btn btn-danger" value="Deny" />
+			<button id="TicketApprove" class="btn btn-success" style="width:25%" style="display: none">Approve</button>
+			<button id="TicketDeny" class="btn btn-danger" style="width:25%" style="display: none">Deny</button>
 		</span>
+		
+		</div>
+
+		
 	</div>
 
-	<script type="text/javascript" src="../HTML/Review.js"></script>
+	<script type="text/javascript" src="../JS/Review.js"></script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

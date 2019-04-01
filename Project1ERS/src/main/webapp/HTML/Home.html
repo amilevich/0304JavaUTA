@@ -22,15 +22,15 @@
 					<!-- button sends you back to Home -->
 
 					<p style="float: left; margin-right: 10px">Status</p>
-					<select id="StatusFilter" style="float: left; margin-right: 10px" onchange="updateFilters()">  -->
+					<select id="StatusFilter" style="float: left; margin-right: 10px" onchange="updateFilters()">
 						<option class="dropdown-option" value="StatusNull">No
-							filter</option>
-						<option class="dropdown-option" value="StatusPending">Pending</option>
-						<option class="dropdown-option" value="StatusApproved">Approved</option>
-						<option class="dropdown-option" value="StatusDenied">Denied</option>
+							Filter</option>
+						<option class="dropdown-option" value="PENDING">Pending</option>
+						<option class="dropdown-option" value="APPROVED">Approved</option>
+						<option class="dropdown-option" value="DENIED">Denied</option>
 					</select>
 					<p style="float: left; margin-right: 10px">Type</p>
-					<select id="TypeFilter" style="float: left; margin-right: 10px" onchange="updateFilters()">  -->
+					<select id="TypeFilter" style="float: left; margin-right: 10px" onchange="updateFilters()">
 						<option class="dropdown-option" value="TypeNull">No
 							Filter</option>
 						<option class="dropdown-option" value="TypeLodging">Lodging</option>
@@ -52,45 +52,21 @@
 		<thead>
 			<tr>
 				<th width="20%">Username
-				<th>
+				</th>
 				<th width="20%">Amount
-				<th>
+				</th>
 				<th width="20%">Type
-				<th>
+				</th>
 				<th width="20%">Status
-				<th>
+				</th>
 				<th width="20%">Review
-				<th>
+				</th>
 			</tr>
 		</thead>
 		<tbody id="HomeTicketTable"
 			style="height: 80px !important; overflow: scroll">
 
-			<tr style="height: 80px">
-				<td width="20%">Username
-				<td>
-				<td width="20%">Amount
-				<td>
-				<td width="20%">Type
-				<td>
-				<td width="20%">Status
-				<td>
-				<td width="20%">Review
-				<td>
-			</tr>
-
-			<tr style="height: 80px">
-				<td width="20%">Username
-				<td>
-				<td width="20%">Amount
-				<td>
-				<td width="20%">Type
-				<td>
-				<td width="20%">Status
-				<td>
-				<td width="20%">Review
-				<td>
-			</tr>
+			<!-- stuff gets inserted here through the HTML -->
 
 		</tbody>
 	</table>

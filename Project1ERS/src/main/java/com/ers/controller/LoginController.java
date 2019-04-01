@@ -18,7 +18,7 @@ public class LoginController {
 
 			request.getSession().setAttribute("User", user); // used in order to know who is logged in
 			System.out.println("User set ready to load");
-			return "/HTML/Load.html";
+			return "/HTML/Home.html";
 		}
 		return "/HTML/Login.html";
 	}
