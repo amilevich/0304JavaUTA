@@ -16,6 +16,8 @@ public class RequestHelper {
 			return UpdateReimburseController.UpdateReimburse(request);
 		case "/ProjectOne_ExpenseReimbursementSystem/html/JSON.do":
 			return JSONController.PopulateTable(request, response);
+		case "/ProjectOne_ExpenseReimbursementSystem/html/empJSON.do":
+			return JSONController.PopulateEmpTable(request, response);
 		default:
 			return "/html/Index.html";
 		}

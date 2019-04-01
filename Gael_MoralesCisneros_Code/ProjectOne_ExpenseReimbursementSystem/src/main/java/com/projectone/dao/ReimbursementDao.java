@@ -1,6 +1,5 @@
 package com.projectone.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import com.projectone.models.Reimbursement;
@@ -17,7 +16,7 @@ public interface ReimbursementDao {
 	public Integer selectUserIDByUsername(String x);
 	public List<Reimbursement> selectAllReimbursements();
 
-	//UPDATE
-	public int updateReimbursement(Timestamp x, Integer y);
+	 //UPDATEs
+	public int updateReimbursement(Reimbursement x);
 	//DELETE
 }

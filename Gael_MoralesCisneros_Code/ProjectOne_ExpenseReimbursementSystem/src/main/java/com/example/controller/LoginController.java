@@ -2,6 +2,7 @@ package com.example.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.servlet.MasterServlet;
 import com.projectone.dao.UserRolesDaoImpl;
 import com.projectone.dao.UsersDaoImpl;
 import com.projectone.models.UserRoles;
@@ -19,6 +20,7 @@ public class LoginController {
     
 		user = udi.selectUserByName(username, password);
 		if(user == null) {
+			MasterServlet.logger.info("failed login: "+username);
 			return "/html/Index.html";
 		}
    System.out.println("user: "+user);
@@ -30,8 +32,10 @@ public class LoginController {
 			ur = urdi.selectUserRolesByName(roleId);
 			System.out.println("user role: "+ur);
 			if(ur.getUserRole().equals("Viking")) {
+				MasterServlet.logger.info("employee login: "+user.getErsUsername());
 				return "/html/EmployeePortal.html";
 			} else if(ur.getUserRole().equals("fm")){
+				MasterServlet.logger.info("fManager login: "+user.getErsUsername());
 				return "/html/FManagerPortal.html";
 			}
 		}

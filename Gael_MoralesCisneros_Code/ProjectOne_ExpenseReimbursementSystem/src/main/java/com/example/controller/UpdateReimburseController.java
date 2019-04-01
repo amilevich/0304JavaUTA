@@ -1,45 +1,53 @@
 package com.example.controller;
 
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.servlet.MasterServlet;
 import com.projectone.dao.ReimbursementDaoImpl;
-import com.projectone.dao.ReimbursementStatusDaoImpl;
 import com.projectone.models.Reimbursement;
-import com.projectone.models.ReimbursementStatus;
+import com.projectone.models.Users;
 
 public class UpdateReimburseController {
 
 	public static String UpdateReimburse(HttpServletRequest request) {
-		String status = request.getParameter("status");
-		Integer id = Integer.parseInt(request.getParameter("id"));
-		
-		ReimbursementStatusDaoImpl rsdi = new  ReimbursementStatusDaoImpl();
+		String srId = request.getParameter("reimbId");
+		String approve = request.getParameter("approve");
+		String deny = request.getParameter("deny");
+
+		Integer rId = Integer.parseInt(srId);
+		Users fManager = (Users)request.getSession().getAttribute("User");
+
 		ReimbursementDaoImpl rdi = new ReimbursementDaoImpl();
 		
-		Reimbursement r = rdi.selectReimbursementById(id);
+		Reimbursement r = rdi.selectReimbursementById(rId);
+		if(r == null) {
+			return "/html/FManagerPortal.html";
+		}
 		r.setReimbResolved(getTime());
-		Integer statusId = r.getReimbStatusId();
+		r.setReimbResolver(fManager.getErsUsersId());
 		
-		rsdi.updateReimbursementStatus("Approved", statusId);
+		if(deny == null ) {
+			r.setReimbStatus("Approved");
+			MasterServlet.logger.info("Reimbursement"+rId+" approved");
+			rdi.updateReimbursement(r);
+		} else {
+			r.setReimbStatus("Denied");
+			MasterServlet.logger.info("Reimbursement "+rId+" denied");
+			rdi.updateReimbursement(r);
+		}
 		
-//		Reimbursement r = rdi.selectReimbursementById(id);
-//		r.setReimbResolved(getTime());
-//		Integer statusId = r.getReimbStatusId();
-//		
-//		rsdi.updateReimbursementStatus("Denied", statusId);
-		
-		
-		
-		return "html/FManagerPortal.html";
+		return "/html/FManagerPortal.html";
 	}
 	
-	public static Timestamp getTime() {
+	public static String getTime() {
         Date date = new Date();
-        long time = date.getTime();
-        Timestamp ts = new Timestamp(time);
-        return ts;
+        //long time = date.getTime();
+        //Timestamp ts = new Timestamp(time);
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        //return ts;
+        return timeStamp;
     }
 }

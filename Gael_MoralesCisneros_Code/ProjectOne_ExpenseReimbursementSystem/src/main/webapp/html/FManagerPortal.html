@@ -8,6 +8,21 @@
 table tbody tr.selected{
 	color: red;
 }	
+
+#updateForm{
+	border: 1px solid #E8ECEF;
+	border-radius: 5px;
+	padding: 20px;
+	background-color: #E8ECEF;
+	display: inline-block;
+	align: center;
+}
+#reimbId{
+	margin-right: 20px;
+}
+#approve{
+	margin-right: 10px;
+}
 </style>
 </head>
 <body>
@@ -17,6 +32,7 @@ table tbody tr.selected{
 			<div class="jumbotron text-center">
 				<h1>ProjectOne ERS</h1>
 				<h5>Finance Manager Portal</h5>
+				<button type="button" class="btn btn-secondary btn-sm">Logout</button>
 			</div>
 		</div>
 		<br/>
@@ -35,38 +51,25 @@ table tbody tr.selected{
  					<th scope="col">Expense type</th>
  				</thead>
  				<tbody>
- 				<tr>
- 					<td>1</td>
- 					<td>Travel</td>
- 					<td>180.00</td>
- 					<td>Flight</td>
- 					<td></td>
- 					<td>Pending</td>
- 				</tr>
- 				<tr>
- 					<td>2</td>
- 					<td>Lodging</td>
- 					<td>50.00</td>
- 					<td>Motel</td>
- 					<td></td>
- 					<td>Approved</td>
- 				</tr>
- 				<tr>
- 					<td>3</td>
- 					<td>Other</td>
- 					<td>200.00</td>
- 					<td>Entertainment</td>
- 					<td></td>
- 					<td>Denied</td>
- 				</tr>
+ 			
  				</tbody>
- 			</table>
- 			<button type="button" class="btn btn-info">Approve</button>
- 			<button type="button" class="btn btn-info">Deny</button> 			
- 			<button id ="filter" type="button" class="btn btn-info">Filter</button>
+ 			</table>			
  		</div>
  		</form>
+ 		<div class="container text-center">
+ 		<form id="updateForm" method="POST" action="UpdateReimburse.do" role="form">
+ 			<div class="input-group input-group-lg">
+ 			<input id="reimbId" name="reimbId" type="text" placeholder="Enter reimbursement id">
+ 			<input id= "approve" name="approve" type="submit" class="btn btn-info" value="Approve">
+ 			<input id="deny" name="deny" type="submit" class="btn btn-info" value="Deny">
+ 			</div>
+ 		</form>
+ 		</div>
 	</div>
+	<br/>
+	<br>
+	<br/>
+	<br/>
 
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="../js/FManagerPortal.js"></script>
