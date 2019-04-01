@@ -12,7 +12,7 @@
 
 	
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<a class="navbar-brand" href="#">RSI</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
@@ -26,7 +26,7 @@
 				<li class="nav-item active"><a class="nav-link" href="http://localhost:8080/PetsFrontController/html/Profile.html">
 				My Profile <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Reimbursements</a>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/PetsFrontController/html/Reimbursements.html">Reimbursements</a>
 				</li>
 			</ul>
 		</div>
@@ -34,33 +34,48 @@
 	<div class="container-fluid text-center">
 		<h1>Welcome Home, <span class = "name"></span></h1>
 
-		<h4>Here is your pet information:</h4>
+		<h4>Here is your Account Information:</h4>
 		<div class="text-info">
 
 		</div>
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
+					<th scope="col">ID</th>
 					<th scope="col">Name</th>
 					<th scope="col">Password</th>
 					<th scope="col">Age</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Role ID</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row">1</th>
+					<th scope="row" id ="id"></th>
 					<td class="name"></td>
 					<td id="type"></td>
 					<td id="age"></td>
+					<td id="first_name"></td>
+					<td id="last_name"></td>
+					<td id="email"></td>
+					<td id="role_id"></td>
 				</tr>
 			</tbody>
 		</table>
 
 		<a href="http://localhost:8080/PetsFrontController/html/Login.html"
-			class="btn btn-primary" id="logout-link">Log Out</a> <a
+			class="btn btn-primary" id="logout-link">Log Out</a> 
+		<a
 			href="http://localhost:8080/PetsFrontController/html/Profile.html"
-			class="btn btn-primary" id="profile-link">Change Password</a>
+			class="btn btn-primary" id="profile-link">Account Info</a>
+		<a
+			href="http://localhost:8080/PetsFrontController/html/NewReimb.html"
+			class="btn btn-primary" id="profile-link">Add Reimbursement</a>
+		<a
+			href="http://localhost:8080/PetsFrontController/html/Reimbursements.html"
+			class="btn btn-primary" id="profile-link">View Reimbursement</a>
 
 	</div>
 

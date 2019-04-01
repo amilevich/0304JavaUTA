@@ -13,9 +13,8 @@ public class HomeController {
 
 	public static String Home(HttpServletRequest request) {
 		
-		
-		
 		return null;
+		
 	}
 	
 	public static String PetJSON(HttpServletRequest request, HttpServletResponse response) {

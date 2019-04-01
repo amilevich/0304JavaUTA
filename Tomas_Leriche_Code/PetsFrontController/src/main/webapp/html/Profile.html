@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<a class="navbar-brand" href="#">RSI</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
@@ -30,17 +30,25 @@
 		</div>
 	</nav>
 
-	<a href="http://localhost:8080/PetsFrontController/html/Profile.html"
-		class="btn btn-primary" id="profile-form-link">Click to go to
-		Profile</a>
+	<a href="http://localhost:8080/PetsFrontController/html/Home.html"
+		class="btn btn-primary" id="profile-form-link">Back to Home</a>
 
-	<h2>Please change your name below:</h2>
+	<h2>Please change your information below:</h2>
 	<form method="POST" action="Update.do">
 		<!-- we are using the name attribute -->
 		<input type="text" name="type" id="type"
-			placeholder="Enter your pet's new type" /> <input type="submit"
+			placeholder="Enter new password" required /> <br />
+		<!-- we are using the name attribute -->
+		<input type="text" name="age" id="type"
+			placeholder="Enter new age" required /> <br />
+		<input type="text" name="first_name" id="type"
+			placeholder="Enter new first name" required /> <br />
+		<input type="text" name="last_name" id="type"
+			placeholder="Enter new last name" required /> <br />
+		<input type="text" name="email" id="type"
+			placeholder="Enter new email" required /> <br />
+		<input type="submit"
 			class="btn btn-primary" id="submitButton" value="Submit" />
-
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

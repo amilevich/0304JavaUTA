@@ -11,19 +11,70 @@
 </head>
 
 <body>
-
-	<form id="register-form" method="POST" action="Register.do" role="form">
-
-		<label>Pet's Name</label> <input type="text" name="name" id="name"
-			placeholder="Pet's Name" value=""> <label>Pet's Type</label>
-		<input type="password" name="type" id="type" placeholder="Pet's Type"
-			value=""> <input type="submit" class="btn btn-primary"
-			id="SubmitButton" value="Register">
-		<a href="http://localhost:8080/PetsFrontController/html/Login.html"
-		class="btn btn-primary" id="register-form-link">Login</a>
-
-	</form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">RSI</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					href="http://localhost:8080/PetsFrontController/html/Login.html">
+						Logout</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="http://localhost:8080/PetsFrontController/html/Profile.html">
+						My Profile <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Reimbursements</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 	
+<div class = "container text-center">
+<h1>Welcome!</h1>
+
+<div id="login">
+		<h3 class="text-center text-white pt-5">Welcome!</h3>
+		<div class="container">
+			<div id="login-row"
+				class="row justify-content-center align-items-center">
+				<div id="login-column" class="col-md-6">
+					<div id="login-box" class="col-md-12">
+						<form id="register-form" class="form" action="Register.do" method="POST" role="form">
+							<h3 class="text-center text-info">Register</h3>
+							<div class="form-group">
+								<label for="username" class="text-info">Username:</label><br>
+								<input type="text" name="name" id="username"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="password" class="text-info">Password:</label><br>
+								<input type="text" name="type" id="password"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="remember-me" class="text-info"><span>Remember
+										me</span> <span><input id="remember-me" name="remember-me"
+										type="checkbox"></span></label><br> 
+								<input type="submit" name="submit" class="btn btn-info btn-md" 
+											value="Register">
+
+							</div>
+							<div id="register-link" class="text-right">
+								<a href="http://localhost:8080/PetsFrontController/html/Login.html" class="text-info">Login Here</a>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

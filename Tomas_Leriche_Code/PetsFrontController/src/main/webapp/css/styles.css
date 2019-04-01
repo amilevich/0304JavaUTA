@@ -5,6 +5,40 @@ body {
   height: 100vh;
 }
 
+h1{
+	margin-top:5px;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 40px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9C9C9C;
+  border-radius: 10px;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -75px;
+  margin-right: 5px;
+}
+#sub-but{
+	margin-top:14px;
+}
 .container.text-center.text-white {
 	margin-top: 20px;
 }
+
+#loading {
+  color: red;
+  font-size: 25px;
+}
+
+
+
+
+
+
+
