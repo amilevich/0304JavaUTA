@@ -31,11 +31,11 @@ public class UpdateReimburseController {
 		
 		if(deny == null ) {
 			r.setReimbStatus("Approved");
-			MasterServlet.logger.info("Reimbursement"+rId+" approved");
+//			Main.logger.info("Reimbursement"+rId+" approved");
 			rdi.updateReimbursement(r);
 		} else {
 			r.setReimbStatus("Denied");
-			MasterServlet.logger.info("Reimbursement "+rId+" denied");
+//			Main.logger.info("Reimbursement "+rId+" denied");
 			rdi.updateReimbursement(r);
 		}
 		

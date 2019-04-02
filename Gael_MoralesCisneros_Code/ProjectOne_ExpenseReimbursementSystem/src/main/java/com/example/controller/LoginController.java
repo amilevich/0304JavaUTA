@@ -2,6 +2,8 @@ package com.example.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import com.example.servlet.MasterServlet;
 import com.projectone.dao.UserRolesDaoImpl;
 import com.projectone.dao.UsersDaoImpl;
@@ -11,7 +13,7 @@ import com.projectone.models.Users;
 public class LoginController {
 	
 	public static String Login(HttpServletRequest request) {
-
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
     System.out.println(username + " "+ password);

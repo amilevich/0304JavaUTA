@@ -41,7 +41,7 @@ public class ReimbRequestController {
 		r.setReimbStatus("Pending");
 		rdi.insertReimbursement(r);
 		
-		MasterServlet.logger.info("New reimbursement request: "+r);	
+//		Main.logger.info("New reimbursement request: "+r);	
 		return "/html/EmployeePortal.html";
 		
 	}
