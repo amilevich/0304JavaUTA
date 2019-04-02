@@ -8,26 +8,29 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="../CSS/Login.css"> <!-- added this to link Login.html to Login.css -->
 
 </head>
 <body>
 
-	<nav class="navbar navbar-light bg-light">
-	<span class="badge badge-light" style="margin-left: auto; margin-right: 5px">Don't have an account yet?</p>
-	<a href="http://localhost:8080/Project1ERS/HTML/Register.html" class="btn btn-primary" id="register-form-link">Register</a>
+	<nav class="navbar navbar-light" style="background-color: #d3d3d3;">
+	<img src="https://revature.com/wp-content/uploads/2017/12/revature-logo-600x219.png" style="width: 100px;">
+	<span style="margin-left: auto; margin-right: 5px"> </span>
+	<a href="http://localhost:8080/Project1ERS/HTML/Register.html" class="btn btn-dark" id="register-form-link">Register</a>
 	</nav>
 
 	<form id="login-form" method="POST" action="Login.do" role="form">
 		<div id="LoginData" style="margin: 1%">
 			<div class="row-fluid">
 				<div class="span10">
+					<label style="margin-right:14px">Username</label>
 					<input type="text" name="name" id="name" placeholder="Username" value="">
 					<br />
-					<br />
+					<label style="margin-right:18px">Password</label>
 					<input type="password" name="password" id="password" placeholder="Password" value="">
 					<br />
-					<br />
-					<input type="submit" class="btn btn-primary" id="LoginButton" value="Login">
+					<input type="submit" class="btn btn-dark" id="LoginButton" value="Login">
 				</div>
 			</div>
 		</div>

@@ -2,20 +2,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Submit ticket</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="../CSS/Submit.css"> <!-- added this to link Submit.html to Submit.css -->
 
 </head>
 <body>
 
-	<nav class="navbar navbar-light bg-light">
-		<a class="btn btn-primary" href="./Home.html">Home</a>
+	<nav class="navbar navbar-light" style="background-color: #d3d3d3;">
+		<a class="btn btn-dark" href="./Home.html">Home</a>
 		<!-- button sends you back to Home -->
-		<a class="btn btn-primary" href="./Login.html">Logout</a>
+		<a class="btn btn-dark" href="./Login.html">Logout</a>
 	</nav>
 
 	<div id="SubmitData" style="margin: 1%">
@@ -31,10 +33,10 @@
 							<td><p style="float: left; margin-right: 10px">Type</p></td>
 							<td><select id="TypeFilter" style="float: left; margin-right: 10px" name="SubmittedType">
 									<option class="dropdown-option" value="TypeNull">---</option>
-									<option class="dropdown-option" value="TypeLodging">Lodging</option>
-									<option class="dropdown-option" value="TypeTravel">Travel</option>
-									<option class="dropdown-option" value="TypeFood">Food</option>
-									<option class="dropdown-option" value="TypeOther">Other</option>
+									<option class="dropdown-option" value="Lodging">Lodging</option>
+									<option class="dropdown-option" value="Travel">Travel</option>
+									<option class="dropdown-option" value="Food">Food</option>
+									<option class="dropdown-option" value="Other">Other</option>
 							</select></td>
 						</tr>	
 						<tr>
@@ -47,11 +49,17 @@
 						</tr>
 					</table>
 					
-					<input type="submit" class="btn btn-primary" value="Submit"/> <!-- add functionality to this button -->
+					<input type="submit" class="btn btn-dark" value="Submit"/> <!-- add functionality to this button -->
 				</form>
 			</div>
 		</div>
 	</div>
+	
+	<script>
+	window.onload = function(){
+		document.getElementById("SubmittedUsername").setAttribute("value", localStorage.getItem("currUser"));
+	}
+	</script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

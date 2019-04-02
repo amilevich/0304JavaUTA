@@ -7,8 +7,17 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="../CSS/Register.css"> <!-- added this to link Register.html to Register.css -->
+	
 </head>
 <body>
+
+	<nav class="navbar navbar-light" style="background-color: #d3d3d3;">
+	<img src="https://revature.com/wp-content/uploads/2017/12/revature-logo-600x219.png" style="width: 100px;">
+	<span style="margin-left: auto; margin-right: 5px"> </span>
+	<a href="http://localhost:8080/Project1ERS/HTML/Login.html" class="btn btn-dark" id="register-form-link">Go back</a>
+	</nav>
 
 	<form method="POST" action="Register.do" role="form">
 		<div id="TicketData" style="margin: 1%">
@@ -20,9 +29,8 @@
 					<label style="margin-right:14px">New Password</label> <!-- change px to align the two textboxes -->
 					<input type="text" name="password" id="password" placeholder="Enter your password" />
 					<br />
-					<input type="submit" class="btn btn-primary" id="submitButton" value="Register" /> <!-- class="btn btn-primary" makes the buttons blue -->
+					<input type="submit" class="btn btn-dark" id="submitButton" value="Register" /> <!-- class="btn btn-primary" makes the buttons blue -->
 					<br/>
-					<img src="https://revature.com/wp-content/uploads/2017/12/revature-logo-600x219.png" style="width: 200px;">
 				</div>
 			</div>
 		</div>
