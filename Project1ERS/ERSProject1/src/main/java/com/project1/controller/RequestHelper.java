@@ -25,6 +25,9 @@ public class RequestHelper {
 		case "/ERSProject1/HTML/UserJSON.do":
 			return ViewReimbController.UserJSON(request, response);
 			
+		case "/ERSProject1/HTML/ApproveReimb.do":
+			return SubmitReimbController.UpdateStatus(request);
+			
 		default:
 			return "/html/Login.html";
 		}

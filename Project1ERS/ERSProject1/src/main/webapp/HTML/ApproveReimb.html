@@ -9,7 +9,7 @@ body {
 	background-image:
 		url("https://www.tah-heetch.com/wp-content/uploads/2018/12/pretty-colourful-backgrounds-yelomdigitalsiteco.jpg");
 	background-repeat: no-repeat;
-    background-size: 100% 100%;
+	background-size: 100% 100%;
 }
 
 .sidenav {
@@ -46,6 +46,9 @@ body {
 	margin-right: auto;
 	text-align: center;
 }
+#btnSubmit {
+	background-color: #F68E2B;
+}
 </style>
 
 <link rel="stylesheet"
@@ -58,46 +61,64 @@ body {
 
 	<!-- Side navigation -->
 	<div class="sidenav">
-		<a href="Login.html">Login</a> <a href="ViewReimb.html">View
-			Reimbursements</a> <a href="ApproveReimb.html">Approve Reimbursements</a>
+		<a href="Login.html">Login</a> 
+		<a href="ViewReimb.html">View Reimbursements</a> 
+		<a href="ApproveReimb.html">Approve/Deny Reimbursements</a>
+		<a href="SubmitReimb.html">Submit Reimbursements</a> 
 		<a href="Profile.html">Profile</a>
 	</div>
 
 	<div id="approveManager">
-		<h1>inside approving reimbursements</h1>
+		<h1>Approve/Deny Reimbursements</h1>
 
-		<form>
+		<form method="POST" action="ApproveReimb.do">
+		<div class="form-group" style="display: none">
+				<label>ID:</label> <input type="text" class="form-control" id="UserId" name="userId">
+			</div>
 			<div class="form-group">
 				<label>Enter the reimbursement id:</label> <input type="text"
-					class="form-control" placeholder="reimbursement id">
+					class="form-control" name="reimbId" placeholder="reimbursement id">
 			</div>
 
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">Select approve or
-					deny</label> <select class="form-control" id="exampleFormControlSelect1">
-					<option>Approve</option>
-					<option>Deny</option>
+					deny</label> <select class="form-control" id="exampleFormControlSelect1" name="status">
+					<option value="1">Approve</option>
+					<option value="3">Deny</option>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-primary" value="submit">Submit</button>
+			<button id="btnSubmit" type="submit" class="btn btn-primary" value="submit">Submit</button>
 		</form>
 	</div>
 
 	<div id="approveManager">
-		<h1>inside viewing reimbursements manager</h1>
-
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">Reimbursement ID</th>
-					<th scope="col">Type</th>
-					<th scope="col">Amount</th>
-					<th scope="col">Description</th>
-					<th scope="col">Status</th>
-				</tr>
-			</thead>
-		</table>
+		<h1>User Reimbursements</h1>
+		<div id="reimbursements">
+			<table id="myTable" class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Reimbursement ID</th>
+						<th scope="col">Type</th>
+						<th scope="col" style="text-align: right;">Amount</th>
+						<th scope="col" style="text-align: left;">Description</th>
+						<th scope="col">Status</th>
+						<th scope="col">Author</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+				<tfoot>
+					<tr>
+					</tr>
+				<tfoot>
+			</table>
+		</div>
 	</div>
-
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../JS/ApproveReimb.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

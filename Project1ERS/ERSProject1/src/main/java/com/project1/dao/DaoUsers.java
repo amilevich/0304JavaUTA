@@ -9,4 +9,6 @@ public interface DaoUsers {
 	public int updateUser(Users user);
 	
 	public Users validateUser(String ers_username, String ers_password);
+	
+	public Users getUserById(int userId);
 }

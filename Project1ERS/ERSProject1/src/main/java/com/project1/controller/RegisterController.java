@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.project1.dao.DaoUsersImpl;
 import com.project1.model.Users;
+import com.project1.controller.AWSHelper;
 
 public class RegisterController {
 	
@@ -26,6 +27,7 @@ public class RegisterController {
 
 		int userId = daoUsersImpl.insertUser(user);
 
+		AWSHelper.sendMail();
 		//request.getSession().setAttribute("User", user);
 		// check for invalid registry
 		return "Login.html";

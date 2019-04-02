@@ -55,4 +55,19 @@ public class SubmitReimbController {
 		return "ViewReimb.html";
 
 	}
+	
+	public static String UpdateStatus(HttpServletRequest request) {
+
+		int status = Integer.parseInt(request.getParameter("status"));
+		int reimbId = Integer.parseInt(request.getParameter("reimbId"));
+		int userId = Integer.parseInt(request.getParameter("userId"));
+
+		DaoReimbursementImpl daoReimbursementImpl = new DaoReimbursementImpl();
+
+				
+		int reimbursementId = daoReimbursementImpl.updateReimbStatus(reimbId, status, userId);
+
+		return "ApproveReimb.html";
+
+	}
 }

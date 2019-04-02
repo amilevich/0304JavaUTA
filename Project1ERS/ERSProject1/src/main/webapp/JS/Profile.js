@@ -3,6 +3,14 @@
  */
 window.onload = function() {
 	getUserInfo();
+	
+	$(':text').on('input', function() {
+        if( $(':text').filter(function() { return !!this.value; }).length > 0 ) {
+             $('#btnSubmit').prop('disabled', false);
+        } else {
+             $('#btnSubmit').prop('disabled', true);
+        }
+    });
 }
 
 function getUserInfo() {
@@ -23,6 +31,12 @@ function getUserInfo() {
 }
 
 function setValues(userReimb) {
+	
+	var x = document.getElementById("approveReimb");
+	if (sessionStorage.getItem("userRole") == "1") {
+		x.style.display = "none";
+	}
+	
 	document.getElementById("UserId").value = userReimb.ersUsersId;
 	document.getElementById("FirstName").value = userReimb.userFirstname;
 	document.getElementById("LastName").value = userReimb.userLastname;

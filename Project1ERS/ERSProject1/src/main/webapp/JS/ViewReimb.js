@@ -4,6 +4,8 @@
 window.onload = function() {
 
 	getUserInfo();
+	
+	//alert(sessionStorage.getItem("userId"));
 }
 
 function getUserInfo() {
@@ -32,11 +34,13 @@ function setValues(userReimb) {
 	document.getElementById("Email").innerHTML = "Email: "
 			+ userReimb.userEmail;
 	
+	
+	
 	localStorage.setItem("isManager", "FALSE");
 	var x = document.getElementById("approveReimb");
 	if (userReimb.userRoleId == 1) {
 		x.style.display = "none";
-		localStorage.setItem("isManager", "FALSE");
+//		localStorage.setItem("isManager", "FALSE");
 	}
 	else {
 		x.style.display = "block";
@@ -47,6 +51,9 @@ function setValues(userReimb) {
 	let status = "";
 	let type = "";
 	let resolver = "-";
+	
+	sessionStorage.setItem("userId", userReimb.ersUsersId);
+	sessionStorage.setItem("userRole", userReimb.userRoleId);
 	
 	$.each(reimbList, function(key, valueObj) {
 		switch (valueObj.reimb_status_Id) {
@@ -76,7 +83,10 @@ function setValues(userReimb) {
 		}
 
 		if (valueObj.reimb_resolver != 0)
-			resolver = valueObj.reimb_resolver;
+			resolver = valueObj.reimb_resolver_name;
+		else{
+			resolver = "-";
+		}
 		
 		// console.log(valueObj.reimb_description);
 		$("#myTable").find('tbody').append(

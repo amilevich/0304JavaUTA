@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ERS</title>
+<title>Profile</title>
 
 <style type="text/css">
 body {
 	background-image:
 		url("https://www.tah-heetch.com/wp-content/uploads/2018/12/pretty-colourful-backgrounds-yelomdigitalsiteco.jpg");
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: 100%;
 }
 
 .sidenav {
@@ -46,6 +46,9 @@ body {
 	margin-right: auto;
 	text-align: center;
 }
+#btnSubmit {
+	background-color: #F68E2B;
+}
 </style>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -58,9 +61,11 @@ body {
 
 	<!-- Side navigation -->
 	<div class="sidenav">
-		<a href="Login.html">Login</a> <a href="ViewReimb.html">View
-			Reimbursements</a> <a href="SubmitReimb.html">Submit Reimbursements</a> <a
-			href="Profile.html">Profile</a>
+		<a href="Login.html">Login</a> 
+		<a href="ViewReimb.html">View Reimbursements</a>
+		<a id="approveReimb" href="ApproveReimb.html">Approve/Deny Reimbursements</a> 
+		<a href="SubmitReimb.html">Submit Reimbursements</a> 
+		<a href="Profile.html">Profile</a>
 	</div>
 
 	<div id="profile">
@@ -87,7 +92,7 @@ body {
 				<label for="exampleInputPassword1">Password:</label> <input
 					type="text" class="form-control" id="Password" name="password">
 			</div>
-			<button type="submit" class="btn btn-primary" id="updateProfile"
+			<button id="btnSubmit" type="submit" class="btn btn-primary" disabled id="updateProfile"
 				value="updateProfile">Submit</button>
 		</form>
 

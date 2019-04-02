@@ -9,7 +9,7 @@ body {
 	background-image:
 		url("https://www.tah-heetch.com/wp-content/uploads/2018/12/pretty-colourful-backgrounds-yelomdigitalsiteco.jpg");
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: 100%;
 }
 
 .sidenav {
@@ -46,6 +46,9 @@ body {
 	margin-right: auto;
 	text-align: center;
 }
+#btnSubmit {
+	background-color: #F68E2B;
+}
 </style>
 
 
@@ -58,13 +61,15 @@ body {
 
 	<!-- Side navigation -->
 	<div class="sidenav">
-		<a href="Login.html">Login</a> <a href="ViewReimb.html">View
-			Reimbursements</a> <a href="SubmitReimb.html">Submit Reimbursements</a> <a
-			href="Profile.html">Profile</a>
+		<a href="Login.html">Login</a> 
+		<a href="ViewReimb.html">View Reimbursements</a> 
+		<a id="approveReimb" href="ApproveReimb.html">Approve/Deny Reimbursements</a>
+		<a href="SubmitReimb.html">Submit Reimbursements</a> 
+		<a href="Profile.html">Profile</a>
 	</div>
 
 	<div id="submitReimb">
-		<h1>inside submit Reimbursement</h1>
+		<h1>Submit Reimbursement</h1>
 
 		<form method="POST" action="SubmitReimb.do">
 			<div class="form-group">
@@ -91,7 +96,7 @@ body {
 					id="exampleFormControlFile1">
 			</div>
 
-			<button type="submit" class="btn btn-primary">Submit
+			<button id="btnSubmit" type="submit" class="btn btn-primary">Submit
 				Reimbursement</button>
 		</form>
 
@@ -114,5 +119,11 @@ body {
 
 		</form> -->
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script type="text/javascript" src="../JS/SubmitReimb.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

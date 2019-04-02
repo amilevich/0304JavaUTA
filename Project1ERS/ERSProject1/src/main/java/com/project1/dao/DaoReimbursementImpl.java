@@ -137,6 +137,21 @@ public class DaoReimbursementImpl implements DaoReimbursement {
 		return reimbursements;
 	}
 	
+	@Override
+	public int updateReimbStatus(int reimbId, int status, int resolverId) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = conn.prepareStatement(
+					"UPDATE ERS_Reimbursement SET reimb_status_Id = ?, reimb_resolver = ? WHERE reimb_Id = ?");
+			ps.setInt(1, status);
+			ps.setInt(2, resolverId);
+			ps.setInt(3, reimbId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reimbId;
+	}
+	
 	private int nextReimbursementSequence() {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement("SELECT reimbursement_seq.NEXTVAL FROM dual");

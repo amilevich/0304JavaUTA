@@ -14,5 +14,7 @@ public interface DaoReimbursement {
 	public List<UserReimb> selectAllReimbursements(int user_Id);
 	
 	public List<UserReimb> selectReimbursementsByUser(int user_Id);
+	
+	public int updateReimbStatus(int reimbId, int status, int resolverId);
 
 }
