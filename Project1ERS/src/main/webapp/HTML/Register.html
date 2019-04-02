@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register portal</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="../CSS/Register.css"> <!-- added this to link Register.html to Register.css -->
+	
+</head>
+<body>
+
+	<nav class="navbar navbar-light" style="background-color: #d3d3d3;">
+	<img src="https://revature.com/wp-content/uploads/2017/12/revature-logo-600x219.png" style="width: 100px;">
+	<span style="margin-left: auto; margin-right: 5px"> </span>
+	<a href="http://localhost:8080/Project1ERS/HTML/Login.html" class="btn btn-dark" id="register-form-link">Go back</a>
+	</nav>
+
+	<form method="POST" action="Register.do" role="form">
+		<div id="TicketData" style="margin: 1%">
+			<div class="row-fluid">
+				<div class="span10">
+					<label style="margin-right:10px">New Username</label>
+					<input type="text" name="name" id="name" placeholder="Enter your username" />
+					<br />
+					<label style="margin-right:14px">New Password</label> <!-- change px to align the two textboxes -->
+					<input type="text" name="password" id="password" placeholder="Enter your password" />
+					<br />
+					<input type="submit" class="btn btn-dark" id="submitButton" value="Register" /> <!-- class="btn btn-primary" makes the buttons blue -->
+					<br/>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
