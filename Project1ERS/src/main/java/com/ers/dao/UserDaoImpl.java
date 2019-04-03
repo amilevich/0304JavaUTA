@@ -6,11 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
+import com.ers.controller.HomeController;
 import com.ers.model.Ticket;
 import com.ers.model.User;
 
 public class UserDaoImpl implements UserDao {
+	
+	final static Logger logger = Logger.getLogger(HomeController.class.getName());
+	
 	// insert
 	static {
 		try {
@@ -36,6 +41,7 @@ public class UserDaoImpl implements UserDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			logger.info("NEW USER " + u.getUsername() + " FAILED TO REGISTER");
 		}
 		return 0;
 	}

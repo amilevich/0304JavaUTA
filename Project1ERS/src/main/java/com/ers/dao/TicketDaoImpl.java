@@ -6,10 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
+import com.ers.controller.HomeController;
 import com.ers.model.Ticket;
 
 public class TicketDaoImpl implements TicketDao {
+	
+	final static Logger logger = Logger.getLogger(HomeController.class.getName());
 
 	// insert
 	static {

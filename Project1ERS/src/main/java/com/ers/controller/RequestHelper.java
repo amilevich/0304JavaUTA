@@ -21,11 +21,6 @@ public class RequestHelper {
 		case "/Project1ERS/HTML/Register.do":
 			return RegisterController.Register(request);
 			
-			/*
-		case "/Project1ERS/HTML/TicketJSON.do":
-			return HomeController.TicketJSON(request, response);
-			*/
-			
 		case "/Project1ERS/HTML/Submit.do":
 			return SubmitController.Submit(request);
 			
@@ -33,7 +28,7 @@ public class RequestHelper {
 			return UpdateController.Update(request);
 			
 		case "/Project1ERS/HTML/Logout.do":
-			return LoginController.Logout(request);
+			return LogoutController.Logout(request);
 		
 		default:
 			return "/HTML/Login.html";

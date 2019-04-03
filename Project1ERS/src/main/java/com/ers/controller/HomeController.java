@@ -2,6 +2,7 @@ package com.ers.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 public class HomeController {
+	
+	final static Logger logger = Logger.getLogger(HomeController.class.getName());
+	
 	public static String Home(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("In HomeController.TicketJSON");
 
@@ -39,32 +43,5 @@ public class HomeController {
 
 		return null;
 	}
-
-	/*
-	public static String TicketJSON(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("In HomeController.TicketJSON");
-
-		TicketDaoImpl ticketDaoImpl = new TicketDaoImpl();
-		ArrayList<Ticket> ticketArray = ticketDaoImpl.selectAllTickets();
-
-		User user = (User) request.getSession().getAttribute("User");
-
-		try {
-			String json = new Gson().toJson(user.getUsername()) + "*";
-			for(Ticket t : ticketArray)
-				json += new Gson().toJson(t) + "*";
-			System.out.println(json);
-
-			response.getWriter().write(new ObjectMapper().writeValueAsString(json));
-			
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-	*/
 
 }

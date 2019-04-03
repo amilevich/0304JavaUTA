@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ers.controller.RequestHelper;
 
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+
 public class MasterServlet extends HttpServlet {
 
 	@Override
