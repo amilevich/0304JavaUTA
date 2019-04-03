@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Finance Manager Portal</title>
+
+<style>
+table {class ="table"
+	
+}
+
+body {
+	background-color: white;
+	color: blue;
+}
+</style>
+</head>
+<body>
+	<h1>Finance Manager</h1>
+	<div>
+		<h4>What would you like to do?</h4>
+
+		<div class="accordion" id="accordionOne">
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse"
+							data-target="#collapseOne" aria-expanded="true"
+							aria-controls="collapseOne">View All Tickets</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+					data-parent="#accordionOne">
+					<div class="card-body" id="accordionTableOne">
+						<table id="reimbTableOne">
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingTwo">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse"
+							data-target="#collapseTwo" aria-expanded="true"
+							aria-controls="collapseTwo">View Unresolved Tickets</button>
+					</h2>
+				</div>
+
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionOne">
+					<div class="card-body" id="accordionTableTwo">
+						<table id="reimbTableTwo">
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-header" id="headingThree">
+					<h2 class="mb-0">
+						<button class="btn btn-link" type="button" data-toggle="collapse"
+							data-target="#collapseThree" aria-expanded="true"
+							aria-controls="collapseThree">View Resolved Tickets</button>
+					</h2>
+				</div>
+				<div id="collapseThree" class="collapse"
+					aria-labelledby="headingThree" data-parent="#accordionOne">
+					<div class="card-body" id="accordionTableThree">
+						<table id="reimbTableThree">
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p>
+			<a class="btn btn-primary" data-toggle="collapse"
+				href="#collapseForm" role="button" aria-expanded="false"
+				aria-controls="">Approve/Deny Reimbursement Request</a>
+		</p>
+		<div class="collapse" id="collapseForm">
+			<div class="card card-body">
+				<form method="Post" action="FHome.do">
+					<label>Reimbursement ID</label> <input type="number" name="ReimbursementId"
+						id="Amount"> <label>Approve or Deny?</label> <input type="radio"
+						name="Approval" value="1"> Approve <input type="radio"
+						name="Approval" value="0"> Deny
+					<input type="submit" class="Alpha" id="SubmitButton" value="Submit" />
+				</form>
+			</div>
+		</div>
+
+		<form method="Post" action="Logout.do">
+			<input type="submit" id="Logoutbutton" value="Logout">
+		</form>
+		<script type="text/javascript" src="../js/Data2.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+</body>
+</html>
