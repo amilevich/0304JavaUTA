@@ -1,5 +1,9 @@
 package com.ers.controller;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.ers.dao.UserDaoImpl;
@@ -11,10 +15,14 @@ public class LoginController {
 		String password = request.getParameter("password");
 
 		UserDaoImpl userDaoImpl = new UserDaoImpl();
-		
 		User user = userDaoImpl.selectUserByUsername(name);
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		md.update(name.getBytes(StandardCharsets.UTF_8)); 		// 'salt' with username
+		byte[] digest = md.digest(password.getBytes(StandardCharsets.UTF_8));	// hash pw
+		String shaPassword = String.format("%064x", new BigInteger(1, digest));
 
-		if (name.equals(user.getUsername()) && password.equals(user.getPassword())) {
+		if (name.equals(user.getUsername()) && shaPassword.equals(user.getPassword())) {
 
 			request.getSession().setAttribute("User", user); // used in order to know who is logged in
 			System.out.println("User set ready to load");
