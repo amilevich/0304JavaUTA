@@ -1,0 +1,663 @@
+2019-03-18 10:28:24 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 10:28:26 INFO  AppDriver:25 - Initialization complete
+2019-03-18 10:28:42 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 10:28:42 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 10:28:54 INFO  AppDriver:447 - Account updated
+2019-03-18 10:29:32 INFO  AppDriver:488 - Account Withdrawal Attempted
+2019-03-18 10:29:52 INFO  AppDriver:504 - Account deposit attempted
+2019-03-18 10:29:55 INFO  AppDriver:509 - Deposit Transaction Completed
+2019-03-18 10:47:46 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 10:47:48 INFO  AppDriver:25 - Initialization complete
+2019-03-18 10:48:31 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 10:48:32 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 10:49:03 INFO  AppDriver:447 - Account updated
+2019-03-18 10:51:07 INFO  AppDriver:504 - Account deposit attempted
+2019-03-18 10:51:15 INFO  AppDriver:509 - Deposit Transaction Completed
+2019-03-18 11:10:05 INFO  AppDriver:458 - Checking Database For Employees
+2019-03-18 11:10:06 INFO  AppDriver:25 - Initialization complete
+2019-03-18 11:10:25 INFO  AppDriver:522 - Employee Login Attempted
+2019-03-18 11:10:26 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 11:35:41 INFO  AppDriver:473 - Checking Database For Employees
+2019-03-18 11:35:42 INFO  AppDriver:25 - Initialization complete
+2019-03-18 11:36:04 INFO  AppDriver:537 - Employee Login Attempted
+2019-03-18 11:36:05 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 11:44:59 INFO  AppDriver:576 - Checking Database For Employees
+2019-03-18 11:45:00 INFO  AppDriver:25 - Initialization complete
+2019-03-18 11:45:14 INFO  AppDriver:640 - Employee Login Attempted
+2019-03-18 11:45:14 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 11:51:04 INFO  AppDriver:576 - Checking Database For Employees
+2019-03-18 11:51:05 INFO  AppDriver:25 - Initialization complete
+2019-03-18 11:51:24 INFO  AppDriver:640 - Employee Login Attempted
+2019-03-18 11:51:24 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 11:52:00 INFO  AppDriver:446 - Account updated
+2019-03-18 11:57:40 INFO  AppDriver:447 - Account updated
+2019-03-18 12:35:07 INFO  AppDriver:446 - Account updated
+2019-03-18 12:36:00 INFO  AppDriver:447 - Account updated
+2019-03-18 12:37:28 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 12:37:29 INFO  AppDriver:25 - Initialization complete
+2019-03-18 12:37:46 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 12:37:46 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 12:37:58 INFO  AppDriver:446 - Account updated
+2019-03-18 12:40:25 INFO  AppDriver:503 - Account deposit attempted
+2019-03-18 12:40:29 INFO  AppDriver:508 - Deposit Transaction Completed
+2019-03-18 12:41:35 INFO  AppDriver:446 - Account updated
+2019-03-18 12:42:03 INFO  AppDriver:447 - Account updated
+2019-03-18 12:42:20 INFO  AppDriver:487 - Account Withdrawal Attempted
+2019-03-18 12:42:24 INFO  AppDriver:497 - Withdraw Transaction Successful
+2019-03-18 12:42:42 INFO  AppDriver:447 - Account updated
+2019-03-18 12:43:08 INFO  AppDriver:514 - Account will be deleted
+2019-03-18 12:43:09 INFO  AppDriver:516 - Account deleted
+2019-03-18 20:25:45 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 20:25:47 INFO  AppDriver:25 - Initialization complete
+2019-03-18 20:26:21 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 20:26:21 DEBUG AppDriver:566 - Register Attempted
+2019-03-18 20:26:44 INFO  AppDriver:594 - Customer Login Attempted
+2019-03-18 20:26:44 INFO  AppDriver:170 - Customer Login Succeeded
+2019-03-18 20:26:55 INFO  AppDriver:335 - Withdraw Transaction Attempted
+2019-03-18 20:28:39 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 20:28:41 INFO  AppDriver:25 - Initialization complete
+2019-03-18 20:29:13 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 20:29:13 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 20:29:56 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 20:29:58 INFO  AppDriver:25 - Initialization complete
+2019-03-18 20:31:01 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 20:31:01 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 20:31:46 INFO  AppDriver:503 - Account deposit attempted
+2019-03-18 20:32:30 INFO  AppDriver:508 - Deposit Transaction Completed
+2019-03-18 20:33:30 INFO  AppDriver:446 - Account updated
+2019-03-18 20:35:23 INFO  AppDriver:487 - Account Withdrawal Attempted
+2019-03-18 22:50:06 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 22:50:07 INFO  AppDriver:25 - Initialization complete
+2019-03-18 22:51:04 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 22:51:24 INFO  AppDriver:680 - Account Being Created
+2019-03-18 22:52:04 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 22:52:04 DEBUG AppDriver:566 - Register Attempted
+2019-03-18 22:52:15 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 22:52:38 INFO  AppDriver:616 - Customer Check
+2019-03-18 22:52:48 INFO  AppDriver:680 - Account Being Created
+2019-03-18 22:53:25 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 22:53:51 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 22:54:10 INFO  AppDriver:680 - Account Being Created
+2019-03-18 22:54:26 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 22:55:05 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 22:55:05 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 23:14:07 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 23:14:08 INFO  AppDriver:25 - Initialization complete
+2019-03-18 23:19:27 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 23:19:27 INFO  AppDriver:398 - Employee Login Successful
+2019-03-18 23:23:33 INFO  AppDriver:446 - Account updated
+2019-03-18 23:23:56 INFO  AppDriver:447 - Account updated
+2019-03-18 23:24:19 INFO  AppDriver:503 - Account deposit attempted
+2019-03-18 23:24:22 INFO  AppDriver:508 - Deposit Transaction Completed
+2019-03-18 23:24:37 INFO  AppDriver:487 - Account Withdrawal Attempted
+2019-03-18 23:24:41 INFO  AppDriver:497 - Withdraw Transaction Successful
+2019-03-18 23:25:25 INFO  AppDriver:514 - Account will be deleted
+2019-03-18 23:25:26 INFO  AppDriver:516 - Account deleted
+2019-03-18 23:26:41 INFO  AppDriver:594 - Customer Login Attempted
+2019-03-18 23:26:41 INFO  AppDriver:170 - Customer Login Succeeded
+2019-03-18 23:27:49 INFO  AppDriver:680 - Account Being Created
+2019-03-18 23:28:21 INFO  AppDriver:616 - Customer Check
+2019-03-18 23:28:31 INFO  AppDriver:680 - Account Being Created
+2019-03-18 23:28:54 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-18 23:30:01 INFO  AppDriver:680 - Account Being Created
+2019-03-18 23:35:13 INFO  AppDriver:245 - Transfer Transaction Attempted
+2019-03-18 23:36:44 INFO  AppDriver:299 - Deposit Transaction Attempted
+2019-03-18 23:54:42 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-18 23:54:43 INFO  AppDriver:25 - Initialization complete
+2019-03-18 23:54:54 INFO  AppDriver:594 - Customer Login Attempted
+2019-03-18 23:54:55 INFO  AppDriver:170 - Customer Login Succeeded
+2019-03-18 23:55:42 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-18 23:55:43 INFO  AppDriver:398 - Employee Login Successful
+2019-03-19 13:13:50 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 13:14:03 INFO  AppDriver:25 - Initialization complete
+2019-03-19 13:14:46 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-19 13:16:37 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 13:16:50 INFO  AppDriver:25 - Initialization complete
+2019-03-19 13:17:07 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-19 13:22:07 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 13:22:08 INFO  AppDriver:25 - Initialization complete
+2019-03-19 13:22:19 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-19 13:22:20 INFO  AppDriver:398 - Employee Login Successful
+2019-03-19 13:29:22 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 13:29:25 INFO  AppDriver:25 - Initialization complete
+2019-03-19 13:29:37 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-19 13:29:38 INFO  AppDriver:398 - Employee Login Successful
+2019-03-19 22:16:08 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 22:16:11 INFO  AppDriver:25 - Initialization complete
+2019-03-19 23:13:41 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 23:13:42 INFO  AppDriver:25 - Initialization complete
+2019-03-19 23:14:02 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-19 23:15:06 INFO  AppDriver:573 - Checking Database For Employees
+2019-03-19 23:15:07 INFO  AppDriver:25 - Initialization complete
+2019-03-19 23:15:34 DEBUG AppDriver:560 - Customer Attempted to Register
+2019-03-19 23:16:05 INFO  AppDriver:680 - Account Being Created
+2019-03-19 23:16:29 INFO  AppDriver:594 - Customer Login Attempted
+2019-03-19 23:16:29 INFO  AppDriver:170 - Customer Login Succeeded
+2019-03-19 23:16:44 INFO  AppDriver:299 - Deposit Transaction Attempted
+2019-03-19 23:17:27 INFO  AppDriver:637 - Employee Login Attempted
+2019-03-19 23:17:28 INFO  AppDriver:398 - Employee Login Successful
+2019-03-19 23:17:48 INFO  AppDriver:446 - Account updated
+2019-03-19 23:46:34 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-19 23:46:35 INFO  AppDriver:25 - Initialization complete
+2019-03-19 23:46:46 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-19 23:46:46 DEBUG AppDriver:585 - Register Attempted
+2019-03-19 23:47:23 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-19 23:47:24 INFO  AppDriver:25 - Initialization complete
+2019-03-19 23:47:48 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-19 23:47:49 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-19 23:48:06 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-19 23:48:14 INFO  AppDriver:321 - Deposit Transaction Completed
+2019-03-20 00:00:28 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:00:30 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:01:27 INFO  AppDriver:656 - Employee Login Attempted
+2019-03-20 00:01:27 INFO  AppDriver:406 - Employee Login Successful
+2019-03-20 00:01:58 INFO  AppDriver:527 - Account will be deleted
+2019-03-20 00:01:59 INFO  AppDriver:529 - Account deleted
+2019-03-20 00:11:07 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:11:09 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:12:00 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:12:00 DEBUG AppDriver:585 - Register Attempted
+2019-03-20 00:12:35 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:12:36 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:13:13 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:13:41 INFO  AppDriver:699 - Account Being Created
+2019-03-20 00:14:04 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:14:04 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:14:10 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:14:44 INFO  AppDriver:656 - Employee Login Attempted
+2019-03-20 00:14:46 INFO  AppDriver:406 - Employee Login Successful
+2019-03-20 00:15:07 INFO  AppDriver:457 - Account updated
+2019-03-20 00:15:35 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:15:35 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:15:39 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:15:50 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:15:57 INFO  AppDriver:321 - Deposit Transaction Completed
+2019-03-20 00:16:33 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:16:34 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:16:52 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:17:11 INFO  AppDriver:699 - Account Being Created
+2019-03-20 00:27:22 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:27:23 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:27:50 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:27:50 DEBUG AppDriver:585 - Register Attempted
+2019-03-20 00:28:11 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:28:12 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:28:25 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:28:42 INFO  AppDriver:699 - Account Being Created
+2019-03-20 00:30:17 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:30:18 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:30:32 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:30:32 INFO  AppDriver:165 - Customer Login Failed
+2019-03-20 00:30:43 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:30:43 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:31:34 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:31:47 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:36:33 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:36:35 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:37:04 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:37:04 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:37:07 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:38:25 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:38:26 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:38:44 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:38:44 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:38:47 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:39:20 INFO  AppDriver:656 - Employee Login Attempted
+2019-03-20 00:39:21 INFO  AppDriver:406 - Employee Login Successful
+2019-03-20 00:39:35 INFO  AppDriver:515 - Account deposit attempted
+2019-03-20 00:39:38 INFO  AppDriver:520 - Deposit Transaction Completed
+2019-03-20 00:39:49 INFO  AppDriver:457 - Account updated
+2019-03-20 00:40:15 INFO  AppDriver:656 - Employee Login Attempted
+2019-03-20 00:40:31 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:40:31 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:40:34 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:40:40 INFO  AppDriver:321 - Deposit Transaction Completed
+2019-03-20 00:47:36 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:47:37 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:47:50 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:47:51 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:48:06 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:48:16 INFO  AppDriver:321 - Deposit Transaction Completed
+2019-03-20 00:48:29 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:49:09 INFO  AppDriver:699 - Account Being Created
+2019-03-20 00:49:29 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:49:29 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:49:32 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:50:17 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 00:50:31 INFO  AppDriver:699 - Account Being Created
+2019-03-20 00:50:49 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:50:50 INFO  AppDriver:165 - Customer Login Failed
+2019-03-20 00:51:23 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:51:24 INFO  AppDriver:165 - Customer Login Failed
+2019-03-20 00:51:51 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:51:52 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:52:04 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:52:05 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:52:08 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:54:04 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:54:05 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:54:30 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:54:30 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:54:34 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 00:57:04 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 00:57:05 INFO  AppDriver:25 - Initialization complete
+2019-03-20 00:57:15 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 00:57:15 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 00:57:18 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 01:07:21 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 01:07:22 INFO  AppDriver:25 - Initialization complete
+2019-03-20 01:07:38 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 01:07:39 INFO  AppDriver:165 - Customer Login Failed
+2019-03-20 01:07:48 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 01:07:48 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 01:07:55 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 01:09:41 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 01:09:42 INFO  AppDriver:25 - Initialization complete
+2019-03-20 01:09:53 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 01:09:54 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 01:09:57 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 11:37:59 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 11:38:03 INFO  AppDriver:25 - Initialization complete
+2019-03-20 11:43:07 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 11:43:09 INFO  AppDriver:25 - Initialization complete
+2019-03-20 11:44:20 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 11:44:22 INFO  AppDriver:25 - Initialization complete
+2019-03-20 11:48:47 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 11:48:49 INFO  AppDriver:25 - Initialization complete
+2019-03-20 11:50:01 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 11:50:33 INFO  AppDriver:699 - Account Being Created
+2019-03-20 11:50:53 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 11:50:54 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 11:50:58 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 11:52:28 INFO  AppDriver:656 - Employee Login Attempted
+2019-03-20 11:52:29 INFO  AppDriver:406 - Employee Login Successful
+2019-03-20 11:52:43 INFO  AppDriver:527 - Account will be deleted
+2019-03-20 11:52:44 INFO  AppDriver:529 - Account deleted
+2019-03-20 13:56:03 INFO  AppDriver:592 - Checking Database For Employees
+2019-03-20 13:56:07 INFO  AppDriver:25 - Initialization complete
+2019-03-20 13:58:13 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 13:58:38 INFO  AppDriver:699 - Account Being Created
+2019-03-20 13:58:51 DEBUG AppDriver:579 - Customer Attempted to Register
+2019-03-20 13:59:19 INFO  AppDriver:635 - Customer Check
+2019-03-20 13:59:28 INFO  AppDriver:699 - Account Being Created
+2019-03-20 13:59:50 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 13:59:50 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 13:59:56 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 14:00:27 INFO  AppDriver:656 - Employee Login Attempted
+2019-03-20 14:00:28 INFO  AppDriver:406 - Employee Login Successful
+2019-03-20 14:00:55 INFO  AppDriver:457 - Account updated
+2019-03-20 14:01:05 INFO  AppDriver:457 - Account updated
+2019-03-20 14:01:24 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 14:01:25 INFO  AppDriver:165 - Customer Login Failed
+2019-03-20 14:01:40 INFO  AppDriver:613 - Customer Login Attempted
+2019-03-20 14:01:41 INFO  AppDriver:172 - Customer Login Succeeded
+2019-03-20 14:01:44 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 14:01:51 INFO  AppDriver:303 - Deposit Transaction Attempted
+2019-03-20 14:01:56 INFO  AppDriver:321 - Deposit Transaction Completed
+2019-03-20 14:02:09 INFO  AppDriver:340 - Withdraw Transaction Attempted
+2019-03-20 14:02:13 INFO  AppDriver:359 - Withdraw Transaction Attempted
+2019-03-31 21:02:20 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:02:20 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:02:21 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:02:21 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:02:21 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-03-31 21:02:22 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-03-31 21:02:22 INFO  EmployeePortalController:67 - Table has been updated
+2019-03-31 21:02:44 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:02:44 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-03-31 21:02:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:02:44 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-03-31 21:02:44 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-03-31 21:02:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:02:45 INFO  EmployeePortalController:67 - Table has been updated
+2019-03-31 21:06:58 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:06:58 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:07:17 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:07:17 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:08:05 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:08:05 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:08:43 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:08:43 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:08:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:08:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:08:44 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:08:44 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:12:13 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:12:13 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:12:14 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:12:40 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:12:40 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:12:40 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:12:40 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:12:40 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:12:41 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:14:25 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:14:25 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:14:26 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:14:26 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:14:26 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:14:26 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:15:36 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:15:36 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:15:37 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:15:37 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:15:37 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:15:37 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:17:34 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:17:34 INFO  LoginController:17 - Entered Login Controller
+2019-03-31 21:17:36 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:17:36 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:17:36 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:17:36 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:17:53 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:17:54 INFO  FinanceEmployeeController:77 - Reimbursement 220 DENIED!!!
+2019-03-31 21:17:54 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:17:54 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:17:54 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:17:54 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-03-31 21:17:58 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-03-31 21:17:58 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:17:58 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-03-31 21:17:58 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-03-31 21:17:59 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-01 11:24:20 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-01 11:24:20 INFO  LoginController:17 - Entered Login Controller
+2019-04-01 11:24:22 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:22 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:22 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-01 11:24:22 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-01 11:24:23 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-01 11:24:42 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-01 11:24:42 INFO  LoginController:17 - Entered Login Controller
+2019-04-01 11:24:43 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:43 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:43 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-01 11:24:43 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-01 11:24:50 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-01 11:24:51 INFO  FinanceEmployeeController:77 - Reimbursement 200 DENIED!!!
+2019-04-01 11:24:51 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:51 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:51 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-01 11:24:52 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-01 11:24:58 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-01 11:24:59 INFO  FinanceEmployeeController:83 - Reimbursement 215 Ticket approved
+2019-04-01 11:24:59 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:24:59 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-01 11:24:59 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-01 11:25:00 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 19:11:05 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 19:11:05 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 19:11:07 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 19:11:07 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 19:11:07 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 19:11:08 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 19:11:08 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 19:11:19 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 19:11:19 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 19:11:20 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 19:11:20 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 19:11:20 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 19:11:20 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 19:11:28 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 19:11:28 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:02:18 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:02:18 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:02:18 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:10:17 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:10:17 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:10:17 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:11:09 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:11:09 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:11:09 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:39 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:39 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:12:39 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:50 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:50 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:50 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:12:52 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:52 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:12:52 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:52 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:52 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:12:52 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:54 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:54 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:12:54 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:55 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:12:55 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:12:55 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:14:47 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:14:47 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:14:47 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:15:01 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:01 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:15:01 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:02 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:02 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:15:02 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:56 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:56 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:15:56 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:57 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:15:57 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:15:57 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:16:00 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:16:00 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:16:01 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:16:08 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:16:08 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:16:08 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:23:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:23:44 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:23:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:23:59 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:23:59 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:23:59 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:24:21 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:24:21 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:24:21 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:27:10 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:27:10 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:27:29 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:27:29 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:27:29 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:27:29 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:27:29 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:27:30 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 20:27:30 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 20:27:46 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:27:46 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:27:47 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:27:47 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:27:47 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 20:27:47 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 20:29:33 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:29:33 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:53:17 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:53:17 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:53:26 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:53:26 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:53:27 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:53:27 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 20:53:27 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:53:27 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 20:53:27 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 20:54:38 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:54:38 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:54:38 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:54:38 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:54:38 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 20:54:39 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 20:56:13 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:56:13 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:56:14 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:56:14 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 20:56:14 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:56:14 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 20:59:12 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 20:59:12 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 20:59:12 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:59:12 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 20:59:12 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 20:59:13 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 22:41:31 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:41:31 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:41:37 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:41:37 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:41:37 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:41:37 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:41:37 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:42:13 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:42:13 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:42:33 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:42:33 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:42:35 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:42:35 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 22:42:35 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:42:36 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 22:44:40 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:44:40 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:44:58 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:44:58 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:45:02 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:45:02 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:45:02 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:45:02 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:45:08 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:46:13 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:46:13 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:46:18 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:46:18 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:46:18 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:46:18 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:46:21 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:47:56 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:47:58 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 22:47:58 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:47:58 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:47:58 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:47:58 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:47:59 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:48:20 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:48:24 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 22:48:24 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:48:24 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:48:24 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:48:24 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:48:25 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:48:41 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:48:41 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:48:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:48:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:48:44 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 22:48:46 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 22:50:50 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:50:50 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:50:52 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:50:52 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:50:52 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:50:52 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:50:56 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:54:03 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:54:03 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 22:54:06 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:54:06 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:54:06 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:54:06 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:54:07 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 22:54:20 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 22:54:21 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 22:54:21 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:54:21 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 22:54:21 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 22:54:21 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 22:54:22 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:05:57 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:05:57 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 23:06:00 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:06:00 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:06:00 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:06:01 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:06:02 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:06:28 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:06:29 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 23:06:29 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:06:29 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:06:29 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:06:29 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:06:30 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:06:57 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:06:57 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 23:06:58 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:06:58 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:06:58 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 23:06:59 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 23:33:53 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:33:53 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 23:33:54 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:33:54 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:33:54 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:33:55 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:33:56 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:34:16 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:34:17 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 23:34:18 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:34:18 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:34:18 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:34:18 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:34:18 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:34:43 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:34:44 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 23:34:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:34:44 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:34:44 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:34:44 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:34:45 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:38:10 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:38:10 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 23:38:12 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:38:12 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:38:12 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:38:12 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:38:13 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:38:30 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:38:31 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 23:38:31 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:38:31 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:38:31 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:38:31 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:38:32 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:48:05 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:48:05 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 23:48:07 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:48:07 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:48:07 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:48:07 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:48:08 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:48:33 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:48:41 INFO  EmployeePortalController:47 - Reimbursement Created by Awood123
+2019-04-02 23:48:41 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:48:41 INFO  EmployeePortalController:23 - Entered EMPportalController
+2019-04-02 23:48:41 INFO  EmployeePortalController:27 - Awood123 has logged in
+2019-04-02 23:48:41 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:48:45 INFO  EmployeePortalController:67 - Table has been updated
+2019-04-02 23:49:05 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:49:05 INFO  LoginController:17 - Entered Login Controller
+2019-04-02 23:49:07 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:49:07 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 23:49:07 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:49:13 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 23:49:52 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:49:56 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:50:11 INFO  FinanceEmployeeController:77 - Reimbursement 235 DENIED!!!
+2019-04-02 23:50:14 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:50:14 INFO  FinanceEmployeeController:26 - JParikh123 has logged in
+2019-04-02 23:50:14 INFO  MasterServlet:17 - Inside of GET MasterServlet
+2019-04-02 23:50:16 INFO  FinanceEmployeeController:46 - Table has been updated
+2019-04-02 23:50:43 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:50:50 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:50:58 INFO  MasterServlet:24 - Inside of POST MasterServlet
+2019-04-02 23:51:13 INFO  FinanceEmployeeController:83 - Reimbursement 205 Ticket approved
+2019-04-02 23:51:13 INFO  FinanceEmployeeController:83 - Reimbursement 205 Ticket approved
+2019-04-02 23:51:15 INFO  FinanceEmployeeController:83 - Reimbursement 205 Ticket approved
