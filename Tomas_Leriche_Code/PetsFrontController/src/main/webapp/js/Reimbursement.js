@@ -102,6 +102,7 @@ function setValues(reimb){
 			<th scope="col">Submitted</th>
 			<th scope="col">Resolved</th>
 			<th scope="col">Description</th>
+			<th scope="col">Status</th>
 			</tr>
 			</thead>`
 	for (let reim of reimb){
@@ -114,6 +115,7 @@ function setValues(reimb){
 			<td id="reimb_submitted">${reim.reimb_submitted}</td>
 			<td id="reimb_resolved">${reim.reimb_resolved}</td>
 			<td id="reimb_description">${reim.reimb_description}</td>
+			<td id-"reimb_status_id">${reim.reimb_status_id}</td>
 			</tr>
 			</tbody>`			
 	}

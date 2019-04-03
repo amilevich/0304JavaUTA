@@ -31,6 +31,9 @@ public class RequestHelper {
 		case "/PetsFrontController/html/ReimbUpdate.do":
 			return ReimbProfileController.Update(request);
 			
+		case "/PetsFrontController/html/ManJSON.do":
+			return HomeController.ManJSON(request, response);
+			
 		default:
 			return "/html/Login.html";
 		}

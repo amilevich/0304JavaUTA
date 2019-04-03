@@ -27,19 +27,30 @@ public class LoginController {
 		pet = petDaoImpl.selectPetByName(name);
 		reimb = petDaoImpl.selectReimbursementsByUserId(pet.getUser_id());
 		
+		System.out.println("THIIIISSS" + reimb);
 		// crash if newly made
 		//System.out.println(reimb.get(0).getReimb_amount());
 		// get reimbursements by user id
-		
+		List<Reimbursement1> reimbs = reimbursement1DaoImpl.selectAllPetsReimbs();
+		System.out.println(reimbs);
 		
 		// TODO: ADD CONDITION FOR MANAGER LOGIN
-		if (name.equals(pet.getName()) && type.equals(pet.getType())) {
+		if (name.equals(pet.getName()) && type.equals(pet.getType()) && pet.getRole_id() == 1) {
 			
 			request.getSession().setAttribute("Pet", pet);
 			request.getSession().setAttribute("Reimb", reimb);
 
 			
 			return "/html/Home.html";
+		}else if (name.equals(pet.getName()) && type.equals(pet.getType()) && pet.getRole_id() == 0) {
+			
+			System.out.println("admin loging in");
+			request.getSession().setAttribute("Pet", pet);
+			request.getSession().setAttribute("Reimb", reimb);
+			request.getSession().setAttribute("Reimbs", reimbs);
+			
+			
+			return "/html/Home2.html";
 		}
 		
 		return "/html/Login.html";

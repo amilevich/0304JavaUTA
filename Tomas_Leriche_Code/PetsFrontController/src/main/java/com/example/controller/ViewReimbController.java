@@ -80,7 +80,7 @@ public class ViewReimbController {
 		
 		
 		//Pet pet = (Pet)request.getSession().getAttribute("Pet");
-		System.out.println(request.getSession().getAttribute("Reimb"));
+		System.out.println("this is " + request.getSession().getAttribute("Reimb"));
 		//List<Reimbursement1> reimbs = new ArrayList<Reimbursement1>();
 		reimbs = (List<Reimbursement1>) request.getSession().getAttribute("Reimb");
 		

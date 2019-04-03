@@ -32,19 +32,20 @@ public class PetDaoImpl implements PetDao {
 	private static final String username = "project1user";
 	private static final String password = "1234";
 
+	
 	@Override
 	public int insertPet(Pet p) {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO PET (name, type, age, first_name, last_name,"
-													+ " email, role_id) values(?,?,?,?,?,?,?)");
+													+ " email) values(?,?,?,?,?,?)");
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getType());
 			ps.setInt(3, p.getAge());
 			ps.setString(4, p.getFirst_name());
 			ps.setString(5, p.getLast_name());
 			ps.setString(6, p.getEmail());
-			ps.setInt(7, p.getRole_id());
+			
 			
 			ps.executeUpdate();
 
@@ -110,7 +111,7 @@ public class PetDaoImpl implements PetDao {
 	public List<Reimbursement1> selectReimbursementsByUserId(int id) {
 		List<Reimbursement1> reimbs = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM reimbursement1 where reimb_author = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM reimbursement1 r inner join reimbursement_status rs on r.REIMB_STATUS_ID = rs.REIMB_STATUS_ID where reimb_author = ?");
 			
 			ps.setInt(1, id);
 			
@@ -122,12 +123,15 @@ public class PetDaoImpl implements PetDao {
 								rs.getInt("reimb_author"),
 								rs.getString("reimb_submitted"),
 								rs.getString("reimb_resolved"),
-								rs.getString("reimb_description")
+								rs.getString("reimb_description"),
+								rs.getInt("reimb_status_id"),
+								rs.getString("reimb_status")
 						));		 
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		//System.out.println("THIS" +reimbs);
 		return reimbs;
 	}
 	
