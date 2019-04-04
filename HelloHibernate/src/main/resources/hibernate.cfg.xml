@@ -32,6 +32,9 @@
 	<mapping class="com.example.model.Movie"/>
 	<mapping class="com.example.model.Director"/>
 
+<!-- You can define a table in an xml file,
+without annotations. -->
+<!-- <mapping resource="Character.hbm.xml"/> -->
 	</session-factory>
 </hibernate-configuration>
 
