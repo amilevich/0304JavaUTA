@@ -1,0 +1,11 @@
+<div class="clicker-container centered-content-container">
+  <button class="btn btn-primary" (click)="increment(1)">Increment By 1</button>
+
+  <span *ngFor="let incr of incrementors">
+    <button *ngIf ="counter >= incr"
+      class ="btn btn-primary"
+      (click)="increment(incr)">
+      Increment by {{incr}}
+    </button>
+  </span>
+</div>

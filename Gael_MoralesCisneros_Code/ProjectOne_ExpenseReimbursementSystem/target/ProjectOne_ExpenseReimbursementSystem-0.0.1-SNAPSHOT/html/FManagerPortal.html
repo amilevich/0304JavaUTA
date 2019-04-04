@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Odin ERS-Finance Manager Portal</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="icon" type="image/png" href="favicon-16x16.ico" sizes="16x16" />
+<style>
+body{
+	background-image: url("http://dichterpark.me/wp-content/uploads/pages-background-color-12-best-of-photos.jpg");
+	background-posistion: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+table{
+	border: 2px solid #1098AC;
+}	
+
+#updateForm{
+	border: 1px solid #E8ECEF;
+	border-radius: 5px;
+	padding: 20px;
+	background-color: #E8ECEF;
+	display: inline-block;
+	align: center;
+}
+#reimbId{
+	margin-right: 20px;
+}
+#approve{
+	margin-right: 10px;
+}
+</style>
+</head>
+<body>
+
+	<div>
+		<div class="titleName">
+			<div class="jumbotron text-center" style="background: #1098AC;">
+				<h1>Odin ERS</h1>
+				<h5>Finance Manager Portal</h5>
+				<a id="logout" type="button" class="btn btn-secondary btn-sm float-sm-right" href="Index.html">Logout</a>
+			</div>
+		</div>
+		<br/>
+		<form>
+		<div class=" table-responsive">
+			<table id="reimbRequestTable" class="table table-bordered table-striped">
+ 				<thead class="thead-light ">
+ 					<th scope="col">Id</th>
+ 					<th scope="col">Amount</th>
+ 					<th scope="col">Submitted</th>
+ 					<th scope="col">Resolved</th>
+ 					<th scope="col" >Description</th>
+ 					<th scope="col">Author</th>
+ 					<th scope="col">Resolver</th>
+ 					<th scope="col">Status</th>
+ 					<th scope="col">Expense type</th>
+ 				</thead>
+ 				<tbody>
+ 			
+ 				</tbody>
+ 			</table>			
+ 		</div>
+ 		</form>
+ 		<div class="container text-center">
+ 		<form id="updateForm" method="POST" action="UpdateReimburse.do" role="form">
+ 			<div class="input-group input-group-lg">
+ 			<input id="reimbId" name="reimbId" type="text" placeholder="Enter reimbursement id">
+ 			<input id= "approve" name="approve" type="submit" class="btn btn-info" value="Approve">
+ 			<input id="deny" name="deny" type="submit" class="btn btn-info" value="Deny">
+ 			</div>
+ 		</form>
+ 		</div>
+	</div>
+	<br/>
+	<br>
+	<br/>
+	<br/>
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../js/FManagerPortal.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

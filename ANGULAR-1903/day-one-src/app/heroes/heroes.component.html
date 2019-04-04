@@ -1,0 +1,12 @@
+<div class="centered-content-container">
+  <form (ngSubmit)="addHero(newHero)">
+    <input type="text" name="hero-name" [(ngModel)]="newHero.name" placeholder="name">
+    <input type="text" name="hero-url" [(ngModel)]="newHero.imageUrl" placeholder="image url">
+    <input type="text" name="hero-power" [(ngModel)]="newHero.power" placeholder="power">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+
+  <div *ngFor="let h of heroes">
+    <app-hero [hero]="h"></app-hero>
+  </div>
+</div>

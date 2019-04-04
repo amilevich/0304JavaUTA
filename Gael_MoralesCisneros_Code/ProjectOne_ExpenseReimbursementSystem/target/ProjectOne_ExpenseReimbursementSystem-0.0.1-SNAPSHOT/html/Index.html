@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Project One - Odin Expense Reimbursement System</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="icon" type="image/png" href="favicon-16x16.ico" sizes="16x16" />
+<style>
+body{
+	background-image: url("http://dichterpark.me/wp-content/uploads/pages-background-color-12-best-of-photos.jpg");
+	background-posistion: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+#login-container{
+	border: 1px solid gray;
+	padding: 15px; 
+	background-color: #E8ECEF;
+}
+@media (min-width: 1200px) {
+    .container{
+        max-width: 600px;
+    }
+}
+</style>
+</head>
+<body>
+
+	<div class="titleName">
+		<div class="jumbotron text-center" style="background: #1098AC;">
+			<h1> Odin ERS</h1>
+			<h5>By: Meme & Gael</h5>
+		</div>
+	</div>
+	<br/>
+	
+	<div class="container" id="login-container">
+	
+	<form class="container" id="login-form" method="POST" action="Login.do" role="form">
+  		<div class="form-group">
+    		<label for="inputUsername">Username</label>
+    		<input type="text" class="form-control" id="username" name="username" placeholder="Enter username" value="">
+  		</div>
+ 		<div class="form-group">
+    		<label for="inputPassword1">Password</label>
+    		<input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp"placeholder="Password" value="">
+    		<small id="passwordHelp" class="form-text text-muted">Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces.</small>
+  		</div>
+  		<input type="submit" class="btn btn-info" id="loginSubmit" value="Login">
+  		<small id="response" class="form-text text-muted"></small>
+	</form>
+	</div>
+	
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
