@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- The Bean Configuration file is an XML file created with the configuration 
+		metadata that you supply to the container. It contains the definitions of 
+		the beans and how beans are associated with each other. It is typically named 
+		beans.xml -->
+
+	<context:annotation-config />
+	<context:component-scan
+		base-package="com.example.dao" />
+	<context:component-scan
+		base-package="com.example.service" />
+
+	<!-- CONSTRUCTOR INJECTION <bean name="villainDao" scope="singleton" class="com.example.dao.VillainDaoImpl" 
+		/> <bean name="villainService" class="com.example.service.VillainServiceImpl"> 
+		<constructor-arg index="1" value="5" /> </bean> SETTER INJECTION <bean name="villainDao" 
+		scope="singleton" class="com.example.dao.VillainDaoImpl" /> <bean name="villainService" 
+		class="com.example.service.VillainServiceImpl"> <property name="vDao" ref="vDao"></property> 
+		</bean> -->
+
+	<!-- AUTOWIRING refers to the process of the Spring container automatically 
+		defining relationships between collaborating beans We have four modes: "no" 
+		- default, no autowiring "byName" - tries to match and wire a property if 
+		its name matches with exactly one of the beans name in the configuration 
+		file (in summary, it looks at variable names) "byType" - tries to match and 
+		wire a property if its type matches with exactly one of the beans in the 
+		configuration file. (in summary, it looks at datatypes) "Constructor" - tries 
+		to match and wire a property if its constructor argument type matches one 
+		of the beans in the configuration file. "autodetect" - Spring will first 
+		try by constructor, then by Type -->
+
+	<bean name="villainDao" class="com.example.dao.VillainDaoImpl" />
+	<bean name="villainService"
+		class="com.example.service.VillainServiceImpl" autowire="byName" />
+
+</beans>
