@@ -1,0 +1,70 @@
+@charset "ISO-8859-1";
+
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.center{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#picAndInfo{ /*remember "#" denotes id, whereas "." denotes class*/
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	right: 15px;
+	margin: auto;
+}
+
+#feedTable{
+	position: absolute;
+	top: 15px;
+	margin-left:auto;
+	margin-right:auto;
+	left: 7%; /*space that separates the table from the left bar (which hosts the pic and info)*/
+	text-align: center; /*centers the table's inner text*/
+	
+}
+
+#bgdLeftColumn { /*controls the background left column (where the profile picture and info lies)*/
+	width: 25%;
+	margin: auto;
+	background-color: #d3d3d3;
+}
+
+#bgdRightColumn { /*controls the background right column (where the feed lies)*/
+	width: 75%;
+	margin: auto;
+	background-color: #ececec;
+}
+
+/* Control the left side */
+.left {
+	left: 0;
+	background-color: #d3d3d3;
+}
+
+/* Control the right side */
+.right {
+	right: 0;
+	background-color: #ececec;
+}
+
+/* If you want the content centered horizontally and vertically
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+*/

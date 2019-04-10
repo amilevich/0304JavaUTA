@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.example.model">
+	<class name="User" table="Users">
+		<!-- Optional description -->
+		<meta attribute="description">
+			Description of your class... or something
+		</meta>
+		<id name="UserId" type="int" column="user_id">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" type="string" />
+		<property name="gender" column="gender" type="string" />
+		<property name="motive" column="motive" type="string" />
+
+		<!-- You are able to create a hbm.xml file for named queries as well. These 
+			will be queries that are commonly used and you refer to them by name at a 
+			later point. You would have to link query.hbm.xml in the hibernate.cfg.xml 
+			file. In java, session.namedQuery(customQuery) -->
+
+	</class>
+</hibernate-mapping>

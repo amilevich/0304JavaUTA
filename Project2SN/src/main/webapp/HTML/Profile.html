@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<!-- bootstrap link -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<!-- add this to link the HTML file with the CSS file -->
+<link rel="stylesheet" href="../CSS/Profile.css">
+
+</head>
+<body>
+
+	<div class="split left" id="bgdLeftColumn">
+		<!-- background left column, where the profile pic and info lie -->
+		<div class="centered" id="picAndInfo">
+
+			<!-- bootstrap to prompt user to add a profile picture -->
+			<form class="md-form">
+				<div class="file-field">
+					<div class="mb-4">
+						<span>
+						<img src="http://www.buckinghamandcompany.com.au/wp-content/uploads/2016/03/profile-placeholder.png"
+							 style="width: 200px;" class="center"> <!-- this is the placeholder profile picture -->
+						</span>
+					</div>
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input"
+								id="inputGroupFile04"> <label class="custom-file-label"
+								for="inputGroupFile04">Choose file</label>
+						</div>
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button">Button</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- bootstrap -->
+			
+			
+			<br/>
+			<h4 style="text-align: left">Username</h4>
+			<p style="text-align: left">Current city</p>
+			<p style="text-align: left">Workplace</p>
+			<p style="text-align: left">School</p>
+			<p style="text-align: left">Status</p>
+			<br />
+			<p style="text-align: left">Add bio here</p>
+
+
+		</div>
+	</div>
+
+	<div class="split right" id="bgdRightColumn">
+		<!-- background right column, where the feed lies -->
+		<!-- <div class="centered" id=feedTable> -->
+		<div id=feedTable>
+
+			<table border="1" style="width: 1000%">
+				<thead>
+					<tr>
+						<td>Post header</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Post body</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- bootstrap scripts -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        
+<hibernate-configuration>
+	
+	<session-factory>
+	
+		<!-- JDBC API stuff -->
+		<property name="hibernate.connection.username">angellocastro</property>
+		<property name="hibernate.connection.password">Nightmarish1.</property>
+		<!-- <property name="hibernate.connection.url">jdbc:oracle:thin:@mysqldatabase3.cwjd6odobf4o.us-east-2.rds.amazonaws.com:1521:orcl</property> -->
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@mysqldatabase3.cwjd6odobf4o.us-east-2.rds.amazonaws.com:1521:orcl</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		
+		<!-- Additional Hibernate options -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<!-- Enable the logging of all the generated SQL statements to the console -->
+		<property name="hibernate.show_sql">false</property>
+		<!-- Format the generated SQL statement to make it more readable, but takes up more screen space. -->
+		<property name="hibernate.format_sql">false</property>
+		
+		<!-- CREATE -drops all existing tables and creates  your schema
+		VALIDATE - hibernate checks to make sure that schema is as expected
+		UPDATE - hibernate will not delete anything, it'll only add to your schema
+		NONE - hibernate will not do anything to your schema automatically
+		-->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+	
+		<!-- Hibernate needs to know what tables it needs to create, so you'll have to inform it where to find them (the annotations that define the tables) -->
+		<mapping class="com.example.model.Character"/>
+		<mapping class="com.example.model.Movie"/>
+		<mapping class="com.example.model.Director"/>
+		
+		<!-- You can define a table inside an xml file without annotations -->
+		<!-- <mapping resource="Character.hbm.xml"/> -->
+		
+	</session-factory>
+
+</hibernate-configuration>
+
+<!-- session factory produces sessions -->
+<!-- sessions are physical connections to databases -->
+<!-- SST the three C's -->
