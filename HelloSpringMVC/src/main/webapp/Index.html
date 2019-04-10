@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Food with Spring MVC</title>
+</head>
+<body>
+<h2>Spring is here... and it's hot here in Texas</h2>
+<br/>
+<h4>Get All</h4>
+<form method="GET" action="getAllFood.app">
+	<input type="submit" value="Get All Food"/>
+</form>
+
+<br/>
+
+<h4>Get specific food, post</h4>
+<form method="POST" action="getFoodById.app">
+	<input type="number" name="id" placeholder="food id"/>
+	<input type="submit" value="Get Food, Post"/>
+</form>
+
+<br/>
+
+<h4>Get specific food by uri</h4>
+<form method="POST" action="3/getFoodByUri.app">
+	<input type="submit" value="Get Food, Uri"/>
+</form>
+
+<br/>
+
+<h4>Go to the other page</h4>
+<form method="GET" action="next.app">
+	<input type="submit" value="Other page"/>
+</form>
+
+</body>
+</html>
