@@ -1,0 +1,53 @@
+package com.projecttwo.repository;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.projecttwo.model.Appointment;
+import com.projecttwo.model.Doctor;
+import com.projecttwo.model.Patient;
+import com.projecttwo.util.HibernateUtil;
+
+@Repository
+public class PatientDao {
+	
+
+	
+	public void insert(Patient p) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction();
+		
+		ses.save(p);
+		tx.commit();
+		
+	}
+	
+	public void update(Patient p) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction(); 
+		
+		ses.update(p);
+		tx.commit();
+	}
+	
+	public Patient selectById(int id) {
+		Session ses = HibernateUtil.getSession();
+		Patient myPat = ses.get(Patient.class, id);
+		return myPat;
+	}
+	
+	public List<Patient> selectAll() {
+		Session ses = HibernateUtil.getSession();
+		List<Patient> patList = ses.createQuery("from Patient").list();
+		return patList;
+	}
+	
+
+}
