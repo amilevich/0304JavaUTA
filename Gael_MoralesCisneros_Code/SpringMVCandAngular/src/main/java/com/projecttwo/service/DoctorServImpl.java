@@ -26,5 +26,16 @@ public class DoctorServImpl {
 			b=	ddao.selectByUsernameAndPassword(un,pw);
 		return b;
 	}
+	
+	public Doctor getDoctorById(String id) {
+		int id1 = Integer.parseInt(id);
+		return ddao.selectById(id1);
+	}
 
+	public Doctor getDoctor(String un, String pw) {
+		Doctor d = new Doctor();
+		d = ddao.selectByUsernameAndPassword(un, pw);
+		return d;
+		
+	}
 }

@@ -30,5 +30,17 @@ public class DoctorCtrl {
 		Doctor d = docService.insertDoctor(username, password, firstName, lastName, license);
 		return d;
 	}
+	
+	@RequestMapping(value="/getdoctorybyid", method = RequestMethod.GET, params = { "id" })
+	public Doctor getDoctorById(String id) {
+		Doctor p = docService.getDoctorById(id);
+		return p;
+	}
+	
+	@RequestMapping(value="/logindoc", method = RequestMethod.GET, params = { "username", "password"})
+	public Doctor getDoctor(String username, String password) {
+		Doctor p = docService.getDoctor(username, password);
+		return p;
+	}
 
 }

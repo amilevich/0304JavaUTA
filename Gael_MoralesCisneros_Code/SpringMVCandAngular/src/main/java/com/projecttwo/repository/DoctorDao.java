@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -47,7 +48,7 @@ public class DoctorDao {
 
 	public Doctor selectByUsernameAndPassword(String un, String pw) {
 		Session ses = HibernateUtil.getSession();
-		List<Doctor> dList = ses.createQuery("from Doctor where username="+un+" and password="+pw,Doctor.class).list();
+		List<Doctor> dList = ses.createCriteria(Doctor.class) .add(Restrictions.like("userName", un)).add(Restrictions.like("passWord", pw)).list();
 
         return dList.get(0);
 	}
