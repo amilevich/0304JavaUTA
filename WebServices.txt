@@ -1,0 +1,137 @@
+Service - software that makes itself
+available
+
+benefits:
+- convenience
+- reliability 
+- maintenance/updates
+- security
+
+Web service - software that makes itself 
+available over the internet via a standard
+protocol or messaging system.
+- client/server interaction
+
+Consume - to use it or interact with it
+Expose - to create it and share it
+
+SOA - Service Oriented Architecture
+- technique for building business applications
+using loosely coupled services which act like
+black boxes and can be orchestrated to achieve
+a specific functionality by linking
+them together.
+
+black box - device, system, entity
+that takes on input and produces an
+output wihout disclosing the 
+implementation.
+
+SOA Characteristics:
+Resuable
+Autonomous - each service provides a business
+            functioun that is independent
+            from others
+Loosey coupled
+Location independent - accessed via URL
+Standards based 
+Platform independent 
+
+Web services is an implementation of SOA.
+
+Types of Web Services:
+SOAP - Simple Object Access Protocol 
+- any protocol it wants (more secure
+than REST), only XML, only POST Http method.
+REST - Representational State Transfer
+ - a web service that follows the SOA
+ standard and uses HTTP as its main
+ protocol.
+
+SOAP
+- platform and language independent 
+
+SOAP Message:
+<envelope> defines the start/end of a Message
+<header> //optional, metadata
+<body> contains the XML data 
+<fault> //optional, errors and exceptions
+        <code><string><actor>
+
+WSDL - Web Services Description language
+- describes web service, how to use 
+    your SOAP service
+- written in XML
+
+<WSDL>
+    <types> //datatypes used by the web service
+    <message> //parameters/return types
+    <portType> //available operations
+    <binding> //protocol/encoding
+    <service> //a collection of related
+                endpoints (URIs)
+    <operation> //action supported by the service
+</WSDL>
+
+WSDL -> implementation code = contract first
+implementation code -> WSDL = contract last
+
+To generate a WSDL, you need:
+1) JAX-WS
+2) Apache-CXF (SOAP engine)
+
+SOAP binding:
+document/literal
+document/enclosed (not used)
+RPC/literal (Remote Procedure Call)
+RPC/enclosed 
+
+
+REST
+
+HTTP Request Message
+Verb URL Version
+Header
+Body
+
+Http Response Message
+Status Code Version
+Header
+Body
+
+REST constraints (RESTful API):
+1) Uniform Interface - each entity's API
+should follow the same pattern, no 
+operations should have more than one URL
+2) Stateless - servers do not store any 
+data about the latest HTTP request.
+It treats each request as a new request.
+3) Layered system - client cannot tell
+whether it is connected to the original
+server or some other intermediate server
+4) Client-Server - client and server
+are separate entities, not dependent on 
+each other
+5) Cacheable - resources must declare
+themselves as cacheable 
+6) (optional) Code on Demand - able to
+send functional code to the original 
+server or some other server
+
+HTTP Methods
+GET(I, S)
+POST
+PUT(I) - update
+DELETE(I)
+HEAD(I, S) - same as get but without a response body
+TRACE(I) - performs a message loop-back
+test along the target resource path to the
+target resource
+CONNECT - connects to server
+PATCH - used for partial updates
+OPTIONS(I,S) - used to describe communication
+options for the target resource
+
+safe - read-only, if it doesn't alter
+the state of the server
+
