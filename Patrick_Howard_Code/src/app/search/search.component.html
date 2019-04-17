@@ -1,0 +1,63 @@
+<h4>Find A Doctor In Your Area</h4>
+<div class="container c3442">
+	<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+		<!-- Four columns -->
+		<div class="form-group row align-items-center">
+			<div class="col-sm-2">Physicians Name:</div>
+			<div class="col-sm-4">
+				<input type="text" formControlName="physiciansName" class="form-control" />
+			</div>
+			<div class="col-sm-2">City, State or Zip Code:</div>
+			<div class="col-sm-4"><input type="text" formControlName="searchField" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group row align-items-center">
+			<div class="col-sm-2">Specialty:</div>
+			<div class="col-sm-4">
+				<input type="text" formControlName="specialty" class="form-control" />
+			</div>
+			<div class="col-sm-2">Insurance Provider:</div>
+			<div class="col-sm-4"><input type="text" formControlName="insuranceProvider" class="form-control" />
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary btn-lg">Find Your Doctor</button>
+	</form>
+</div>
+<div class="row c3485">
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 c3493">
+		<div class="list-group">
+			<a href="#" class="list-group-item list-group-item-action active">
+				Doctors by Specialty
+			</a>
+			<div class="item-group">
+				<a *ngFor="let spec of specialties" href="#" class="list-group-item list-group-item-action">
+					{{spec.specialty}}
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 c3507">
+		<div class="list-group">
+			<a href="#" class="list-group-item list-group-item-action active">
+				Doctors by Condition
+			</a>
+			<div class="item-group">
+					<a *ngFor="let cond of conditions" href="#" class="list-group-item list-group-item-action">
+						{{cond.condition}}
+					</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 c3516">
+		<div class="list-group">
+			<a href="#" class="list-group-item list-group-item-action active">
+				Doctors by Procedures
+			</a>
+			<div class="item-group">
+					<a *ngFor="let proc of procedures" href="#" class="list-group-item list-group-item-action">
+						{{proc.procedure}}
+					</a>
+			</div>
+		</div>
+	</div>
+</div>
