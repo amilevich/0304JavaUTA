@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import com.projecttwo.model.Condition;
+import com.projecttwo.model.Procedure;
 import com.projecttwo.model.Specialty;
 import com.projecttwo.util.HibernateUtil;
 
@@ -51,10 +53,29 @@ public class SpecialtyDao {
 
 		Session ses = HibernateUtil.getSession();
 
-		List<Specialty> speList = ses.createQuery("from Specialist ").list();
+		List<Specialty> speList = ses.createQuery("from Specialty ").list();
 
 		return speList;
 
 	}
+	
+//	public List<Procedure> selectAllProcedures() {
+//		Session ses = HibernateUtil.getSession();
+//
+//		List<Procedure> proList = ses.createQuery("from Procedure ").list();
+//
+//		return proList;
+//	}
+	
+
+//	public List<Condition> selectAllConditions() {
+//
+//		Session ses = HibernateUtil.getSession();
+//
+//		List<Condition> conList = ses.createQuery("from Condition").list();
+//
+//		return conList;
+//
+//	}
 
 }

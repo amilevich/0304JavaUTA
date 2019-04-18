@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Language")
 @Component
@@ -26,7 +28,8 @@ public class Language {
 	@Column(name="language")
 	private String language;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="languages")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="languages")
+	@JsonIgnore 
 	private List<Doctor> doctors;
 	
 	public Language() {
@@ -71,7 +74,7 @@ public class Language {
 
 	@Override
 	public String toString() {
-		return "Language [languageId=" + languageId + ", language=" + language + ", doctors=" + doctors + "]";
+		return "Language [languageId=" + languageId + ", language=" + language + "]";
 	}
 	
 	

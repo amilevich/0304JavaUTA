@@ -18,10 +18,10 @@ public class PatientServImpl {
 		return pDao.selectAll();
 	}
 	
-	public Patient insertPatient(String un, String pw, String fn, String ln) {
-		Patient p = new Patient(fn,ln,un,pw);
-		pDao.insert(p);
-		return p;
+	public Patient insertPatient(String un, String pw, String fn, String ln, String ssn, String gender, String phone, String email, String street, String city, String state, String zipcode) {
+		Patient pat = new Patient(fn,ln,un,pw,ssn,gender,phone,email,street,city,state,zipcode);
+		pDao.insert(pat);
+		return pat;
 	}
 
 	public Patient getPatient(String username, String password) {
@@ -29,5 +29,4 @@ public class PatientServImpl {
 		p = pDao.selectByUsernameAndPassword(username, password);
 		return p;
 	}
-	
 }

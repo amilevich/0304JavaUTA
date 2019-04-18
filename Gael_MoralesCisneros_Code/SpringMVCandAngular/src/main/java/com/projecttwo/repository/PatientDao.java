@@ -53,7 +53,12 @@ public class PatientDao {
 	public Patient selectByUsernameAndPassword(String un, String pw) {
 		Session ses = HibernateUtil.getSession();
 		List<Patient> pList = ses.createCriteria(Patient.class) .add(Restrictions.like("userName", un)).add(Restrictions.like("passWord", pw)).list();
-        return pList.get(0);
+		if (pList.isEmpty()) {
+			return null;
+		}
+		else {
+			return pList.get(0);
+		}
 	}
 
 }

@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 public class Doctor {
 
 	@Id
-	@Column(name = "doctor_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "doctor_id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private int doctorId;
 
 	@Column(name = "first_name")
@@ -38,10 +38,10 @@ public class Doctor {
 	private String passWord;
 
 	@Column(name = "ssn")
-	private int ssN;
+	private String ssN;
 
 	@Column(name = "phone")
-	private int phone;
+	private String phone;
 
 	@Column(name = "email")
 	private String email;
@@ -65,7 +65,7 @@ public class Doctor {
 	private String state;
 
 	@Column(name = "zipcode")
-	private int zipcode;
+	private String zipcode;
 
 	@Column(name = "street2")
 	private String street2;
@@ -77,7 +77,7 @@ public class Doctor {
 	private String state2;
 
 	@Column(name = "zipcode2")
-	private int zipcode2;
+	private String zipcode2;
 
 	@Column(name = "experience")
 	private int experience;
@@ -87,6 +87,9 @@ public class Doctor {
 
 	@Column(name = "education")
 	private String education;
+	
+	@Column(name = "profilepic")
+	private String profilepic;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "specialty_id")
@@ -151,19 +154,19 @@ public class Doctor {
 		this.passWord = passWord;
 	}
 
-	public int getSsN() {
+	public String getSsN() {
 		return ssN;
 	}
 
-	public void setSsN(int ssN) {
+	public void setSsN(String ssN) {
 		this.ssN = ssN;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -223,11 +226,11 @@ public class Doctor {
 		this.state = state;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
@@ -255,11 +258,11 @@ public class Doctor {
 		this.state2 = state2;
 	}
 
-	public int getZipcode2() {
+	public String getZipcode2() {
 		return zipcode2;
 	}
 
-	public void setZipcode2(int zipcode2) {
+	public void setZipcode2(String zipcode2) {
 		this.zipcode2 = zipcode2;
 	}
 
@@ -335,12 +338,20 @@ public class Doctor {
 		this.appointments = appointments;
 	}
 
-	public Doctor(int doctorId, String firstName, String lastName, String userName, String passWord, int ssN, int phone,
+	public String getProfilepic() {
+		return profilepic;
+	}
+
+	public void setProfilepic(String profilepic) {
+		this.profilepic = profilepic;
+	}
+
+	public Doctor(int doctorId, String firstName, String lastName, String userName, String passWord, String ssN, String phone,
 			String email, String medicalId, String gender, String affiliation, String street, String city, String state,
-			int zipcode, String street2, String city2, String state2, int zipcode2, int experience,
+			String zipcode, String street2, String city2, String state2, String zipcode2, int experience,
 			String certification, String education, List<Specialty> specialties, List<Condition> conditions,
 			List<Language> languages, List<Procedure> procedures, List<Insurance> insurances,
-			List<Appointment> appointments) {
+			List<Appointment> appointments, String profilepic) {
 		super();
 		this.doctorId = doctorId;
 		this.firstName = firstName;
@@ -370,13 +381,14 @@ public class Doctor {
 		this.procedures = procedures;
 		this.insurances = insurances;
 		this.appointments = appointments;
+		this.profilepic = profilepic;
 	}
 
-	public Doctor(String firstName, String lastName, String userName, String passWord, int ssN, int phone, String email,
-			String medicalId, String gender, String affiliation, String street, String city, String state, int zipcode,
-			String street2, String city2, String state2, int zipcode2, int experience, String certification,
+	public Doctor(String firstName, String lastName, String userName, String passWord, String ssN, String phone, String email,
+			String medicalId, String gender, String affiliation, String street, String city, String state, String zipcode,
+			String street2, String city2, String state2, String zipcode2, int experience, String certification,
 			String education, List<Specialty> specialties, List<Condition> conditions, List<Language> languages,
-			List<Procedure> procedures, List<Insurance> insurances, List<Appointment> appointments) {
+			List<Procedure> procedures, List<Insurance> insurances, List<Appointment> appointments, String profilepic) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -405,12 +417,15 @@ public class Doctor {
 		this.procedures = procedures;
 		this.insurances = insurances;
 		this.appointments = appointments;
+		this.profilepic = profilepic;
 	}
 	
 	public Doctor() {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "Doctor [doctorId=" + doctorId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
@@ -418,9 +433,8 @@ public class Doctor {
 				+ ", medicalId=" + medicalId + ", gender=" + gender + ", affiliation=" + affiliation + ", street="
 				+ street + ", city=" + city + ", state=" + state + ", zipcode=" + zipcode + ", street2=" + street2
 				+ ", city2=" + city2 + ", state2=" + state2 + ", zipcode2=" + zipcode2 + ", experience=" + experience
-				+ ", certification=" + certification + ", education=" + education + ", specialties=" + specialties
-				+ ", conditions=" + conditions + ", languages=" + languages + ", procedures=" + procedures
-				+ ", insurances=" + insurances + "]";
+				+ ", certification=" + certification + ", education=" + education + ", profilepic=" + profilepic
+				+"]";
 	}
 
 	public Doctor(String firstName, String lastName, String userName, String passWord, String medicalId) {
@@ -432,5 +446,18 @@ public class Doctor {
 		this.medicalId = medicalId;
 	}
 
+	public Doctor(String firstName, String lastName, String userName, String passWord, String medicalId,
+			String street, String city, String state, String zipcode) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.medicalId = medicalId;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+	}
 	
 }

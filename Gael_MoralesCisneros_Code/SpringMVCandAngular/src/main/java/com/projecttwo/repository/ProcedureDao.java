@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.projecttwo.model.Procedure;
+import com.projecttwo.model.Specialty;
 import com.projecttwo.util.HibernateUtil;
 
 @Repository
@@ -45,15 +46,11 @@ public class ProcedureDao {
 		return myPro;
 
 	}
-
-	public List<Procedure> selectAll() {
-
+	
+	public List<Procedure> selectAllProcedures() {
 		Session ses = HibernateUtil.getSession();
-
 		List<Procedure> proList = ses.createQuery("from Procedure ").list();
-
 		return proList;
-
 	}
 
 }

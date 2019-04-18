@@ -13,20 +13,23 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="Condition")
+@Table(name = "Condition")
 @Component
 public class Condition {
-	
+
 	@Id
-	@Column(name="condition_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "condition_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int conditionId;
-	
-	@Column(name="condition")
+
+	@Column(name = "condition")
 	private String condition;
-	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="conditions")
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "conditions")
+	@JsonIgnore 
 	private List<Doctor> doctors;
 
 	public int getConditionId() {
@@ -55,7 +58,7 @@ public class Condition {
 
 	@Override
 	public String toString() {
-		return "Condition [conditionId=" + conditionId + ", condition=" + condition + ", doctors=" + doctors + "]";
+		return "Condition [conditionId=" + conditionId + ", condition=" + condition + "]";
 	}
 
 	public Condition(int conditionId, String condition, List<Doctor> doctors) {
@@ -70,10 +73,8 @@ public class Condition {
 		this.condition = condition;
 		this.doctors = doctors;
 	}
-	
+
 	public Condition() {
-		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 }

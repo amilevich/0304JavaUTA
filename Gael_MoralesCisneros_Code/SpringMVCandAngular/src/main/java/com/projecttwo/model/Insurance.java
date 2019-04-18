@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Insurance")
 @Component
@@ -26,7 +28,8 @@ public class Insurance {
 	@Column(name = "insurance")
 	private String insurance;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="insurances")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="insurances")
+	@JsonIgnore 
 	private List<Doctor> doctors;
 
 	public int getInsuranceId() {
@@ -55,7 +58,7 @@ public class Insurance {
 
 	@Override
 	public String toString() {
-		return "Insurance [insuranceId=" + insuranceId + ", insurance=" + insurance + ", doctors=" + doctors + "]";
+		return "Insurance [insuranceId=" + insuranceId + ", insurance=" + insurance + "]";
 	}
 
 	public Insurance(int insuranceId, String insurance, List<Doctor> doctors) {

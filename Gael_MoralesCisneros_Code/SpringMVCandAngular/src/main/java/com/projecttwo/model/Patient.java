@@ -36,13 +36,13 @@ public class Patient {
 	private String passWord;
 
 	@Column(name = "ssn")
-	private int ssN;
+	private String ssN;
 
 	@Column(name = "gender")
 	private String gender;
 
 	@Column(name = "phone")
-	private int phone;
+	private String phone;
 
 	@Column(name = "email")
 	private String email;
@@ -57,7 +57,7 @@ public class Patient {
 	private String state;
 
 	@Column(name = "zipcode")
-	private int zipcode;
+	private String zipcode;
 
 	public int getUserId() {
 		return userId;
@@ -99,11 +99,11 @@ public class Patient {
 		this.passWord = passWord;
 	}
 
-	public int getSsN() {
+	public String getSsN() {
 		return ssN;
 	}
 
-	public void setSsN(int ssN) {
+	public void setSsN(String ssN) {
 		this.ssN = ssN;
 	}
 
@@ -115,11 +115,11 @@ public class Patient {
 		this.gender = gender;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -155,16 +155,16 @@ public class Patient {
 		this.state = state;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
-	public Patient(int userId, String firstName, String lastName, String userName, String passWord, int ssN,
-			String gender, int phone, String email, String street, String city, String state, int zipcode) {
+	public Patient(int userId, String firstName, String lastName, String userName, String passWord, String ssN,
+			String gender, String phone, String email, String street, String city, String state, String zipcode) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -181,8 +181,8 @@ public class Patient {
 		this.zipcode = zipcode;
 	}
 
-	public Patient(String firstName, String lastName, String userName, String passWord, int ssN, String gender,
-			int phone, String email, String street, String city, String state, int zipcode) {
+	public Patient(String firstName, String lastName, String userName, String passWord, String ssN, String gender,
+			String phone, String email, String street, String city, String state, String zipcode) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
