@@ -6,7 +6,7 @@
 window.onload = function() {
 	
 	getUserInfo();
-	console.log(sessionStorage.getItem("userId"));
+
 }
 
 $(document).ready(function() {

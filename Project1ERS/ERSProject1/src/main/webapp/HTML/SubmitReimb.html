@@ -72,6 +72,9 @@ body {
 		<h1>Submit Reimbursement</h1>
 
 		<form method="POST" action="SubmitReimb.do">
+		<div class="form-group" style="display: none">
+				<label>ID:</label> <input type="text" class="form-control" id="UserId" name="userId">
+			</div>
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">Select Reimbursement
 					Type</label> <select class="form-control" name="reimbType"
@@ -90,10 +93,10 @@ body {
 				<label>Description of your Reimbursement</label> <input type="text"
 					class="form-control" name="description" placeholder="Description">
 			</div>
-			<div class="form-group">
-				<label for="exampleFormControlFile1">Submit your receipt
+			<div class="form-group" style="display: none">
+				<label for="fileToUpload">Submit your receipt
 					file</label> <input type="file" class="form-control-file" name="receipt"
-					id="exampleFormControlFile1">
+					id="fileToUpload">
 			</div>
 
 			<button id="btnSubmit" type="submit" class="btn btn-primary">Submit

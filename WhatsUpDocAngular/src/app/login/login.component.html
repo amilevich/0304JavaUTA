@@ -1,0 +1,25 @@
+﻿<h4>Login as a User</h4>
+<div class="container">
+    <div class="row">
+        <form class="centering" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 40%;">
+            <div class="form-group">
+                <input type="text" formControlName="userName" class="form-control" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <input type="password" formControlName="passWord" class="form-control" placeholder="Password"/>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="tpbutton btn-toolbar text-center">
+                        <a class="btn navbar-btn btn-default" href="#" target="_texturepack"><button
+                                [disabled]="loading" class="btn btn-primary">Login</button></a>
+                        <img *ngIf="loading" style="margin-top: 15px; height: 20px;"
+                            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <a [routerLink]="['/register']" class="btn navbar-btn btn-default"><button [disabled]="loading"
+                                class="btn btn-primary">Sign up</button></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

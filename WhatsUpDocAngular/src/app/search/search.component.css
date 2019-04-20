@@ -1,0 +1,35 @@
+:host {    
+    display: block;
+    left: 0;
+    width: 100%;   
+    height: 100%;   
+}
+
+.c3442{
+  min-height:75px;
+}
+.c3493{
+  min-height:75px;
+}
+.c3507{
+  min-height:75px;
+}
+.c3516{
+  min-height:75px;
+}
+.c3485{
+  min-height:75px;
+}
+.container.c3442{
+  height:250px;
+}
+.row.c3485{
+  min-height: 500px;
+}
+
+.item-group {
+  max-height: 290px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+

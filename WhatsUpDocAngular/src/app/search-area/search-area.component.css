@@ -1,0 +1,48 @@
+:host {    
+    display: block;
+    left: 0;
+    width: 100%;   
+    height: 100%;   
+}
+
+.c3442{
+  min-height:75px;
+}
+.c3493{
+  min-height:75px;
+}
+.c3507{
+  min-height:75px;
+}
+.c3516{
+  min-height:75px;
+}
+.c3485{
+  min-height:75px;
+}
+.container.c3442{
+  height:200px;
+}
+.row.c3485{
+  min-height: 500px;
+}
+
+.doctor-item-group {
+  max-height: 450px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.card-profile-image {
+    height: 100px;
+    width: 100px;
+}
+
+
+.profile-card-1 {
+  min-height: 75px;
+}
+
+.hidden {
+  display: none;
+}

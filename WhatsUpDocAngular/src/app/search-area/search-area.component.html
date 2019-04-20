@@ -1,0 +1,120 @@
+<h4>Find A Doctor In Your Area</h4>
+<div class="container c3442">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit($event)">
+    <!-- Four columns -->
+    <div class="form-group row align-items-center">
+      <div class="col-sm-2">Physicians Name:</div>
+      <div class="col-sm-4">
+        <input type="text" formControlName="physiciansName" class="form-control" />
+      </div>
+      <div class="col-sm-2">City, State or Zip Code:</div>
+      <div class="col-sm-4"><input type="text" formControlName="searchField" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row align-items-center">
+      <div class="col-sm-2">Specialty:</div>
+      <div class="col-sm-4">
+        <input type="text" name="specialty" formControlName="specialty" class="form-control" />
+      </div>
+      <div class="col-sm-2">Insurance Provider:</div>
+      <div class="col-sm-4"><input type="text" formControlName="insuranceProvider" class="form-control" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Find Your Doctor</button>
+  </form>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+      <div class="card profile-card-1">
+        <table>
+          <tr class="row">
+            <td class="align-top col-sm-9">
+              <h5 data-type="header" class="card-title text-left">Recommendation Rating
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card profile-card-1">
+        <table>
+          <tr class="row">
+            <td class="align-top col-sm-9">
+              <h5 data-type="header" class="card-title text-left">Distance
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card profile-card-1">
+        <table>
+          <tr class="row">
+            <td class="align-top col-sm-9">
+              <h5 data-type="header" class="card-title text-left">Years of Experience
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card profile-card-1">
+        <table>
+          <tr class="row">
+            <td class="align-top col-sm-9">
+              <h5 data-type="header" class="card-title text-left">Availablity
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card profile-card-1">
+        <table>
+          <tr class="row">
+            <td class="align-top col-sm-9">
+              <h5 data-type="header" class="card-title text-left">Age
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card profile-card-1">
+        <table>
+          <tr class="row">
+            <td class="align-top col-sm-9">
+              <h5 data-type="header" class="card-title text-left">Gender
+              </h5>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12 doctor-item-group">
+      <div *ngFor="let doctor of doctors">
+        <div *ngIf="isFiltered(doctor)" class="card profile-card-1">
+          <table>
+            <tr class="row" (click)="cardClick(doctor.doctorId)">
+              <td class="align-top col-sm-2">
+                <div class="card-img-block">
+                  <img data-type="image" height="125" src="{{doctor.profilePic}}" alt="Card image cap"
+                    class="img-fluid card-profile-image rounded-circle" />
+                </div>
+              </td>
+              <td class="align-top col-sm-4">
+                <h5 data-type="header" class="card-title text-left">{{doctor.firstName}} {{doctor.lastName}}
+                </h5>
+                <b>{{doctor.specialty}}</b>
+              </td>
+              <td class="align-top col-sm-6">
+                <span class="card-text text-left">Primary Location</span>
+                <p class="card-text text-left">{{doctor.address}}</p>
+                <span class="card-text text-left">{{doctor.distanceString}}</span>
+                <span class="card-text text-right"> {{doctor.phoneNo}}</span>
+                <div class="card-body pt-3">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

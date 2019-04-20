@@ -1,0 +1,309 @@
+{
+    "specialties": [ 
+        {
+            "specialtyId": 1,
+            "name": "Dermatologist"
+        },
+        {
+            "specialtyId": 2,
+            "name": "Family Physician"
+        },
+        {
+            "specialtyId": 3,
+            "name": "Gastroenterologist"
+        },
+        {
+            "specialtyId": 4,
+            "name": "General Practitioner"
+        },
+        {
+            "specialtyId": 5,
+            "name": "Internist"
+        },
+        {
+            "specialtyId": 6,
+            "name": "Neurologist"
+        },
+        {
+            "specialtyId": 7,
+            "name": "Pediatrician"
+        },
+        {
+            "specialtyId": 8,
+            "name": "Psyciatrist"
+        },
+        {
+            "specialtyId": 9,
+            "name": "Surgeon"
+        },
+        {
+            "specialtyId": 10,
+            "name": "Endodontics"
+        },
+        {
+            "specialtyId": 11,
+            "name": "Nephrologist"
+        }
+    ],
+    "conditions": [ 
+        {
+            "conditionId": 1,
+            "name": "Acute sinusitus"
+        },
+        {
+            "conditionId": 2,
+            "name": "Anxiety disorders"
+        },
+        {
+            "conditionId": 3,
+            "name": "Bronchial asthma"
+        },
+        {
+            "conditionId": 4,
+            "name": "Depressive disorders"
+        },
+        {
+            "conditionId": 5,
+            "name": "Diabetes"
+        },
+        {
+            "conditionId": 6,
+            "name": "Hypertension"
+        }
+    ],
+    "procedures": [ {
+            "procedureId": 1,
+            "name": "Acupuncture"
+        },
+        {
+            "procedureId": 2,
+            "name": "Angioplasty"
+        },
+        {
+            "procedureId": 3,
+            "name": "Arthroscopy"
+        },
+        {
+            "procedureId": 4,
+            "name": "Colonoscopy"
+        },
+        {
+            "procedureId": 5,
+            "name": "Electrocardiogram"
+        },
+        {
+            "procedureId": 6,
+            "name": "Endoscopy"
+        },
+        {
+            "procedureId": 7,
+            "name": "Knee replacement"
+        },
+        {
+            "procedureId": 8,
+            "name": "Physical therapy"
+        }
+    ],
+    "doctors": [
+        {
+          "doctorId": 1,
+          "name": "Jose Fuentes",
+          "imageURL": "http://localhost:4200/assets/DrDao.PNG",
+          "specialty": "Plastic surgery",
+          "conditions": "obesity",
+          "procedure": "Liposuction",
+          "education": "University of Pennsylvania",
+          "gender": "Male",
+          "languages": "English",
+          "experience": 10,
+          "hospital": "Penrose Hospital",
+          "location": "2222 N Nevada Ave, Colorado Springs CO 80907",
+          "secondaryLocation": "St. Francis Medical Center",
+          "address": "6001 E Woodmen Rd, Colorado Springs CO 80923",
+          "ssn": 524941475,
+          "insurance": "Blue Cross",
+          "license": "4        8        5        1        8        3        7        4        6 1",
+          "age": 48
+        },
+        {
+          "doctorId": 2,
+          "name": "John Lopez",
+          "imageURL": "http://localhost:4200/assets/hferrando.jpg",
+          "specialty": "Plastic surgery",
+          "conditions": "Cosmetic",
+          "procedure": "Breast augmentation \nRhinoplasty\n",
+          "education": "Boston University",
+          "gender": "Male",
+          "languages": "English\nSpanish",
+          "experience": 4,
+          "hospital": "University of South Florida Student Health Services",
+          "location": "4107 USF Cedar Cir, Tampa FL 33620",
+          "secondaryLocation": "",
+          "address": "",
+          "ssn": 267610666,
+          "insurance": "Blue Cross\nHumana",
+          "license": "9        7        5        6        3        4        2        8        1 2",
+          "age": 28
+        },
+        {
+          "doctorId": 3,
+          "name": "Maria Badino",
+          "imageURL": "http://localhost:4200/assets/mbadino.jpg",
+          "specialty": "Plastic surgery",
+          "conditions": "Cometic",
+          "procedure": "Lip Augmentation\nRhinoplasty\n",
+          "education": "University of California Los Angeles ",
+          "gender": "Female",
+          "languages": "English\nPortuguese ",
+          "experience": 6,
+          "hospital": "Penrose Hospital",
+          "location": "2222 N Nevada Ave, Colorado Springs CO 80907",
+          "secondaryLocation": "",
+          "address": "",
+          "ssn": 521915335,
+          "insurance": "Anthem\nAmeritas",
+          "license": "6        6        2        8        8        4        3        4        4 3",
+          "age": 32
+        },
+        {
+          "doctorId": 4,
+          "name": "Melissa Rodriguez",
+          "imageURL": "http://localhost:4200/assets/mrodriguez.jpeg",
+          "specialty": "Family Medicine",
+          "conditions": "Asthma",
+          "procedure": "Immunizations",
+          "education": "Harvard Medical School",
+          "gender": "Female",
+          "languages": "English\nGreek",
+          "experience": 2,
+          "hospital": "Pennsylvania Hospital",
+          "location": "800 Spruce St, Philadelphia PA 19107",
+          "secondaryLocation": "Jefferson Frankford Hospital ",
+          "address": "4900 Frankford Ave, Philadelphia PA 19124",
+          "ssn": 174501792,
+          "insurance": "Anthem\n",
+          "license": "2        3        5        1        9        8        7        6        1 4",
+          "age": 28
+        },
+        {
+          "doctorId": 5,
+          "name": "Horacio Ferrando",
+          "imageURL": "http://localhost:4200/assets/jlopez.jpg",
+          "specialty": "Family Medicine",
+          "conditions": "Asthma",
+          "procedure": "Immunizations",
+          "education": "University of Washington",
+          "gender": "Male",
+          "languages": "English\nSpanish\nItalian",
+          "experience": 17,
+          "hospital": "Penrose Hospital",
+          "location": "2222 N Nevada Ave, Colorado Springs CO 80907",
+          "secondaryLocation": "",
+          "address": "",
+          "ssn": 523286838,
+          "insurance": "Chip\nBlue Cross",
+          "license": "2        7        3        8        3        7        1        8        8 5",
+          "age": 40
+        },
+        {
+          "doctorId": 6,
+          "name": "Jeremiah Walker",
+          "imageURL": "http://localhost:4200/assets/jwalker.jpg",
+          "specialty": "Family Medicine",
+          "conditions": "Asthma",
+          "procedure": "Immunizations",
+          "education": "Harvard Medical School",
+          "gender": "Male",
+          "languages": "English",
+          "experience": 14,
+          "hospital": "Northwestern Memorial Hospital",
+          "location": "251 E Huron St, Chicago IL 60611",
+          "secondaryLocation": "Community First Medical Center",
+          "address": "5645 W Addison St, Chicago IL 60634",
+          "ssn": 50469025,
+          "insurance": "Humana",
+          "license": "2        1        3        1        8        8        8        8        7 6",
+          "age": 29
+        },
+        {
+          "doctorId": 7,
+          "name": "Joseph Malandra",
+          "imageURL": "http://localhost:4200/assets/DrDao.PNG",
+          "specialty": "Neurology",
+          "conditions": "Brain Tumors",
+          "procedure": "Spinal neurosurgery",
+          "education": "John Hopkins University",
+          "gender": "Male",
+          "languages": "English\nFrench",
+          "experience": 3,
+          "hospital": "Tampa General Hospital",
+          "location": "1 Tampa General Cir Tampa FL 33606",
+          "secondaryLocation": "University of South Florida Student Health Services",
+          "address": "4107 USF Cedar Cir, Tampa FL 33620",
+          "ssn": 591877402,
+          "insurance": "Humana",
+          "license": "6        7        4        8        4        4        6        7        4 7",
+          "age": 30
+        },
+        {
+          "doctorId": 8,
+          "name": "Luis Cruz",
+          "imageURL": "http://localhost:4200/assets/DrDao.PNG",
+          "specialty": "Neurology",
+          "conditions": "Brain Tumors",
+          "procedure": "Spinal neurosurgery",
+          "education": "University of California Los Angeles ",
+          "gender": "Male",
+          "languages": "English\nSpanish\n",
+          "experience": 8,
+          "hospital": "St. Francis Medical Center",
+          "location": "6001 E Woodmen Rd, Colorado Springs CO 80923",
+          "secondaryLocation": "",
+          "address": "",
+          "ssn": 524200017,
+          "insurance": "Ameritas",
+          "license": "5        8        8        5        9        4        2        3        1 8",
+          "age": 58
+        },
+        {
+          "doctorId": 9,
+          "name": "Chanel Rossi",
+          "specialty": "Neurology",
+          "conditions": "Brain Tumors",
+          "imageURL": "http://localhost:4200/assets/hferrando.jpg",
+          "procedure": "Spinal neurosurgery",
+          "education": "John Hopkins University",
+          "gender": "Female",
+          "languages": "English\nChinese",
+          "experience": 1,
+          "hospital": "Kindred Hospital Indianapolis",
+          "location": "1700 W 10th St Indianapolis IN 46222",
+          "secondaryLocation": "",
+          "address": "",
+          "ssn": 316187077,
+          "insurance": "Ameritas\nBlue Cross\nChip\nHumana",
+          "license": "5        2        9        1        8        6        8        1        5 9",
+          "age": 58
+        },
+        {
+          "doctorId": 10,
+          "name": "Matthew Thornton",
+          "specialty": "Dermatology",
+          "conditions": "Acne",
+          "procedure": "Laser Surgery",
+          "imageURL": "http://localhost:4200/assets/hferrando.jpg",
+          "education": "Boston University",
+          "gender": "Male",
+          "languages": "English",
+          "experience": 5,
+          "hospital": "St. Francis Medical Center",
+          "location": "6001 E Woodmen Rd, Colorado Springs CO 80923",
+          "secondaryLocation": "",
+          "address": "",
+          "ssn": 521285058,
+          "insurance": "Humana",
+          "license": "1        2        1        1        4        3        5        6        4 1",
+          "age": 41
+        }
+       ]
+}
