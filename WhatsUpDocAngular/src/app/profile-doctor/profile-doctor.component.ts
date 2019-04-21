@@ -65,7 +65,7 @@ export class ProfileDoctorComponent implements OnInit {
   onEditChange(evnt) {
     let isDoctorLogin = localStorage.getItem('isDoctorLogin');
     if (isDoctorLogin == "TRUE") {
-      if (evnt)
+      if (evnt=="True")
         this.profileDoctorForm.enable();
       else
         this.profileDoctorForm.disable();

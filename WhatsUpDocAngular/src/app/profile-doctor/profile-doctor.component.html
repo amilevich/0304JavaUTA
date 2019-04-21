@@ -15,7 +15,9 @@
       </div>
     </div>
     <div id="rightSidePanel" style="margin-left: 200px;">
-      <ui-switch id="editSwitch" (change)="onEditChange($event)" defaultBgColor="blue" [(ngModel)]="enable"></ui-switch>
+      <input id="editSwitch" type="checkbox" (change)="onEditChange(isChecked?'True':'False')" [(ngModel)]="isChecked"/>
+      <!-- <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary"> -->
+      <!-- <ui-switch id="editSwitch" (change)="onEditChange($event)" defaultBgColor="blue" [(ngModel)]="enable"></ui-switch> -->
       <label>
         Edit
       </label>
@@ -28,7 +30,7 @@
         </div>
       </div>
       <form [formGroup]="profileDoctorForm" (ngSubmit)="onSubmit()">
-        <fieldset [disabled]="killfields ? 'disabled' : null">
+        <fieldset [disabled]="killfields ? 'disabled' : null"> 
           <div class="form-group row align-items-center">
             <div class="col-sm-3">Gender
               <input type="text" formControlName="gender" value="{{doctor.gender}}" class="form-control" />

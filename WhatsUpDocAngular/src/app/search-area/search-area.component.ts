@@ -7,8 +7,6 @@ import { } from '@agm/core/services/google-maps-types';
 import { AgmCoreModule, MapsAPILoader } from "@agm/core";
 import { Doctor } from '../_models';
 import { element } from '@angular/core/src/render3/instructions';
-import { a } from '@angular/core/src/render3';
-
 
 declare var google: any;
 
